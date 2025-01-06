@@ -2,7 +2,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 
 const config = {
-  title: 'My Tech Blog', // Update the title
+  title: 'UUBOYSCY ENGINEERING LOGS', // Update the title
   tagline: 'Learn data engineering and more!', // Update the tagline
   favicon: 'img/favicon.ico',
 
