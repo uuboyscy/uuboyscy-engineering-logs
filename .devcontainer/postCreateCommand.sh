@@ -12,6 +12,6 @@ sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="xiong-chiamiov-plus"/' /root/.zshr
 && sed -i '/HIST_STAMPS="mm\/dd\/yyyy"/s/^#*//;s/mm\/dd\/yyyy/yyyy-mm-dd/' /root/.zshrc
 
 npm install -g npm@latest
-# npm install
+npm install
 
 zsh
