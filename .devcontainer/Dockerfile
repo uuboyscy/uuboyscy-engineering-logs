@@ -1,5 +1,5 @@
 # Use Node.js base image for Docusaurus
-FROM node:16-bullseye-slim
+FROM node:22-bullseye-slim
 
 ENV TZ=Asia/Taipei
 
