@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkuuboyscy_engineering_logs=self.webpackChunkuuboyscy_engineering_logs||[]).push([[3483],{9169:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/uuboyscy-engineering-logs/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
