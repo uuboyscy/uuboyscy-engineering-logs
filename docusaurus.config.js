@@ -42,7 +42,7 @@ const config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Tech Blog',
+      title: 'UUBOYSCY ENGINEERING LOGS',
       logo: {
         alt: 'My Tech Blog Logo',
         src: 'img/logo.svg',
