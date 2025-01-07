@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main # Change to your branch name if not using 'main'
+      - main
 
 jobs:
   build-and-deploy:
@@ -14,11 +14,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Set up SSH for deployment
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
       # Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22 # Use your desired Node.js version
+          node-version: 22
           cache: 'npm'
 
       # Install dependencies
@@ -35,10 +43,3 @@ jobs:
           GIT_USER: uuboyscy
           USE_SSH: true
         run: npm run deploy
-
-      # Debugging info in case of failure
-      - name: Debug Info
-        if: failure()
-        run: |
-          git remote -v
-          ls -la
