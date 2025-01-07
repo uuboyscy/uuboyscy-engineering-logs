@@ -18,9 +18,9 @@
     
     - Simple example
         
-        ![Untitled](Python%20Web%20Crawler%207db899a8179143b0840c9f240b597e4a/Untitled.png)
+        ![Untitled](Python%20Web%20Crawler/Untitled.png)
         
-        ![Untitled](Python%20Web%20Crawler%207db899a8179143b0840c9f240b597e4a/Untitled%201.png)
+        ![Untitled](Python%20Web%20Crawler/Untitled%201.png)
         
     - Common tags
         - div: Define a division in HTML
@@ -41,7 +41,7 @@
 
 ## URL
 
-![Untitled](Python%20Web%20Crawler%207db899a8179143b0840c9f240b597e4a/Untitled%202.png)
+![Untitled](Python%20Web%20Crawler/Untitled%202.png)
 
 - Parameters
     
