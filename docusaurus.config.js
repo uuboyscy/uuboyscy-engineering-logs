@@ -41,6 +41,11 @@ const config = {
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
+    colorMode: {
+      defaultMode: 'dark', // Set the default mode to dark
+      disableSwitch: false, // Allow users to switch between light and dark mode
+      respectPrefersColorScheme: true, // Respect the user's OS-level preference
+    },
     navbar: {
       title: 'UUBOYSCY ENGINEERING LOGS',
       logo: {
