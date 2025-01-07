@@ -1,0 +1,44 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main # Change to your branch name if not using 'main'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22 # Use your desired Node.js version
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Build the project
+      - name: Build the project
+        run: npm run build
+
+      # Deploy the project
+      - name: Deploy to GitHub Pages
+        env:
+          GIT_USER: uuboyscy
+          USE_SSH: true
+        run: npm run deploy
+
+      # Debugging info in case of failure
+      - name: Debug Info
+        if: failure()
+        run: |
+          git remote -v
+          ls -la
