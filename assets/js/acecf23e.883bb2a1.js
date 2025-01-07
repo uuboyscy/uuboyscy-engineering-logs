@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkuuboyscy_engineering_logs=self.webpackChunkuuboyscy_engineering_logs||[]).push([[1903],{1912:e=>{e.exports=JSON.parse('{"blogBasePath":"/uuboyscy-engineering-logs/blog","blogTitle":"Blog","authorsListPath":"/uuboyscy-engineering-logs/blog/authors"}')}}]);
