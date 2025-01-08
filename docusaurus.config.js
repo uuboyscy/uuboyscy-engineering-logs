@@ -73,12 +73,16 @@ const config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'About Me',
           items: [
             {
-              label: 'Docs',
+              label: 'Home Page',
               to: '/',
             },
+            {
+              label: 'About This Page',
+              to: '/about_this_page'
+            }
           ],
         },
         {
