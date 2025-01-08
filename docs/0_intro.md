@@ -10,7 +10,7 @@ Welcome to the UUBOYSCY Engineering Logs documentation! This site is dedicated t
 
 ## Getting Started
 
-To get started, check out our [documentation](./docs/intro.md) and explore the various sections. If you are new to data engineering, we recommend starting with the basics and gradually progressing to more advanced topics.
+To get started, check out our [documentation](/docs/0_intro.md) and explore the various sections. If you are new to data engineering, we recommend starting with the basics and gradually progressing to more advanced topics.
 
 Happy learning!
 
