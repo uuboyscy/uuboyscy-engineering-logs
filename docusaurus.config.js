@@ -7,8 +7,10 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // The URL where your site will be deployed
-  url: 'https://uuboyscy.github.io', // GitHub Pages URL
-  baseUrl: '/uuboyscy-engineering-logs/', // Include trailing slash and your repository name
+  // url: 'https://uuboyscy.github.io', // GitHub Pages URL
+  // baseUrl: '/uuboyscy-engineering-logs/', // Include trailing slash and your repository name
+  url: 'https://docs.uuboyscy.dev',
+  baseUrl: '/',
 
   // GitHub pages deployment config
   organizationName: 'uuboyscy', // Your GitHub username
