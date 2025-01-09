@@ -16,12 +16,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.x
-          cache: yarn
+          # cache: yarn
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Build slides
-        run: yarn reveal
+      # - name: Install dependencies
+      #   run: yarn install --frozen-lockfile
+      # - name: Build slides
+      #   run: yarn reveal
+      - name: npm install
+        run: npm install
       - name: Build website
         run: yarn build
 
