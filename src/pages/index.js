@@ -129,7 +129,7 @@ function ExperienceSection() {
 export default function Home() {
   return (
     <Layout
-      title="Allen Shi - Data Engineer"
+      title="UUBOYSCY.DEV"
       description="Experienced Data Engineer with expertise in cloud-native solutions, data pipelines, and scalable architectures.">
       <HomepageHeader />
       <main>
