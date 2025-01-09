@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Virtual Machine (VM)
 
 ![https://www.docker.com/wp-content/uploads/2021/11/docker-containerized-and-vm-transparent-bg.png](https://www.docker.com/wp-content/uploads/2021/11/docker-containerized-and-vm-transparent-bg.png)

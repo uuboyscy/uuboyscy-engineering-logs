@@ -1,3 +1,7 @@
+---
+sidebar_position: 13
+---
+
 # Docker compose
 
 # What is docker compose

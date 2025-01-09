@@ -1,3 +1,7 @@
+---
+sidebar_position: 8
+---
+
 # Register DockerHub account
 
 [https://hub.docker.com](https://hub.docker.com/)

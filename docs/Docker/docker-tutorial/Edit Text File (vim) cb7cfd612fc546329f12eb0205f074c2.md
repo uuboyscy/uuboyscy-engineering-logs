@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # Edit Text File (vim)
 
 - 輸入文字
