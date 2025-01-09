@@ -10,7 +10,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">Hi, I'm Allen Shi 👋</h1>
-        <p className="hero__subtitle">Experienced Data Engineer | Cloud Enthusiast | Data Architect Aspirant</p>
+        <p className="hero__subtitle">Experienced Data Engineer | Cloud Enthusiast | Data Architect Aspirant | Lecture</p>
         <p align="center">
           <a href="https://www.linkedin.com/in/chengyou-shi/">
             <img src="https://img.shields.io/badge/LinkedIn-uuboyscy-30302f?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
@@ -41,46 +41,29 @@ function AboutMeSection() {
   );
 }
 
-function ExperienceSection() {
-  return (
-    <section className={styles.section}>
-      <div className="container">
-        <h2>📜 Experience</h2>
-        <ul>
-          <li><b>Lecture - WiEDU / III</b></li>
-          <li><b>Data Engineer - U.S Company</b></li>
-          <li>Data Engineer - Hengstyle</li>
-          <li>Data Engineer - Gamania</li>
-          <li>Data Engineer - LnData</li>
-          <li>Data Engineer - Taipei Fubon Bank</li>
-        </ul>
-        <p><b>Education:</b> Mathematics - National Central University</p>
-      </div>
-    </section>
-  );
-}
-
 function TechStackSection() {
   return (
-    <section className={styles.section}>
+    <section>
       <div className="container">
         <h2>⚙️ Tech Stack & Tools</h2>
-        <div>
-          <h3>Data Engineering</h3>
-          <p>Hadoop, Spark, Flink, Hive, HBase, Prefect, Airflow, dbt, Airbyte</p>
-        </div>
-        <div>
-          <h3>Languages</h3>
-          <p>Python, Java, Shell scripting, Flask, Spring Boot</p>
-        </div>
-        <div>
-          <h3>Databases</h3>
-          <p>MySQL, PostgreSQL, MongoDB, Redis</p>
-        </div>
-        <div>
-          <h3>DevOps & Cloud</h3>
-          <p>Git, GitLab, Jenkins, Docker, Kubernetes, AWS, GCP</p>
-        </div>
+        <ul>
+          <div className={styles.techStackItem}>
+            <h3>Data Engineering</h3>
+            <p>Hadoop, Spark, Flink, Hive, HBase, Prefect, Airflow, dbt, Airbyte</p>
+          </div>
+          <div className={styles.techStackItem}>
+            <h3>Languages</h3>
+            <p>Python, Java, Shell scripting, Flask, Spring Boot</p>
+          </div>
+          <div className={styles.techStackItem}>
+            <h3>Databases</h3>
+            <p>MySQL, PostgreSQL, MongoDB, Redis</p>
+          </div>
+          <div className={styles.techStackItem}>
+            <h3>DevOps & Cloud</h3>
+            <p>Git, GitLab, Jenkins, Docker, Kubernetes, AWS, GCP</p>
+          </div>
+        </ul>
       </div>
     </section>
   );
@@ -124,6 +107,25 @@ function FunFactsSection() {
   );
 }
 
+function ExperienceSection() {
+  return (
+    <section className={styles.section}>
+      <div className="container">
+        <h2>📜 Experience</h2>
+        <ul>
+          <li><b>Lecture - WiEDU / III</b></li>
+          <li><b>Data Engineer - U.S Company</b></li>
+          <li>Data Engineer - Hengstyle</li>
+          <li>Data Engineer - Gamania</li>
+          <li>Data Engineer - LnData</li>
+          <li>Data Engineer - Taipei Fubon Bank</li>
+          <p><b>Education:</b> Mathematics - National Central University</p>
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <Layout
@@ -132,10 +134,10 @@ export default function Home() {
       <HomepageHeader />
       <main>
         <AboutMeSection />
-        <ExperienceSection /> {/* Added Experience Section */}
         <TechStackSection />
         <GitHubStatsSection />
         <FunFactsSection />
+        <ExperienceSection /> {/* Added Experience Section */}
       </main>
     </Layout>
   );
