@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Docker Tutorial Intro
 
 ## Module **1. Docker and VM**
