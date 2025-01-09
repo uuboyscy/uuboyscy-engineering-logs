@@ -46,7 +46,7 @@ const config = {
     colorMode: {
       defaultMode: 'dark', // Set the default mode to dark
       disableSwitch: false, // Allow users to switch between light and dark mode
-      respectPrefersColorScheme: true, // Respect the user's OS-level preference
+      respectPrefersColorScheme: false, // Respect the user's OS-level preference
     },
     navbar: {
       title: 'UUBOYSCY ENGINEERING LOGS',
@@ -73,10 +73,10 @@ const config = {
       style: 'dark',
       links: [
         {
-          title: 'About Me',
+          title: 'Information',
           items: [
             {
-              label: 'Home Page',
+              label: 'About Me',
               to: '/',
             },
             {
