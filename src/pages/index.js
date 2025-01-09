@@ -41,6 +41,25 @@ function AboutMeSection() {
   );
 }
 
+function ExperienceSection() {
+  return (
+    <section className={styles.section}>
+      <div className="container">
+        <h2>📜 Experience</h2>
+        <ul>
+          <li><b>Lecture - WiEDU / III</b></li>
+          <li><b>Data Engineer - U.S Company</b></li>
+          <li>Data Engineer - Hengstyle</li>
+          <li>Data Engineer - Gamania</li>
+          <li>Data Engineer - LnData</li>
+          <li>Data Engineer - Taipei Fubon Bank</li>
+        </ul>
+        <p><b>Education:</b> Mathematics - National Central University</p>
+      </div>
+    </section>
+  );
+}
+
 function TechStackSection() {
   return (
     <section className={styles.section}>
@@ -113,6 +132,7 @@ export default function Home() {
       <HomepageHeader />
       <main>
         <AboutMeSection />
+        <ExperienceSection /> {/* Added Experience Section */}
         <TechStackSection />
         <GitHubStatsSection />
         <FunFactsSection />
