@@ -1,0 +1,49 @@
+facebook:
+  label: Facebook
+  permalink: /facebook
+  description: Facebook tag description
+
+hello:
+  label: Hello
+  permalink: /hello
+  description: Hello tag description
+
+docusaurus:
+  label: Docusaurus
+  permalink: /docusaurus
+  description: Docusaurus tag description
+
+hola:
+  label: Hola
+  permalink: /hola
+  description: Hola tag description
+
+git:
+  label: Git
+  permalink: /git
+  description: Git
+
+docker:
+  label: Docker
+  permalink: /docker
+  description: Docker tag description
+
+airflow:
+  label: Airflow
+  permalink: /airflow
+  description: Airflow tag description
+
+prefect:
+  label: Prefect
+  permalink: /prefect
+  description: Prefect tag description
+
+gcp:
+  label: GCP
+  permalink: /gcp
+  description: GCP tag description
+
+python:
+  label: Python
+  permalink: /python
+  description: Python tag description
