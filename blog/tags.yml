@@ -43,7 +43,32 @@ gcp:
   permalink: /gcp
   description: GCP tag description
 
+aws:
+  label: AWS
+  permalink: /aws
+  description: AWS tag description
+
 python:
   label: Python
   permalink: /python
   description: Python tag description
+
+hadoop:
+  label: Hadoop
+  permalink: /hadoop
+  description: Hadoop tag description
+
+spark:
+  label: Spark
+  permalink: /spark
+  description: Spark tag description
+
+devops:
+  label: DevOps
+  permalink: /devops
+  description: DevOps tag description
+
+ci-cd:
+  label: CI/CD
+  permalink: /ci-cd
+  description: CI/CD tag description
