@@ -33,6 +33,8 @@ const config = {
         },
         blog: {
           showReadingTime: true,
+          blogSidebarTitle: 'All Posts',
+          blogSidebarCount: 'ALL', // Show all posts in the sidebar
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
