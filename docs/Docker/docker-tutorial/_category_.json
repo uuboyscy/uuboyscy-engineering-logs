@@ -1,0 +1,7 @@
+{
+  "label": "Docker Tutorial",
+  "link": {
+    "type": "generated-index",
+    "description": "Learn the fundamentals of Docker and how to containerize your applications."
+  }
+}
