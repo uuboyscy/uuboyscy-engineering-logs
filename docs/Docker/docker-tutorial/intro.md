@@ -12,7 +12,7 @@ sidebar_position: 1
 
 ### Virtual Machine
 
-[Virtual Machine (VM)](Virtual%20Machine%20(VM)%20add5c8cba6f741d49842d7fee55de6de.md)
+[Virtual Machine (VM)](Virtual%20Machine%20VM%20add5c8cba6f741d49842d7fee55de6de.md)
 
 ### Quick Start
 
