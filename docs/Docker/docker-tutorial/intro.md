@@ -30,7 +30,7 @@ sidebar_position: 1
 
 ### Edit Text File (vim)
 
-[Edit Text File (vim)](Edit%20Text%20File%20(vim)%20cb7cfd612fc546329f12eb0205f074c2.md)
+[Edit Text File (vim)](Edit%20Text%20File%20using%20vim%20cb7cfd612fc546329f12eb0205f074c2.md)
 
 ## Module **3. Docker and DockerHub**
 
