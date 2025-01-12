@@ -23,8 +23,8 @@ const config = {
     defaultLocale: 'en',
     locales: ['en', 'zh'],
     localeConfigs: {
-      en: { label: 'English', path: 'en', direction: 'ltr' },
-      zh: { label: '中文', path: 'zh', direction: 'ltr' },
+      en: { label: 'English', direction: 'ltr' },
+      'zh-Hant': { label: '中文', direction: 'ltr' },
     },
   },
 
