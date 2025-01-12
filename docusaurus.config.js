@@ -21,7 +21,11 @@ const config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'zh'],
+    localeConfigs: {
+      en: { label: 'English', path: 'en', direction: 'ltr' },
+      zh: { label: '中文', path: 'zh', direction: 'ltr' },
+    },
   },
 
   presets: [
@@ -64,6 +68,10 @@ const config = {
           label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'localeDropdown', // Enables the language switcher
+          position: 'right', // Position in the navbar
+        },
         {
           href: 'https://github.com/uuboyscy/uuboyscy-engineering-logs',
           label: 'GitHub',
