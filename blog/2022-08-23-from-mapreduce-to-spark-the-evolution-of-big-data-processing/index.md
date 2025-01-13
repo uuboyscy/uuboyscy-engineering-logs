@@ -7,64 +7,73 @@ tags: [hadoop, spark]
 
 # From MapReduce to Spark: The Evolution of Big Data Processing
 
-## 1. Introduction: The Big Data Challenge
+## 1. Introduction: Big Data Challenges
 
-In the world of big data, scale and complexity are the ultimate tests of a system’s capabilities. During one of my professional experiences, I worked on a system handling a 100TB dataset and executing 10,000 SQL queries daily. The inefficiencies of the existing architecture led to challenges such as execution delays and resource bottlenecks. This blog recounts how I transitioned the system from Hadoop Hive to Spark and optimized SQL processing for better performance.
+Big data means working with very large amounts of information. In one of my jobs, I had to handle 500TB of data and run more than 10,000 SQL queries every day. The old system we used was slow and had many problems, like some tasks taking over 24 hours to finish. In this blog, I will share how I solved these problems by using Spark and making the system faster and better.
 
-## 2. Hadoop Hive and MapReduce: The Old Guard
+---
 
-Hadoop Hive, built on top of MapReduce, was once a popular choice for big data analytics. It provided a SQL-like interface for querying large datasets. However, its reliance on MapReduce posed significant challenges:
+## 2. What is Hadoop Hive and MapReduce?
 
-- **Sequential Processing**: Queries were processed sequentially, limiting the system’s ability to parallelize workloads.
-- **Performance Issues**: Complex queries often required long execution times.
-- **Resource Utilization**: Disk-based processing in MapReduce made it inefficient for iterative tasks.
+Hadoop Hive is a tool that helps process big data using SQL queries. It works with a system called MapReduce, which was great when it was created but has many limits now:
 
-In the environment I worked in, these limitations became evident as some tasks exceeded 24 hours, significantly delaying data processing.
+- **Processes One Query at a Time**: It could not run many queries at once.
+- **Very Slow**: Large or complicated tasks took a long time.
+- **Not Efficient**: It used too many resources for simple tasks.
 
-## 3. The Bottlenecks in Legacy Systems
+In my work, these issues caused delays, and some tasks took more than one day to finish.
 
-The existing system struggled to handle the high volume and complexity of the workload:
+---
 
-- **Single Query Per Task**: Each SQL query was executed as an individual task, leading to resource inefficiency.
-- **Large Data Volumes**: Processing 100TB of data amplified these inefficiencies.
-- **Execution Delays**: The sequential execution of queries created bottlenecks, sometimes exceeding the expected runtime.
+## 3. Problems with the Old System
 
-These challenges highlighted the need for a more efficient and scalable solution.
+The old system was not good enough for our needs:
 
-## 4. The Shift to Spark
+- **One Query per Task**: Each SQL query was treated as a separate job, wasting resources.
+- **Huge Data Size**: Processing 100TB of data made it even harder.
+- **Long Task Times**: Some pipelines (multiple tasks) ran for over 24 hours.
 
-Spark emerged as a game-changer, offering solutions to the limitations of Hadoop’s MapReduce:
+These problems showed we needed a better solution.
 
-- **In-Memory Processing**: Spark’s ability to process data in memory drastically improved query execution times.
-- **Parallelism**: Spark’s DAG (Directed Acyclic Graph) execution enabled concurrent processing of multiple tasks.
-- **SQL Compatibility**: Spark SQL made the transition from Hive seamless while leveraging Spark’s processing power.
+---
 
-By replacing Hive’s MapReduce engine with Spark, we achieved significant improvements in both performance and scalability.
+## 4. Switching to Spark
 
-## 5. Refactoring the System: My Approach
+Spark is much faster and better than MapReduce for big data processing. It helped solve our problems because:
 
-The transition to Spark was only the first step. To fully optimize the system, I implemented the following strategies:
+- **Faster Processing**: Spark processes data in memory, so tasks are much quicker.
+- **Runs Tasks at the Same Time**: Spark can handle many tasks at once, saving time.
+- **Easy to Use**: Spark has a SQL tool that works like Hive, making the switch simple.
 
-1. **Combining Queries**: Instead of processing each SQL query as a separate task, I bundled multiple queries into a single Spark job, reducing task overhead and improving efficiency.
-2. **Parallel Task Execution**: Leveraging Spark’s parallelism, I ensured faster and more efficient query processing.
-3. **Monitoring and Debugging**: Spark’s detailed UI helped track job progress and identify bottlenecks, enabling iterative improvements.
+After replacing MapReduce with Spark, the system became much faster and could handle more work.
 
-These changes allowed the system to handle 10,000 SQL queries efficiently and reduced execution times significantly.
+---
 
-## 6. Beyond Spark: Exploring Flink
+## 5. How I Improved the System
 
-While Spark addressed our batch processing challenges, Flink presented an excellent solution for real-time streaming needs. Flink’s low-latency, stateful processing capabilities made it ideal for use cases requiring continuous data analysis. Integrating Flink into the ecosystem ensured a balance between batch and real-time data processing.
+Switching to Spark was just the first step. After that, I focused on restructuring the system to make it even more efficient. Here’s what I did:
 
-## 7. Key Takeaways and Lessons Learned
+1. **Refactored the Program Architecture**: I modified the structure so that a single task could execute multiple SQL queries at the same time. This reduced the overhead of creating separate tasks for each query, saving both time and resources.
 
-- **Refactoring Yields Results**: Switching from MapReduce to Spark and optimizing task execution provided significant performance gains.
-- **Choose Tools Wisely**: Spark excels in batch processing, while Flink is better suited for streaming.
-- **Efficiency is Key**: Combining queries and leveraging parallelism can drastically improve resource utilization and processing times.
+2. **Developed an API for SQL Execution**: Since other departments, such as analysts, wanted to use Spark to run SQL but didn’t have programming skills, I created an API called **jobQueue API**. This API allowed them to execute their SQL queries easily:
+   - They only needed to know how to make an API request.
+   - They could specify the SQL queries they wanted to execute in the request.
+   - The API handled the processing on Spark, abstracting away all the complexity.
 
-These lessons are applicable to any engineer tackling the challenges of big data systems.
+3. **Run Tasks Together**: By leveraging Spark’s ability to execute tasks in parallel, I optimized query execution times further, ensuring the system could handle a large number of queries more efficiently.
 
-## 8. Conclusion: Looking Forward
+4. **Monitor Progress**: Spark’s user interface was helpful for tracking task progress and debugging. I used this to ensure everything was running smoothly and to quickly fix any issues.
 
-The journey from MapReduce to Spark—and exploring tools like Flink—shows how big data processing has evolved to meet modern demands. For engineers, adapting to new technologies and refining existing systems is essential for staying competitive.
+With these improvements, the system could run 10,000 SQL queries seamlessly. The addition of the **jobQueue API** also empowered other teams to use Spark without needing deep technical knowledge, making the system more accessible and collaborative.
 
-As we look to the future, the integration of AI and big data, coupled with advancements in cloud technologies, will continue to reshape the data landscape. By embracing innovation and focusing on efficiency, organizations can unlock the full potential of their data.
+---
+
+## 6. What I Learned
+
+Here are some important lessons from this project:
+
+- **Small Changes Can Help**: Switching to Spark and combining queries made a huge difference in performance and efficiency.
+- **Use the Right Tool**: Spark's features like in-memory processing and parallel execution were perfect for our workload.
+- **Be Efficient**: Designing the system to execute multiple SQL queries in a single task saved both time and resources.
+
+These lessons highlight the importance of choosing the right approach and tools when working with big data.
