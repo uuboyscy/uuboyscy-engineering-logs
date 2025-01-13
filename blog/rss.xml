@@ -67,7 +67,74 @@
             <link>https://docs.uuboyscy.dev/blog/from-mapreduce-to-spark-the-evolution-of-big-data-processing</link>
             <guid>https://docs.uuboyscy.dev/blog/from-mapreduce-to-spark-the-evolution-of-big-data-processing</guid>
             <pubDate>Tue, 23 Aug 2022 00:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<div class="language-note codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-note codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">This article is currently under migration and will be available soon.</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content:encoded>
+            <description><![CDATA[1. Introduction: Big Data Challenges]]></description>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-introduction-big-data-challenges">1. Introduction: Big Data Challenges<a href="https://docs.uuboyscy.dev/blog/from-mapreduce-to-spark-the-evolution-of-big-data-processing#1-introduction-big-data-challenges" class="hash-link" aria-label="Direct link to 1. Introduction: Big Data Challenges" title="Direct link to 1. Introduction: Big Data Challenges">​</a></h2>
+<p>Big data means working with very large amounts of information. In one of my jobs, I had to handle 500TB of data and run more than 10,000 SQL queries every day. The old system we used was slow and had many problems, like some tasks taking over 24 hours to finish. In this blog, I will share how I solved these problems by using Spark and making the system faster and better.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-what-is-hadoop-hive-and-mapreduce">2. What is Hadoop Hive and MapReduce?<a href="https://docs.uuboyscy.dev/blog/from-mapreduce-to-spark-the-evolution-of-big-data-processing#2-what-is-hadoop-hive-and-mapreduce" class="hash-link" aria-label="Direct link to 2. What is Hadoop Hive and MapReduce?" title="Direct link to 2. What is Hadoop Hive and MapReduce?">​</a></h2>
+<p>Hadoop Hive is a tool that helps process big data using SQL queries. It works with a system called MapReduce, which was great when it was created but has many limits now:</p>
+<ul>
+<li><strong>Processes One Query at a Time</strong>: It could not run many queries at once.</li>
+<li><strong>Very Slow</strong>: Large or complicated tasks took a long time.</li>
+<li><strong>Not Efficient</strong>: It used too many resources for simple tasks.</li>
+</ul>
+<p>In my work, these issues caused delays, and some tasks took more than one day to finish.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="3-problems-with-the-old-system">3. Problems with the Old System<a href="https://docs.uuboyscy.dev/blog/from-mapreduce-to-spark-the-evolution-of-big-data-processing#3-problems-with-the-old-system" class="hash-link" aria-label="Direct link to 3. Problems with the Old System" title="Direct link to 3. Problems with the Old System">​</a></h2>
+<p>The old system was not good enough for our needs:</p>
+<ul>
+<li><strong>One Query per Task</strong>: Each SQL query was treated as a separate job, wasting resources.</li>
+<li><strong>Huge Data Size</strong>: Processing 100TB of data made it even harder.</li>
+<li><strong>Long Task Times</strong>: Some pipelines (multiple tasks) ran for over 24 hours.</li>
+</ul>
+<p>These problems showed we needed a better solution.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-switching-to-spark">4. Switching to Spark<a href="https://docs.uuboyscy.dev/blog/from-mapreduce-to-spark-the-evolution-of-big-data-processing#4-switching-to-spark" class="hash-link" aria-label="Direct link to 4. Switching to Spark" title="Direct link to 4. Switching to Spark">​</a></h2>
+<p>Spark is much faster and better than MapReduce for big data processing. It helped solve our problems because:</p>
+<ul>
+<li><strong>Faster Processing</strong>: Spark processes data in memory, so tasks are much quicker.</li>
+<li><strong>Runs Tasks at the Same Time</strong>: Spark can handle many tasks at once, saving time.</li>
+<li><strong>Easy to Use</strong>: Spark has a SQL tool that works like Hive, making the switch simple.</li>
+</ul>
+<p>After replacing MapReduce with Spark, the system became much faster and could handle more work.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="5-how-i-improved-the-system">5. How I Improved the System<a href="https://docs.uuboyscy.dev/blog/from-mapreduce-to-spark-the-evolution-of-big-data-processing#5-how-i-improved-the-system" class="hash-link" aria-label="Direct link to 5. How I Improved the System" title="Direct link to 5. How I Improved the System">​</a></h2>
+<p>Switching to Spark was just the first step.
+<img decoding="async" loading="lazy" alt="mapreduce-to-spark" src="https://docs.uuboyscy.dev/assets/images/mapreduce-to-spark-01df7786c62cee2d9c7f4b5ab7ad807b.png" width="2809" height="664" class="img_ev3q"></p>
+<p>After that, I focused on restructuring the system to make it even more efficient.Here’s what I did:</p>
+<ol>
+<li>
+<p><strong>Refactored the Program Architecture</strong>: I modified the structure so that a single task could execute multiple SQL queries at the same time. This reduced the overhead of creating separate tasks for each query, saving both time and resources.
+<img decoding="async" loading="lazy" alt="single-product-process" src="https://docs.uuboyscy.dev/assets/images/single-product-process-9da4b8f86fccf6bab7d7ec3ffa9f2b15.png" width="2805" height="1219" class="img_ev3q"></p>
+</li>
+<li>
+<p><strong>Developed an API for SQL Execution</strong>: Since other departments, such as analysts, wanted to use Spark to run SQL but didn’t have programming skills, I created an API called <strong>jobQueue API</strong>. This API allowed them to execute their SQL queries easily:</p>
+<ul>
+<li>They only needed to know how to make an API request.</li>
+<li>They could specify the SQL queries they wanted to execute in the request.</li>
+<li>The API handled the processing on Spark, abstracting away all the complexity.</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="api-execution-monitor" src="https://docs.uuboyscy.dev/assets/images/api-execution-monitor-2e06b06e78935cec5aa2bc64bc2c2413.png" width="1226" height="488" class="img_ev3q"></p>
+</li>
+<li>
+<p><strong>Run Tasks Together</strong>: By leveraging Spark’s ability to execute tasks in parallel, I optimized query execution times further, ensuring the system could handle a large number of queries more efficiently.
+<img decoding="async" loading="lazy" alt="multiple-product-process" src="https://docs.uuboyscy.dev/assets/images/multiple-product-process-6c165c6c365c9bbd7d80d5fba7f6b4ca.png" width="2905" height="1659" class="img_ev3q"></p>
+</li>
+<li>
+<p><strong>Monitor Progress</strong>: Spark’s user interface was helpful for tracking task progress and debugging. I used this to ensure everything was running smoothly and to quickly fix any issues.</p>
+</li>
+</ol>
+<p>With these improvements, the system could run 10,000 SQL queries seamlessly within 3 hours. The addition of the <strong>jobQueue API</strong> also empowered other teams to use Spark without needing deep technical knowledge, making the system more accessible and collaborative.
+<img decoding="async" loading="lazy" alt="time-spend-chart" src="https://docs.uuboyscy.dev/assets/images/time-spend-chart-bb6f59f398482fe28eef163096a65d90.png" width="552" height="372" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="6-what-i-learned">6. What I Learned<a href="https://docs.uuboyscy.dev/blog/from-mapreduce-to-spark-the-evolution-of-big-data-processing#6-what-i-learned" class="hash-link" aria-label="Direct link to 6. What I Learned" title="Direct link to 6. What I Learned">​</a></h2>
+<p>Here are some important lessons from this project:</p>
+<ul>
+<li><strong>Small Changes Can Help</strong>: Switching to Spark and combining queries made a huge difference in performance and efficiency.</li>
+<li><strong>Use the Right Tool</strong>: Spark's features like in-memory processing and parallel execution were perfect for our workload.</li>
+<li><strong>Be Efficient</strong>: Designing the system to execute multiple SQL queries in a single task saved both time and resources.</li>
+</ul>
+<p>These lessons highlight the importance of choosing the right approach and tools when working with big data.</p>]]></content:encoded>
             <category>Hadoop</category>
             <category>Spark</category>
         </item>
