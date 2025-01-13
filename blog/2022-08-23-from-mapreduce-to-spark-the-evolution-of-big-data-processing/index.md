@@ -51,20 +51,28 @@ After replacing MapReduce with Spark, the system became much faster and could ha
 
 ## 5. How I Improved the System
 
-Switching to Spark was just the first step. After that, I focused on restructuring the system to make it even more efficient. Here’s what I did:
+Switching to Spark was just the first step. 
+![mapreduce-to-spark](./mapreduce-to-spark.png)
+
+After that, I focused on restructuring the system to make it even more efficient.Here’s what I did:
 
 1. **Refactored the Program Architecture**: I modified the structure so that a single task could execute multiple SQL queries at the same time. This reduced the overhead of creating separate tasks for each query, saving both time and resources.
+![single-product-process](./single-product-process.png)
 
 2. **Developed an API for SQL Execution**: Since other departments, such as analysts, wanted to use Spark to run SQL but didn’t have programming skills, I created an API called **jobQueue API**. This API allowed them to execute their SQL queries easily:
    - They only needed to know how to make an API request.
    - They could specify the SQL queries they wanted to execute in the request.
    - The API handled the processing on Spark, abstracting away all the complexity.
+  
+    ![api-execution-monitor](./api-execution-monitor.png)
 
-3. **Run Tasks Together**: By leveraging Spark’s ability to execute tasks in parallel, I optimized query execution times further, ensuring the system could handle a large number of queries more efficiently.
+1. **Run Tasks Together**: By leveraging Spark’s ability to execute tasks in parallel, I optimized query execution times further, ensuring the system could handle a large number of queries more efficiently.
+![multiple-product-process](./multiple-product-process.png)
 
-4. **Monitor Progress**: Spark’s user interface was helpful for tracking task progress and debugging. I used this to ensure everything was running smoothly and to quickly fix any issues.
+2. **Monitor Progress**: Spark’s user interface was helpful for tracking task progress and debugging. I used this to ensure everything was running smoothly and to quickly fix any issues.
 
-With these improvements, the system could run 10,000 SQL queries seamlessly. The addition of the **jobQueue API** also empowered other teams to use Spark without needing deep technical knowledge, making the system more accessible and collaborative.
+With these improvements, the system could run 10,000 SQL queries seamlessly within 3 hours. The addition of the **jobQueue API** also empowered other teams to use Spark without needing deep technical knowledge, making the system more accessible and collaborative.
+![time-spend-chart](./time-spend-chart.png)
 
 ---
 
