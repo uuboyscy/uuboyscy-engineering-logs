@@ -2,27 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://docs.uuboyscy.dev/blog</id>
     <title>UUBOYSCY ENGINEERING LOGS Blog</title>
-    <updated>2024-12-26T00:00:00.000Z</updated>
+    <updated>2024-12-19T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://docs.uuboyscy.dev/blog"/>
     <subtitle>UUBOYSCY ENGINEERING LOGS Blog</subtitle>
     <icon>https://docs.uuboyscy.dev/img/favicon.ico</icon>
-    <entry>
-        <title type="html"><![CDATA[How dbt Bridges the Gap Between Data Engineers and Analysts]]></title>
-        <id>https://docs.uuboyscy.dev/blog/how-dbt-bridges-the-gap-between-data-engineers-and-analysts</id>
-        <link href="https://docs.uuboyscy.dev/blog/how-dbt-bridges-the-gap-between-data-engineers-and-analysts"/>
-        <updated>2024-12-26T00:00:00.000Z</updated>
-        <content type="html"><![CDATA[<div class="language-note codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-note codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">This article is currently under migration and will be available soon.</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content>
-        <author>
-            <name>uuboyscy</name>
-            <uri>https://uuboyscy.dev</uri>
-        </author>
-        <category label="dbt" term="dbt"/>
-        <category label="GCP" term="GCP"/>
-        <category label="AWS" term="AWS"/>
-        <category label="Airflow" term="Airflow"/>
-        <category label="Prefect" term="Prefect"/>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Modern Data Engineering Milestones: Key Technologies That Shaped the Industry]]></title>
         <id>https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry</id>
@@ -38,34 +22,6 @@
         <category label="AWS" term="AWS"/>
         <category label="Airflow" term="Airflow"/>
         <category label="Prefect" term="Prefect"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Why Data Engineers Must Embrace DevOps for Scalable Pipelines]]></title>
-        <id>https://docs.uuboyscy.dev/blog/why-data-engineers-must-embrace-devops-for-scalable-pipelines</id>
-        <link href="https://docs.uuboyscy.dev/blog/why-data-engineers-must-embrace-devops-for-scalable-pipelines"/>
-        <updated>2024-04-18T00:00:00.000Z</updated>
-        <content type="html"><![CDATA[<div class="language-note codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-note codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">This article is currently under migration and will be available soon.</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content>
-        <author>
-            <name>uuboyscy</name>
-            <uri>https://uuboyscy.dev</uri>
-        </author>
-        <category label="dbt" term="dbt"/>
-        <category label="GCP" term="GCP"/>
-        <category label="AWS" term="AWS"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[From Traditional Data Platforms to Modern Data Middle Platforms]]></title>
-        <id>https://docs.uuboyscy.dev/blog/from-traditional-data-platforms-to-modern-data-middle-platforms</id>
-        <link href="https://docs.uuboyscy.dev/blog/from-traditional-data-platforms-to-modern-data-middle-platforms"/>
-        <updated>2024-04-03T00:00:00.000Z</updated>
-        <content type="html"><![CDATA[<div class="language-note codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-note codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">This article is currently under migration and will be available soon.</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content>
-        <author>
-            <name>uuboyscy</name>
-            <uri>https://uuboyscy.dev</uri>
-        </author>
-        <category label="dbt" term="dbt"/>
-        <category label="GCP" term="GCP"/>
-        <category label="AWS" term="AWS"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[From Airflow to Prefect: Choosing the Right Orchestration Tool for Your Workflow]]></title>
