@@ -12,6 +12,8 @@ tags: [gcp, airflow, prefect]
 ## 1. Introduction
 In my role at a traditional company undergoing digital transformation, I faced a common challenge: managing multiple pipelines across Windows and Linux. These pipelines, essential for generating daily dashboard reports, were difficult to monitor, debug, and scale. 
 
+<!-- truncate -->
+
 While Airflow is a popular choice for orchestration, it didn’t fit well for our diverse team of engineers and analysts. Prefect, on the other hand, addressed our specific needs with its flexibility and user-friendly features.
 
 ---

@@ -11,6 +11,8 @@ tags: [hadoop, spark]
 
 Big data means working with very large amounts of information. In one of my jobs, I had to handle 500TB of data and run more than 10,000 SQL queries every day. The old system we used was slow and had many problems, like some tasks taking over 24 hours to finish. In this blog, I will share how I solved these problems by using Spark and making the system faster and better.
 
+<!-- truncate -->
+
 ---
 
 ## 2. What is Hadoop Hive and MapReduce?
