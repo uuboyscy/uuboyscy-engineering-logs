@@ -1,4 +1,4 @@
-# ETL
+# What is ETL?
 
 ## E - Extract
 
@@ -43,3 +43,22 @@ graph LR
     C -->|Analyze Data| D(BI Report)
     D --> E(Decision Making)
 ```
+
+## Tools for ETL
+
+### 1. **Python Libraries**
+- **Pandas**: For cleaning and transforming data.  
+- **Database Connectors**:  
+  - **pymysql** (MySQL)  
+  - **pymongo** (MongoDB)  
+- **Web Scraping**:  
+  - **requests**, **Beautiful Soup**, **selenium**
+
+### 2. **ETL Orchestration Tools**
+- **Airflow**: Schedules and monitors ETL workflows.  
+- **Prefect**: Simplifies ETL pipelines and debugging.  
+- **dbt**: Focuses on transforming data with SQL.
+
+### 3. **Big Data Frameworks**
+- **Spark**: For large-scale data processing.  
+- **Flink**: For real-time data streaming.
