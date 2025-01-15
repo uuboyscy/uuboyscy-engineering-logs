@@ -9,6 +9,8 @@ tags: [dbt, gcp, aws, airflow, prefect]
 
 In recent years, the field of data engineering has undergone significant transformations. Tools like **dbt (data build tool)** have emerged as vital components of modern data engineering workflows. These technologies not only optimize how data teams operate but also enable collaboration across diverse roles, including data engineers, analysts, project managers, and stakeholders. This article, based on my experience and a recent talk, explores how data engineering has evolved, why dbt has gained traction, and how it addresses pain points in data workflows.
 
+<!-- truncate -->
+
 ---
 
 ## The Rise of Modern Data Engineering
