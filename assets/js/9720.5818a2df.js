@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkuuboyscy_engineering_logs=self.webpackChunkuuboyscy_engineering_logs||[]).push([[9720],{9720:(e,s,c)=>{c.d(s,{createArchitectureServices:()=>u.S});var u=c(9936);c(9369)}}]);
