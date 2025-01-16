@@ -47,29 +47,29 @@ ID,Level,UpdateDate
 pip install pandasql
 ```
 
-![Untitled](PandaSQL%20884f6dfff1fc4b9093ec72272414ad82/Untitled.png)
+![Untitled](pandasql%20884f6dfff1fc4b9093ec72272414ad82/Untitled.png)
 
 # pandasql.sqldf
 
 ## Read CSV as DataFeame
 
-![Untitled](PandaSQL%20884f6dfff1fc4b9093ec72272414ad82/Untitled%201.png)
+![Untitled](pandasql%20884f6dfff1fc4b9093ec72272414ad82/Untitled%201.png)
 
 ## Execute SQL on DataFrame
 
 ### Sample code
 
-![Untitled](PandaSQL%20884f6dfff1fc4b9093ec72272414ad82/Untitled%202.png)
+![Untitled](pandasql%20884f6dfff1fc4b9093ec72272414ad82/Untitled%202.png)
 
-![Untitled](PandaSQL%20884f6dfff1fc4b9093ec72272414ad82/Untitled%203.png)
+![Untitled](pandasql%20884f6dfff1fc4b9093ec72272414ad82/Untitled%203.png)
 
-![Untitled](PandaSQL%20884f6dfff1fc4b9093ec72272414ad82/Untitled%204.png)
+![Untitled](pandasql%20884f6dfff1fc4b9093ec72272414ad82/Untitled%204.png)
 
-![Untitled](PandaSQL%20884f6dfff1fc4b9093ec72272414ad82/Untitled%205.png)
+![Untitled](pandasql%20884f6dfff1fc4b9093ec72272414ad82/Untitled%205.png)
 
-![Untitled](PandaSQL%20884f6dfff1fc4b9093ec72272414ad82/Untitled%206.png)
+![Untitled](pandasql%20884f6dfff1fc4b9093ec72272414ad82/Untitled%206.png)
 
-![Untitled](PandaSQL%20884f6dfff1fc4b9093ec72272414ad82/Untitled%207.png)
+![Untitled](pandasql%20884f6dfff1fc4b9093ec72272414ad82/Untitled%207.png)
 
 ### ROW_NUMBER()
 
