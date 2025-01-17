@@ -8,9 +8,9 @@
 
 ![Untitled](Prefect/Untitled.png)
 
-![Untitled](Prefect/Untitled%201.png)
-
 ![Untitled](Prefect/Untitled%202.png)
+
+![Untitled](Prefect/Untitled%201.png)
 
 ![Untitled](Prefect/Untitled%203.png)
 
@@ -23,6 +23,7 @@
 ![Untitled](Prefect/Untitled%206.png)
 
 ![Untitled](Prefect/Untitled%207.png)
+Follow the steps, then you can create the first flow
 
 ## Develop environment
 
