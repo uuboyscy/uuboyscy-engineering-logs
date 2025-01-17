@@ -52,6 +52,7 @@ The resulting documentation is displayed in an intuitive, web-based interface, m
 ---
 
 ## Historical Context: Data Engineering Evolution
+![data-engineering-milestones](./data-engineering-milestones.png)
 
 ### Traditional Practices
 
@@ -72,6 +73,9 @@ Over the past five years, the field has seen significant advancements:
 ## dbt in Practice: Features and Workflow
 
 ### Data Lineage and Visualization
+
+![dbt-lineage-graph](./dbt-lineage-graph.png)
+[dbt-sample-repository](https://uuboyscy.github.io/dbt-demo/#!/overview)
 
 dbt excels at visualizing data lineage. Consider a use case where a data team wants to understand how a **user_dashboard** table is constructed:
 
@@ -98,6 +102,22 @@ dbt supports command-line operations to build and test models. For example:
 - `dbt run` builds tables based on defined configurations.
 - `dbt test` executes tests for individual or multiple tables.
 
+A simple table configuration:
+```yml
+models:
+  - name: table_name
+    description: "Something something something..."
+    columns:
+      - name: user_id
+        description: "User identifier"
+        data_tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('some_ref_table')
+              field: user_id
+```
+
 These operations can target specific tables or pipelines, optimizing performance and resource usage.
 
 ---
@@ -106,7 +126,6 @@ These operations can target specific tables or pipelines, optimizing performance
 
 dbt has been widely adopted by companies across industries. Some notable examples include:
 
-- **Deezer**: Their data team uses dbt to enforce collaboration between analysts and engineers, ensuring data quality and consistency.
 - **Airbnb**: With over 50,000 metrics, Airbnb uses dbt alongside AI to manage their complex data ecosystem.
 - **Dcard**: Dcard mandates that its analysts use dbt for SQL development, highlighting its versatility beyond traditional engineering roles.
 
@@ -118,7 +137,6 @@ Other adopters like Gymnasium Education and Facebook have also reported signific
 
 While dbt has transformed data engineering, there are areas for improvement:
 
-- **Recursive Queries**: Platforms like BigQuery impose strict rules to avoid recursive behavior, which can limit certain workflows in dbt.
 - **Resource Management**: Running `dbt run` or `dbt test` on large projects can be resource-intensive. Future enhancements might focus on better optimization and incremental runs.
 
 Looking ahead, companies like Airbnb are exploring AI-driven tools to complement dbt, such as automatically generating SQL queries or identifying metrics based on natural language input.
