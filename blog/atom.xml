@@ -12,7 +12,103 @@
         <id>https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry</id>
         <link href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry"/>
         <updated>2024-12-19T00:00:00.000Z</updated>
-        <content type="html"><![CDATA[<div class="language-note codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-note codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">This article is currently under migration and will be available soon.</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>]]></content>
+        <summary type="html"><![CDATA[In recent years, the field of data engineering has undergone significant transformations. Tools like dbt (data build tool) have emerged as vital components of modern data engineering workflows. These technologies not only optimize how data teams operate but also enable collaboration across diverse roles, including data engineers, analysts, project managers, and stakeholders. This article, based on my experience and a recent talk, explores how data engineering has evolved, why dbt has gained traction, and how it addresses pain points in data workflows.]]></summary>
+        <content type="html"><![CDATA[<p>In recent years, the field of data engineering has undergone significant transformations. Tools like <strong>dbt (data build tool)</strong> have emerged as vital components of modern data engineering workflows. These technologies not only optimize how data teams operate but also enable collaboration across diverse roles, including data engineers, analysts, project managers, and stakeholders. This article, based on my experience and a recent talk, explores how data engineering has evolved, why dbt has gained traction, and how it addresses pain points in data workflows.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-rise-of-modern-data-engineering">The Rise of Modern Data Engineering<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#the-rise-of-modern-data-engineering" class="hash-link" aria-label="Direct link to The Rise of Modern Data Engineering" title="Direct link to The Rise of Modern Data Engineering">​</a></h2>
+<p>Five years ago, data engineering was still a niche role, often disconnected from general software development practices. At that time:</p>
+<ul>
+<li><strong>Data engineering tasks</strong> were largely centered around managing and processing massive datasets, often from sources like APIs, product databases, or logs.</li>
+<li>Distributed storage systems like <strong>Hadoop</strong> were essential for handling these vast data volumes.</li>
+<li>Concepts such as unit testing for SQL queries, linting, or conventions were rarely applied in data workflows.</li>
+</ul>
+<p>However, as data engineering matured, the need for more systematic, scalable, and collaborative approaches became apparent. This paved the way for tools like <strong>dbt</strong>, which integrates software engineering principles into data workflows.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-is-dbt-and-why-is-it-revolutionary">What is dbt, and Why is it Revolutionary?<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#what-is-dbt-and-why-is-it-revolutionary" class="hash-link" aria-label="Direct link to What is dbt, and Why is it Revolutionary?" title="Direct link to What is dbt, and Why is it Revolutionary?">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="enabling-cross-role-collaboration">Enabling Cross-Role Collaboration<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#enabling-cross-role-collaboration" class="hash-link" aria-label="Direct link to Enabling Cross-Role Collaboration" title="Direct link to Enabling Cross-Role Collaboration">​</a></h3>
+<p>dbt’s primary purpose is to bridge the gap between data professionals and other stakeholders by providing a unified interface for understanding and developing data workflows. It enables users to:</p>
+<ul>
+<li>Trace the lineage of data tables and reports.</li>
+<li>Identify dependencies between tables, enabling quick troubleshooting.</li>
+<li>Generate comprehensive documentation that’s accessible to technical and non-technical team members.</li>
+</ul>
+<p>For example, stakeholders can easily view the source tables for a report, understand its transformations, and identify the data’s origin. This level of transparency fosters collaboration and efficiency across teams.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="integrating-testing-and-documentation">Integrating Testing and Documentation<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#integrating-testing-and-documentation" class="hash-link" aria-label="Direct link to Integrating Testing and Documentation" title="Direct link to Integrating Testing and Documentation">​</a></h3>
+<p>dbt ensures that data workflows are robust by:</p>
+<ol>
+<li><strong>Integrating Testing</strong>: Users can define tests for individual fields, such as uniqueness or non-null constraints, directly within dbt configurations. These tests are executed automatically, providing immediate feedback on data quality.</li>
+<li><strong>Generating Documentation</strong>: dbt auto-generates documentation based on the SQL logic and configurations provided. This documentation includes:<!-- -->
+<ul>
+<li>Table definitions.</li>
+<li>Column descriptions.</li>
+<li>Test details.</li>
+</ul>
+</li>
+</ol>
+<p>The resulting documentation is displayed in an intuitive, web-based interface, making it accessible to all stakeholders.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="historical-context-data-engineering-evolution">Historical Context: Data Engineering Evolution<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#historical-context-data-engineering-evolution" class="hash-link" aria-label="Direct link to Historical Context: Data Engineering Evolution" title="Direct link to Historical Context: Data Engineering Evolution">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="data-engineering-milestones" src="https://docs.uuboyscy.dev/assets/images/data-engineering-milestones-30ec056080cc46e28cf86127efad361c.png" width="2267" height="591" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="traditional-practices">Traditional Practices<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#traditional-practices" class="hash-link" aria-label="Direct link to Traditional Practices" title="Direct link to Traditional Practices">​</a></h3>
+<p>In the early stages of data engineering, the focus was primarily on handling raw data sources. These sources often required processing in distributed systems like Hadoop, where:</p>
+<ul>
+<li>Data engineers managed pipelines to integrate API, database, and log data into centralized storage.</li>
+<li>Practices like version control or modular development were less common.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="transition-to-modern-practices">Transition to Modern Practices<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#transition-to-modern-practices" class="hash-link" aria-label="Direct link to Transition to Modern Practices" title="Direct link to Transition to Modern Practices">​</a></h3>
+<p>Over the past five years, the field has seen significant advancements:</p>
+<ul>
+<li><strong>Adoption of Software Engineering Principles</strong>: Modern data engineering incorporates practices like unit testing, code linting, and standardized conventions for SQL development.</li>
+<li><strong>Shift Towards Lakehouse Architectures</strong>: The industry has moved away from traditional data warehouses to lakehouse models, which decouple data storage and processing for better scalability and flexibility.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="dbt-in-practice-features-and-workflow">dbt in Practice: Features and Workflow<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#dbt-in-practice-features-and-workflow" class="hash-link" aria-label="Direct link to dbt in Practice: Features and Workflow" title="Direct link to dbt in Practice: Features and Workflow">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="data-lineage-and-visualization">Data Lineage and Visualization<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#data-lineage-and-visualization" class="hash-link" aria-label="Direct link to Data Lineage and Visualization" title="Direct link to Data Lineage and Visualization">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="dbt-lineage-graph" src="https://docs.uuboyscy.dev/assets/images/dbt-lineage-graph-a156f9b27887309e3a6e69d5922fb649.png" width="1647" height="1372" class="img_ev3q">
+<a href="https://uuboyscy.github.io/dbt-demo/#!/overview" target="_blank" rel="noopener noreferrer">dbt-sample-repository</a></p>
+<p>dbt excels at visualizing data lineage. Consider a use case where a data team wants to understand how a <strong>user_dashboard</strong> table is constructed:</p>
+<ol>
+<li><strong>Source Tables</strong>: dbt highlights the raw data sources (e.g., logs, databases).</li>
+<li><strong>Transformations</strong>: Intermediate tables and their transformation logic are clearly displayed.</li>
+<li><strong>Final Outputs</strong>: Dashboards and reports are mapped back to their underlying tables.</li>
+</ol>
+<p>This visibility ensures that everyone, from data engineers to project managers, can trace the origins and transformations of key datasets.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="modularity-and-scalability">Modularity and Scalability<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#modularity-and-scalability" class="hash-link" aria-label="Direct link to Modularity and Scalability" title="Direct link to Modularity and Scalability">​</a></h3>
+<p>dbt promotes modular development through its <strong>modeling layer</strong>:</p>
+<ul>
+<li>Raw data is first transformed into an <strong>Operational Data Store (ODS)</strong>.</li>
+<li>Intermediate tables (e.g., dimensions) are created to consolidate and enrich data.</li>
+<li>Finally, specific tables are built for different business units, stored in <strong>Mart schemas</strong>.</li>
+</ul>
+<p>This layered approach makes it easier to scale workflows while maintaining clarity.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="execution-and-testing">Execution and Testing<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#execution-and-testing" class="hash-link" aria-label="Direct link to Execution and Testing" title="Direct link to Execution and Testing">​</a></h3>
+<p>dbt supports command-line operations to build and test models. For example:</p>
+<ul>
+<li><code>dbt run</code> builds tables based on defined configurations.</li>
+<li><code>dbt test</code> executes tests for individual or multiple tables.</li>
+</ul>
+<p>A simple table configuration:</p>
+<div class="language-yml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-yml codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token key atrule">models</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  </span><span class="token punctuation" style="color:rgb(248, 248, 242)">-</span><span class="token plain"> </span><span class="token key atrule">name</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"> table_name</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">    </span><span class="token key atrule">description</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"Something something something..."</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">    </span><span class="token key atrule">columns</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">      </span><span class="token punctuation" style="color:rgb(248, 248, 242)">-</span><span class="token plain"> </span><span class="token key atrule">name</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"> user_id</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">        </span><span class="token key atrule">description</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"User identifier"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">        </span><span class="token key atrule">data_tests</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">          </span><span class="token punctuation" style="color:rgb(248, 248, 242)">-</span><span class="token plain"> not_null</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">          </span><span class="token punctuation" style="color:rgb(248, 248, 242)">-</span><span class="token plain"> unique</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">          </span><span class="token punctuation" style="color:rgb(248, 248, 242)">-</span><span class="token plain"> </span><span class="token key atrule">relationships</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">              </span><span class="token key atrule">to</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"> ref('some_ref_table')</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">              </span><span class="token key atrule">field</span><span class="token punctuation" style="color:rgb(248, 248, 242)">:</span><span class="token plain"> user_id</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>These operations can target specific tables or pipelines, optimizing performance and resource usage.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="industry-adoption-and-use-cases">Industry Adoption and Use Cases<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#industry-adoption-and-use-cases" class="hash-link" aria-label="Direct link to Industry Adoption and Use Cases" title="Direct link to Industry Adoption and Use Cases">​</a></h2>
+<p>dbt has been widely adopted by companies across industries. Some notable examples include:</p>
+<ul>
+<li><strong>Airbnb</strong>: With over 50,000 metrics, Airbnb uses dbt alongside AI to manage their complex data ecosystem.</li>
+<li><strong>Dcard</strong>: Dcard mandates that its analysts use dbt for SQL development, highlighting its versatility beyond traditional engineering roles.</li>
+</ul>
+<p>Other adopters like Gymnasium Education and Facebook have also reported significant gains in productivity and collaboration through dbt.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="challenges-and-future-directions">Challenges and Future Directions<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#challenges-and-future-directions" class="hash-link" aria-label="Direct link to Challenges and Future Directions" title="Direct link to Challenges and Future Directions">​</a></h2>
+<p>While dbt has transformed data engineering, there are areas for improvement:</p>
+<ul>
+<li><strong>Resource Management</strong>: Running <code>dbt run</code> or <code>dbt test</code> on large projects can be resource-intensive. Future enhancements might focus on better optimization and incremental runs.</li>
+</ul>
+<p>Looking ahead, companies like Airbnb are exploring AI-driven tools to complement dbt, such as automatically generating SQL queries or identifying metrics based on natural language input.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion">Conclusion<a href="https://docs.uuboyscy.dev/blog/modern-data-engineering-milestones-key-technologies-that-shaped-the-industry#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion">​</a></h2>
+<p>The rise of dbt marks a pivotal moment in data engineering, emphasizing collaboration, transparency, and systematic workflows. By integrating software engineering principles into data practices, dbt enables data teams to deliver high-quality datasets and insights at scale. As the industry continues to evolve, tools like dbt will play an increasingly central role in shaping the future of data engineering.</p>
+<p>For teams embarking on their dbt journey, understanding its history and features is the first step toward unlocking its potential. Whether you're a data engineer, analyst, or stakeholder, dbt empowers you to navigate and contribute to modern data ecosystems with confidence.</p>]]></content>
         <author>
             <name>uuboyscy</name>
             <uri>https://uuboyscy.dev</uri>
