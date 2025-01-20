@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkuuboyscy_engineering_logs=self.webpackChunkuuboyscy_engineering_logs||[]).push([[6452],{6452:(e,s,c)=>{c.d(s,{createPacketServices:()=>n.$});var n=c(71609);c(19369)}}]);
