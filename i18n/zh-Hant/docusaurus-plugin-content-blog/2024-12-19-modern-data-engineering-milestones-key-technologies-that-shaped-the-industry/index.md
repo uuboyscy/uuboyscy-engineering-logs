@@ -1,130 +1,150 @@
 ---
 slug: modern-data-engineering-milestones-key-technologies-that-shaped-the-industry
-title: "現代數據工程的里程碑：塑造行業的關鍵技術"
+title: "Modern Data Engineering Milestones: Key Technologies That Shaped the Industry"
 authors: [uuboyscy]
 tags: [dbt, gcp, aws, airflow, prefect]
 ---
 
-# 現代數據工程的里程碑：塑造行業的關鍵技術
+# Modern Data Engineering Milestones: Key Technologies That Shaped the Industry
 
-近年來，數據工程領域發生了重大變化。像 **dbt (data build tool)** 這樣的工具已經成為現代數據工程工作流程中的重要組成部分。這些技術不僅優化了數據團隊的運營方式，還促進了數據工程師、分析師、項目經理和利益相關者之間的協作。本文基於我的經驗和最近的一次演講，探討了數據工程如何演變、為什麼 dbt 逐漸流行，以及它如何解決數據工作流程中的痛點。
+In recent years, the field of data engineering has undergone significant transformations. Tools like **dbt (data build tool)** have emerged as vital components of modern data engineering workflows. These technologies not only optimize how data teams operate but also enable collaboration across diverse roles, including data engineers, analysts, project managers, and stakeholders. This article, based on my experience and a recent talk, explores how data engineering has evolved, why dbt has gained traction, and how it addresses pain points in data workflows.
 
----
-
-## 現代數據工程的崛起
-
-五年前，數據工程仍然是一個小眾的職位，通常與一般軟件開發實踐脫節。在那時：
-
-- **數據工程任務** 主要集中於管理和處理來自 API、產品數據庫或日誌的龐大數據集。
-- 分布式存儲系統（如 **Hadoop**）是處理這些大量數據的必需工具。
-- 在數據工作流程中很少應用單元測試、代碼規範檢查或開發約定等概念。
-
-然而，隨著數據工程的成熟，更系統化、可擴展和協作的需求日益顯現。這為像 **dbt** 這樣的工具鋪平了道路，將軟件工程原則整合到數據工作流程中。
+<!-- truncate -->
 
 ---
 
-## dbt 是什麼？它為什麼具有革命性？
+## The Rise of Modern Data Engineering
 
-### 促進跨角色協作
+Five years ago, data engineering was still a niche role, often disconnected from general software development practices. At that time:
 
-dbt 的主要目的是通過提供統一的界面來幫助數據專業人員與其他利益相關者之間的協作。它使用戶能夠：
+- **Data engineering tasks** were largely centered around managing and processing massive datasets, often from sources like APIs, product databases, or logs.
+- Distributed storage systems like **Hadoop** were essential for handling these vast data volumes.
+- Concepts such as unit testing for SQL queries, linting, or conventions were rarely applied in data workflows.
 
-- 追蹤數據表和報表的來源和依賴關係。
-- 快速定位表之間的關係，方便問題排查。
-- 自動生成易於技術和非技術人員理解的全面文檔。
-
-例如，利益相關者可以輕鬆查看報表的來源表、理解其轉換邏輯並識別數據的來源。這種透明度促進了團隊間的高效合作。
-
-### 集成測試和文檔
-
-dbt 通過以下方式確保數據工作流程的穩健性：
-
-1. **集成測試**：用戶可以直接在 dbt 配置中為單個字段（如唯一性或非空約束）定義測試。這些測試會自動執行，提供即時的數據質量反饋。
-2. **生成文檔**：dbt 根據 SQL 邏輯和配置自動生成文檔，包括：
-   - 表定義。
-   - 字段描述。
-   - 測試細節。
-
-生成的文檔以直觀的網頁界面展示，便於所有利益相關者訪問。
+However, as data engineering matured, the need for more systematic, scalable, and collaborative approaches became apparent. This paved the way for tools like **dbt**, which integrates software engineering principles into data workflows.
 
 ---
 
-## 數據工程演變的歷史背景
+## What is dbt, and Why is it Revolutionary?
 
-### 傳統做法
+### Enabling Cross-Role Collaboration
 
-在數據工程的早期階段，重點主要是處理原始數據源，這些數據源通常需要通過分布式系統（如 Hadoop）進行處理，其中：
+dbt’s primary purpose is to bridge the gap between data professionals and other stakeholders by providing a unified interface for understanding and developing data workflows. It enables users to:
 
-- 數據工程師需要管理管道，以將 API、數據庫和日誌數據整合到集中存儲中。
-- 很少應用版本控制或模塊化開發等實踐。
+- Trace the lineage of data tables and reports.
+- Identify dependencies between tables, enabling quick troubleshooting.
+- Generate comprehensive documentation that’s accessible to technical and non-technical team members.
 
-### 向現代實踐的轉變
+For example, stakeholders can easily view the source tables for a report, understand its transformations, and identify the data’s origin. This level of transparency fosters collaboration and efficiency across teams.
 
-在過去的五年中，這一領域發生了重大進步：
+### Integrating Testing and Documentation
 
-- **採用軟件工程原則**：現代數據工程引入了單元測試、代碼檢查和 SQL 開發標準化等實踐。
-- **轉向湖倉架構**：行業從傳統數據倉庫轉向湖倉模型，這種模型將數據存儲和處理解耦，以實現更好的可擴展性和靈活性。
+dbt ensures that data workflows are robust by:
 
----
+1. **Integrating Testing**: Users can define tests for individual fields, such as uniqueness or non-null constraints, directly within dbt configurations. These tests are executed automatically, providing immediate feedback on data quality.
+2. **Generating Documentation**: dbt auto-generates documentation based on the SQL logic and configurations provided. This documentation includes:
+   - Table definitions.
+   - Column descriptions.
+   - Test details.
 
-## dbt 的實踐：特性與工作流程
-
-### 數據血緣與可視化
-
-dbt 在可視化數據血緣方面表現出色。例如，數據團隊想了解一個 **user_dashboard** 表是如何構建的，可以看到：
-
-1. **來源表**：dbt 突出了原始數據來源（如日誌、數據庫）。
-2. **轉換過程**：清楚地展示中間表及其轉換邏輯。
-3. **最終結果**：將儀表板和報表映射回其基礎表。
-
-這種可視性確保從數據工程師到項目經理的每個人都能追蹤數據的來源和轉換過程。
-
-### 模塊化與可擴展性
-
-dbt 通過其 **建模層** 提倡模塊化開發：
-
-- 原始數據首先轉換為 **操作數據存儲 (ODS)**。
-- 創建中間表（如維度表）以整合和豐富數據。
-- 最終為不同的業務部門構建專用表，存儲在 **Mart 模式** 中。
-
-這種分層方法使工作流程更易於擴展，同時保持清晰。
-
-### 執行與測試
-
-dbt 支持通過命令行構建和測試模型。例如：
-
-- `dbt run` 根據定義的配置構建表。
-- `dbt test` 執行單個或多個表的測試。
-
-這些操作可以針對特定表或管道，優化性能和資源使用。
+The resulting documentation is displayed in an intuitive, web-based interface, making it accessible to all stakeholders.
 
 ---
 
-## 行業採用與應用場景
+## Historical Context: Data Engineering Evolution
+![data-engineering-milestones](./data-engineering-milestones.png)
 
-dbt 已被廣泛應用於各行業的一些公司中，值得注意的例子包括：
+### Traditional Practices
 
-- **Deezer**：其數據團隊使用 dbt 強制分析師和工程師之間的協作，確保數據質量和一致性。
-- **Airbnb**：Airbnb 擁有超過 50,000 個指標，使用 dbt 和 AI 管理其複雜的數據生態系統。
-- **Dcard**：Dcard 要求分析師使用 dbt 進行 SQL 開發，突出了其在傳統工程角色之外的多功能性。
+In the early stages of data engineering, the focus was primarily on handling raw data sources. These sources often required processing in distributed systems like Hadoop, where:
 
-其他採用者如 Gymnasium Education 和 Facebook 也通過 dbt 報告了生產力和協作的顯著增長。
+- Data engineers managed pipelines to integrate API, database, and log data into centralized storage.
+- Practices like version control or modular development were less common.
 
----
+### Transition to Modern Practices
 
-## 挑戰與未來方向
+Over the past five years, the field has seen significant advancements:
 
-儘管 dbt 改變了數據工程，但仍有改進空間：
-
-- **遞歸查詢**：BigQuery 等平台對遞歸行為設有嚴格規則，可能限制 dbt 的某些工作流程。
-- **資源管理**：在大型項目上運行 `dbt run` 或 `dbt test` 可能資源密集。未來的改進可能集中於更好的優化和增量運行。
-
-展望未來，像 Airbnb 這樣的公司正在探索輔助 dbt 的 AI 驅動工具，例如自動生成 SQL 查詢或基於自然語言輸入識別指標。
+- **Adoption of Software Engineering Principles**: Modern data engineering incorporates practices like unit testing, code linting, and standardized conventions for SQL development.
+- **Shift Towards Lakehouse Architectures**: The industry has moved away from traditional data warehouses to lakehouse models, which decouple data storage and processing for better scalability and flexibility.
 
 ---
 
-## 結論
+## dbt in Practice: Features and Workflow
 
-dbt 的崛起標誌著數據工程的一個重要時刻，強調了協作、透明度和系統化工作流程。通過將軟件工程原則融入數據實踐，dbt 使數據團隊能夠在大規模交付高質量的數據集和見解。隨著行業的不斷發展，像 dbt 這樣的工具將在塑造數據工程的未來中發揮越來越重要的作用。
+### Data Lineage and Visualization
 
-對於剛開始使用 dbt 的團隊來說，了解其歷史和功能是釋放其潛力的第一步。無論您是數據工程師、分析師還是利益相關者，dbt 都能幫助您自信地導航和貢獻於現代數據生態系統。
+![dbt-lineage-graph](./dbt-lineage-graph.png)
+[dbt-sample-repository](https://uuboyscy.github.io/dbt-demo/#!/overview)
+
+dbt excels at visualizing data lineage. Consider a use case where a data team wants to understand how a **user_dashboard** table is constructed:
+
+1. **Source Tables**: dbt highlights the raw data sources (e.g., logs, databases).
+2. **Transformations**: Intermediate tables and their transformation logic are clearly displayed.
+3. **Final Outputs**: Dashboards and reports are mapped back to their underlying tables.
+
+This visibility ensures that everyone, from data engineers to project managers, can trace the origins and transformations of key datasets.
+
+### Modularity and Scalability
+
+dbt promotes modular development through its **modeling layer**:
+
+- Raw data is first transformed into an **Operational Data Store (ODS)**.
+- Intermediate tables (e.g., dimensions) are created to consolidate and enrich data.
+- Finally, specific tables are built for different business units, stored in **Mart schemas**.
+
+This layered approach makes it easier to scale workflows while maintaining clarity.
+
+### Execution and Testing
+
+dbt supports command-line operations to build and test models. For example:
+
+- `dbt run` builds tables based on defined configurations.
+- `dbt test` executes tests for individual or multiple tables.
+
+A simple table configuration:
+```yml
+models:
+  - name: table_name
+    description: "Something something something..."
+    columns:
+      - name: user_id
+        description: "User identifier"
+        data_tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('some_ref_table')
+              field: user_id
+```
+
+These operations can target specific tables or pipelines, optimizing performance and resource usage.
+
+---
+
+## Industry Adoption and Use Cases
+
+dbt has been widely adopted by companies across industries. Some notable examples include:
+
+- **Airbnb**: With over 50,000 metrics, Airbnb uses dbt alongside AI to manage their complex data ecosystem.
+- **Dcard**: Dcard mandates that its analysts use dbt for SQL development, highlighting its versatility beyond traditional engineering roles.
+
+Other adopters like Gymnasium Education and Facebook have also reported significant gains in productivity and collaboration through dbt.
+
+---
+
+## Challenges and Future Directions
+
+While dbt has transformed data engineering, there are areas for improvement:
+
+- **Resource Management**: Running `dbt run` or `dbt test` on large projects can be resource-intensive. Future enhancements might focus on better optimization and incremental runs.
+
+Looking ahead, companies like Airbnb are exploring AI-driven tools to complement dbt, such as automatically generating SQL queries or identifying metrics based on natural language input.
+
+---
+
+## Conclusion
+
+The rise of dbt marks a pivotal moment in data engineering, emphasizing collaboration, transparency, and systematic workflows. By integrating software engineering principles into data practices, dbt enables data teams to deliver high-quality datasets and insights at scale. As the industry continues to evolve, tools like dbt will play an increasingly central role in shaping the future of data engineering.
+
+For teams embarking on their dbt journey, understanding its history and features is the first step toward unlocking its potential. Whether you're a data engineer, analyst, or stakeholder, dbt empowers you to navigate and contribute to modern data ecosystems with confidence.
