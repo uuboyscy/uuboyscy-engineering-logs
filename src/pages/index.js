@@ -113,7 +113,12 @@ function ExperienceSection() {
       <div className="container">
         <h2>📜 Experience</h2>
         <ul>
-          <li><b>Lecture - WiEDU / III</b></li>
+          <li>
+            <b>Lecture - WiEDU TibaMe / III</b> -&nbsp;
+            <a href="https://www.tibame.com/teacher/uuboyscy" target="_blank" rel="noopener noreferrer">
+              Visit my TibaMe page
+            </a>
+          </li>
           <li><b>Data Engineer - U.S Company</b></li>
           <li>Data Engineer - Hengstyle</li>
           <li>Data Engineer - Gamania</li>

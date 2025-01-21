@@ -113,7 +113,12 @@ function ExperienceSection() {
       <div className="container">
         <h2>📜 經歷</h2>
         <ul>
-          <li><b>講師 - 緯育 / 資策會</b></li>
+          <li>
+            <b>Lecture - 緯育 TibaMe / 資策會</b> -&nbsp;
+            <a href="https://www.tibame.com/teacher/uuboyscy" target="_blank" rel="noopener noreferrer">
+              Visit my TibaMe page
+            </a>
+          </li>
           <li><b>數據工程師 - 美商</b></li>
           <li>數據工程師 - 恆隆行</li>
           <li>數據工程師 - 遊戲橘子</li>
