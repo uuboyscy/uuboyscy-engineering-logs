@@ -8,6 +8,7 @@
 
 ![Untitled](Prefect/Untitled.png)
 
+Login with OTP
 ![Untitled](Prefect/Untitled%202.png)
 
 ![Untitled](Prefect/Untitled%201.png)
@@ -16,26 +17,36 @@
 
 ## Get token
 
+- Click `API keys`\
 ![Untitled](Prefect/Untitled%204.png)
 
+- Click `Create API key`
 ![Untitled](Prefect/Untitled%205.png)
 
+- Determine API key information
 ![Untitled](Prefect/Untitled%206.png)
 
+- Login with token
 ![Untitled](Prefect/Untitled%207.png)
-Follow the steps, then you can create the first flow
 
 ## Develop environment
 
+Clone this repository for development\
 [https://github.com/uuboyscy/prefect-demo](https://github.com/uuboyscy/prefect-demo)
 
+Login
 ```bash
-prefect cloud login \
-	--key <your token> \
-	--workspace <your workspace>
+prefect cloud login --k <your token> 
 ```
 
 ![Untitled](Prefect/Untitled%208.png)
+
+## Get Start for Your First Flow
+Go back to home page and click `Get started`
+![home-page](Prefect/home-page.png)
+![auth](Prefect/auth-green.png)
+You will find the authentication turn green.\
+Press `Next` and follow the steps, then you can create the first flow.
 
 # Flow and task
 
