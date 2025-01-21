@@ -92,6 +92,10 @@ const config = {
             {
               label: 'About This Page',
               to: '/about_this_page'
+            },
+            {
+              label: 'TibaMe Page',
+              href: 'https://www.tibame.com/teacher/uuboyscy'
             }
           ],
         },
