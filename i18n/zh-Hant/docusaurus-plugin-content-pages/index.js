@@ -45,7 +45,7 @@ function TechStackSection() {
   return (
     <section>
       <div className="container">
-        <h2>⚙️ 技術棧與工具</h2>
+        <h2>⚙️ 技術與工具</h2>
         <ul>
           <div className={styles.techStackItem}>
             <h3>數據工程</h3>
@@ -95,12 +95,12 @@ function FunFactsSection() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <h2>✨ 有趣的事實</h2>
+        <h2>✨ Fun Facts</h2>
         <ul>
-          <li>🌟 在數據世界中無縫連接點，打造一條條數據管道。</li>
-          <li>🤹 職業是數據工程師，熱愛街頭表演和雜耍。</li>
-          <li>🎯 解決每一個數據難題就是創造另一件傑作。</li>
-          <li>🚴‍♂️ 騎行、音樂和創意讓我的想法不斷湧現。</li>
+        <li>🌟 Seamlessly connecting dots in data, one pipeline at a time.</li>
+          <li>🤹 Data engineer by profession, street performer and juggler by passion.</li>
+          <li>🎯 Every data puzzle solved is another masterpiece created.</li>
+          <li>🚴‍♂️ Cycling, music, and creativity keep my ideas in motion.</li>
         </ul>
       </div>
     </section>
@@ -113,13 +113,13 @@ function ExperienceSection() {
       <div className="container">
         <h2>📜 經歷</h2>
         <ul>
-          <li><b>講師 - WiEDU / 資策會</b></li>
-          <li><b>數據工程師 - 美國公司</b></li>
-          <li>數據工程師 - 恆逸數據</li>
+          <li><b>講師 - 緯育 / 資策會</b></li>
+          <li><b>數據工程師 - 美商</b></li>
+          <li>數據工程師 - 恆隆行</li>
           <li>數據工程師 - 遊戲橘子</li>
           <li>數據工程師 - LnData</li>
           <li>數據工程師 - 台北富邦銀行</li>
-          <p><b>教育背景：</b>數學 - 國立中央大學</p>
+          <p><b>教育背景：</b>數學系 - 國立中央大學</p>
         </ul>
       </div>
     </section>
