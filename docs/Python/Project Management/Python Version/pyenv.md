@@ -1,4 +1,4 @@
-# **Beginner's Guide to Pyenv**
+# Pyenv
 
 ## **1. Introduction to Pyenv**
 
