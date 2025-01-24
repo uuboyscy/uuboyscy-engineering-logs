@@ -272,31 +272,31 @@
         <category label="Spark" term="Spark"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Welcome]]></title>
+        <title type="html"><![CDATA[歡迎]]></title>
         <id>https://docs.uuboyscy.dev/zh-Hant/blog/welcome</id>
         <link href="https://docs.uuboyscy.dev/zh-Hant/blog/welcome"/>
         <updated>1992-12-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Hey there! Welcome to my very first blog post! 🎉]]></summary>
-        <content type="html"><![CDATA[<p>Hey there! Welcome to my very first blog post! 🎉</p>
-<p>I'm super excited to start sharing my thoughts and experiences with you all through this platform. As someone who's passionate about technology and programming, I figured it's about time I carved out my own little corner of the internet.</p>
-<p>You know what's funny? I spent way too much time deciding what to write for my first post. Should it be technical? Personal? A mix of both? In the end, I decided to just be myself and write whatever comes to mind.</p>
-<p>I've been working in tech for a while now, and there's always something new to learn. Whether it's a new programming language, a cool framework, or an interesting design pattern, the learning never stops. And that's exactly what I love about this field!</p>
-<p>Here's a random list of things I'm currently excited about:</p>
+        <summary type="html"><![CDATA[嗨，大家好！歡迎來到我的第一篇部落格文章！🎉]]></summary>
+        <content type="html"><![CDATA[<p>嗨，大家好！歡迎來到我的第一篇部落格文章！🎉</p>
+<p>我非常興奮能通過這個平台開始與大家分享我的想法和經驗。作為一個熱愛科技和程式設計的人，我覺得是時候在網路上為自己劃出一個小天地了。</p>
+<p>有趣的是，我花了太多時間糾結第一篇文章該寫什麼內容。應該寫技術相關的？個人經歷？還是兩者結合？最後，我決定做自己，寫下任何腦海中浮現的東西。</p>
+<p>我在科技領域工作了一段時間，總有新東西可以學習。無論是新的程式語言、一個酷炫的框架，還是一個有趣的設計模式，學習的腳步從未停止。這正是我熱愛這個領域的原因！</p>
+<p>這裡是一份我目前感到興奮的事情的清單：</p>
 <ul>
-<li>Building this blog with Docusaurus</li>
-<li>Exploring new technologies</li>
-<li>Sharing knowledge with the community</li>
-<li>Learning from others' experiences</li>
+<li>使用 Docusaurus 建立這個部落格</li>
+<li>探索新技術</li>
+<li>與社群分享知識</li>
+<li>從別人的經驗中學習</li>
 </ul>
-<p>I plan to write about:</p>
+<p>我計劃撰寫以下主題：</p>
 <ol>
-<li>Technical tutorials</li>
-<li>Programming tips and tricks</li>
-<li>Personal experiences in tech</li>
-<li>Random thoughts about software development</li>
+<li>技術教學</li>
+<li>程式設計的技巧和秘訣</li>
+<li>在科技領域的個人經驗</li>
+<li>關於軟體開發的隨想</li>
 </ol>
-<p>Stay tuned for more posts! Feel free to reach out if you want to discuss anything tech-related (or just want to say hi)!</p>
-<p>Happy coding! 💻</p>]]></content>
+<p>請持續關注更多文章！如果你想討論任何與科技相關的話題（或者只是想打個招呼），歡迎隨時聯繫我！</p>
+<p>祝大家寫程式愉快！💻</p>]]></content>
         <author>
             <name>uuboyscy</name>
             <uri>https://uuboyscy.dev</uri>
