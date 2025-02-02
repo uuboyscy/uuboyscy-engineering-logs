@@ -6,28 +6,28 @@
 
 [https://www.prefect.io](https://www.prefect.io/)
 
-![Untitled](Prefect/Untitled.png)
+![sign-in](Prefect/sign-in.png)
 
 Login with OTP
-![Untitled](Prefect/Untitled%202.png)
+![otp-email](Prefect/otp-email.png)
 
-![Untitled](Prefect/Untitled%201.png)
+![workspace-name](Prefect/workspace-name.png)
 
-![Untitled](Prefect/Untitled%203.png)
+![login-locally](Prefect/login-locally.png)
 
 ## Get token
 
 - Click `API keys`\
-![Untitled](Prefect/Untitled%204.png)
+![api-key](Prefect/api-key.png)
 
 - Click `Create API key`
-![Untitled](Prefect/Untitled%205.png)
+![create-api-key](Prefect/create-api-key.png)
 
 - Determine API key information
-![Untitled](Prefect/Untitled%206.png)
+![name-api-key](Prefect/name-api-key.png)
 
 - Login with token
-![Untitled](Prefect/Untitled%207.png)
+![login-command](Prefect/login-command.png)
 
 ## Develop environment
 
@@ -150,74 +150,55 @@ if __name__ == "__main__":
 
 # Register flow
 
-## Work pool and queue
+## Work pool and worker
 
-Add work Pool `test` and Queue `docker-deployment`
+- Create a work Pool `test` and Queue `docker-deployment`
+    ![create-work-pool](Prefect/create-work-pool.png)
 
-![Untitled](Prefect/Untitled%2011.png)
+- Select Process Worker
+    ![select-worker](Prefect/select-worker.png)
 
-Select Prefect Agent
+- Name the Worker `test-process` and then create it
+    ![name-the-worker](Prefect/name-the-worker.png)
 
-![Untitled](Prefect/Untitled%2012.png)
-
-Prefect login locally
-
-```bash
-prefect profile create demo
-prefect profile use demo
-prefect cloud login \
-	-k pnu_nS3ZKp8OHSbkK5bAbWKxLZEKHz5fVg36sod1 \
-	--workspace tir101/default
-```
-
-## Agent
-
-Run Agent on pool `test` and create a queue `docker-deplyment`
-
-```bash
-prefect agent start --pool "test" --work-queue "docker-deplymet"
-```
-
-## Runner
-
-```bash
-docker build -t ghcr.io/uuboyscy/prefect-demo/prefect-demo-image .
-```
+- Start a Worker
+    ![worker-pool-page](Prefect/worker-pool-page.png)
+    ```bash
+    prefect worker start --pool "test-process"
+    ```
 
 ## Block
 
-![Untitled](Prefect/Untitled%2013.png)
+- Create a GitHub Repository Block
+    ![block-page](Prefect/block-page.png)
+    ![Untitled](Prefect/Untitled%2013.png)
 
-![Untitled](Prefect/Untitled%2014.png)
 
-## Register
+## Build Deployment
+```python
+from flows.test.hello_world_flow import hello_world_flow
 
-```bash
-prefect deployment build \
-	src/flow/f_01_quick_start.py:f_01_quick_start \
-	-n docker \
-	-p test \
-	-q docker-deplymet \
-  -sb "github/github-prefect-demo" \
-  -ib "docker-container/demo-docker-container" \
-  -a
+
+if __name__ == "__main__":
+    from prefect_github import GitHubRepository
+
+    hello_world_flow.from_source(
+        source=GitHubRepository.load("github-repository-uuboyscy"),
+        entrypoint="src/flow/test/hello_world_flow_flow.py:hello_world_flow",
+    ).deploy(
+        name="test-deploy",
+        tags=["test", "project_1"],
+        work_pool_name="test-subproc",
+        cron="1 * * * *"
+    )
+
 ```
 
-```bash
-prefect deployment build \
-	src/flow/f_01_quick_start.py:f_01_quick_start \
-	-n docker-local \
-	-p test \
-	-q docker-local \
-  -sb "github/github-prefect-demo" \
-  -a
-```
 
 # Schedule
 
-Setup on web GUI
-
-![Untitled](Prefect/Untitled%2015.png)
+- Setup on web GUI
+    ![Untitled](Prefect/Untitled%2015.png)
 
 # Prefect cloud status
 
