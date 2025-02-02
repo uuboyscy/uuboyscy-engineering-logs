@@ -39,7 +39,7 @@ Login
 prefect cloud login --k <your token> 
 ```
 
-![Untitled](Prefect/Untitled%208.png)
+![login-command-on-terminal](Prefect/login-command-on-terminal.png)
 
 ## Get Start for Your First Flow
 Go back to home page and click `Get started`
@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
 ```
 
-![Untitled](Prefect/Untitled%209.png)
+![flow-run-graph](Prefect/flow-run-graph.png)
 
 f_02_async_task
 
@@ -146,7 +146,7 @@ if __name__ == "__main__":
 
 ```
 
-![Untitled](Prefect/Untitled%2010.png)
+![flow-run-graph-async](Prefect/flow-run-graph-async.png)
 
 # Register flow
 
@@ -171,7 +171,7 @@ if __name__ == "__main__":
 
 - Create a GitHub Repository Block
     ![block-page](Prefect/block-page.png)
-    ![Untitled](Prefect/Untitled%2013.png)
+    ![block-list](Prefect/block-list.png)
 
 
 ## Build Deployment
@@ -198,7 +198,7 @@ if __name__ == "__main__":
 # Schedule
 
 - Setup on web GUI
-    ![Untitled](Prefect/Untitled%2015.png)
+    ![schedule-page](Prefect/schedule-page.png)
 
 # Prefect cloud status
 
