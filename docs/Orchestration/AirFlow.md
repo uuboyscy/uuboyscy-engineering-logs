@@ -12,18 +12,31 @@
     ```
     
 - Start via Docker
-    
-    ```bash
-    docker run -it -d \
-    	--name airflow-server \
-    	-p 8080:8080 \
-    	-v $(PWD)/dags:/opt/airflow/dags \
-    	-v $(PWD)/logs:/opt/airflow/logs \
-    	-v $(PWD)/utils:/opt/airflow/utils \
-    	-v $(PWD)/tasks:/opt/airflow/tasks \
-    	-e PYTHONPATH=/opt/airflow \
-    	apache/airflow:latest airflow standalone
-    ```
+    - Mac / Linux
+        ```bash
+        docker run -it -d \
+            --name airflow-server \
+            -p 8080:8080 \
+            -v $(PWD)/dags:/opt/airflow/dags \
+            -v $(PWD)/logs:/opt/airflow/logs \
+            -v $(PWD)/utils:/opt/airflow/utils \
+            -v $(PWD)/tasks:/opt/airflow/tasks \
+            -e PYTHONPATH=/opt/airflow \
+            apache/airflow:latest airflow standalone
+        ```
+
+    - Windows
+        ```powershell
+        docker run -it -d `
+            --name airflow-server `
+            -p 8080:8080 `
+            -v "${PWD}/dags:/opt/airflow/dags" `
+            -v "${PWD}/logs:/opt/airflow/logs" `
+            -v "${PWD}/utils:/opt/airflow/utils" `
+            -v "${PWD}/tasks:/opt/airflow/tasks" `
+            -e PYTHONPATH=/opt/airflow `
+            apache/airflow:latest airflow standalone
+        ```
     
 - Create user
     
