@@ -1,4 +1,4 @@
-# AirFlow
+# Airflow
 
 [https://airflow.apache.org/docs/docker-stack/index.html](https://airflow.apache.org/docs/docker-stack/index.html)
 
@@ -59,7 +59,7 @@
     touch /opt/airflow/tasks/__init__.py
     ```
     
-    ![Untitled](AirFlow/Untitled.png)
+    ![Untitled](Untitled.png)
     
 
 # Quick start
