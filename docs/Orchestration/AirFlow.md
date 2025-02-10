@@ -10,8 +10,10 @@
     mkdir airflow-demo
     cd airflow-demo
     ```
+
+    or simply clone from [https://github.com/uuboyscy/airflow-demo](https://github.com/uuboyscy/airflow-demo)
     
-- Start via Docker
+- Start via Docker Container
     - Mac / Linux
         ```bash
         docker run -it -d \
