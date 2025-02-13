@@ -10,7 +10,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">Hi, I'm Allen Shi 👋</h1>
-        <p className="hero__subtitle">Experienced Data Engineer | Cloud Enthusiast | Data Architect Aspirant | Lecture</p>
+        <p className="hero__subtitle">Expert in Data Engineering | Cloud Innovator | Data Architect | Lecturer</p>
         <p align="center">
           <a href="https://www.linkedin.com/in/chengyou-shi/">
             <img src="https://img.shields.io/badge/LinkedIn-uuboyscy-30302f?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
@@ -31,10 +31,10 @@ function AboutMeSection() {
       <div className="container">
         <h2>👨‍💻 About Me</h2>
         <ul>
-          <li>💼 I’m an <b>Experienced Data Engineer</b>, designing and building scalable data pipelines.</li>
-          <li>🌟 Passionate about solving complex data challenges and creating efficient workflows.</li>
-          <li>🚀 I specialize in cloud-native data solutions on AWS and GCP.</li>
-          <li>🎯 My aspiration: To become a <b>Data Architect</b>, enabling data-driven decision-making.</li>
+          <li>🚀 A leading <b>Expert in Data Engineering</b> with years of hands-on experience designing scalable, high-performance data systems.</li>
+          <li>💡 Mastering cloud-native architectures on AWS and GCP to drive efficiency and innovation.</li>
+          <li>🔍 Specializing in data modeling, pipeline automation, and efficient workflows optimizations.</li>
+          <li>🎯 My goal: To become a <b>world-class Data Architect</b> and redefine how organizations leverage data.</li>
         </ul>
       </div>
     </section>
@@ -97,10 +97,9 @@ function FunFactsSection() {
       <div className="container">
         <h2>✨ Fun Facts</h2>
         <ul>
-          <li>🌟 Seamlessly connecting dots in data, one pipeline at a time.</li>
+          <li>🔗 Architecting data pipelines that power the future.</li>
           <li>🤹 Data engineer by profession, street performer and juggler by passion.</li>
-          <li>🎯 Every data puzzle solved is another masterpiece created.</li>
-          <li>🚴‍♂️ Cycling, music, and creativity keep my ideas in motion.</li>
+          <li>🚴‍♂️ Cycling, music, and strategic problem-solving fuel my passion.</li>
         </ul>
       </div>
     </section>
@@ -114,7 +113,7 @@ function ExperienceSection() {
         <h2>📜 Experience</h2>
         <ul>
           <li>
-            <b>Lecture - WiEDU TibaMe / III</b> -&nbsp;
+            <b>Lecturer - WiEDU TibaMe / III</b> -&nbsp;
             <a href="https://www.tibame.com/teacher/uuboyscy" target="_blank" rel="noopener noreferrer">
               Visit my TibaMe page
             </a>
@@ -124,7 +123,7 @@ function ExperienceSection() {
           <li>Data Engineer - Gamania</li>
           <li>Data Engineer - LnData</li>
           <li>Data Engineer - Taipei Fubon Bank</li>
-          <p><b>Education:</b> Mathematics - National Central University</p>
+          <li><b>Education:</b> Mathematics - National Central University</li>
         </ul>
       </div>
     </section>
@@ -135,14 +134,14 @@ export default function Home() {
   return (
     <Layout
       title="UUBOYSCY.DEV"
-      description="Experienced Data Engineer with expertise in cloud-native solutions, data pipelines, and scalable architectures.">
+      description="Expert Data Engineer specializing in cloud-native solutions, scalable data pipelines, and modern architectures.">
       <HomepageHeader />
       <main>
         <AboutMeSection />
         <TechStackSection />
         <GitHubStatsSection />
         <FunFactsSection />
-        <ExperienceSection /> {/* Added Experience Section */}
+        <ExperienceSection />
       </main>
     </Layout>
   );
