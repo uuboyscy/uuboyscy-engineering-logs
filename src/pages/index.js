@@ -31,10 +31,10 @@ function AboutMeSection() {
       <div className="container">
         <h2>👨‍💻 About Me</h2>
         <ul>
-          <li>🚀 A leading <b>Expert in Data Engineering</b> with years of hands-on experience designing scalable, high-performance data systems.</li>
-          <li>💡 Mastering cloud-native architectures on AWS and GCP to drive efficiency and innovation.</li>
-          <li>🔍 Specializing in data modeling, pipeline automation, and efficient workflows optimizations.</li>
-          <li>🎯 My goal: To become a <b>world-class Data Architect</b> and redefine how organizations leverage data.</li>
+          <li>A leading <b>Expert in Data Engineering</b> with years of hands-on experience designing scalable, high-performance data systems.</li>
+          <li>Mastering cloud-native architectures on AWS and GCP to drive efficiency and innovation.</li>
+          <li>Specializing in data modeling, pipeline automation, and efficient workflows optimizations.</li>
+          <li>My goal: To become a <b>world-class Data Architect</b> and redefine how organizations leverage data.</li>
         </ul>
       </div>
     </section>
@@ -119,10 +119,14 @@ function ExperienceSection() {
             </a>
           </li>
           <li><b>Data Engineer - U.S Company</b></li>
-          <li>Data Engineer - Hengstyle</li>
-          <li>Data Engineer - Gamania</li>
-          <li>Data Engineer - LnData</li>
-          <li>Data Engineer - Taipei Fubon Bank</li>
+          <li><b>Data Engineering & Big Data Solutions</b>: Built and optimized distributed data systems across various industries.</li>
+          <li><b>Key Contributions:</b></li>
+          <ul>
+            <li>Designed data models and restructured data architecture at Hengstyle.</li>
+            <li>Refactored and optimized distributed ETL systems, implementing Spark at Gamania.</li>
+            <li>Developed big data solutions (Hadoop) for customers at LnData.</li>
+            <li>Automated pipeline monitoring at Taipei Fubon Bank.</li>
+          </ul>
           <li><b>Education:</b> Mathematics - National Central University</li>
         </ul>
       </div>
