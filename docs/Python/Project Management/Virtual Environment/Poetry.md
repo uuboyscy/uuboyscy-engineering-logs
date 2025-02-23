@@ -130,7 +130,12 @@ poetry env info
 Activate the virtual environment using:
 
 ```bash
+# For version < 2.0.0
 poetry shell
+
+# For version >= 2.0.0 (Linux or Mac)
+# poetry env activate only show command, then you can manually execute it
+eval `poetry env activate`
 
 ```
 
