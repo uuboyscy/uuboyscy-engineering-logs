@@ -49,19 +49,19 @@ function TechStackSection() {
         <ul>
           <div className={styles.techStackItem}>
             <h3>Data Engineering</h3>
-            <p>Hadoop, Spark, Flink, Hive, HBase, Prefect, Airflow, dbt, Airbyte</p>
+            <p>MySQL, Hadoop, Spark, Flink, Hive, Hbase, Redshift, dbt, Airbyte</p>
           </div>
           <div className={styles.techStackItem}>
-            <h3>Languages</h3>
-            <p>Python, Java, Shell scripting, Flask, Spring Boot</p>
+            <h3>Programming</h3>
+            <p>Python, Java, SQL, Bash</p>
           </div>
           <div className={styles.techStackItem}>
-            <h3>Databases</h3>
-            <p>MySQL, PostgreSQL, MongoDB, Redis</p>
+            <h3>Messaging & Streaming</h3>
+            <p>RabbitMQ, Kafka</p>
           </div>
           <div className={styles.techStackItem}>
-            <h3>DevOps & Cloud</h3>
-            <p>Git, GitLab, Jenkins, Docker, Kubernetes, AWS, GCP</p>
+            <h3>DevOps & Insfrastructur</h3>
+            <p>Docker, K8S, Terraform, AWS, GCP</p>
           </div>
         </ul>
       </div>
@@ -97,7 +97,7 @@ function FunFactsSection() {
       <div className="container">
         <h2>✨ Fun Facts</h2>
         <ul>
-          <li>🔗 Architecting data pipelines that power the future.</li>
+          <li>🔗 Building pipelines so fast, even your boss thinks it's magic.</li>
           <li>🤹 Data engineer by profession, street performer and juggler by passion.</li>
           <li>🚴‍♂️ Cycling, music, and strategic problem-solving fuel my passion.</li>
         </ul>
