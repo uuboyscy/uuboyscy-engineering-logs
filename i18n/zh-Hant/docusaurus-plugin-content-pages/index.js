@@ -118,13 +118,13 @@ function ExperienceSection() {
               查看我的 TibaMe 講師頁面
             </a>
           </li>
-          <li><b>數據工程師 - 美國公司</b></li>
+          <li><b>數據工程師 - 美商公司</b></li>
           <li><b>數據工程 & 大數據解決方案</b>: 為各種行業設計並優化分散式數據系統。</li>
           <li><b>主要貢獻：</b></li>
           <ul>
             <li>在恆隆行 (Hengstyle) 設計數據模型並重構數據架構。</li>
             <li>在遊戲橘子 (Gamania) 使用 Spark 進行 ETL 系統重構與優化。</li>
-            <li>在 LnData 開發大數據解決方案 (Hadoop)。</li>
+            <li>在麟數據 (LnData) 開發大數據解決方案 (Hadoop)。</li>
             <li>在台北富邦銀行 (Taipei Fubon Bank) 自動化數據管道監控系統。</li>
           </ul>
           <li><b>學歷：</b> 數學系 - 國立中央大學</li>
