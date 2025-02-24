@@ -31,10 +31,10 @@ function AboutMeSection() {
       <div className="container">
         <h2>👨‍💻 About Me</h2>
         <ul>
-          <li>🚀 A leading <b>Expert in Data Engineering</b> with years of hands-on experience designing scalable, high-performance data systems.</li>
-          <li>💡 Mastering cloud-native architectures on AWS and GCP to drive efficiency and innovation.</li>
-          <li>🔍 Specializing in data modeling, pipeline automation, and efficient workflows optimizations.</li>
-          <li>🎯 My goal: To become a <b>world-class Data Architect</b> and redefine how organizations leverage data.</li>
+          <li>A leading <b>Expert in Data Engineering</b> with years of hands-on experience designing scalable, high-performance data systems.</li>
+          <li>Mastering cloud-native architectures on AWS and GCP to drive efficiency and innovation.</li>
+          <li>Specializing in data modeling, pipeline automation, and efficient workflows optimizations.</li>
+          <li>My goal: To become a <b>world-class Data Architect</b> and redefine how organizations leverage data.</li>
         </ul>
       </div>
     </section>
@@ -49,19 +49,19 @@ function TechStackSection() {
         <ul>
           <div className={styles.techStackItem}>
             <h3>Data Engineering</h3>
-            <p>Hadoop, Spark, Flink, Hive, HBase, Prefect, Airflow, dbt, Airbyte</p>
+            <p>MySQL, Hadoop, Spark, Flink, Hive, Hbase, Redshift, dbt, Airbyte</p>
           </div>
           <div className={styles.techStackItem}>
-            <h3>Languages</h3>
-            <p>Python, Java, Shell scripting, Flask, Spring Boot</p>
+            <h3>Programming</h3>
+            <p>Python, Java, SQL, Bash</p>
           </div>
           <div className={styles.techStackItem}>
-            <h3>Databases</h3>
-            <p>MySQL, PostgreSQL, MongoDB, Redis</p>
+            <h3>Messaging & Streaming</h3>
+            <p>RabbitMQ, Kafka</p>
           </div>
           <div className={styles.techStackItem}>
-            <h3>DevOps & Cloud</h3>
-            <p>Git, GitLab, Jenkins, Docker, Kubernetes, AWS, GCP</p>
+            <h3>DevOps & Insfrastructur</h3>
+            <p>Docker, K8S, Terraform, AWS, GCP</p>
           </div>
         </ul>
       </div>
@@ -97,7 +97,7 @@ function FunFactsSection() {
       <div className="container">
         <h2>✨ Fun Facts</h2>
         <ul>
-          <li>🔗 Architecting data pipelines that power the future.</li>
+          <li>🔗 Building pipelines so fast, even your boss thinks it's magic.</li>
           <li>🤹 Data engineer by profession, street performer and juggler by passion.</li>
           <li>🚴‍♂️ Cycling, music, and strategic problem-solving fuel my passion.</li>
         </ul>
@@ -119,10 +119,14 @@ function ExperienceSection() {
             </a>
           </li>
           <li><b>Data Engineer - U.S Company</b></li>
-          <li>Data Engineer - Hengstyle</li>
-          <li>Data Engineer - Gamania</li>
-          <li>Data Engineer - LnData</li>
-          <li>Data Engineer - Taipei Fubon Bank</li>
+          <li><b>Data Engineering & Big Data Solutions</b>: Built and optimized distributed data systems across various industries.</li>
+          <li><b>Key Contributions:</b></li>
+          <ul>
+            <li>Designed data models and restructured data architecture at Hengstyle.</li>
+            <li>Refactored and optimized distributed ETL systems, implementing Spark at Gamania.</li>
+            <li>Developed big data solutions (Hadoop) for customers at LnData.</li>
+            <li>Automated pipeline monitoring at Taipei Fubon Bank.</li>
+          </ul>
           <li><b>Education:</b> Mathematics - National Central University</li>
         </ul>
       </div>
