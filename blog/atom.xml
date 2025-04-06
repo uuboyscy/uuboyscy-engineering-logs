@@ -99,6 +99,7 @@
         </author>
         <category label="dbt" term="dbt"/>
         <category label="Prefect" term="Prefect"/>
+        <category label="CI/CD" term="CI/CD"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Modern Data Engineering Milestones: Key Technologies That Shaped the Industry]]></title>
