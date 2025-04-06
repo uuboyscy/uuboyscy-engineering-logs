@@ -2,7 +2,7 @@
 slug: how-to-build-a-reliable-data-system
 title: "How to Build a Reliable Data System?"
 authors: [uuboyscy]
-tags: [dbt, prefect]
+tags: [dbt, prefect, ci-cd]
 ---
 
 # How to Build a Reliable Data System?
