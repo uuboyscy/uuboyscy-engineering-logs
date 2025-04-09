@@ -2,13 +2,18 @@
 
 # Preset
 
-## HTML
+## What is Web Crawling?
+
+The process of automatically accessing and extracting data from websites.\
+Use cases: news aggregation, price tracking, data collection for ML, etc.
+
+## HTML Basic
 
 - Quick view
     
     [https://www.ptt.cc/bbs/Gossiping/index.html](https://www.ptt.cc/bbs/Gossiping/index.html)
     
-    view-source:https://www.ptt.cc/bbs/Gossiping/index.html
+    `view-source:https://www.ptt.cc/bbs/Gossiping/index.html`
     
 - Tag and attribute
     
