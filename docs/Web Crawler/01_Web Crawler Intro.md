@@ -6,6 +6,8 @@ A **Web Crawler** (also known as a Web Scraper or Spider) is a script or program
 
 Crawlers help automate repetitive web tasks and are widely used in data engineering and analysis.
 
+![Crawler Behavior](python_web_crawler_sources/crawler_behavior.png)
+
 ---
 
 ## Why Use a Web Crawler?
@@ -56,8 +58,5 @@ When you visit a website using a browser, it sends an **HTTP request** to a remo
 
 ---
 
-## Cautions
-
-- Check the website's **robots.txt** for crawling permissions
-- Respect website terms of service
-- Implement **delays and error handling** to avoid overloading servers
+## Example
+![Crawler example](python_web_crawler_sources/crawler_example.png)

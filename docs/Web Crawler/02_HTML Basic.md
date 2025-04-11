@@ -35,9 +35,9 @@ Enter this on browser\
     
 ### Simple Example
     
-![Untitled](Python%20Web%20Crawler/ptt_title.png)
+![Untitled](python_web_crawler_sources/ptt_title.png)
 
-![Untitled](Python%20Web%20Crawler/ptt_title_html.png)
+![Untitled](python_web_crawler_sources/ptt_title_html.png)
         
 ### Common HTML Elements (tags)
 
