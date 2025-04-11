@@ -7,7 +7,7 @@
     - form data (POST from form)
     - [https://www.google.com](https://www.google.com/)
 - URL
-    ![Untitled](Python%20Web%20Crawler/Untitled%202.png)
+    ![Untitled](Python%20Web%20Crawler/url_structure.png)
 - HTTP Methods
   - GET
   - POST
