@@ -20,13 +20,13 @@ First get into container
 docker exec -it custom-container /bin/bash
 ```
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled.png)
 
 Then we will create an image with Vim pre-installed
 
 Check if Vim is installed
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%201.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled%201.png)
 
 Install Vim
 
@@ -35,7 +35,7 @@ apt-get update
 apt-get install vim -y
 ```
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%202.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled%202.png)
 
 Vim is installed now
 
@@ -43,11 +43,11 @@ Vim is installed now
 vi --version
 ```
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%203.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled%203.png)
 
 Press CTRL + D or type exit to Exit the container
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%204.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled%204.png)
 
 ## Commit
 
@@ -70,7 +70,7 @@ Options:
 
 Get container ID
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%205.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled%205.png)
 
 Commit a new image
 
@@ -80,9 +80,9 @@ docker commit <your container id> custom-image:do-something
 docker commit <your container id> custom-image:latest
 ```
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%206.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled%206.png)
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%207.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled%207.png)
 
 ## Try new image
 
@@ -92,7 +92,7 @@ docker exec -it custom-container-2 /bin/bash
 vi --version
 ```
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%208.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled%208.png)
 
 # Publish image
 
@@ -102,9 +102,9 @@ vi --version
     
     [https://hub.docker.com/settings/security](https://hub.docker.com/settings/security)
     
-    ![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%209.png)
+    ![Untitled](Modify%20container%20and%20create%20image/Untitled%209.png)
     
-    ![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%2010.png)
+    ![Untitled](Modify%20container%20and%20create%20image/Untitled%2010.png)
     
 - Authenticate
     
@@ -119,7 +119,7 @@ Now we have a custom image custom-image:latest.
 
 Try push this image to DockerHub, got denied.
 
-![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%2011.png)
+![Untitled](Modify%20container%20and%20create%20image/Untitled%2011.png)
 
 - Tag image
     
@@ -130,7 +130,7 @@ Try push this image to DockerHub, got denied.
     docker tag custom-image:latest uuboyscy/custom-image:latest
     ```
     
-    ![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%2012.png)
+    ![Untitled](Modify%20container%20and%20create%20image/Untitled%2012.png)
     
 - Push
     
@@ -139,8 +139,8 @@ Try push this image to DockerHub, got denied.
     docker push uuboyscy/custom-image:latest
     ```
     
-    ![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%2013.png)
+    ![Untitled](Modify%20container%20and%20create%20image/Untitled%2013.png)
     
     Then find your first image on DockerHub
     
-    ![Untitled](Modify%20container%20and%20create%20image%20e7914f6ae361484c97000cecab4e999b/Untitled%2014.png)
+    ![Untitled](Modify%20container%20and%20create%20image/Untitled%2014.png)
