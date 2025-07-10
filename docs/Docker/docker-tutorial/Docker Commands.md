@@ -93,7 +93,7 @@ Commands:
     docker pull python
     ```
     
-    ![Untitled](Docker%20Commands%203d647e8d520b4df89d13c398586cfb51/Untitled.png)
+    ![Untitled](Docker%20Commands/Untitled.png)
     
 
 ### Build Docker container
@@ -106,7 +106,7 @@ Following steps executed using uuboyscy/docker-tutorial:latest
     docker run -it -d -p 50000:5000 --name docker-tutorial-web uuboyscy/docker-tutorial:latest
     ```
     
-    ![Untitled](Docker%20Commands%203d647e8d520b4df89d13c398586cfb51/Untitled%201.png)
+    ![Untitled](Docker%20Commands/Untitled%201.png)
     
 - Command usage:
     
@@ -242,7 +242,7 @@ Following steps executed using uuboyscy/docker-tutorial:latest
     docker ps
     ```
     
-    ![Untitled](Docker%20Commands%203d647e8d520b4df89d13c398586cfb51/Untitled%202.png)
+    ![Untitled](Docker%20Commands/Untitled%202.png)
     
     - **CONTAINER ID**: The unique identifier of the container, which is a a hexadecimal string of 64 characters. It can be used to operate on the specified container.
     - **IMAGE**: The name of the image used to create the container.
@@ -263,7 +263,7 @@ Following steps executed using uuboyscy/docker-tutorial:latest
     docker exec -it docker-tutorial sh
     ```
     
-    ![Untitled](Docker%20Commands%203d647e8d520b4df89d13c398586cfb51/Untitled%203.png)
+    ![Untitled](Docker%20Commands/Untitled%203.png)
     
     You will notice that cursor displayed on terminal changed
     
