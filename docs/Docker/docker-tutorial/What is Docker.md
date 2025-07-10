@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # What is Docker
 
-![Untitled](What%20is%20Docker%20f708d58b610e40a2a0d7d1901370e21d/Untitled.png)
+![Untitled](What%20is%20Docker/Untitled.png)
 
 ### About Docker
 
@@ -12,7 +12,7 @@ sidebar_position: 2
 - Developed by Golang
 - No Hypervisor
 
-![Untitled](What%20is%20Docker%20f708d58b610e40a2a0d7d1901370e21d/Untitled%201.png)
+![Untitled](What%20is%20Docker/Untitled%201.png)
 
 ### Docker key word
 
