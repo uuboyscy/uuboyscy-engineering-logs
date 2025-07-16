@@ -15,26 +15,20 @@
   <!-- Background circle -->
   <circle cx="200" cy="200" r="190" fill="url(#bgGradient)" stroke="#ffffff" stroke-width="8"/>
   
-  <!-- Main code brackets -->
-  <g filter="url(#shadow)">
-    <!-- Left bracket -->
-    <path d="M 120 120 L 100 120 L 100 280 L 120 280" stroke="#ffffff" stroke-width="12" fill="none" stroke-linecap="round"/>
-    <path d="M 100 140 L 85 140" stroke="#ffffff" stroke-width="8" fill="#ffffff" stroke-linecap="round"/>
-    <path d="M 100 200 L 85 200" stroke="#ffffff" stroke-width="8" fill="#ffffff" stroke-linecap="round"/>
-    <path d="M 100 260 L 85 260" stroke="#ffffff" stroke-width="8" fill="#ffffff" stroke-linecap="round"/>
+  <!-- Main code brackets - now curly braces -->
+  <g>
+    <!-- Left curly brace - using simpler curves -->
+    <path d="M 140 120 C 125 120 120 125 120 140 L 120 170 C 120 175 115 175 110 175 L 105 175 C 105 185 105 215 105 225 L 110 225 C 115 225 120 225 120 230 L 120 260 C 120 275 125 280 140 280" stroke="#ffffff" stroke-width="10" fill="none"/>
     
-    <!-- Right bracket -->
-    <path d="M 280 120 L 300 120 L 300 280 L 280 280" stroke="#ffffff" stroke-width="12" fill="none" stroke-linecap="round"/>
-    <path d="M 300 140 L 315 140" stroke="#ffffff" stroke-width="8" fill="#ffffff" stroke-linecap="round"/>
-    <path d="M 300 200 L 315 200" stroke="#ffffff" stroke-width="8" fill="#ffffff" stroke-linecap="round"/>
-    <path d="M 300 260 L 315 260" stroke="#ffffff" stroke-width="8" fill="#ffffff" stroke-linecap="round"/>
+    <!-- Right curly brace - using simpler curves -->
+    <path d="M 260 120 C 275 120 280 125 280 140 L 280 170 C 280 175 285 175 290 175 L 295 175 C 295 185 295 215 295 225 L 290 225 C 285 225 280 225 280 230 L 280 260 C 280 275 275 280 260 280" stroke="#ffffff" stroke-width="10" fill="none"/>
   </g>
   
   <!-- Data flow elements -->
   <g opacity="0.9">
     <!-- Data pipes/arrows -->
-    <path d="M 120 180 L 150 180 L 155 175 M 155 185 L 150 180" stroke="#4ade80" stroke-width="8" fill="none" stroke-linecap="round"/>
-    <path d="M 245 180 L 275 180 L 280 175 M 280 185 L 275 180" stroke="#4ade80" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M 50 200 L 80 200 L 85 195 M 85 205 L 80 200" stroke="#4ade80" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M 315 200 L 345 200 L 350 195 M 350 205 L 345 200" stroke="#4ade80" stroke-width="8" fill="none" stroke-linecap="round"/>
     
     <!-- Data nodes -->
     <circle cx="170" cy="160" r="8" fill="#fbbf24"/>
@@ -59,10 +53,6 @@
     <!-- .dev domain indicator -->
     <circle cx="218" cy="95" r="3" fill="#4ade80"/>
   </g>
-  <!-- Cute terminal cursor -->
-  <!-- <rect x="220" y="195" width="3" height="15" fill="#fff" opacity="0.8">
-    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.5s" repeatCount="indefinite"/>
-  </rect> -->
   
   <!-- Small decorative elements -->
   <circle cx="150" cy="130" r="4" fill="#ff6b6b" opacity="0.8"/>
