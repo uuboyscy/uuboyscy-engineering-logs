@@ -18,10 +18,10 @@
   <!-- Main code brackets - now curly braces -->
   <g>
     <!-- Left curly brace - using simpler curves -->
-    <path d="M 140 120 C 125 120 120 125 120 140 L 120 170 C 120 175 115 175 110 175 L 105 175 C 105 185 105 215 105 225 L 110 225 C 115 225 120 225 120 230 L 120 260 C 120 275 125 280 140 280" stroke="#ffffff" stroke-width="10" fill="none"/>
+    <path d="M 140 120 C 125 120 120 125 120 140 L 120 170 C 120 175 115 175 110 175 L 105 175 C 105 185 105 215 105 225 L 110 225 C 115 225 120 225 120 230 L 120 260 C 120 275 125 280 140 280" stroke="#ffffff" stroke-width="14" fill="none"/>
     
     <!-- Right curly brace - using simpler curves -->
-    <path d="M 260 120 C 275 120 280 125 280 140 L 280 170 C 280 175 285 175 290 175 L 295 175 C 295 185 295 215 295 225 L 290 225 C 285 225 280 225 280 230 L 280 260 C 280 275 275 280 260 280" stroke="#ffffff" stroke-width="10" fill="none"/>
+    <path d="M 260 120 C 275 120 280 125 280 140 L 280 170 C 280 175 285 175 290 175 L 295 175 C 295 185 295 215 295 225 L 290 225 C 285 225 280 225 280 230 L 280 260 C 280 275 275 280 260 280" stroke="#ffffff" stroke-width="14" fill="none"/>
   </g>
   
   <!-- Data flow elements -->
@@ -67,12 +67,12 @@
   </g>
   
   <!-- Brand identity -->
-  <text x="200" y="310" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="18" font-weight="bold" opacity="0.95">
+  <text x="200" y="310" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="18" font-weight="900" opacity="0.95">
     uuboyscy.dev
   </text>
   
   <!-- Small tagline -->
-  <text x="200" y="330" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="11" opacity="0.8">
+  <text x="200" y="330" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="11" font-weight="bold" opacity="0.8">
     DATA • CODE • LEARN
   </text>
   <!-- Invisible export box to keep brackets from being clipped -->
