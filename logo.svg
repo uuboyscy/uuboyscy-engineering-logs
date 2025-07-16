@@ -1,0 +1,88 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Code bracket shadow -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="200" cy="200" r="190" fill="url(#bgGradient)" stroke="#fff" stroke-width="8"/>
+  
+  <!-- Main code brackets -->
+  <g filter="url(#shadow)">
+    <!-- Left bracket -->
+    <path d="M 120 120 L 100 120 L 100 280 L 120 280" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M 100 140 L 85 140" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M 100 200 L 85 200" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M 100 260 L 85 260" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
+    
+    <!-- Right bracket -->
+    <path d="M 280 120 L 300 120 L 300 280 L 280 280" stroke="#fff" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M 300 140 L 315 140" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M 300 200 L 315 200" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M 300 260 L 315 260" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Data flow elements -->
+  <g opacity="0.9">
+    <!-- Data pipes/arrows -->
+    <path d="M 140 180 L 170 180 L 175 175 M 175 185 L 170 180" stroke="#4ade80" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M 225 180 L 255 180 L 260 175 M 260 185 L 255 180" stroke="#4ade80" stroke-width="4" fill="none" stroke-linecap="round"/>
+    
+    <!-- Data nodes -->
+    <circle cx="190" cy="160" r="8" fill="#fbbf24"/>
+    <circle cx="210" cy="160" r="8" fill="#fbbf24"/>
+    <circle cx="190" cy="200" r="8" fill="#fbbf24"/>
+    <circle cx="210" cy="200" r="8" fill="#fbbf24"/>
+    <circle cx="190" cy="240" r="8" fill="#fbbf24"/>
+    <circle cx="210" cy="240" r="8" fill="#fbbf24"/>
+    
+    <!-- Connecting lines -->
+    <path d="M 190 160 L 210 160 L 210 200 L 190 200 L 190 240 L 210 240" stroke="#fbbf24" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Web/blog symbol -->
+  <g opacity="0.9">
+    <!-- Globe/web icon -->
+    <circle cx="200" cy="100" r="12" fill="none" stroke="#fff" stroke-width="2"/>
+    <path d="M 188 100 Q 200 90 212 100 Q 200 110 188 100" fill="none" stroke="#fff" stroke-width="2"/>
+    <path d="M 188 100 Q 200 110 212 100 Q 200 90 188 100" fill="none" stroke="#fff" stroke-width="2"/>
+    <line x1="188" y1="100" x2="212" y2="100" stroke="#fff" stroke-width="2"/>
+    
+    <!-- .dev domain indicator -->
+    <circle cx="218" cy="95" r="3" fill="#4ade80"/>
+  </g>
+  <!-- Cute terminal cursor -->
+  <rect x="220" y="195" width="3" height="15" fill="#fff" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.5s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Small decorative elements -->
+  <circle cx="150" cy="130" r="4" fill="#ff6b6b" opacity="0.8"/>
+  <circle cx="250" cy="130" r="4" fill="#4ecdc4" opacity="0.8"/>
+  <circle cx="150" cy="270" r="4" fill="#45b7d1" opacity="0.8"/>
+  <circle cx="250" cy="270" r="4" fill="#96ceb4" opacity="0.8"/>
+  
+  <!-- Subtle tech pattern in background -->
+  <g opacity="0.1">
+    <path d="M 160 340 L 240 340 M 170 350 L 230 350 M 180 360 L 220 360" stroke="#fff" stroke-width="2"/>
+    <path d="M 160 60 L 240 60 M 170 50 L 230 50 M 180 40 L 220 40" stroke="#fff" stroke-width="2"/>
+  </g>
+  
+  <!-- Brand identity -->
+  <text x="200" y="310" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="18" font-weight="bold" opacity="0.95">
+    uuboyscy.dev
+  </text>
+  
+  <!-- Small tagline -->
+  <text x="200" y="330" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="11" opacity="0.8">
+    DATA • CODE • LEARN
+  </text>
+</svg>
