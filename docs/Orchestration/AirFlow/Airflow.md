@@ -24,7 +24,7 @@
             -v $(PWD)/utils:/opt/airflow/utils \
             -v $(PWD)/tasks:/opt/airflow/tasks \
             -e PYTHONPATH=/opt/airflow \
-            apache/airflow:latest airflow standalone
+            apache/airflow:2.11.0-python3.12 airflow standalone
         ```
 
     - Windows
@@ -37,7 +37,7 @@
             -v "${PWD}/utils:/opt/airflow/utils" `
             -v "${PWD}/tasks:/opt/airflow/tasks" `
             -e PYTHONPATH=/opt/airflow `
-            apache/airflow:latest airflow standalone
+            apache/airflow:2.11.0-python3.12 airflow standalone
         ```
     
 - Create user
