@@ -5,13 +5,10 @@
 # Start Airflow standalone with Docker
 
 - Create develop folder
-    
-    ```bash
-    mkdir airflow-demo
-    cd airflow-demo
-    ```
-
-    or simply clone from [https://github.com/uuboyscy/airflow-demo](https://github.com/uuboyscy/airflow-demo)
+    - Git clone from [https://github.com/uuboyscy/airflow-demo](https://github.com/uuboyscy/airflow-demo)
+        ```bash
+        git clone --branch v2 --depth 1 https://github.com/uuboyscy/airflow-demo.git
+        ```
     
 - Start via Docker Container
     - Mac / Linux
