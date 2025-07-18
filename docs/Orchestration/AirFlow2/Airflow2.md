@@ -1,4 +1,4 @@
-# Airflow
+# Airflow 2
 
 [https://airflow.apache.org/docs/docker-stack/index.html](https://airflow.apache.org/docs/docker-stack/index.html)
 
