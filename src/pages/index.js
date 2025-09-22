@@ -9,8 +9,8 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">Hi, I'm Allen Shi 👋</h1>
-        <p className="hero__subtitle">Expert in Data Engineering | Cloud Innovator | Data Architect | Lecturer</p>
+        <h1 className="hero__title">Hi, I'm Allen 👋</h1>
+        <p className="hero__subtitle">Expert in Data Engineering | Data Governance | Cloud Data Architecture | Instructor</p>
         <p align="center">
           <a href="https://www.linkedin.com/in/chengyou-shi/">
             <img src="https://img.shields.io/badge/LinkedIn-uuboyscy-30302f?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
@@ -34,7 +34,6 @@ function AboutMeSection() {
           <li>A leading <b>Expert in Data Engineering</b> with years of hands-on experience designing scalable, high-performance data systems.</li>
           <li>Mastering cloud-native architectures on AWS and GCP to drive efficiency and innovation.</li>
           <li>Specializing in data modeling, pipeline automation, and efficient workflows optimizations.</li>
-          <li>My goal: To become a <b>world-class Data Architect</b> and redefine how organizations leverage data.</li>
         </ul>
       </div>
     </section>
@@ -49,7 +48,7 @@ function TechStackSection() {
         <ul>
           <div className={styles.techStackItem}>
             <h3>Data Engineering</h3>
-            <p>MySQL, Hadoop, Spark, Flink, Hive, Hbase, Redshift, dbt, Airbyte</p>
+            <p>dbt, Airflow, Prefect, Hadoop, Spark, Flink, Airbyte</p>
           </div>
           <div className={styles.techStackItem}>
             <h3>Programming</h3>
@@ -97,9 +96,9 @@ function FunFactsSection() {
       <div className="container">
         <h2>✨ Fun Facts</h2>
         <ul>
-          <li>🔗 Building pipelines so fast, even your boss thinks it's magic.</li>
           <li>🤹 Data engineer by profession, street performer and juggler by passion.</li>
           <li>🚴‍♂️ Cycling, music, and strategic problem-solving fuel my passion.</li>
+          <li>🌏 Make data great again.</li>
         </ul>
       </div>
     </section>
@@ -113,7 +112,7 @@ function ExperienceSection() {
         <h2>📜 Experience</h2>
         <ul>
           <li>
-            <b>Lecturer - WiEDU TibaMe / III</b> -&nbsp;
+            <b>Instructor & Curriculum Consultant - WiEDU TibaMe / III</b> -&nbsp;
             <a href="https://www.tibame.com/teacher/uuboyscy" target="_blank" rel="noopener noreferrer">
               Visit my TibaMe page
             </a>
