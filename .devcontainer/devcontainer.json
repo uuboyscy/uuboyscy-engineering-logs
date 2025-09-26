@@ -18,7 +18,8 @@
                 "redhat.vscode-yaml",              // YAML support for configuration files
                 "stylelint.vscode-stylelint",      // Stylelint for CSS/SCSS linting
                 "mikestead.dotenv",                // .env file support
-                "vivaxy.vscode-conventional-commits"
+                "vivaxy.vscode-conventional-commits",
+                "bierner.markdown-mermaid"
             ]
         },
         "settings": {
