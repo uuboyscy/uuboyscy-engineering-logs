@@ -7,7 +7,7 @@ ENV TZ=Asia/Taipei
 WORKDIR /workspace
 
 # Install basic tools
-RUN apt-get update && apt-get install -y git zsh curl inkscape imagemagick && apt-get clean
+RUN apt-get update && apt-get install -y git zsh curl inkscape imagemagick vim && apt-get clean
 
 RUN echo "Y" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
