@@ -19,7 +19,8 @@
                 "stylelint.vscode-stylelint",      // Stylelint for CSS/SCSS linting
                 "mikestead.dotenv",                // .env file support
                 "vivaxy.vscode-conventional-commits",
-                "bierner.markdown-mermaid"
+                "bierner.markdown-mermaid",
+                "openai.chatgpt"
             ]
         },
         "settings": {
