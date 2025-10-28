@@ -14,11 +14,11 @@ data = [
 df = pd.DataFrame(data=data, columns=columns)
 ```
 
-![Untitled](Load%2093b389f4da414cb488541ce71f6c74ca/Untitled.png)
+![Untitled](Load/Untitled.png)
 
 # Save as CSV
 
-![Untitled](Load%2093b389f4da414cb488541ce71f6c74ca/Untitled%201.png)
+![Untitled](Load/Untitled%201.png)
 
 # Save as JSON
 

@@ -15,14 +15,14 @@
 
 [https://github.com/uuboyscy/basic_python_course/blob/master/part15_dbConnection/07_sqlalchemyBasic.ipynb](https://github.com/uuboyscy/basic_python_course/blob/master/part15_dbConnection/07_sqlalchemyBasic.ipynb)
 
-![Untitled](SQLAlchemy%20d31383f139374774a1265fb1466244a0/Untitled.png)
+![Untitled](SQLAlchemy/Untitled.png)
 
-![Untitled](SQLAlchemy%20d31383f139374774a1265fb1466244a0/Untitled%201.png)
+![Untitled](SQLAlchemy/Untitled%201.png)
 
-![Untitled](SQLAlchemy%20d31383f139374774a1265fb1466244a0/Untitled%202.png)
+![Untitled](SQLAlchemy/Untitled%202.png)
 
-![Untitled](SQLAlchemy%20d31383f139374774a1265fb1466244a0/Untitled%203.png)
+![Untitled](SQLAlchemy/Untitled%203.png)
 
-![Untitled](SQLAlchemy%20d31383f139374774a1265fb1466244a0/Untitled%204.png)
+![Untitled](SQLAlchemy/Untitled%204.png)
 
-![Untitled](SQLAlchemy%20d31383f139374774a1265fb1466244a0/Untitled%205.png)
+![Untitled](SQLAlchemy/Untitled%205.png)
