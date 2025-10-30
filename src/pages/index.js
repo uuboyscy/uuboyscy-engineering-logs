@@ -116,16 +116,25 @@ function ExperienceSection() {
             <a href="https://www.tibame.com/teacher/uuboyscy" target="_blank" rel="noopener noreferrer">
               Visit my TibaMe page
             </a>
+            <ul>
+              <li>Designed and taught courses on data engineering, dbt, and Prefect for professionals transitioning into data careers.</li>
+            </ul>
           </li>
-          <li><b>Data Engineer - U.S Company</b></li>
+          <li><b>Engineering Lead - French Data Company</b></li>
           <li><b>Data Engineering & Big Data Solutions</b>: Built and optimized distributed data systems across various industries.</li>
-          <li><b>Key Contributions:</b></li>
-          <ul>
-            <li>Designed data models and restructured data architecture at Hengstyle.</li>
-            <li>Refactored and optimized distributed ETL systems, implementing Spark at Gamania.</li>
-            <li>Developed big data solutions (Hadoop) for customers at LnData.</li>
-            <li>Automated pipeline monitoring at Taipei Fubon Bank.</li>
-          </ul>
+            <ul>
+              <li>
+                <b>Key Contributions:</b>
+                <ul>
+                  <li>Designed data lakehouse and implemented data governance as ViewSonic.</li>
+                  <li>Designed data models and restructured data architecture at Hengstyle.</li>
+                  <li>Refactored and optimized distributed ETL systems, implementing Spark at Gamania.</li>
+                  <li>Developed big data solutions (Hadoop) for customers at LnData.</li>
+                  <li>Automated pipeline monitoring at Taipei Fubon Bank.</li>
+                </ul>
+              </li>
+            </ul>
+            
           <li><b>Education:</b> Mathematics - National Central University</li>
         </ul>
       </div>
