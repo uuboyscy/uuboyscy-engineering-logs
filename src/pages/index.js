@@ -42,26 +42,33 @@ function AboutMeSection() {
 
 function TechStackSection() {
   return (
-    <section>
+    <section className={styles.section}>
       <div className="container">
         <h2>⚙️ Tech Stack & Tools</h2>
-        <ul className={styles.techList}>
-          <li className={styles.techStackItem}>
-            <h3>Data Engineering</h3>
-            <p>dbt, Airflow, Prefect, Hadoop, Spark, Flink, Airbyte</p>
+
+        <p>
+          My daily toolkit focuses on building reliable, scalable, and maintainable data systems.
+        </p>
+
+        <ul>
+          <li>
+            <b>Data Engineering:</b> dbt, Airflow, Prefect, Hadoop, Spark, Flink, Airbyte
           </li>
-          <li className={styles.techStackItem}>
-            <h3>Programming</h3>
-            <p>Python, Java, SQL, Bash</p>
+          <li>
+            <b>Programming Languages:</b> Python, Java, SQL, Bash
           </li>
-          <li className={styles.techStackItem}>
-            <h3>Messaging & Streaming</h3>
-            <p>RabbitMQ, Kafka</p>
+          <li>
+            <b>Messaging & Streaming:</b> Kafka, RabbitMQ
           </li>
-          <li className={styles.techStackItem}>
-            <h3>DevOps & Infrastructure</h3>
-            <p>Docker, Kubernetes, Terraform, AWS, GCP</p>
+          <li>
+            <b>DevOps & Cloud:</b> Docker, Kubernetes, Terraform, AWS, GCP
           </li>
+          <li>
+            <b>Databases & Analytics:</b> PostgreSQL, BigQuery
+          </li>
+          {/* <li>
+            <b>Currently Exploring:</b> Apache Iceberg, Delta Lake, DataHub, OpenMetadata
+          </li> */}
         </ul>
       </div>
     </section>

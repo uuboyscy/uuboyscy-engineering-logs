@@ -21,3 +21,18 @@
   align-items: center;
   justify-content: center;
 }
+
+.section ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.section li {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+}
+
+.section b {
+  color: var(--ifm-color-primary);
+}
