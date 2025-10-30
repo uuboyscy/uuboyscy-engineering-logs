@@ -17,27 +17,27 @@ Mark Evans,5,30,Sales,004,2023-01-13T09:00,2023-01-13T09:00+08:00,FALSE,V,1
 
 ## Try to read CSV
 
-![Untitled](Typing%2016974c9459024a1ea68e7509dc61dcf0/Untitled.png)
+![Untitled](Typing/Untitled.png)
 
 ## Define dtype
 
-![Untitled](Typing%2016974c9459024a1ea68e7509dc61dcf0/Untitled%201.png)
+![Untitled](Typing/Untitled%201.png)
 
-![Untitled](Typing%2016974c9459024a1ea68e7509dc61dcf0/Untitled%202.png)
+![Untitled](Typing/Untitled%202.png)
 
-![Untitled](Typing%2016974c9459024a1ea68e7509dc61dcf0/Untitled%203.png)
+![Untitled](Typing/Untitled%203.png)
 
-![Untitled](Typing%2016974c9459024a1ea68e7509dc61dcf0/Untitled%204.png)
+![Untitled](Typing/Untitled%204.png)
 
 ## np.where()
 
-![Untitled](Typing%2016974c9459024a1ea68e7509dc61dcf0/Untitled%205.png)
+![Untitled](Typing/Untitled%205.png)
 
-![Untitled](Typing%2016974c9459024a1ea68e7509dc61dcf0/Untitled%206.png)
+![Untitled](Typing/Untitled%206.png)
 
 ## pd.to_datetime()
 
-![Untitled](Typing%2016974c9459024a1ea68e7509dc61dcf0/Untitled%207.png)
+![Untitled](Typing/Untitled%207.png)
 
 ### Datetime format
 

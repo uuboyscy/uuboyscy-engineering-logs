@@ -4,11 +4,11 @@
 
 - From text
     
-    ![Untitled](Convert%20Text%20to%20DataFrame%20ba6105c4af0c4369b6058de8296ab149/Untitled.png)
+    ![Untitled](Convert%20Text%20to%20DataFrame/Untitled.png)
     
 - To DataFrame
     
-    ![Untitled](Convert%20Text%20to%20DataFrame%20ba6105c4af0c4369b6058de8296ab149/Untitled%201.png)
+    ![Untitled](Convert%20Text%20to%20DataFrame/Untitled%201.png)
     
 
 # Download text files
@@ -26,20 +26,20 @@ rm -rf /tmp/course-datamining*
 
 ## Read text files
 
-![Untitled](Convert%20Text%20to%20DataFrame%20ba6105c4af0c4369b6058de8296ab149/Untitled%202.png)
+![Untitled](Convert%20Text%20to%20DataFrame/Untitled%202.png)
 
 ## Prepare columns
 
-![Untitled](Convert%20Text%20to%20DataFrame%20ba6105c4af0c4369b6058de8296ab149/Untitled%203.png)
+![Untitled](Convert%20Text%20to%20DataFrame/Untitled%203.png)
 
 ## Extract data we need
 
-![Untitled](Convert%20Text%20to%20DataFrame%20ba6105c4af0c4369b6058de8296ab149/Untitled%204.png)
+![Untitled](Convert%20Text%20to%20DataFrame/Untitled%204.png)
 
 ## Create DataFrame
 
-![Untitled](Convert%20Text%20to%20DataFrame%20ba6105c4af0c4369b6058de8296ab149/Untitled%205.png)
+![Untitled](Convert%20Text%20to%20DataFrame/Untitled%205.png)
 
 # Save and load DataFrame
 
-![Untitled](Convert%20Text%20to%20DataFrame%20ba6105c4af0c4369b6058de8296ab149/Untitled%206.png)
+![Untitled](Convert%20Text%20to%20DataFrame/Untitled%206.png)

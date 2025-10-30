@@ -22,7 +22,7 @@ pip install pymysql
 | cursor.close() | 關閉游標 |
 | conn.close() | 關閉連線 |
 
-![Untitled](PyMySQL%20ce0f69002c224dddb964c98aa281be97/Untitled.png)
+![Untitled](PyMySQL/Untitled.png)
 
 # Sample code
 
