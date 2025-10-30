@@ -147,7 +147,7 @@ function ExperienceSection() {
               <li>
                 <b>Key Contributions:</b>
                 <ul>
-                  <li>Designed data lakehouse and implemented data governance as ViewSonic.</li>
+                  <li>Designed data lakehouse and implemented data governance at ViewSonic.</li>
                   <li>Designed data models and restructured data architecture at Hengstyle.</li>
                   <li>Refactored and optimized distributed ETL systems, implementing Spark at Gamania.</li>
                   <li>Developed big data solutions (Hadoop) for customers at LnData.</li>
