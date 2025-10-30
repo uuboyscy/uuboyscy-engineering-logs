@@ -45,23 +45,23 @@ function TechStackSection() {
     <section>
       <div className="container">
         <h2>⚙️ Tech Stack & Tools</h2>
-        <ul>
-          <div className={styles.techStackItem}>
+        <ul className={styles.techList}>
+          <li className={styles.techStackItem}>
             <h3>Data Engineering</h3>
             <p>dbt, Airflow, Prefect, Hadoop, Spark, Flink, Airbyte</p>
-          </div>
-          <div className={styles.techStackItem}>
+          </li>
+          <li className={styles.techStackItem}>
             <h3>Programming</h3>
             <p>Python, Java, SQL, Bash</p>
-          </div>
-          <div className={styles.techStackItem}>
+          </li>
+          <li className={styles.techStackItem}>
             <h3>Messaging & Streaming</h3>
             <p>RabbitMQ, Kafka</p>
-          </div>
-          <div className={styles.techStackItem}>
-            <h3>DevOps & Insfrastructur</h3>
-            <p>Docker, K8S, Terraform, AWS, GCP</p>
-          </div>
+          </li>
+          <li className={styles.techStackItem}>
+            <h3>DevOps & Infrastructure</h3>
+            <p>Docker, Kubernetes, Terraform, AWS, GCP</p>
+          </li>
         </ul>
       </div>
     </section>
@@ -74,15 +74,26 @@ function GitHubStatsSection() {
       <div className="container">
         <h2>📈 GitHub Stats</h2>
         <div className={styles.stats}>
-          <img
+          {/* <img
             src="https://github-readme-streak-stats.herokuapp.com?user=uuboyscy&theme=dark&date_format=M%20j%5B%2C%20Y%5D"
             alt="GitHub Streak"
             className={styles.githubImage}
+            loading="lazy"
+            decoding="async"
           />
           <img
             src="https://github-readme-stats.vercel.app/api/top-langs/?username=uuboyscy&theme=dark&layout=compact&langs_count=8"
             alt="Top Languages"
             className={styles.githubImage}
+            loading="lazy"
+            decoding="async"
+          /> */}
+          <img
+            src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=uuboyscy&theme=zenburn"
+            alt="GitHub Status"
+            className={styles.githubImage}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -120,7 +131,7 @@ function ExperienceSection() {
               <li>Designed and taught courses on data engineering, dbt, and Prefect for professionals transitioning into data careers.</li>
             </ul>
           </li>
-          <li><b>Engineering Lead - French Data Company</b></li>
+          <li><b>Engineering Lead - European Data Company</b></li>
           <li><b>Data Engineering & Big Data Solutions</b>: Built and optimized distributed data systems across various industries.</li>
             <ul>
               <li>
