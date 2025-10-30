@@ -23,8 +23,8 @@
 }
 
 .section ul {
-  list-style: none;
-  padding: 0;
+  list-style-type: disc;      /* brings bullets back */
+  padding-left: 1.2rem;       /* restore natural indentation */
   margin: 1rem 0;
 }
 
