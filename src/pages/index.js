@@ -129,18 +129,21 @@ function ExperienceSection() {
       <div className="container">
         <h2>📜 Experience</h2>
         <ul>
+          <li><b>Engineering Lead - European Data Company</b></li>
           <li>
-            <b>Instructor & Curriculum Consultant - WiEDU TibaMe / III</b> -&nbsp;
-            <a href="https://www.tibame.com/teacher/uuboyscy" target="_blank" rel="noopener noreferrer">
-              Visit my TibaMe page
-            </a>
+            <b>Instructor & Curriculum Consultant - WiEDU TibaMe / III</b> 
             <ul>
               <li>Designed and taught courses on data engineering, dbt, and Prefect for professionals transitioning into data careers.</li>
+              <li>
+                <a href="https://www.tibame.com/teacher/uuboyscy" target="_blank" rel="noopener noreferrer">
+                  Visit my TibaMe page
+                </a>
+              </li>
             </ul>
           </li>
-          <li><b>Engineering Lead - European Data Company</b></li>
-          <li><b>Data Engineering & Big Data Solutions</b>: Built and optimized distributed data systems across various industries.</li>
+          <li><b>Data Engineering & Big Data Solutions</b></li>
             <ul>
+              <li>Built and optimized distributed data systems across various industries.</li>
               <li>
                 <b>Key Contributions:</b>
                 <ul>
