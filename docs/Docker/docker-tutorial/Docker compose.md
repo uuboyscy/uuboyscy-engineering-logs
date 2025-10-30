@@ -20,6 +20,7 @@ services:
   redis:
     image: "redis:alpine"
 ```
+Note. This cannot be executed directly.
 
 # Manage multiple containers
 
@@ -30,7 +31,6 @@ services:
 docker-compose.yaml
 
 ```yaml
-version: '3'
 services:
   flask_web_server:
     build:
@@ -44,16 +44,18 @@ services:
       - .:/app
 
   demo_ngrok:
-    image: wernight/ngrok
+    image: ngrok/ngrok
     container_name: demo_ngrok
     depends_on:
       - flask_web_server
     restart: always
+    environment:
+      - NGROK_AUTHTOKEN=<your_ngrok_authtoken>
     ports:
       - "54088:4040"
     links:
       - flask_web_server:http
-    command: ngrok http --authtoken=123 flask_web_server:5000
+    command: http flask_web_server:5000
 
 ```
 

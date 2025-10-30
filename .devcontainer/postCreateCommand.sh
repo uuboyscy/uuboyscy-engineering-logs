@@ -14,5 +14,3 @@ sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="xiong-chiamiov-plus"/' /root/.zshr
 
 npm install -g npm@latest
 npm install
-
-zsh

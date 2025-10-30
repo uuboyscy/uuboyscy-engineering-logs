@@ -82,25 +82,25 @@ ID,Name,DeptId,Age,Gender,Salary,UpdateDate
 
 ## With the same PK name
 
-![Untitled](Merge%20and%20Concat%202a2f350abe8146aca48377a452ccd509/Untitled.png)
+![Untitled](Merge%20and%20Concat/Untitled.png)
 
-![Untitled](Merge%20and%20Concat%202a2f350abe8146aca48377a452ccd509/Untitled%201.png)
+![Untitled](Merge%20and%20Concat/Untitled%201.png)
 
 ## With different PK name
 
-![Untitled](Merge%20and%20Concat%202a2f350abe8146aca48377a452ccd509/Untitled%202.png)
+![Untitled](Merge%20and%20Concat/Untitled%202.png)
 
-![Untitled](Merge%20and%20Concat%202a2f350abe8146aca48377a452ccd509/Untitled%203.png)
+![Untitled](Merge%20and%20Concat/Untitled%203.png)
 
 Got error if no columns specified.
 
-![Untitled](Merge%20and%20Concat%202a2f350abe8146aca48377a452ccd509/Untitled%204.png)
+![Untitled](Merge%20and%20Concat/Untitled%204.png)
 
 ## If column name duplicated
 
-![Untitled](Merge%20and%20Concat%202a2f350abe8146aca48377a452ccd509/Untitled%205.png)
+![Untitled](Merge%20and%20Concat/Untitled%205.png)
 
-![Untitled](Merge%20and%20Concat%202a2f350abe8146aca48377a452ccd509/Untitled%206.png)
+![Untitled](Merge%20and%20Concat/Untitled%206.png)
 
 # Concat
 
@@ -128,4 +128,4 @@ df_1 = pd.DataFrame(
 
 ## Concat and reset index
 
-![Untitled](Merge%20and%20Concat%202a2f350abe8146aca48377a452ccd509/Untitled%207.png)
+![Untitled](Merge%20and%20Concat/Untitled%207.png)

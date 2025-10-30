@@ -16,7 +16,7 @@ sidebar_position: 4
 docker --version
 ```
 
-![Untitled](Quick%20Start%209a0d8944806141ddb7416de894c557b4/Untitled.png)
+![Untitled](Quick%20Start/Untitled.png)
 
 ## Check image
 
@@ -24,7 +24,7 @@ docker --version
 docker images
 ```
 
-![Untitled](Quick%20Start%209a0d8944806141ddb7416de894c557b4/Untitled%201.png)
+![Untitled](Quick%20Start/Untitled%201.png)
 
 第一次安裝 Docker 只會看到最上方  REPOSITORY    TAG    IMAGE ID    CREATED    SIZE  這排
 
@@ -40,7 +40,7 @@ docker images
     
     Search 3.12-slim-bullseye
     
-    ![Untitled](Quick%20Start%209a0d8944806141ddb7416de894c557b4/Untitled%202.png)
+    ![Untitled](Quick%20Start/Untitled%202.png)
     
 - Download Docker image
     
@@ -54,7 +54,7 @@ docker images
     docker images
     ```
     
-    ![Untitled](Quick%20Start%209a0d8944806141ddb7416de894c557b4/Untitled%203.png)
+    ![Untitled](Quick%20Start/Untitled%203.png)
     
     A new python repository appears, and it has a tag 3.12-slim-bullseye
     
@@ -67,7 +67,7 @@ docker images
     docker ps
     ```
     
-    ![Untitled](Quick%20Start%209a0d8944806141ddb7416de894c557b4/Untitled%204.png)
+    ![Untitled](Quick%20Start/Untitled%204.png)
     
     Before starting the container, you will only see the row at the top showing  CONTAINER ID   IMAGE    COMMAND    CREATED    STATUS    PORTS    NAMES  
     
@@ -77,7 +77,7 @@ docker images
     docker run -it -d --name docker-tutorial python:3.12-slim-bullseye /bin/bash
     ```
     
-    ![Untitled](Quick%20Start%209a0d8944806141ddb7416de894c557b4/Untitled%205.png)
+    ![Untitled](Quick%20Start/Untitled%205.png)
     
 - Check running container again
     
@@ -85,7 +85,7 @@ docker images
     docker ps
     ```
     
-    ![Untitled](Quick%20Start%209a0d8944806141ddb7416de894c557b4/Untitled%206.png)
+    ![Untitled](Quick%20Start/Untitled%206.png)
     
 - Enter container
     
@@ -93,6 +93,6 @@ docker images
     docker exec -it docker-tutorial /bin/bash
     ```
     
-    ![Untitled](Quick%20Start%209a0d8944806141ddb7416de894c557b4/Untitled%207.png)
+    ![Untitled](Quick%20Start/Untitled%207.png)
     
     Cursor in terminal changed.

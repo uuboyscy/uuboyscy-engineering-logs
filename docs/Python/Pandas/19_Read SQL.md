@@ -20,4 +20,4 @@ conn = create_engine(
 
 # Load DataFrame via SQL
 
-![Untitled](read_sql%20600e010c0f114ecbaabdfaac31abd937/Untitled.png)
+![Untitled](read_sql/Untitled.png)

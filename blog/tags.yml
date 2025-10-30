@@ -77,3 +77,8 @@ dbt:
   label: dbt
   permalink: /dbt
   description: dbt tag description
+
+data-governance:
+  label: Data Governance
+  permalink: /data-governance
+  description: Data Governance tag description

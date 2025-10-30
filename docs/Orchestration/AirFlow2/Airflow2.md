@@ -1,17 +1,14 @@
-# Airflow
+# Airflow 2
 
 [https://airflow.apache.org/docs/docker-stack/index.html](https://airflow.apache.org/docs/docker-stack/index.html)
 
 # Start Airflow standalone with Docker
 
 - Create develop folder
-    
-    ```bash
-    mkdir airflow-demo
-    cd airflow-demo
-    ```
-
-    or simply clone from [https://github.com/uuboyscy/airflow-demo](https://github.com/uuboyscy/airflow-demo)
+    - Git clone from [https://github.com/uuboyscy/airflow-demo](https://github.com/uuboyscy/airflow-demo)
+        ```bash
+        git clone --branch v2 --depth 1 https://github.com/uuboyscy/airflow-demo.git
+        ```
     
 - Start via Docker Container
     - Mac / Linux
@@ -19,12 +16,12 @@
         docker run -it -d \
             --name airflow-server \
             -p 8080:8080 \
-            -v $(PWD)/dags:/opt/airflow/dags \
-            -v $(PWD)/logs:/opt/airflow/logs \
-            -v $(PWD)/utils:/opt/airflow/utils \
-            -v $(PWD)/tasks:/opt/airflow/tasks \
+            -v $PWD/dags:/opt/airflow/dags \
+            -v $PWD/logs:/opt/airflow/logs \
+            -v $PWD/utils:/opt/airflow/utils \
+            -v $PWD/tasks:/opt/airflow/tasks \
             -e PYTHONPATH=/opt/airflow \
-            apache/airflow:latest airflow standalone
+            apache/airflow:2.11.0-python3.12 airflow standalone
         ```
 
     - Windows
@@ -37,7 +34,7 @@
             -v "${PWD}/utils:/opt/airflow/utils" `
             -v "${PWD}/tasks:/opt/airflow/tasks" `
             -e PYTHONPATH=/opt/airflow `
-            apache/airflow:latest airflow standalone
+            apache/airflow:2.11.0-python3.12 airflow standalone
         ```
     
 - Create user

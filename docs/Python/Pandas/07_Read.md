@@ -2,10 +2,10 @@
 
 # Read CSV
 
-![Untitled](Read%20d48e64f040284efc8f434725b8eee17e/Untitled.png)
+![Untitled](Read/Untitled.png)
 
 # Read JSON
 
-![Untitled](Read%20d48e64f040284efc8f434725b8eee17e/Untitled%201.png)
+![Untitled](Read/Untitled%201.png)
 
-![Untitled](Read%20d48e64f040284efc8f434725b8eee17e/Untitled%202.png)
+![Untitled](Read/Untitled%202.png)

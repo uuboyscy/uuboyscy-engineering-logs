@@ -2,7 +2,7 @@
 
 # DataFrame
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled.png)
+![Untitled](DataFrame/Untitled.png)
 
 - Pandas 中的一種資料結構
 - 二維結構，也就是表格
@@ -14,36 +14,36 @@
 
 ## Create DataFrame
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled%201.png)
+![Untitled](DataFrame/Untitled%201.png)
 
 ## Insert data
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled%202.png)
+![Untitled](DataFrame/Untitled%202.png)
 
 ## Add a column
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled%203.png)
+![Untitled](DataFrame/Untitled%203.png)
 
 ## Drop a column
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled%204.png)
+![Untitled](DataFrame/Untitled%204.png)
 
 ## Drop a row
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled%205.png)
+![Untitled](DataFrame/Untitled%205.png)
 
 ## Modify data
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled%206.png)
+![Untitled](DataFrame/Untitled%206.png)
 
 ## Create DataFrame with data
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled%207.png)
+![Untitled](DataFrame/Untitled%207.png)
 
 ## Concat DataFrame
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled%208.png)
+![Untitled](DataFrame/Untitled%208.png)
 
 ## Reset index
 
-![Untitled](DataFrame%20e949db09ab4b45edbea400bb205bbe06/Untitled%209.png)
+![Untitled](DataFrame/Untitled%209.png)

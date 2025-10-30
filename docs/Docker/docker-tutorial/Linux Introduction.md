@@ -102,7 +102,7 @@ drwxr-xr-x   5 root root  360 Mar  7 13:47 dev
 | `-rw-rw-rw-` | 0666 | read & write |
 | `-rwxr-----` | 0740 | owner can read, write, & execute; group can only read; others have no permissions |
 
-![Untitled](Linux%20Introduction%20ca7bac636b8a47b4a9d907ca697290fd/Untitled.png)
+![Untitled](Linux%20Introduction/Untitled.png)
 
 1. File type. d for directory and ‘-’ for file.
 2. User permission.
