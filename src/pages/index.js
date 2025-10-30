@@ -42,26 +42,33 @@ function AboutMeSection() {
 
 function TechStackSection() {
   return (
-    <section>
+    <section className={styles.section}>
       <div className="container">
         <h2>⚙️ Tech Stack & Tools</h2>
+
+        <p>
+          My daily toolkit focuses on building reliable, scalable, and maintainable data systems.
+        </p>
+
         <ul>
-          <div className={styles.techStackItem}>
-            <h3>Data Engineering</h3>
-            <p>dbt, Airflow, Prefect, Hadoop, Spark, Flink, Airbyte</p>
-          </div>
-          <div className={styles.techStackItem}>
-            <h3>Programming</h3>
-            <p>Python, Java, SQL, Bash</p>
-          </div>
-          <div className={styles.techStackItem}>
-            <h3>Messaging & Streaming</h3>
-            <p>RabbitMQ, Kafka</p>
-          </div>
-          <div className={styles.techStackItem}>
-            <h3>DevOps & Insfrastructur</h3>
-            <p>Docker, K8S, Terraform, AWS, GCP</p>
-          </div>
+          <li>
+            <b>Data Engineering:</b> dbt, Airflow, Prefect, Hadoop, Spark, Flink, Airbyte
+          </li>
+          <li>
+            <b>Programming Languages:</b> Python, Java, SQL, Bash
+          </li>
+          <li>
+            <b>Messaging & Streaming:</b> Kafka, RabbitMQ
+          </li>
+          <li>
+            <b>DevOps & Cloud:</b> Docker, Kubernetes, Terraform, AWS, GCP
+          </li>
+          <li>
+            <b>Databases & Analytics:</b> PostgreSQL, BigQuery
+          </li>
+          {/* <li>
+            <b>Currently Exploring:</b> Apache Iceberg, Delta Lake, DataHub, OpenMetadata
+          </li> */}
         </ul>
       </div>
     </section>
@@ -74,15 +81,26 @@ function GitHubStatsSection() {
       <div className="container">
         <h2>📈 GitHub Stats</h2>
         <div className={styles.stats}>
-          <img
+          {/* <img
             src="https://github-readme-streak-stats.herokuapp.com?user=uuboyscy&theme=dark&date_format=M%20j%5B%2C%20Y%5D"
             alt="GitHub Streak"
             className={styles.githubImage}
+            loading="lazy"
+            decoding="async"
           />
           <img
             src="https://github-readme-stats.vercel.app/api/top-langs/?username=uuboyscy&theme=dark&layout=compact&langs_count=8"
             alt="Top Languages"
             className={styles.githubImage}
+            loading="lazy"
+            decoding="async"
+          /> */}
+          <img
+            src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=uuboyscy&theme=zenburn"
+            alt="GitHub Status"
+            className={styles.githubImage}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -111,21 +129,33 @@ function ExperienceSection() {
       <div className="container">
         <h2>📜 Experience</h2>
         <ul>
+          <li><b>Engineering Lead - European Data Company</b></li>
           <li>
-            <b>Instructor & Curriculum Consultant - WiEDU TibaMe / III</b> -&nbsp;
-            <a href="https://www.tibame.com/teacher/uuboyscy" target="_blank" rel="noopener noreferrer">
-              Visit my TibaMe page
-            </a>
+            <b>Instructor & Curriculum Consultant - WiEDU TibaMe / III</b> 
+            <ul>
+              <li>Designed and taught courses on data engineering, dbt, and Prefect for professionals transitioning into data careers.</li>
+              <li>
+                <a href="https://www.tibame.com/teacher/uuboyscy" target="_blank" rel="noopener noreferrer">
+                  Visit my TibaMe page
+                </a>
+              </li>
+            </ul>
           </li>
-          <li><b>Data Engineer - U.S Company</b></li>
-          <li><b>Data Engineering & Big Data Solutions</b>: Built and optimized distributed data systems across various industries.</li>
-          <li><b>Key Contributions:</b></li>
-          <ul>
-            <li>Designed data models and restructured data architecture at Hengstyle.</li>
-            <li>Refactored and optimized distributed ETL systems, implementing Spark at Gamania.</li>
-            <li>Developed big data solutions (Hadoop) for customers at LnData.</li>
-            <li>Automated pipeline monitoring at Taipei Fubon Bank.</li>
-          </ul>
+          <li><b>Data Engineering & Big Data Solutions</b></li>
+            <ul>
+              <li>Built and optimized distributed data systems across various industries.</li>
+              <li>
+                <b>Key Contributions:</b>
+                <ul>
+                  <li>Designed data lakehouse and implemented data governance at ViewSonic.</li>
+                  <li>Designed data models and restructured data architecture at Hengstyle.</li>
+                  <li>Refactored and optimized distributed ETL systems, implementing Spark at Gamania.</li>
+                  <li>Developed big data solutions (Hadoop) for customers at LnData.</li>
+                  <li>Automated pipeline monitoring at Taipei Fubon Bank.</li>
+                </ul>
+              </li>
+            </ul>
+            
           <li><b>Education:</b> Mathematics - National Central University</li>
         </ul>
       </div>
