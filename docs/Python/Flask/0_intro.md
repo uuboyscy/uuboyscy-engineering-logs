@@ -15,12 +15,12 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
-def helloFlask():
-    return 'Hello Flask!'
+@app.route("/")
+def hello_flask():
+    return "Hello Flask!"
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
 ```
 
 Save this snippet as `app.py`, run `flask --app app run --debug`, and Flask will serve the "Hello Flask!" message to any user who visits the root URL.
