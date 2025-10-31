@@ -10,7 +10,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">Hi, I'm Allen 👋</h1>
-        <p className="hero__subtitle">Expert in Data Engineering | Data Governance | Cloud Data Architecture | Instructor</p>
+        <p className="hero__subtitle">Expert in Data Engineering | Cloud Data Architecture | Data Governance</p>
         <p align="center">
           <a href="https://www.linkedin.com/in/chengyou-shi/">
             <img src="https://img.shields.io/badge/LinkedIn-uuboyscy-30302f?style=for-the-badge&logo=linkedin" alt="LinkedIn" />
