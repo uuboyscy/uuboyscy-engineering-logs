@@ -133,7 +133,7 @@ const config = {
       darkTheme: prismThemes.dracula,
     },
     metadata: [
-      { name: 'keywords', content: 'data engineering, big data, Python, Java, uuboy, scy, consulting' },
+      { name: 'keywords', content: ' uuboy, scy, uuboyscy, data engineering, big data, Python, Java, consulting' },
     ],
   },
   headTags: [
@@ -154,13 +154,13 @@ const config = {
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org/',
         '@type': 'Organization',
-        name: 'uuboy',
+        name: 'uuboyscy',
         url: 'https://docs.uuboyscy.dev',
         logo: 'https://docs.uuboyscy.dev/zh-Hant/img/logo.svg',
         sameAs: [
           'https://github.com/uuboyscy',
         ],
-        description: 'uuboy is a data engineering consulting company specializing in big data, data pipeline, and analytics solutions.',
+        description: 'uuboyscy is a data engineering consulting company specializing in big data, data pipeline, and analytics solutions.',
       }),
     },
   ],
