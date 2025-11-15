@@ -115,7 +115,8 @@ function FunFactsSection() {
         <h2>✨ Fun Facts</h2>
         <ul>
           <li>🤹 Data engineer by profession, street performer and juggler by passion.</li>
-          <li>🚴‍♂️ Cycling, music, and strategic problem-solving fuel my passion.</li>
+          <li>🚴‍♂️ Cycling around Taiwan on U-Bike. Slow, simple, unforgettable.</li>
+          <li>💪 Exercise or die. The gym keeps me alive.</li>
           <li>🌏 Make data great again.</li>
         </ul>
       </div>
