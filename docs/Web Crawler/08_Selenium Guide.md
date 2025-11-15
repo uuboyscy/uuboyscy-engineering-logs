@@ -28,7 +28,7 @@ The first run may take longer as it will download the appropriate driver.
 
 ---
 
-## 🛠 Commonly Used Functions
+## Commonly Used Functions
 
 | Feature                 | Function & Description                                                |
 | ----------------------- | ------------------------------------------------------------------- |
@@ -82,7 +82,7 @@ Since Selenium 4.6.0, the built-in **Selenium Manager**:
 
 ---
 
-### 📥 Optional: Manual ChromeDriver Download
+### Optional: Manual ChromeDriver Download
 
 If you prefer to manually manage the driver (e.g. offline use):
 
