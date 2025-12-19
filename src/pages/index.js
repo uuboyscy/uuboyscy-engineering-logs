@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
@@ -28,6 +28,7 @@ function HomepageHeader() {
 function AboutMeSection() {
   return (
     <section className={styles.section}>
+      <div><br /></div>
       <div className="container">
         <h2>👨‍💻 About Me</h2>
         <ul>
@@ -124,6 +125,27 @@ function FunFactsSection() {
   );
 }
 
+function CertificationsSection() {
+  return (
+    <section className={clsx(styles.section, styles.certSection)}>
+      <div className="container">
+        <div className={styles.certGrid}>
+          <div className={styles.certItem}>
+            <a href="https://www.credly.com/badges/9b35c86d-d0d7-4efb-97d8-44e5ca898d00/public_url" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/img/gcp-thumb.png"
+                alt="GCP Professional Data Engineer"
+                style={{ width: '400px', height: 'auto' }}
+              />
+            </a>
+            <p><b>Google Cloud Certified - Professional Data Engineer</b></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ExperienceSection() {
   return (
     <section className={styles.section}>
@@ -132,7 +154,7 @@ function ExperienceSection() {
         <ul>
           <li><b>Engineering Lead - European Data Company</b></li>
           <li>
-            <b>Instructor & Curriculum Consultant - WiEDU TibaMe / III</b> 
+            <b>Instructor & Curriculum Consultant - WiEDU TibaMe / III</b>
             <ul>
               <li>Designed and taught courses on data engineering, dbt, and Prefect for professionals transitioning into data careers.</li>
               <li>
@@ -143,20 +165,20 @@ function ExperienceSection() {
             </ul>
           </li>
           <li><b>Data Engineering & Big Data Solutions</b></li>
-            <ul>
-              <li>Built and optimized distributed data systems across various industries.</li>
-              <li>
-                <b>Key Contributions:</b>
-                <ul>
-                  <li>Designed data lakehouse and implemented data governance at ViewSonic.</li>
-                  <li>Designed data models and restructured data architecture at Hengstyle.</li>
-                  <li>Refactored and optimized distributed ETL systems, implementing Spark at Gamania.</li>
-                  <li>Developed big data solutions (Hadoop) for customers at LnData.</li>
-                  <li>Automated pipeline monitoring at Taipei Fubon Bank.</li>
-                </ul>
-              </li>
-            </ul>
-            
+          <ul>
+            <li>Built and optimized distributed data systems across various industries.</li>
+            <li>
+              <b>Key Contributions:</b>
+              <ul>
+                <li>Designed data lakehouse and implemented data governance at ViewSonic.</li>
+                <li>Designed data models and restructured data architecture at Hengstyle.</li>
+                <li>Refactored and optimized distributed ETL systems, implementing Spark at Gamania.</li>
+                <li>Developed big data solutions (Hadoop) for customers at LnData.</li>
+                <li>Automated pipeline monitoring at Taipei Fubon Bank.</li>
+              </ul>
+            </li>
+          </ul>
+
           <li><b>Education:</b> Mathematics - National Central University</li>
         </ul>
       </div>
@@ -176,6 +198,7 @@ export default function Home() {
         <GitHubStatsSection />
         <FunFactsSection />
         <ExperienceSection />
+        <CertificationsSection />
       </main>
     </Layout>
   );
