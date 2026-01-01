@@ -125,20 +125,51 @@ function FunFactsSection() {
   );
 }
 
+function CredlyBadge({ badgeId, width = 150, height = 270 }) {
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const scriptId = 'credly-embed-script';
+    const existingScript = document.getElementById(scriptId);
+
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.credly.com/assets/utilities/embed.js';
+      script.async = true;
+      script.id = scriptId;
+      document.body.appendChild(script);
+      return;
+    }
+
+    if (window.Credly && typeof window.Credly.init === 'function') {
+      window.Credly.init();
+    }
+  }, [badgeId]);
+
+  return (
+    <div
+      data-iframe-width={width}
+      data-iframe-height={height}
+      data-share-badge-id={badgeId}
+      data-share-badge-host="https://www.credly.com"
+    />
+  );
+}
+
 function CertificationsSection() {
   return (
     <section className={clsx(styles.section, styles.certSection)}>
       <div className="container">
         <div className={styles.certGrid}>
           <div className={styles.certItem}>
-            <a href="https://www.credly.com/badges/9b35c86d-d0d7-4efb-97d8-44e5ca898d00/public_url" target="_blank" rel="noopener noreferrer">
-              <img
-                src="/img/gcp-thumb.png"
-                alt="GCP Professional Data Engineer"
-                style={{ width: '400px', height: 'auto' }}
-              />
-            </a>
+            <CredlyBadge badgeId="9b35c86d-d0d7-4efb-97d8-44e5ca898d00" />
             <p><b>Google Cloud Certified - Professional Data Engineer</b></p>
+          </div>
+          <div className={styles.certItem}>
+            <CredlyBadge badgeId="1154524b-934a-4316-9033-9628fd9ed6f0" />
+            <p><b>Google Cloud Certified - Professional Cloud Architect</b></p>
           </div>
         </div>
       </div>
