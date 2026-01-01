@@ -150,6 +150,7 @@ function CredlyBadge({ badgeId, width = 150, height = 270 }) {
 
   return (
     <div
+      className={styles.credlyBadge}
       data-iframe-width={width}
       data-iframe-height={height}
       data-share-badge-id={badgeId}
