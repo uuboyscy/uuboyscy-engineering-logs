@@ -186,7 +186,7 @@ dtype: float64
 ```
 
 ```python
-# NaN propagates in row-level calculations, making incomplete rows visible
+# But might be incorrect
 df = pd.DataFrame({
     "base_salary": [95000, 72000, None],
     "bonus":       [10000, None, 5000],
