@@ -333,6 +333,28 @@ print(df)
     3        E004         None         None  55000.0                     None
     ```
 
+    ```python
+    # Drop rows that have fewer than `thresh` non-NaN values
+    # thresh=4 means keep only rows with at least 4 non-NaN values (out of 5 columns)
+    print(df.dropna(thresh=4))
+    ```
+
+    ```
+    # Row 3 (E004) has 3 non-NaN values (employee_id, name... wait — None counts as NaN)
+    # employee_id is always filled; let's count per row:
+    #   E001: 5 non-NaN  ✓
+    #   E002: 4 non-NaN  ✓  (email is NaN)
+    #   E003: 4 non-NaN  ✓  (department is NaN)
+    #   E004: 3 non-NaN  ✗  (name, department, email are NaN)
+    #   E005: 4 non-NaN  ✓  (salary is NaN)
+    #   E006: 1 non-NaN  ✗  (only employee_id is filled)
+      employee_id         name   department   salary                    email
+    0        E001   Alice Chen  Engineering  95000.0   alice.chen@company.com
+    1        E002    Bob Smith    Marketing  72000.0                      NaN
+    2        E003  Carol White          NaN  68000.0  carol.white@company.com
+    4        E005  Eve Johnson        Sales      NaN  eve.johnson@company.com
+    ```
+
 - Fill NaN
 
     ```python
