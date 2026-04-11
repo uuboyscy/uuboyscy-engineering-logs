@@ -23,8 +23,10 @@
 }
 
 .section ul {
-  list-style-type: disc;      /* brings bullets back */
-  padding-left: 1.2rem;       /* restore natural indentation */
+  list-style-type: disc;
+  /* brings bullets back */
+  padding-left: 1.2rem;
+  /* restore natural indentation */
   margin: 1rem 0;
 }
 
@@ -35,4 +37,30 @@
 
 .section b {
   color: var(--ifm-color-primary);
+}
+
+.certGrid {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.certItem {
+  text-align: left;
+  max-width: 200px;
+}
+
+.certItem img {
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.certItem img:hover {
+  transform: scale(1.05);
+}
+.certSection {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
 }
