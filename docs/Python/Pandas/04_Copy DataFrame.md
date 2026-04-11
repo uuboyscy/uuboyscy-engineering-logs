@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Copy DataFrame
 
 Both df and df2 are modified
