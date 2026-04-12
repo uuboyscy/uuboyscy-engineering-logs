@@ -77,22 +77,26 @@ sidebar_position: 0
 
 [groupby.cumcount (partition by row)](15_Cumcount.md)
 
+### Rolling Window
+
+[Rolling Window](16_Rolling%20Window.md)
+
 ### pandasql
 
-[pandasql](16_PandaSQL.md)
+[pandasql](17_PandaSQL.md)
 
 ## Connect to MySQL
 
 ### PyMySQL
 
-[PyMySQL](17_PyMySQL.md)
+[PyMySQL](18_PyMySQL.md)
 
 ### SQLAlchemy
 
-[SQLAlchemy](18_SQLAlchemy.md)
+[SQLAlchemy](19_SQLAlchemy.md)
 
 ## SQL in Pandas
 
 ### read_sql()
 
-[read_sql](19_Read%20SQL.md)
+[read_sql](20_Read%20SQL.md)
