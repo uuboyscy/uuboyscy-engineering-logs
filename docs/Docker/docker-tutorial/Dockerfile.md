@@ -45,7 +45,7 @@ sidebar_position: 12
 - Create a file named `flask.Dockerfile`
     
     ```docker
-    FROM --platform=linux/amd64 python:3.11-slim-bullseye
+    FROM python:3.11-slim-bullseye
     
     WORKDIR /workspace
     

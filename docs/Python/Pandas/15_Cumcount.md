@@ -1,3 +1,7 @@
+---
+sidebar_position: 15
+---
+
 # groupby.cumcount (partition by row)
 
 ```python
