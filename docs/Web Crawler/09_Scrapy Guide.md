@@ -2,7 +2,7 @@
 sidebar_position: 9
 ---
 
-# Scrapy Guide for Beginners
+# Scrapy Guide
 
 Scrapy is a Python framework for building web crawlers. Unlike `requests` + `BeautifulSoup`, Scrapy handles everything — sending requests, parsing HTML, following links, and saving data — all in one structured project.
 
@@ -176,12 +176,9 @@ DOWNLOAD_DELAY = 1  # seconds between requests
 
 # Set a custom User-Agent
 USER_AGENT = "Mozilla/5.0 (compatible; MyBot/1.0)"
-
-# Enable a pipeline (uncomment and set priority)
-ITEM_PIPELINES = {
-    "my_crawler.pipelines.MyCrawlerPipeline": 300,
-}
 ```
+
+For pipeline configuration, see [Scrapy Pipeline](10_Scrapy%20Pipeline.md).
 
 ---
 
