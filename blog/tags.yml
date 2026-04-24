@@ -82,3 +82,13 @@ data-governance:
   label: Data Governance
   permalink: /data-governance
   description: Data Governance tag description
+
+data-engineering:
+  label: Data Engineering
+  permalink: /data-engineering
+  description: Data Engineering tag description
+
+ai:
+  label: AI
+  permalink: /ai
+  description: Artificial Intelligence and LLM-related topics
