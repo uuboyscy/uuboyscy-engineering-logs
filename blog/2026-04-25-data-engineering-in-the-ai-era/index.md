@@ -25,11 +25,7 @@ My mental model was: the more I could build and operate, the better I was at my 
 
 ## The Cloud Shifted It a Little
 
-When cloud platforms like **GCP** and **AWS** matured, managed services took over the heavy lifting. **AWS EMR** and **GCP Dataproc** replaced weeks of manual cluster setup. There was less manual work to worry about.
-
-That freed up time, and teams redirected it toward data governance, data quality, and working more closely with business stakeholders. Tools like **dbt**, **DataHub**, and **Great Expectations** became more and more popular.
-
-I was still thinking like a developer, but the job was getting wider and wider. We started thinking more about what to build, not just how to build it.
+With the maturity of cloud platforms like **GCP** and **AWS**, managed services such as **BigQuery**, **Redshift**, **EMR**, and **Dataproc** streamlined data processing. Storage solutions like **GCS** and **S3**, and query-first tools like **Athena**, further simplified data management. This shift allowed teams to move from infrastructure maintenance to focusing on governance, quality, and business-driven insights using tools like **dbt**, **DataHub**, and **Great Expectations**.
 
 ---
 
