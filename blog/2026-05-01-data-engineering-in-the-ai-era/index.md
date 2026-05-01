@@ -45,9 +45,11 @@ Then ChatGPT launched. The Text-to-SQL models that teams had spent years buildin
 
 But here is the part that is easy to miss. LLM replaced the translation models, but it did not replace the need for the semantic layer. If anything, it made the semantic layer (and the data catalog behind it) more important than before. LLM can write almost perfect SQL, but only if you give it the right context. Without knowing that "active user" means a user who logged in within 30 days, the SQL it writes will be confidently wrong.
 
-That is why **data catalogs** and well-defined metadata matter more now. The model is powerful, but it is only as good as the context you feed it. If your data is well-defined, AI becomes a real assistant. If your data is messy, AI just produces wrong answers faster.
+That is why **data catalogs**, **data contracts**, and well-defined metadata matter more now. The model is powerful, but it is only as good as the context you feed it. If your data is well-defined and the responsibility for keeping it that way is clear, AI becomes a real assistant. If your data is messy, AI just produces wrong answers faster.
 
 At the same time, the speed of development changed completely. A morning conversation about a new project can produce a working prototype by the afternoon. Delivering a feature no longer always requires a full team and a sprint.
+
+And the next shift is already starting. Soon, the consumer of your pipeline will not just be a human reading a dashboard, it will be an AI agent making decisions on its own. The reliability bar will keep rising.
 
 Three years ago, I thought it might take at least five years for AI to seriously assist engineers. That estimate was way off.
 
@@ -58,6 +60,8 @@ Three years ago, I thought it might take at least five years for AI to seriously
 AI is very good at the developer layer. It generates code, writes SQL, builds prototypes. What it is not good at is making decisions that depend on context it does not have.
 
 It does not know your company. It does not know which stakeholder will be upset if a number changes. It does not know that the pipeline you are designing will feed a finance report that has to be correct on the first of every month. It can suggest streaming or batch, but it does not have to live with the consequences if the choice is wrong.
+
+It also does not care about your cloud billing. AI can confidently write a SQL query that scans a billion rows and burns through your BigQuery or Snowflake credits in a single afternoon. Cost is one of the easiest places to see why human judgment still matters.
 
 Those decisions require understanding the whole picture. That is architect thinking, not developer thinking.
 
@@ -76,6 +80,8 @@ If you are just starting out, please do not think you can skip the developer pha
 
 So learn the fundamentals, SQL, data modeling, how distributed systems work, and why pipelines fail. Read the code AI gives you and understand it, debug it, and question it. The new core skill is not typing code faster, it is being able to read, judge, and own what AI produces. That skill only comes from doing the work yourself first.
 
+One more thing. A lot of new engineers think being an architect means using more tools, more frameworks, more services. It is usually the opposite. A real architect knows when to say no. Complexity is easy to add and very hard to remove.
+
 ---
 
 ## What AI Cannot Replace
@@ -91,9 +97,11 @@ AI can write code faster than you. That is the uncomfortable truth. But writing 
 
 ## Final Thoughts
 
-Do not try to compete with AI on the things it is already better at. You will lose.
+If you look back at this whole timeline, every shift has the same pattern. The repetitive work, and the work that is no longer efficient, always gets replaced by a better tool. AI is just the next one.
 
-Instead, use AI as your tool. Let it handle the code, the SQL, the prototypes. That frees you to do the things that actually matter, for example, designing the system, talking to the business, and making the hard decision.
+Do not fight the trend. Embrace the new skills, and let go of the old thinking that no longer serves you.
+
+So do not try to compete with AI on the things it is already better at. Instead, use AI as your tool. Let it handle the code, the SQL, the prototypes. That frees you to do the things that actually matter, for example, designing the system, talking to the business, and making the hard decision.
 
 The engineers who will thrive in this era are not the ones who write the most code. They are the ones who know what is worth building, and why.
 
