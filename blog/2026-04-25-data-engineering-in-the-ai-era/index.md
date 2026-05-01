@@ -70,11 +70,11 @@ If you are worried about AI replacing you, this is the shift to make. Not learni
 
 ## But You Still Have to Learn the Fundamentals
 
-I want to be honest about one thing. I can think like an architect today because I spent years writing the code, fixing the broken jobs, and getting paged at 2am when a pipeline failed. That experience is what lets me make the call now.
+I want to be honest about one thing. I can think like an architect today because I spent years writing the code, fixing the broken jobs, and staying up all night to fix a failed pipeline, or even the whole Hadoop cluster when it was broken. That experience is what lets me make the call now.
 
-If you are just starting out, please do not read this post and think you can skip the developer phase. You cannot. Architect thinking is built on top of developer experience, not instead of it. Without knowing what a broken Spark job looks like, you cannot judge whether AI's suggestion is right or wrong. And AI will sound just as confident when it is wrong as when it is right.
+If you are just starting out, please do not think you can skip the developer phase. Architect thinking is built on top of developer experience, not instead of it. Without knowing what a broken Spark job looks like, you cannot judge whether AI's suggestion is correct or not. And AI will sound just as confident when it is wrong as when it is right.
 
-So learn the fundamentals. SQL. Data modeling. How distributed systems work. Why pipelines fail. Read the code AI gives you and understand it. Debug it. Question it. The new core skill is not typing code faster, it is being able to read, judge, and own what AI produces. That skill only comes from doing the work yourself first.
+So learn the fundamentals, SQL, data modeling, how distributed systems work, and why pipelines fail. Read the code AI gives you and understand it, debug it, and question it. The new core skill is not typing code faster, it is being able to read, judge, and own what AI produces. That skill only comes from doing the work yourself first.
 
 ---
 
