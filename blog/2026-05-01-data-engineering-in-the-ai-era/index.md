@@ -101,4 +101,4 @@ AI is the hand. You are the head.
 
 ---
 
-*Find me on [LinkedIn](https://www.linkedin.com/in/chengyou-shi/) or visit my blog at [uuboyscy.dev](https://uuboyscy.dev).*
+*Thanks for reading! If you found this article helpful, feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/chengyou-shi/).*
