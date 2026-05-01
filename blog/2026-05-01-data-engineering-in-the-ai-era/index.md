@@ -91,7 +91,7 @@ AI can write code faster than you. That is the uncomfortable truth. But writing 
 
 ## Final Thoughts
 
-If you look back at this whole timeline, every shift had the same pattern. Something new arrived, and something old got replaced. AI is just the next one.
+If you look back at this whole timeline, every shift has the same pattern. The repetitive work, and the work that is no longer efficient, always gets replaced by a better tool. AI is just the next one.
 
 Do not fight the trend. Embrace the new skills, and let go of the old thinking that no longer serves you.
 
