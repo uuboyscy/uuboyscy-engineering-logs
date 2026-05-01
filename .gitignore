@@ -23,3 +23,6 @@ openai-chatgpt-latest.vsix
 
 # Claude Code
 .claude/worktrees/
+
+# Tmp
+tmp/
