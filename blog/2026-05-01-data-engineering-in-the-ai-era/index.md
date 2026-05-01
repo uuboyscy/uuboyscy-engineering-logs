@@ -45,7 +45,7 @@ Then ChatGPT launched. The Text-to-SQL models that teams had spent years buildin
 
 But here is the part that is easy to miss. LLM replaced the translation models, but it did not replace the need for the semantic layer. If anything, it made the semantic layer (and the data catalog behind it) more important than before. LLM can write almost perfect SQL, but only if you give it the right context. Without knowing that "active user" means a user who logged in within 30 days, the SQL it writes will be confidently wrong.
 
-That is why **data catalogs** and well-defined metadata matter more now. The model is powerful, but it is only as good as the context you feed it. If your data is well-defined, AI becomes a real assistant. If your data is messy, AI just produces wrong answers faster.
+That is why **data catalogs**, **data contracts**, and well-defined metadata matter more now. The model is powerful, but it is only as good as the context you feed it. If your data is well-defined and the responsibility for keeping it that way is clear, AI becomes a real assistant. If your data is messy, AI just produces wrong answers faster.
 
 At the same time, the speed of development changed completely. A morning conversation about a new project can produce a working prototype by the afternoon. Delivering a feature no longer always requires a full team and a sprint.
 
@@ -91,9 +91,11 @@ AI can write code faster than you. That is the uncomfortable truth. But writing 
 
 ## Final Thoughts
 
-Do not try to compete with AI on the things it is already better at. You will lose.
+If you look back at this whole timeline, every shift had the same pattern. Something new arrived, and something old got replaced. AI is just the next one.
 
-Instead, use AI as your tool. Let it handle the code, the SQL, the prototypes. That frees you to do the things that actually matter, for example, designing the system, talking to the business, and making the hard decision.
+Do not fight the trend. Embrace the new skills, and let go of the old thinking that no longer serves you.
+
+So do not try to compete with AI on the things it is already better at. Instead, use AI as your tool. Let it handle the code, the SQL, the prototypes. That frees you to do the things that actually matter, for example, designing the system, talking to the business, and making the hard decision.
 
 The engineers who will thrive in this era are not the ones who write the most code. They are the ones who know what is worth building, and why.
 
