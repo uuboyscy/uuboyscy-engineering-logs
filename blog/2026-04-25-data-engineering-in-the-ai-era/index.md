@@ -39,11 +39,15 @@ That was already a signal. The industry was trying to automate the developer lay
 
 ---
 
-## ChatGPT Made It Obvious
+## LLM Made It Obvious
 
 Then ChatGPT launched. The Text-to-SQL models that teams had spent years building were suddenly outperformed by a general-purpose LLM. Overnight, a lot of that work became outdated.
 
-And the speed of development changed completely. A morning conversation about a new project can produce a working prototype by the afternoon. Delivering a feature no longer always requires a full team and a sprint.
+But here is the part that is easy to miss. LLM replaced the translation models, but it did not replace the need for the semantic layer. If anything, it made the semantic layer (and the data catalog behind it) more important than before. LLM can write almost perfect SQL, but only if you give it the right context. Without knowing that "active user" means a user who logged in within 30 days, the SQL it writes will be confidently wrong.
+
+That is why **data catalogs** and well-defined metadata matter more now. The model is powerful, but it is only as good as the context you feed it. If your data is well-defined, AI becomes a real assistant. If your data is messy, AI just produces wrong answers faster.
+
+At the same time, the speed of development changed completely. A morning conversation about a new project can produce a working prototype by the afternoon. Delivering a feature no longer always requires a full team and a sprint.
 
 Three years ago, I thought it might take at least five years for AI to seriously assist engineers. That estimate was way off.
 
