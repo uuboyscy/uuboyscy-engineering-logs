@@ -2,11 +2,75 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://docs.uuboyscy.dev/zh-Hant/blog</id>
     <title>UUBOYSCY ENGINEERING LOGS Blog</title>
-    <updated>2025-03-07T00:00:00.000Z</updated>
+    <updated>2026-05-01T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://docs.uuboyscy.dev/zh-Hant/blog"/>
     <subtitle>UUBOYSCY ENGINEERING LOGS Blog</subtitle>
     <icon>https://docs.uuboyscy.dev/zh-Hant/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[別再用工程師的思維工作，開始像架構師一樣思考]]></title>
+        <id>https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era</id>
+        <link href="https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era"/>
+        <updated>2026-05-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[很長一段時間，我以為自己的工作就是寫出好的程式碼。建好 pipeline、調好 job、修好 cluster。技術執行能力越強，我的價值就越高。]]></summary>
+        <content type="html"><![CDATA[<p>很長一段時間，我以為自己的工作就是寫出好的程式碼。建好 pipeline、調好 job、修好 cluster。技術執行能力越強，我的價值就越高。</p>
+<p>直到 AI 出現之後，這個價值的定義開始改變了。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="我以前是怎麼思考的">我以前是怎麼思考的<a href="https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era#%E6%88%91%E4%BB%A5%E5%89%8D%E6%98%AF%E6%80%8E%E9%BA%BC%E6%80%9D%E8%80%83%E7%9A%84" class="hash-link" aria-label="我以前是怎麼思考的的直接連結" title="我以前是怎麼思考的的直接連結">​</a></h2>
+<p>剛入行的時候，我整天都在處理實作。寫 Java、用 <strong>Spring Boot</strong> 開發 API、調 <strong>Spark</strong> 和 <strong>Flink</strong> 的 job、手動維運 <strong>Hadoop cluster</strong>。那時 <strong>Airflow</strong> 這類工具還沒有 managed service，全部都要自己安裝、自己設定，壞了也得自己修。</p>
+<p>我當時的心智模型是：「能建越多、能 operate 越多，我就是越好的工程師。」執行力就是價值。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="雲端讓事情有點不一樣了">雲端讓事情有點不一樣了<a href="https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era#%E9%9B%B2%E7%AB%AF%E8%AE%93%E4%BA%8B%E6%83%85%E6%9C%89%E9%BB%9E%E4%B8%8D%E4%B8%80%E6%A8%A3%E4%BA%86" class="hash-link" aria-label="雲端讓事情有點不一樣了的直接連結" title="雲端讓事情有點不一樣了的直接連結">​</a></h2>
+<p>隨著 <strong>GCP</strong> 和 <strong>AWS</strong> 等雲端平台越來越成熟，<strong>BigQuery</strong>、<strong>Redshift</strong>、<strong>EMR</strong>、<strong>Dataproc</strong> 這類 managed service 大幅簡化了資料處理的流程。<strong>GCS</strong>、<strong>S3</strong> 這類儲存方案，加上 <strong>Athena</strong> 這類 query-first 工具，也讓資料管理變得更簡單。這個轉變讓團隊可以從基礎設施維運的負擔中解放出來，把心力放在治理、品質和業務洞察上，並開始大量使用 <strong>dbt</strong>、<strong>DataHub</strong>、<strong>Great Expectations</strong> 這類工具。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="然後產業開始試著取代自己">然後產業開始試著取代自己<a href="https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era#%E7%84%B6%E5%BE%8C%E7%94%A2%E6%A5%AD%E9%96%8B%E5%A7%8B%E8%A9%A6%E8%91%97%E5%8F%96%E4%BB%A3%E8%87%AA%E5%B7%B1" class="hash-link" aria-label="然後產業開始試著取代自己的直接連結" title="然後產業開始試著取代自己的直接連結">​</a></h2>
+<p>幾年前，<strong>Text-to-SQL</strong> 是一個很熱門的趨勢，意思是把自然語言的問題轉成資料庫查詢。團隊會在 data warehouse 或 lakehouse 之上建一層 <strong>semantic layer</strong>。你可以把它想成一個翻譯層，用來定義業務名詞（例如「active user」或「monthly revenue」），讓系統知道使用者問的問題實際上是什麼意思。它就像資料和 dashboard 之間的橋樑，讓非技術人員不需要工程師也能拿到答案。</p>
+<p>有些公司會自己訓練模型來做這件事，有些則會找開源工具或第三方服務。目標都是讓工程師在日常的資料存取上變得不那麼必要。</p>
+<p>這其實已經是一個訊號了。產業正在嘗試把工程師這一層自動化掉。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="llm-讓這件事更明顯">LLM 讓這件事更明顯<a href="https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era#llm-%E8%AE%93%E9%80%99%E4%BB%B6%E4%BA%8B%E6%9B%B4%E6%98%8E%E9%A1%AF" class="hash-link" aria-label="LLM 讓這件事更明顯的直接連結" title="LLM 讓這件事更明顯的直接連結">​</a></h2>
+<p>然後 ChatGPT 出現了。團隊花了好幾年建出來的 Text-to-SQL 模型，瞬間就被通用型的 LLM 超越。一夜之間，很多過去的努力就過時了。</p>
+<p>但有一個容易被忽略的點。LLM 取代了那些翻譯模型，但它並沒有取代 semantic layer 本身的需求。事實上，它讓 semantic layer（以及背後的 data catalog）變得比以前更重要。LLM 可以寫出幾乎完美的 SQL，但前提是你要給它正確的 context。如果它不知道「active user」是指過去 30 天內登入過的使用者，那它寫出來的 SQL 就會是「自信地錯」。</p>
+<p>這也是為什麼現在 <strong>data catalog</strong> 和定義良好的 metadata 變得更重要。模型很強，但它的好壞取決於你餵給它的 context。如果你的資料定義清楚，AI 就會是一個真正的助手；如果你的資料是混亂的，AI 只會以更快的速度產出錯誤的答案。</p>
+<p>同時，開發速度也整個變了。早上才討論一個新專案，下午就能拿出一個可運作的 prototype。交付一個 feature 不再一定需要一整個團隊和一個 sprint。</p>
+<p>三年前，我以為 AI 要真正成為工程師的助手，至少還要五年。現在看，這個估計差得很遠。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="你必須做出的轉變">你必須做出的轉變<a href="https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era#%E4%BD%A0%E5%BF%85%E9%A0%88%E5%81%9A%E5%87%BA%E7%9A%84%E8%BD%89%E8%AE%8A" class="hash-link" aria-label="你必須做出的轉變的直接連結" title="你必須做出的轉變的直接連結">​</a></h2>
+<p>AI 在工程師這一層做得非常好。它可以寫程式、寫 SQL、做 prototype。但它不擅長的地方，是做那些需要它沒有的 context 才能做的決定。</p>
+<p>它不認識你的公司。它不知道哪一個 stakeholder 看到某個數字變動會生氣。它不知道你正在設計的這條 pipeline，最後會餵進一個每月一號必須正確的財務報表。它可以建議用 streaming 還是 batch，但它不需要為這個選擇承擔後果。</p>
+<p>這些決定需要對整體有完整的理解。這就是架構師的思維，不是工程師的思維。</p>
+<p>工程師會問的問題：「我要怎麼把它做出來？」
+架構師會問的問題：「對業務的影響是什麼？誰會依賴這個東西？如果它壞了，下游會怎麼樣？」</p>
+<p>如果你擔心 AI 會取代你，這就是你該做的轉變。不是去學一個新工具，也不是寫得更快，而是把你的思考層級往上提一層。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="但你還是得把基本功學好">但你還是得把基本功學好<a href="https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era#%E4%BD%86%E4%BD%A0%E9%82%84%E6%98%AF%E5%BE%97%E6%8A%8A%E5%9F%BA%E6%9C%AC%E5%8A%9F%E5%AD%B8%E5%A5%BD" class="hash-link" aria-label="但你還是得把基本功學好的直接連結" title="但你還是得把基本功學好的直接連結">​</a></h2>
+<p>我想老實說一件事。我今天能用架構師的方式思考，是因為我花了很多年寫程式、修壞掉的 job，甚至為了修一條失敗的 pipeline，或一整個壞掉的 Hadoop cluster 熬夜到天亮。是這些經驗讓我今天有能力做這些判斷。</p>
+<p>如果你才剛入行，請不要以為自己可以跳過工程師這個階段。架構師的思維是建立在工程師的經驗之上，不是取代它。如果你不知道一個壞掉的 Spark job 長什麼樣子，你就沒辦法判斷 AI 給的建議是對還是錯。而 AI 講錯的時候，跟講對的時候一樣有自信。</p>
+<p>所以還是要把基本功學起來：SQL、資料建模、分散式系統怎麼運作、pipeline 為什麼會失敗。把 AI 給你的程式碼讀懂、debug、並且質疑它。新的核心能力不是寫程式寫得更快，而是有能力閱讀、判斷、並且為 AI 產出的東西負責。這個能力只能靠自己親手做過才會有。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ai-沒辦法取代的事">AI 沒辦法取代的事<a href="https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era#ai-%E6%B2%92%E8%BE%A6%E6%B3%95%E5%8F%96%E4%BB%A3%E7%9A%84%E4%BA%8B" class="hash-link" aria-label="AI 沒辦法取代的事的直接連結" title="AI 沒辦法取代的事的直接連結">​</a></h2>
+<p>AI 寫程式比你快，這是一個讓人不舒服的事實。但寫程式只是工作的一部分，還有很多事 AI 沒辦法做。這些才是你真正的價值所在：</p>
+<ul>
+<li><strong>簽合約。</strong> AI 沒辦法為 production 出問題的時候負責。一定要有一個人來承擔結果，一定要有一個人坐在客戶面前回答這件事。</li>
+<li><strong>跟人對話。</strong> 真實的專案是透過跟 stakeholder、PM、其他團隊的對話建立起來的。理解別人真正需要什麼，而不只是他們嘴上說什麼，這仍然是人類的能力。</li>
+<li><strong>理解業務。</strong> AI 從來沒有參加過你公司的會議。它不知道為什麼 Table A 的 <code>user_id</code> 跟 Table B 對不起來，也不知道 marketing 上一季把「conversion」的定義改了。</li>
+<li><strong>在不明確的時候做判斷。</strong> 真實的工作充滿模糊地帶。當需求亂七八糟、deadline 又是明天的時候，總要有一個人做決定。AI 可以給你選項，做決定的還是人。</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="結語">結語<a href="https://docs.uuboyscy.dev/zh-Hant/blog/data-engineering-in-the-ai-era#%E7%B5%90%E8%AA%9E" class="hash-link" aria-label="結語的直接連結" title="結語的直接連結">​</a></h2>
+<p>不要試著跟 AI 在它已經比你強的事情上競爭，你會輸。</p>
+<p>相反地，把 AI 當成你的工具。讓它去處理程式、SQL、prototype。這樣你才有時間做真正重要的事，例如設計整個系統、跟業務溝通、做那些難下的判斷。</p>
+<p>在這個時代能持續成長的工程師，不是寫最多程式的那個，而是知道什麼東西值得被建出來、以及為什麼要建的那個人。</p>
+<p>AI 是手，你是腦。</p>
+<hr>
+<p><em>感謝你的閱讀！如果你覺得這篇文章對你有幫助，歡迎在 <a href="https://www.linkedin.com/in/chengyou-shi/" target="_blank" rel="noopener noreferrer">LinkedIn</a> 上跟我聯繫。</em></p>]]></content>
+        <author>
+            <name>uuboyscy</name>
+            <uri>https://uuboyscy.dev</uri>
+        </author>
+        <category label="data-engineering" term="data-engineering"/>
+        <category label="ai" term="ai"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[How to Build a Reliable Data System?]]></title>
         <id>https://docs.uuboyscy.dev/zh-Hant/blog/how-to-build-a-reliable-data-system</id>
