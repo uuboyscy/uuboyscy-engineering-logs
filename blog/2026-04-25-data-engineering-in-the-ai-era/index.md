@@ -19,7 +19,7 @@ Then AI arrived. And that definition of value started to change.
 
 When I started out, I was deep in implementation. Writing Java, developing APIs with **Spring Boot**, tuning **Spark** and **Flink** jobs, maintaining **Hadoop clusters** by hand. Tools like **Airflow** had no managed services. You set them up yourself, and you fixed them yourself when they broke.
 
-My mental model was: the more I could build and operate, the better I was at my job. Execution was the value.
+My mental model was, "the more I could build and operate, the better I was at my job." Execution was the value.
 
 ---
 
@@ -31,7 +31,7 @@ With the maturity of cloud platforms like **GCP** and **AWS**, managed services 
 
 ## Then the Industry Tried to Replace Itself
 
-A few years ago, **Text-to-SQL** was a big trend at the time: converting natural language questions into database queries. Teams built a **semantic layer** on top of the data warehouse or lakehouse, as a bridge between the data and the dashboards so non-technical users could get answers without an engineer in the room.
+A few years ago, **Text-to-SQL** was a big trend at the time, which mean converting natural language questions into database queries. Teams built a **semantic layer** on top of the data warehouse or lakehouse. Think of it as a translation layer that defines business terms (like "active user" or "monthly revenue") so the system knows what the question really means. It is a bridge between the data and the dashboards, so non-technical users could get answers without an engineer in the room.
 
 Some companies built their own models for this, while others looked for open source tools or third-party services. The goal was to make engineers less necessary for day-to-day data access.
 
@@ -51,9 +51,9 @@ Three years ago, I thought it might take at least five years for AI to seriously
 
 ## The Shift You Have to Make
 
-AI is very good at the developer layer. It generates code, writes SQL, builds prototypes. What it cannot do is think at the system level.
+AI is very good at the developer layer. It generates code, writes SQL, builds prototypes. What it is not good at is making decisions that depend on context it does not have.
 
-It cannot decide whether a pipeline should be streaming or batch. It cannot weigh the tradeoffs of a data model against the business logic. It cannot walk into a room with a stakeholder and navigate what the business actually needs versus what they asked for.
+It does not know your company. It does not know which stakeholder will be upset if a number changes. It does not know that the pipeline you are designing will feed a finance report that has to be correct on the first of every month. It can suggest streaming or batch, but it does not have to live with the consequences if the choice is wrong.
 
 Those decisions require understanding the whole picture. That is architect thinking, not developer thinking.
 
@@ -64,9 +64,19 @@ If you are worried about AI replacing you, this is the shift to make. Not learni
 
 ---
 
+## But You Still Have to Learn the Fundamentals
+
+I want to be honest about one thing. I can think like an architect today because I spent years writing the code, fixing the broken jobs, and getting paged at 2am when a pipeline failed. That experience is what lets me make the call now.
+
+If you are just starting out, please do not read this post and think you can skip the developer phase. You cannot. Architect thinking is built on top of developer experience, not instead of it. Without knowing what a broken Spark job looks like, you cannot judge whether AI's suggestion is right or wrong. And AI will sound just as confident when it is wrong as when it is right.
+
+So learn the fundamentals. SQL. Data modeling. How distributed systems work. Why pipelines fail. Read the code AI gives you and understand it. Debug it. Question it. The new core skill is not typing code faster, it is being able to read, judge, and own what AI produces. That skill only comes from doing the work yourself first.
+
+---
+
 ## What AI Cannot Replace
 
-If your value is only in writing code, AI is faster than you. That is the uncomfortable truth. But there are things AI still cannot do, and these are where your real value lives:
+AI can write code faster than you. That is the uncomfortable truth. But writing code is only one part of the job, and there are things AI still cannot do. These are where your real value lives:
 
 - **Signing the contract.** AI cannot take responsibility when something goes wrong in production. A human has to own the outcome. A human has to sit in front of the client and answer for it.
 - **Talking to people.** Real projects are built through conversations with stakeholders, product managers, and other teams. Understanding what people actually need, not just what they say, is still a human skill.
