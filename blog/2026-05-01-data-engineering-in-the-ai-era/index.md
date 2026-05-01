@@ -49,6 +49,8 @@ That is why **data catalogs**, **data contracts**, and well-defined metadata mat
 
 At the same time, the speed of development changed completely. A morning conversation about a new project can produce a working prototype by the afternoon. Delivering a feature no longer always requires a full team and a sprint.
 
+And the next shift is already starting. Soon, the consumer of your pipeline will not just be a human reading a dashboard, it will be an AI agent making decisions on its own. The reliability bar will keep rising.
+
 Three years ago, I thought it might take at least five years for AI to seriously assist engineers. That estimate was way off.
 
 ---
@@ -58,6 +60,8 @@ Three years ago, I thought it might take at least five years for AI to seriously
 AI is very good at the developer layer. It generates code, writes SQL, builds prototypes. What it is not good at is making decisions that depend on context it does not have.
 
 It does not know your company. It does not know which stakeholder will be upset if a number changes. It does not know that the pipeline you are designing will feed a finance report that has to be correct on the first of every month. It can suggest streaming or batch, but it does not have to live with the consequences if the choice is wrong.
+
+It also does not care about your cloud billing. AI can confidently write a SQL query that scans a billion rows and burns through your BigQuery or Snowflake credits in a single afternoon. Cost is one of the easiest places to see why human judgment still matters.
 
 Those decisions require understanding the whole picture. That is architect thinking, not developer thinking.
 
@@ -75,6 +79,8 @@ I want to be honest about one thing. I can think like an architect today because
 If you are just starting out, please do not think you can skip the developer phase. Architect thinking is built on top of developer experience, not instead of it. Without knowing what a broken Spark job looks like, you cannot judge whether AI's suggestion is correct or not. And AI will sound just as confident when it is wrong as when it is right.
 
 So learn the fundamentals, SQL, data modeling, how distributed systems work, and why pipelines fail. Read the code AI gives you and understand it, debug it, and question it. The new core skill is not typing code faster, it is being able to read, judge, and own what AI produces. That skill only comes from doing the work yourself first.
+
+One more thing. A lot of new engineers think being an architect means using more tools, more frameworks, more services. It is usually the opposite. A real architect knows when to say no. Complexity is easy to add and very hard to remove.
 
 ---
 
