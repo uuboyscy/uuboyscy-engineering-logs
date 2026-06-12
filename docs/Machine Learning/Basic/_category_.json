@@ -1,0 +1,8 @@
+{
+  "label": "Basic",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Start with beginner-friendly machine learning examples using Python, pandas, and scikit-learn."
+  }
+}
