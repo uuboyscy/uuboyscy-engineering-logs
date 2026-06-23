@@ -49,32 +49,33 @@ app = Flask(__name__)
 def hello_get():
     username = request.args.get("username")
     userage = request.args.get("userage")
-    result_html = """
+    html_start = """
     <html>
         <head>
             <title>Hello</title>
         </head>
         <body>
     """
-
-    if username == None:
-        result_html += """
-        Who are you?
-        """
-    else:
-        result_html += """
-        Hello %s !
-        """%(username)
-        if userage != None:
-            result_html += """
-            You are %s years old.
-            """%(userage)
-
-    result_html += """
+    html_end = """
         </body>
     </html>
     """
-    return result_html
+
+    if username is None:
+        return html_start + """
+        Who are you?
+        """ + html_end
+
+    result_html = html_start + """
+        Hello %s !
+        """ % (username)
+
+    if userage is None:
+        return result_html + html_end
+
+    return result_html + """
+        You are %s years old.
+        """ % (userage) + html_end
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
@@ -105,10 +106,10 @@ def hello_post():
     </html>
     """
     if request.method == "GET":
-        return result_html%("")
-    elif request.method == "POST":
-        username = request.form.get("username")
-        return result_html%("Hello %s"%(username))
+        return result_html % ("")
+
+    username = request.form.get("username")
+    return result_html % ("Hello %s" % (username))
 
 
 if __name__ == "__main__":
