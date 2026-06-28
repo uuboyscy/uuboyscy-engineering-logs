@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Introduction to GCP
 
-Google Cloud Platform (GCP) is a suite of cloud services provided by Google. Instead of buying and managing your own servers, you rent compute power, storage, and databases from Google's global infrastructure. You only pay for what you use.
+Google Cloud Platform (GCP) is a suite of cloud services provided by Google. Instead of buying and managing your own servers, you rent compute power, storage, and databases from Google's global infrastructure.
 
 If you have used AWS before, GCP works the same way. Most services have a direct equivalent on both platforms.
 
