@@ -53,12 +53,12 @@ gcloud config set compute/region asia-east1
 gcloud config set compute/zone asia-east1-b
 ```
 
-### 2. gsutil
+### 2. gcloud storage
 
-`gsutil` comes bundled with the Google Cloud SDK. No separate install needed. You use it to interact with Cloud Storage buckets.
+`gcloud storage` has replaced the legacy `gsutil` tool and comes bundled with the Google Cloud CLI. No separate install needed. You use it to interact with Cloud Storage buckets.
 
 ```bash
-gsutil ls gs://my-bucket/
+gcloud storage ls gs://my-bucket/
 ```
 
 ### 3. Python Libraries

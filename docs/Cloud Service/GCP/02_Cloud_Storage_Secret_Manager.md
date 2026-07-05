@@ -19,19 +19,19 @@ GCS is an object storage service built for high durability and scalability. It i
 | Coldline | Accessed roughly once a quarter       |
 | Archive  | Long-term backup, rarely accessed     |
 
-### gsutil CLI
+### gcloud storage CLI
 
-`gsutil` is the command-line tool for interacting with GCS.
+`gcloud storage` is the modern command-line tool for interacting with GCS, replacing the legacy `gsutil`.
 
 ```bash
 # Copy a file from local to GCS
-gsutil cp local_file.csv gs://my-bucket/path/
+gcloud storage cp local_file.csv gs://my-bucket/path/
 
 # Copy from GCS to local
-gsutil cp gs://my-bucket/path/file.csv ./
+gcloud storage cp gs://my-bucket/path/file.csv ./
 
 # Sync a local directory to a bucket (with deletion)
-gsutil rsync -d local_dir/ gs://my-bucket/path/
+gcloud storage rsync -d local_dir/ gs://my-bucket/path/
 ```
 
 ### Access Control
