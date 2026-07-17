@@ -1,0 +1,7 @@
+{
+  "label": "Cloud Service",
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to use cloud services from major providers to build and manage data engineering infrastructure."
+  }
+}
