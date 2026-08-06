@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import styles from './index.module.css';
 
 function HomepageHeader() {
@@ -20,6 +21,23 @@ function HomepageHeader() {
           </a>
           <img src="https://komarev.com/ghpvc/?username=uuboyscy&style=for-the-badge" alt="Profile Views" />
         </p>
+        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+          <input 
+            placeholder="Search here" 
+            id="searchWidgetTrigger" 
+            style={{
+              padding: '12px 20px',
+              fontSize: '16px',
+              borderRadius: '25px',
+              border: 'none',
+              width: '100%',
+              maxWidth: '400px',
+              outline: 'none',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.3)',
+              color: '#333'
+            }}
+          />
+        </div>
       </div>
     </header>
   );
@@ -223,6 +241,13 @@ export default function Home() {
     <Layout
       title="UUBOYSCY.DEV"
       description="Expert Data Engineer specializing in cloud-native solutions, scalable data pipelines, and modern architectures.">
+      <Head>
+        <script src="https://cloud.google.com/ai/gen-app-builder/client?hl=en_US"></script>
+      </Head>
+      <gen-search-widget
+        configId="9fa4a2b6-93ec-417a-9429-cc383943f15c"
+        triggerId="searchWidgetTrigger">
+      </gen-search-widget>
       <HomepageHeader />
       <main>
         <AboutMeSection />
