@@ -1,0 +1,7 @@
+{
+  "label": "GCP",
+  "link": {
+    "type": "generated-index",
+    "description": "Google Cloud Platform guides covering compute, storage, BigQuery, machine learning, and deployment workflows."
+  }
+}
