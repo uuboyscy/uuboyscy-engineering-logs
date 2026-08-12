@@ -1,12 +1,12 @@
 ---
 sidebar_position: 5
-title: "Module 5：分支、Merge 與衝突處理"
-description: 建立與切換分支、合併功能、逐步解決衝突，並安全刪除已完成的分支。
+title: "Module 5: Branches, Merges, and Conflicts"
+description: Create and switch branches, merge completed work, resolve conflicts step by step, and safely delete branches.
 ---
 
-# Module 5：分支、Merge 與衝突處理
+# Module 5: Branches, Merges, and Conflicts
 
-分支（branch）讓不同工作擁有各自的版本路線。你可以在功能分支放心修改，完成並確認後，再把它合併回 `main`。
+A branch gives a piece of work its own version path. You can make changes safely on a feature branch, then merge it into `main` after it is complete and verified.
 
 ```mermaid
 gitGraph
@@ -19,16 +19,16 @@ gitGraph
     merge feature id: "merge feature"
 ```
 
-## 分支適合解決什麼問題？
+## What problems do branches solve?
 
-- 新功能還沒完成，不想影響穩定版本。
-- 多人同時開發不同功能。
-- 需要緊急修正線上問題。
-- 想先實驗一個想法，成功後再保留。
+- A new feature is incomplete and should not affect the stable version.
+- Multiple people need to develop different features at the same time.
+- A production issue needs an urgent fix.
+- You want to experiment and keep the work only if it succeeds.
 
-## Step 1：查看目前分支
+## Step 1: Check the current branch
 
-進入練習 repository：
+Enter the practice repository:
 
 ```bash
 cd ~/git-projects/git-practice-remote
@@ -36,34 +36,34 @@ git status
 git branch
 ```
 
-`*` 表示目前所在分支。也可以只顯示分支名稱：
+The `*` marks your current branch. You can also print only its name:
 
 ```bash
 git branch --show-current
 ```
 
-開始前，先確認工作目錄乾淨。如果還有修改，先 commit，或確認它們與本次練習無關後妥善保存。
+Make sure the working tree is clean before continuing. If it contains changes, commit them or save them appropriately before starting this exercise.
 
-## Step 2：建立並切換到功能分支
+## Step 2: Create and switch to a feature branch
 
 ```bash
 git switch -c feature/greeting
 ```
 
-這一行同時完成：
+This command performs two actions:
 
-1. 從目前版本建立 `feature/greeting`。
-2. 切換到新分支。
+1. Creates `feature/greeting` from the current version.
+2. Switches to the new branch.
 
-確認位置：
+Verify your location:
 
 ```bash
 git branch --show-current
 ```
 
-舊版教材常見 `git checkout -b feature/greeting`；效果相近，但 `git switch -c` 的用途更清楚，較適合初學者。
+Older tutorials often use `git checkout -b feature/greeting`. It has a similar effect, but `git switch -c` expresses the intent more clearly for beginners.
 
-## Step 3：在功能分支建立版本
+## Step 3: Create a version on the feature branch
 
 ```bash
 echo "Hello from the feature branch." > greeting.txt
@@ -71,54 +71,54 @@ git add greeting.txt
 git commit -m "feat: add greeting"
 ```
 
-把新分支推到 GitHub：
+Push the new branch to GitHub:
 
 ```bash
 git push -u origin feature/greeting
 ```
 
-## Step 4：合併回 Main
+## Step 4: Merge the feature into Main
 
-先切回要接收修改的分支，再執行 merge：
+Switch to the branch that should receive the changes, then run merge:
 
 ```bash
 git switch main
 git merge feature/greeting
 ```
 
-檢查結果：
+Inspect the result:
 
 ```bash
 git log --oneline --graph --decorate --all
 git status
 ```
 
-合併成功後推送：
+After a successful merge, push it:
 
 ```bash
 git push
 ```
 
-:::info Merge 的方向
+:::info Merge direction
 
-「把 `feature/greeting` 合併進 `main`」時，要先站在 `main`，再執行 `git merge feature/greeting`。
+To merge `feature/greeting` **into** `main`, first stand on `main`, then run `git merge feature/greeting`.
 
 :::
 
-## Fast-forward 與 Merge Commit
+## Fast-forward and merge commits
 
-- **Fast-forward**：`main` 在分支建立後沒有其他新 commit，Git 只需把指標往前移。
-- **Merge commit**：兩條分支都往前發展，Git 需要建立一個新 commit 連接兩邊歷史。
+- **Fast-forward**: `main` has no new commits since the feature branch was created, so Git only moves the branch pointer forward.
+- **Merge commit**: both branches have moved forward, so Git creates a new commit connecting their histories.
 
-兩者都可能是正常結果，不需要為了看到哪一種訊息而重做操作。
+Both can be normal results. You do not need to repeat the operation just to produce one type or the other.
 
-## Step 5：親手製造並解決衝突
+## Step 5: Create and resolve a conflict
 
-衝突通常發生在兩個分支修改了同一檔案的同一區域，而 Git 無法判斷該保留哪一邊。
+A conflict usually happens when two branches change the same part of the same file and Git cannot decide which result is correct.
 
-### 5-1 建立共同起點
+### 5-1 Create a common starting point
 
-先在 `main` 建立一個檔案：
+First, create a file on `main`:
 
 ```bash
 git switch main
@@ -127,7 +127,7 @@ git add settings.txt
 git commit -m "chore: add color setting"
 ```
 
-從這裡建立功能分支：
+Create a feature branch from that point:
 
 ```bash
 git switch -c feature/change-color
@@ -136,7 +136,7 @@ git add settings.txt
 git commit -m "feat: use red color"
 ```
 
-### 5-2 在 Main 修改同一行
+### 5-2 Change the same line on Main
 
 ```bash
 git switch main
@@ -145,19 +145,19 @@ git add settings.txt
 git commit -m "fix: use green color"
 ```
 
-### 5-3 進行合併
+### 5-3 Attempt the merge
 
 ```bash
 git merge feature/change-color
 ```
 
-此時 Git 應回報 conflict。先查看：
+Git should report a conflict. Inspect the state:
 
 ```bash
 git status
 ```
 
-`settings.txt` 會包含類似標記：
+`settings.txt` will contain markers similar to these:
 
 ```text
  <<<<<<< HEAD
@@ -167,19 +167,19 @@ git status
  >>>>>>> feature/change-color
 ```
 
-- `HEAD` 這側是目前所在的 `main`。
-- 分隔線下方是要合併進來的 `feature/change-color`。
-- Git 不會替團隊決定正確內容，必須由人理解需求後選擇。
+- The `HEAD` side represents the current `main` branch.
+- The section below the separator comes from `feature/change-color`.
+- Git cannot decide the correct business result; a person must understand the requirement and choose it.
 
-### 5-4 編輯成最後結果
+### 5-4 Edit the final result
 
-假設討論後決定用紫色，將檔案改成只剩：
+Suppose the team decides to use purple. Edit the file so it contains only:
 
 ```text title="settings.txt"
 color=purple
 ```
 
-接著標記衝突已解決並完成合併：
+Mark the conflict as resolved and complete the merge:
 
 ```bash
 git add settings.txt
@@ -187,64 +187,64 @@ git status
 git commit -m "merge: resolve color setting conflict"
 ```
 
-確認沒有殘留衝突符號：
+Check for any remaining conflict markers:
 
 ```bash
 git grep -n -e '<<<<<<<' -e '=======' -e '>>>>>>>'
 ```
 
-沒有輸出表示 Git 追蹤的檔案中沒有找到這些標記。
+No output means those markers were not found in files tracked by Git.
 
-### 不想繼續解衝突
+### If you do not want to continue resolving the conflict
 
-在尚未完成 merge commit 前，可以回到合併前：
+Before creating the merge commit, return to the state before the merge:
 
 ```bash
 git merge --abort
 ```
 
-## Step 6：刪除已完成分支
+## Step 6: Delete completed branches
 
-確認功能已合併且目前不在該分支：
+Make sure the work was merged and that you are no longer on the feature branch:
 
 ```bash
 git switch main
 git branch -d feature/greeting
 ```
 
-刪除遠端分支：
+Delete the remote branch:
 
 ```bash
 git push origin --delete feature/greeting
 ```
 
-`-d` 會在分支尚未合併時阻止刪除。`-D` 會強制刪除，初學時不要因為 `-d` 失敗就立刻改用 `-D`，應先確認分支是否還有需要保留的 commit。
+`-d` refuses to delete an unmerged branch. If it fails, do not immediately replace it with `-D`. First verify whether the branch still contains commits you need to keep.
 
-## 常見問題
+## Common problems
 
-### 切換分支時被阻止
+### Git refuses to switch branches
 
-通常是未提交修改會被覆蓋。先執行：
+Uncommitted changes would usually be overwritten. First run:
 
 ```bash
 git status
 git diff
 ```
 
-再選擇 commit、暫存到 stash，或在確定不需要時還原修改。
+Then choose whether to commit the changes, place them in a stash, or restore them only when you are sure they are no longer needed.
 
-### 合併了錯的方向
+### You merged in the wrong direction
 
-先不要 push。記下當前訊息與 `git status`，再判斷是尚在 merge 過程可 `git merge --abort`，還是已建立 merge commit。已分享的 merge commit 通常要用 `git revert -m 1 <merge-commit-id>` 反向建立一個新版本；`-m 1` 代表保留第一個父版本的主線，執行前務必用版本圖確認父版本順序。不要直接猜測並執行 `reset --hard`。
+Do not push yet. Save the current messages and `git status`. If the merge is still in progress, use `git merge --abort`. If a merge commit has already been shared, it is usually reversed with `git revert -m 1 <merge-commit-id>`; `-m 1` keeps the first parent as the mainline, so inspect the version graph and confirm the parent order first. Do not guess and run `reset --hard`.
 
-## 指令小抄
+## Command reference
 
-| 指令 | 用途 |
+| Command | Purpose |
 |---|---|
-| `git switch -c <branch>` | 建立並切換分支 |
-| `git switch <branch>` | 切換分支 |
-| `git merge <branch>` | 把指定分支合併到目前分支 |
-| `git merge --abort` | 放棄尚未完成的 merge |
-| `git branch -d <branch>` | 安全刪除已合併的本地分支 |
-| `git push origin --delete <branch>` | 刪除遠端分支 |
-| `git log --graph --all --oneline` | 查看所有分支的版本圖 |
+| `git switch -c <branch>` | Create and switch to a branch |
+| `git switch <branch>` | Switch branches |
+| `git merge <branch>` | Merge a branch into the current branch |
+| `git merge --abort` | Cancel an unfinished merge |
+| `git branch -d <branch>` | Safely delete a merged local branch |
+| `git push origin --delete <branch>` | Delete a remote branch |
+| `git log --graph --all --oneline` | Show the version graph for all branches |

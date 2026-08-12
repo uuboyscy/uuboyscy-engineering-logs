@@ -1,117 +1,117 @@
 ---
 sidebar_position: 4
-title: "Module 4：建立版本、.gitignore 與 Push"
-description: 逐步走完 status、diff、add、commit、log 與 push，並學會忽略不該進版控的檔案。
+title: "Module 4: Commits, .gitignore, and Push"
+description: Follow status, diff, add, commit, log, and push step by step, and ignore files that should not be versioned.
 ---
 
-# Module 4：建立版本、.gitignore 與 Push
+# Module 4: Commits, .gitignore, and Push
 
-這一篇會完成最重要的 Git 日常循環：查看狀態、選擇修改、建立 commit，最後推送到 GitHub。
+This module covers the most important daily Git cycle: inspect the state, select changes, create a commit, and push it to GitHub.
 
 ```mermaid
 flowchart LR
-    A["修改檔案"] --> B["git status / git diff"]
+    A["Edit files"] --> B["git status / git diff"]
     B --> C["git add"]
     C --> D["git diff --staged"]
     D --> E["git commit"]
     E --> F["git push"]
 ```
 
-## 開始前
+## Before you begin
 
-進入 Module 2 clone 的 repository：
+Enter the repository you cloned in Module 2:
 
 ```bash
 cd ~/git-projects/git-practice-remote
 git status
 ```
 
-請確認目前在 `main`，而且沒有不明的修改。若你的路徑不同，請換成實際位置。
+Confirm that you are on `main` and that there are no unexpected changes. If your project is elsewhere, use its actual path.
 
-## Step 1：修改檔案並查看狀態
+## Step 1: Edit a file and inspect its status
 
-在 `README.md` 最後加上一行：
+Append one line to `README.md`:
 
 ```bash
 echo "Learning Git step by step." >> README.md
 git status
 ```
 
-`modified: README.md` 表示工作目錄中的檔案和上一個 commit 不同。
+`modified: README.md` means the file in your working directory differs from the last commit.
 
-查看實際改了哪些行：
+See exactly which lines changed:
 
 ```bash
 git diff
 ```
 
-在 diff 中：
+In a diff:
 
-- `+` 開頭代表新增的行。
-- `-` 開頭代表移除的行。
-- 它們是差異標記，不是檔案真正的內容。
+- A line beginning with `+` was added.
+- A line beginning with `-` was removed.
+- These are diff markers, not part of the file's actual content.
 
-## Step 2：把修改加入暫存區
+## Step 2: Add the change to the staging area
 
 ```bash
 git add README.md
 git status
 ```
 
-此時檔案會出現在 `Changes to be committed`。建立 commit 前，再檢查一次將要提交的內容：
+The file now appears under `Changes to be committed`. Before committing, inspect what the next commit will contain:
 
 ```bash
 git diff --staged
 ```
 
-:::tip 為什麼不直接 `git add .`？
+:::tip Why not use `git add .` immediately?
 
-`git add .` 會加入目前目錄下的所有修改。初學時先指定檔名，比較不容易把測試檔、密碼或不相關修改一起放進 commit。
+`git add .` stages every change below the current directory. As a beginner, naming the file explicitly helps prevent test files, secrets, or unrelated changes from entering the commit.
 
 :::
 
-### 如果加錯檔案
+### If you staged the wrong file
 
-把檔案移出暫存區，但保留工作目錄中的修改：
+Remove the file from the staging area while keeping the working-directory changes:
 
 ```bash
 git restore --staged README.md
 ```
 
-確認後可再次執行 `git add README.md`。
+After reviewing it, you can run `git add README.md` again.
 
-## Step 3：建立 Commit
+## Step 3: Create a commit
 
 ```bash
 git commit -m "docs: add Git learning note"
 ```
 
-好的 commit message 應簡短說明這一版「完成了什麼」。例如：
+A useful commit message briefly explains what the version accomplishes. For example:
 
 - `docs: update installation guide`
 - `feat: add login form`
 - `fix: handle empty username`
 
-再次確認：
+Check the result:
 
 ```bash
 git status
 git log --oneline --decorate -5
 ```
 
-`working tree clean` 代表目前修改都已提交。
+`working tree clean` means every current change has been committed.
 
-## Step 4：使用 `.gitignore`
+## Step 4: Use `.gitignore`
 
-有些檔案不應進入版本控制，例如：
+Some files should not be added to version control, including:
 
-- 密碼或金鑰檔：`.env`
-- 套件安裝結果：`node_modules/`
-- Python 快取：`__pycache__/`
-- 作業系統產生的檔案：`.DS_Store`
-- 建置輸出或大型暫存檔
+- Password or secret files such as `.env`
+- Installed dependencies such as `node_modules/`
+- Python cache directories such as `__pycache__/`
+- Operating-system files such as `.DS_Store`
+- Build output or large temporary files
 
-建立 `.gitignore`：
+Create `.gitignore`:
 
 ```gitignore title=".gitignore"
 .env
@@ -121,7 +121,7 @@ __pycache__/
 .DS_Store
 ```
 
-接著建立版本：
+Then create a version:
 
 ```bash
 git add .gitignore
@@ -129,95 +129,95 @@ git diff --staged
 git commit -m "chore: add ignore rules"
 ```
 
-### 已被追蹤的檔案不會自動消失
+### Already tracked files are not ignored automatically
 
-如果檔案在加入 `.gitignore` 前已經 commit，需先停止追蹤，但保留本機檔案：
+If a file was committed before it was added to `.gitignore`, stop tracking it while keeping the local file:
 
 ```bash
 git rm --cached <file>
 git commit -m "chore: stop tracking generated file"
 ```
 
-若敏感資料已推送到遠端，只刪除目前檔案仍不夠；應立即撤銷或更換該密碼，並另外處理歷史紀錄。
+If a secret has already been pushed, deleting the current file is not enough. Revoke or rotate the secret immediately, then handle the repository history separately.
 
-## Step 5：查看舊版本，不修改歷史
+## Step 5: Inspect an older version without changing history
 
-先找一個 commit 編號：
+Find a commit ID:
 
 ```bash
 git log --oneline
 ```
 
-暫時查看某個舊版本：
+Temporarily inspect that version:
 
 ```bash
 git switch --detach <commit-id>
 ```
 
-看完回到 `main`：
+Return to `main` when finished:
 
 ```bash
 git switch main
 ```
 
-`detached HEAD` 適合查看舊版本，不適合直接開始長期開發。要保留在舊版本上的新修改，應建立分支：
+A `detached HEAD` is useful for inspecting an old version, but not for long-term development. To keep new work based on an old version, create a branch:
 
 ```bash
 git switch -c experiment-from-old-version <commit-id>
 ```
 
-## Step 6：Push 到 GitHub
+## Step 6: Push to GitHub
 
 ```bash
 git push -u origin main
 ```
 
-- `origin`：遠端儲存庫的預設名稱。
-- `main`：要推送的本地分支。
-- `-u`：把本地 `main` 與 `origin/main` 設為追蹤關係；之後通常只需 `git push`。
+- `origin`: the default name of the remote repository.
+- `main`: the local branch to push.
+- `-u`: links local `main` to `origin/main`; later, `git push` is usually enough.
 
-推送成功後，重新整理 GitHub repository 頁面，應可看到 README、`.gitignore` 與最新 commit。
+After the push succeeds, refresh the repository page on GitHub. You should see the README, `.gitignore`, and latest commits.
 
-## 還原未提交的修改
+## Restore an uncommitted change
 
-若只想放棄某個檔案在工作目錄的修改：
+To discard changes to one file in the working directory:
 
 ```bash
 git restore <file>
 ```
 
-:::warning 這會丟棄內容
+:::warning This discards content
 
-`git restore <file>` 會用上一個 commit 的版本覆蓋目前修改。先用 `git diff` 確認真的不要，再執行。
+`git restore <file>` replaces your current changes with the version from the last commit. Run `git diff` first and make sure you no longer need the changes.
 
 :::
 
-## 每次 Commit 前的檢查清單
+## Pre-commit checklist
 
 ```bash
 git status
 git diff
 git add <file>
 git diff --staged
-git commit -m "清楚描述這次修改"
+git commit -m "Clearly describe the change"
 git status
 ```
 
-需要同步到 GitHub 時再執行：
+When the change should be synchronized to GitHub, run:
 
 ```bash
 git push
 ```
 
-## 指令小抄
+## Command reference
 
-| 指令 | 用途 |
+| Command | Purpose |
 |---|---|
-| `git diff` | 查看尚未暫存的差異 |
-| `git add <file>` | 把指定修改放入暫存區 |
-| `git diff --staged` | 查看下一個 commit 的內容 |
-| `git commit -m "..."` | 建立本地版本 |
-| `git log --oneline` | 簡潔顯示版本歷史 |
-| `git push -u origin main` | 第一次推送並設定追蹤關係 |
-| `git restore --staged <file>` | 取消暫存，保留檔案修改 |
-| `git restore <file>` | 放棄尚未 commit 的檔案修改 |
+| `git diff` | Show differences that are not staged |
+| `git add <file>` | Stage selected changes |
+| `git diff --staged` | Show what the next commit will contain |
+| `git commit -m "..."` | Create a local version |
+| `git log --oneline` | Show a compact version history |
+| `git push -u origin main` | Push for the first time and set the upstream |
+| `git restore --staged <file>` | Unstage a file but keep its changes |
+| `git restore <file>` | Discard uncommitted changes to a file |

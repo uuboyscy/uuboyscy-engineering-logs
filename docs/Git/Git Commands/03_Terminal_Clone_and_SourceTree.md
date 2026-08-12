@@ -1,50 +1,50 @@
 ---
 sidebar_position: 3
-title: "Module 3：終端機基礎、Clone 與 SourceTree"
-description: 學會操作路徑與檔案，將遠端 repository clone 到本機，並選擇性使用 SourceTree。
+title: "Module 3: Terminal Basics, Clone, and SourceTree"
+description: Learn basic file and path commands, clone a remote repository, and optionally open it in SourceTree.
 ---
 
-# Module 3：終端機基礎、Clone 與 SourceTree
+# Module 3: Terminal Basics, Clone, and SourceTree
 
-Git 指令會作用在「終端機目前所在的資料夾」。因此開始操作前，先確認路徑，能避免在錯誤的專案執行指令。
+Git commands operate on the folder where your terminal is currently located. Checking the path before you begin prevents you from running commands in the wrong project.
 
-## 學完這篇，你可以
+## What you will learn
 
-- 用終端機切換目錄、建立與查看檔案。
-- 將 GitHub repository clone 到本機。
-- 查看目前分支、遠端位置與最近版本。
-- 把既有 repository 加入 SourceTree 圖形介面。
+- Navigate folders and create or inspect files from the terminal.
+- Clone a GitHub repository to your computer.
+- Check the current branch, remote URL, and recent versions.
+- Add an existing repository to the SourceTree graphical interface.
 
-## 常用終端機指令
+## Common terminal commands
 
-以下指令可在 macOS、Linux 與 Windows 的 Git Bash 使用：
+The following commands work on macOS, Linux, and Git Bash on Windows:
 
-| 指令 | 用途 | 範例 |
+| Command | Purpose | Example |
 |---|---|---|
-| `pwd` | 顯示目前所在路徑 | `pwd` |
-| `ls` | 列出檔案 | `ls` |
-| `ls -la` | 包含隱藏檔的詳細清單 | `ls -la` |
-| `cd <path>` | 前往指定目錄 | `cd projects` |
-| `cd ..` | 回到上一層目錄 | `cd ..` |
-| `mkdir <name>` | 建立資料夾 | `mkdir practice` |
-| `touch <file>` | 建立空檔案 | `touch notes.txt` |
-| `mv <old> <new>` | 移動或重新命名 | `mv old.txt new.txt` |
-| `rm <file>` | 刪除檔案 | `rm notes.txt` |
-| `clear` | 清除終端機畫面 | `clear` |
+| `pwd` | Show the current path | `pwd` |
+| `ls` | List files | `ls` |
+| `ls -la` | Show a detailed list, including hidden files | `ls -la` |
+| `cd <path>` | Move to a directory | `cd projects` |
+| `cd ..` | Move to the parent directory | `cd ..` |
+| `mkdir <name>` | Create a directory | `mkdir practice` |
+| `touch <file>` | Create an empty file | `touch notes.txt` |
+| `mv <old> <new>` | Move or rename a file | `mv old.txt new.txt` |
+| `rm <file>` | Delete a file | `rm notes.txt` |
+| `clear` | Clear the terminal display | `clear` |
 
-:::danger 小心刪除指令
+:::danger Be careful with delete commands
 
-終端機的 `rm` 通常不會把檔案放進資源回收筒。初學時不要使用不熟悉的 `rm -r` 或 `rm -rf` 指令。
+Files removed with `rm` usually do not go to the Recycle Bin or Trash. As a beginner, do not use unfamiliar `rm -r` or `rm -rf` commands.
 
 :::
 
-## 路徑的三個符號
+## Three path symbols
 
-- `.`：目前目錄。
-- `..`：上一層目錄。
-- `~`：目前使用者的家目錄。
+- `.`: the current directory.
+- `..`: the parent directory.
+- `~`: the current user's home directory.
 
-例如：
+For example:
 
 ```bash
 cd ~
@@ -53,28 +53,28 @@ cd git-projects
 pwd
 ```
 
-## Step 1：再確認一次 Git 身分
+## Step 1: Verify your Git identity
 
 ```bash
 git config --global user.name
 git config --global user.email
 ```
 
-若沒有輸出，回到 Module 1 完成設定。想知道某項設定來自哪個檔案，可使用：
+If either command prints nothing, return to Module 1 and configure it. To see which file provides a setting, use:
 
 ```bash
 git config --show-origin --get user.name
 ```
 
-## Step 2：取得 Clone 網址
+## Step 2: Get the clone URL
 
-1. 開啟 Module 2 建立的 `git-practice-remote` repository。
-2. 選擇 **Code → Local → SSH**。
-3. 複製 `git@github.com:...` 網址。
+1. Open the `git-practice-remote` repository you created in Module 2.
+2. Select **Code → Local → SSH**.
+3. Copy the URL that begins with `git@github.com:`.
 
-如果 SSH 還沒設定完成，也可以選擇 HTTPS；但推送時需要使用 GitHub 支援的登入方式，不能把 GitHub 帳號密碼直接當成 Git 密碼。
+If SSH is not ready, you can select HTTPS instead. Pushing over HTTPS requires a GitHub-supported authentication method; you cannot use your GitHub account password directly as a Git password.
 
-## Step 3：Clone 到專案資料夾
+## Step 3: Clone into your project directory
 
 ```bash
 cd ~/git-projects
@@ -82,13 +82,13 @@ git clone git@github.com:YOUR_ACCOUNT/git-practice-remote.git
 cd git-practice-remote
 ```
 
-`git clone` 會一次完成三件事：
+`git clone` performs three tasks at once:
 
-1. 下載檔案。
-2. 下載完整的 Git 歷史。
-3. 建立名為 `origin` 的遠端連線。
+1. Downloads the files.
+2. Downloads the complete Git history.
+3. Creates a remote connection named `origin`.
 
-## Step 4：檢查 Clone 結果
+## Step 4: Check the clone result
 
 ```bash
 pwd
@@ -99,20 +99,20 @@ git remote -v
 git log --oneline --decorate -5
 ```
 
-你應該看到：
+You should see that:
 
-- 目前位於 `git-practice-remote` 資料夾。
-- 目前分支是 `main`。
-- `origin` 指向自己的 GitHub repository。
-- `git status` 顯示工作目錄沒有未提交修改。
+- You are inside the `git-practice-remote` directory.
+- The current branch is `main`.
+- `origin` points to your GitHub repository.
+- `git status` reports no uncommitted changes.
 
-:::tip 先 status，再操作
+:::tip Check status before acting
 
-養成執行 Git 指令前先看 `git status` 的習慣。它會告訴你目前分支、哪些檔案被修改，以及下一步可用的指令。
+Build the habit of running `git status` before other Git operations. It tells you the current branch, which files have changed, and often suggests the next command.
 
 :::
 
-## Step 5：做一個不改變版本的練習
+## Step 5: Practice without creating a version
 
 ```bash
 echo "Terminal practice" > terminal-notes.txt
@@ -120,50 +120,50 @@ git status
 ls -la
 ```
 
-現在 `terminal-notes.txt` 是 untracked file。先不要 commit；下一篇會逐步完成一次正式版本。
+`terminal-notes.txt` is now an untracked file. Do not commit it yet; the next module will guide you through a complete version-creation workflow.
 
-不想保留這個練習檔時，可以刪除：
+If you do not want to keep the practice file, delete it:
 
 ```bash
 rm terminal-notes.txt
 git status
 ```
 
-## 選用：用 SourceTree 查看 Repository
+## Optional: Open the repository in SourceTree
 
-SourceTree 是 Git 的圖形介面，不是使用 Git 的必要條件。建議先理解指令，再把它當作查看版本圖與差異的輔助工具。
+SourceTree is a graphical interface for Git, but it is not required. Learn the commands first, then use SourceTree as a visual aid for commit graphs and file differences.
 
-1. 從 [SourceTree 官方網站](https://www.sourcetreeapp.com/) 下載並安裝。
-2. 開啟 SourceTree，選擇新增本地 repository 的功能。
-3. Browse / Destination Path 選擇剛才 clone 的 `git-practice-remote` 資料夾。
-4. 完成加入後，確認能看到 `main` 與 commit 歷史。
+1. Download and install SourceTree from the [official SourceTree website](https://www.sourcetreeapp.com/).
+2. Open SourceTree and choose the option to add a local repository.
+3. For Browse or Destination Path, select the `git-practice-remote` folder you cloned.
+4. Add it and confirm that you can see the `main` branch and commit history.
 
-不同作業系統與版本的按鈕文字可能略有差異，但核心概念相同：**讓 SourceTree 開啟一個已含 `.git` 的資料夾**。
+Button names vary slightly between operating systems and versions. The core idea is always the same: **open a folder that already contains a `.git` directory**.
 
-## 常見問題
+## Common problems
 
 ### `fatal: not a git repository`
 
-目前不在 Git repository 裡。用 `pwd` 確認位置，再 `cd` 到正確的專案資料夾。
+Your terminal is not inside a Git repository. Run `pwd`, then use `cd` to enter the correct project directory.
 
 ### `Permission denied (publickey)`
 
-SSH 驗證未完成。回到 Module 2，依序確認金鑰、ssh-agent、GitHub 公鑰與 `ssh -T git@github.com`。
+SSH authentication is incomplete. Return to Module 2 and check the key, ssh-agent, public key on GitHub, and `ssh -T git@github.com` in order.
 
 ### `destination path ... already exists`
 
-目標資料夾已存在。不要直接覆蓋；先用不同名稱 clone：
+The destination folder already exists. Do not overwrite it. Clone into a different directory name:
 
 ```bash
 git clone <repository-url> git-practice-copy
 ```
 
-## 指令小抄
+## Command reference
 
-| 指令 | 用途 |
+| Command | Purpose |
 |---|---|
-| `git clone <url>` | 下載遠端 repository 與完整歷史 |
-| `git branch --show-current` | 顯示目前分支 |
-| `git remote -v` | 顯示遠端名稱與網址 |
-| `git log --oneline -5` | 顯示最近 5 個 commit |
-| `git status` | 顯示目前工作狀態 |
+| `git clone <url>` | Download a remote repository and its complete history |
+| `git branch --show-current` | Show the current branch |
+| `git remote -v` | Show remote names and URLs |
+| `git log --oneline -5` | Show the five most recent commits |
+| `git status` | Show the current working state |

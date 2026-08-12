@@ -1,26 +1,26 @@
 ---
 sidebar_position: 7
-title: "Module 7：Revert、Reset 與 Rebase"
-description: 比較三種歷史操作，透過可丟棄的練習 repository 學會安全復原與整理版本。
+title: "Module 7: Revert, Reset, and Rebase"
+description: Compare three ways to change Git history, then practice safe recovery and cleanup in a disposable repository.
 ---
 
-# Module 7：Revert、Reset 與 Rebase
+# Module 7: Revert, Reset, and Rebase
 
-這三組指令都會影響版本，但目的與風險完全不同：
+These three commands all affect your project history, but they have very different purposes and risks:
 
-| 指令 | 主要用途 | 會重寫既有歷史嗎？ | 初學者原則 |
+| Command | Main purpose | Rewrites existing history? | Beginner rule |
 |---|---|---:|---|
-| `git revert` | 用新 commit 抵消舊 commit | 不會 | 已 push 的共享歷史優先用它 |
-| `git reset` | 移動目前分支指標 | 會 | 只處理尚未分享的本地 commit |
-| `git rebase` | 把 commit 重新接到新基底 | 會 | 只整理自己可控制的分支 |
+| `git revert` | Cancel an old commit with a new commit | No | Prefer it for shared history that has already been pushed |
+| `git reset` | Move the current branch pointer | Yes | Use it only for local commits you have not shared |
+| `git rebase` | Replay commits on a new base | Yes | Use it only on a branch you control |
 
-:::danger 請使用練習 Repository
+:::danger Use a Practice Repository
 
-不要第一次就在重要專案練習 `reset --hard` 或 rebase。以下步驟會建立一個可隨時丟棄的本地 repository。
+Do not practice `reset --hard` or rebase for the first time in an important project. The steps below create a local repository that you can safely delete later.
 
 :::
 
-## Step 1：建立安全練習環境
+## Step 1: Create a Safe Practice Environment
 
 ```bash
 cd ~/git-projects
@@ -41,15 +41,15 @@ git add story.txt
 git commit -m "docs: add line 3"
 ```
 
-查看三個版本：
+View the three commits:
 
 ```bash
 git log --oneline --decorate
 ```
 
-## Revert：用新版本安全抵消修改
+## Revert: Safely Cancel a Change with a New Commit
 
-要取消最後一個 commit，但保留完整紀錄：
+To cancel the latest commit while keeping the complete history:
 
 ```bash
 git revert --no-edit HEAD
@@ -57,37 +57,43 @@ git log --oneline --decorate
 cat story.txt
 ```
 
-你會看到：
+You should see that:
 
-- 歷史中新增一個 `Revert ...` commit。
-- 原本加入 line 3 的 commit 仍然存在。
-- 最新檔案狀態不再包含 line 3。
+- Git added a new `Revert ...` commit to the history.
+- The original commit that added line 3 still exists.
+- The latest version of the file no longer contains line 3.
 
-要 revert 特定版本，先用 `git log --oneline` 找編號：
+To revert a specific commit, first find its ID with `git log --oneline`:
 
 ```bash
 git revert <commit-id>
 ```
 
-如果發生衝突，處理方式和 merge 類似：編輯檔案、`git add`，再執行 `git revert --continue`。想取消則使用：
+If a conflict occurs, resolve it as you would a merge conflict: edit the files, run `git add`, and then continue:
+
+```bash
+git revert --continue
+```
+
+To cancel the revert instead:
 
 ```bash
 git revert --abort
 ```
 
-## Reset：移動分支指標
+## Reset: Move a Branch Pointer
 
-Reset 常用來拆掉尚未 push 的本地 commit。三種模式的差別是「commit 拆掉後，檔案修改放在哪裡」。
+Reset is often used to undo local commits that have not been pushed. The three modes decide where the file changes go after Git removes the commit.
 
-| 模式 | Commit | 暫存區 | 工作目錄 |
+| Mode | Commit | Staging area | Working directory |
 |---|---|---|---|
-| `--soft` | 拆掉 | 保留修改 | 保留修改 |
-| `--mixed` | 拆掉 | 取消暫存 | 保留修改 |
-| `--hard` | 拆掉 | 清除 | 清除 |
+| `--soft` | Removed | Changes stay staged | Changes remain |
+| `--mixed` | Removed | Changes become unstaged | Changes remain |
+| `--hard` | Removed | Changes are discarded | Changes are discarded |
 
-### `--soft`：想重新整理 Commit
+### `--soft`: Rebuild a Commit
 
-先建立一個測試 commit：
+First, create a test commit:
 
 ```bash
 echo "draft" > draft.txt
@@ -97,31 +103,31 @@ git reset --soft HEAD~1
 git status
 ```
 
-`draft.txt` 的修改仍在暫存區，可直接用更好的訊息重新 commit：
+The change to `draft.txt` is still in the staging area. You can immediately create a better commit:
 
 ```bash
 git commit -m "docs: add draft"
 ```
 
-### `--mixed`：想重新選擇要 Add 的檔案
+### `--mixed`: Choose What to Stage Again
 
-`--mixed` 是未指定模式時的預設值：
+`--mixed` is the default mode when you do not specify one:
 
 ```bash
 git reset HEAD~1
 git status
 ```
 
-上一個 commit 被拆掉，修改留在工作目錄但不在暫存區。可重新檢查與分批加入：
+Git removed the latest commit but kept its changes in the working directory. Those changes are no longer staged, so you can review and add them again:
 
 ```bash
 git add draft.txt
 git commit -m "docs: add reviewed draft"
 ```
 
-### `--hard`：連未提交內容一起清除
+### `--hard`: Discard the Commit and Uncommitted Changes
 
-先建立救援分支，再練習：
+Create a rescue branch before you practice:
 
 ```bash
 git branch rescue-before-hard
@@ -129,47 +135,47 @@ git reset --hard HEAD~1
 git log --oneline --decorate --all
 ```
 
-`--hard` 會讓暫存區與工作目錄都符合目標 commit，未保存的修改可能無法找回。這次因為先建立救援分支，可復原：
+`--hard` makes both the staging area and working directory match the target commit. Unsaved changes may become impossible to recover. In this exercise, the rescue branch lets you restore the previous state:
 
 ```bash
 git reset --hard rescue-before-hard
 ```
 
-## Reflog：尋找分支曾經指向的位置
+## Reflog: Find Where a Branch Pointed Before
 
-如果 reset 或切換後找不到剛才的 commit，可先查看本地操作紀錄：
+If you lose track of a commit after a reset or branch switch, inspect Git's local reference log:
 
 ```bash
 git reflog
 ```
 
-找到目標 commit 後，先建立救援分支最安全：
+After you find the commit, creating a rescue branch is the safest next step:
 
 ```bash
 git switch -c recovery <commit-id>
 ```
 
-Reflog 只存在本機，而且紀錄會過期；它是救援工具，不是備份策略。
+The reflog exists only on your computer, and its entries eventually expire. It is a recovery tool, not a backup strategy.
 
-## Rebase：把 Commit 重新接到新的基底
+## Rebase: Replay Commits on a New Base
 
-假設你從較舊的 `main` 開始開發，後來 `main` 已有新 commit。Rebase 會把功能分支的 commit 暫時取下，再依序接到最新 `main` 後面。
+Suppose you started work from an older version of `main`, and `main` later received a new commit. Rebase temporarily removes your feature commits and replays them after the latest `main` commit.
 
 ```mermaid
 flowchart LR
-    subgraph Before["Rebase 前"]
+    subgraph Before["Before rebase"]
       A1["A"] --> B1["B"]
       B1 --> C1["main: C"]
       B1 --> F1["feature: F1"] --> F2["F2"]
     end
-    subgraph After["Rebase 後"]
+    subgraph After["After rebase"]
       A2["A"] --> B2["B"] --> C2["main: C"] --> N1["feature: F1'"] --> N2["F2'"]
     end
 ```
 
-注意 `F1'` 與 `F2'` 是重新產生的新 commit，所以編號會改變。
+Notice that `F1'` and `F2'` are newly created commits, so their commit IDs are different.
 
-在功能分支執行：
+Run rebase from your feature branch:
 
 ```bash
 git switch feature/my-change
@@ -177,45 +183,45 @@ git fetch origin
 git rebase origin/main
 ```
 
-若沒有衝突，功能分支會移到最新 `origin/main` 後方。若發生衝突：
+If there are no conflicts, Git moves the feature branch on top of the latest `origin/main`. If a conflict occurs:
 
 ```bash
-# 編輯衝突檔案後
+# Edit the conflicted files first
 git add <resolved-files>
 git rebase --continue
 ```
 
-每遇到一個衝突就重複處理。想完全取消這次 rebase：
+Repeat these steps for each conflict. To cancel the entire rebase:
 
 ```bash
 git rebase --abort
 ```
 
-## Rebase 的安全規則
+## Rebase Safety Rules
 
-- 可以 rebase：尚未分享、只有自己使用的功能分支。
-- 不要任意 rebase：團隊共同使用或已被其他人拉取的分支。
-- Rebase 後若分支先前已 push，更新遠端可能需要 force push；先依團隊規則處理。
-- 確定必須更新自己的遠端分支時，`--force-with-lease` 比 `--force` 多一層他人更新檢查，但仍應先確認分支無人共用。
+- It is usually safe to rebase a feature branch that you have not shared and that only you use.
+- Do not casually rebase a shared branch or a branch other people have already pulled.
+- If you already pushed the branch, updating it after a rebase may require a force push. Follow your team's rules first.
+- When you must update your own remote branch, `--force-with-lease` checks for other people's remote updates and is safer than `--force`. Still confirm that nobody else shares the branch.
 
 ```bash
 git push --force-with-lease
 ```
 
-## 怎麼選？
+## Which Command Should You Choose?
 
 ```mermaid
 flowchart TD
-    A["想取消一個 commit"] --> B{"已 push 或與他人共享？"}
-    B -->|"是"| C["優先使用 git revert"]
-    B -->|"否"| D{"只想重做本地 commit？"}
-    D -->|"是"| E["git reset --soft / --mixed"]
-    D -->|"想更新功能分支基底"| F["git rebase"]
+    A["I want to cancel a commit"] --> B{"Has it been pushed or shared?"}
+    B -->|"Yes"| C["Prefer git revert"]
+    B -->|"No"| D{"Do I only want to rebuild a local commit?"}
+    D -->|"Yes"| E["git reset --soft / --mixed"]
+    D -->|"I want to update the feature branch's base"| F["git rebase"]
 ```
 
-不確定時，先停止操作並保存 `git status`、`git log --oneline --graph --all` 與 `git reflog` 的結果，再決定下一步。
+If you are unsure, stop and save the output of `git status`, `git log --oneline --graph --all`, and `git reflog` before deciding what to do next.
 
-## 官方文件
+## Official Documentation
 
 - [git revert](https://git-scm.com/docs/git-revert)
 - [git reset](https://git-scm.com/docs/git-reset)

@@ -1,107 +1,107 @@
 ---
 sidebar_position: 8
-title: "Module 8：Fetch、Pull 與遠端同步"
-description: 分辨 fetch 和 pull，先檢查再整合遠端更新，並建立一套安全的日常同步流程。
+title: "Module 8: Fetch, Pull, and Remote Sync"
+description: Learn the difference between fetch and pull, inspect remote updates before integrating them, and build a safe daily sync routine.
 ---
 
-# Module 8：Fetch、Pull 與遠端同步
+# Module 8: Fetch, Pull, and Remote Sync
 
-當 GitHub 上的版本比本機更新時，可以用 `fetch` 取得資訊，再決定如何整合；也可以用 `pull` 一次完成取得與整合。
+When the version on GitHub is newer than the version on your computer, you can use `fetch` to retrieve information and then decide how to integrate it. You can also use `pull` to retrieve and integrate changes in one command.
 
-## 先認識三種分支名稱
+## Understand Three Branch Names First
 
-假設你正在 `main` 工作：
+Suppose you are working on `main`:
 
-- `main`：本機可直接 commit 的本地分支。
-- `origin/main`：本機記錄的「遠端 main 上次已知位置」。
-- GitHub 上的 `main`：真正位於遠端伺服器的分支。
+- `main` is your local branch. You can commit directly to it on your computer.
+- `origin/main` is your computer's record of the last known position of the remote `main` branch.
+- `main` on GitHub is the actual branch stored on the remote server.
 
-執行 `git fetch origin` 後，Git 才會更新本機的 `origin/main`。
+Git updates your local `origin/main` only after you run `git fetch origin`.
 
-## Fetch 和 Pull 的差別
+## Fetch vs. Pull
 
-| 指令 | 下載遠端資訊 | 立刻整合到目前分支 | 適合情境 |
+| Command | Downloads remote information | Immediately integrates it into the current branch | Best use |
 |---|---:|---:|---|
-| `git fetch` | 是 | 否 | 想先檢查再決定 |
-| `git pull` | 是 | 是 | 已了解差異，想直接同步 |
+| `git fetch` | Yes | No | Inspect changes before deciding what to do |
+| `git pull` | Yes | Yes | Sync directly when you understand the difference |
 
-概念上：
+Conceptually:
 
 ```text
-git pull = git fetch + 整合（merge、rebase 或 fast-forward）
+git pull = git fetch + integration (merge, rebase, or fast-forward)
 ```
 
-## 最容易理解的安全流程：Fetch → 檢查 → Merge
+## A Beginner-Friendly Safe Flow: Fetch → Inspect → Merge
 
-### Step 1：確認目前狀態
+### Step 1: Check Your Current State
 
 ```bash
 git status
 git branch --show-current
 ```
 
-先處理未 commit 的工作，避免同步時把多種修改混在一起。
+Deal with unfinished work before syncing so that unrelated changes do not become mixed together.
 
-### Step 2：取得遠端最新資訊
+### Step 2: Retrieve the Latest Remote Information
 
 ```bash
 git fetch origin
 ```
 
-這一步會更新 `origin/*`，但不會直接改動目前工作目錄。
+This updates `origin/*` but does not immediately change your current working files.
 
-### Step 3：查看遠端多了哪些 Commit
+### Step 3: Inspect the New Remote Commits
 
 ```bash
 git log --oneline HEAD..origin/main
 ```
 
-查看檔案差異：
+Inspect the file changes as well:
 
 ```bash
 git diff HEAD..origin/main
 ```
 
-如果兩個指令沒有輸出，通常表示遠端 `main` 沒有比目前分支多出內容。
+If neither command prints anything, remote `main` usually has no changes that your current branch is missing.
 
-### Step 4：只接受 Fast-forward 更新
+### Step 4: Accept Only a Fast-Forward Update
 
 ```bash
 git merge --ff-only origin/main
 ```
 
-`--ff-only` 只在本機沒有分岔時更新。若本機與遠端各自有新 commit，指令會停止，讓你先理解狀況，不會自動產生意外的 merge commit。
+`--ff-only` updates the branch only when your local history has not diverged. If both your local branch and the remote branch have new commits, the command stops. This gives you time to understand the situation instead of creating an unexpected merge commit.
 
-## Pull 的簡潔用法
+## A Shorter Pull Command
 
-已設定 upstream 後，可以使用：
+After you have configured an upstream branch, you can run:
 
 ```bash
 git pull --ff-only
 ```
 
-它適合日常更新 `main`。若無法 fast-forward，先查看：
+This is useful for routine updates to `main`. If Git cannot fast-forward, inspect the situation first:
 
 ```bash
 git status
 git log --oneline --graph --decorate --all -20
 ```
 
-再依團隊流程選擇 merge 或 rebase，不要看到失敗就直接加 `--force`。
+Then choose merge or rebase according to your team's workflow. Do not add `--force` simply because a command failed.
 
-## Step-by-step 練習：從 GitHub 產生遠端更新
+## Step-by-Step Exercise: Create a Remote Update on GitHub
 
-這個練習會讓你親眼看到 fetch 不會立即改檔案。
+This exercise shows that fetch does not immediately change your files.
 
-1. 確認本機 `main` 是乾淨的：
+1. Confirm that your local `main` is clean:
 
    ```bash
    git switch main
    git status
    ```
 
-2. 到 GitHub 開啟 repository 的 `README.md`，用網頁編輯器新增一行並 commit。
-3. 回到本機執行：
+2. Open the repository's `README.md` on GitHub, add one line with the web editor, and commit it.
+3. Return to your terminal and run:
 
    ```bash
    git fetch origin
@@ -109,20 +109,20 @@ git log --oneline --graph --decorate --all -20
    git log --oneline HEAD..origin/main
    ```
 
-4. 此時 Git 已知道遠端有新 commit，但本機 README 尚未更新。
-5. 整合更新：
+4. Git now knows about the remote commit, but your local README has not changed yet.
+5. Integrate the update:
 
    ```bash
    git merge --ff-only origin/main
    ```
 
-6. 打開 README，確認已看到 GitHub 上新增的內容。
+6. Open the README and confirm that it contains the line you added on GitHub.
 
-## 更新功能分支的兩種方式
+## Two Ways to Update a Feature Branch
 
-假設你在 `feature/search`，而 `origin/main` 已前進。
+Suppose you are on `feature/search`, and `origin/main` has moved forward.
 
-### 方式 A：Merge，保留真實分岔歷史
+### Option A: Merge and Preserve the True Branching History
 
 ```bash
 git fetch origin
@@ -130,9 +130,9 @@ git switch feature/search
 git merge origin/main
 ```
 
-優點是不用重寫功能分支既有 commit，適合共享分支。
+This does not rewrite the feature branch's existing commits, so it is suitable for a shared branch.
 
-### 方式 B：Rebase，讓歷史保持直線
+### Option B: Rebase and Keep a Linear History
 
 ```bash
 git fetch origin
@@ -140,21 +140,21 @@ git switch feature/search
 git rebase origin/main
 ```
 
-適合只有自己使用的功能分支。Rebase 會改變 commit 編號；共享分支需遵守團隊規則。
+This is suitable for a feature branch that only you use. Rebase changes commit IDs, so follow your team's rules for shared branches.
 
-## 清理已不存在的遠端分支紀錄
+## Remove Records of Deleted Remote Branches
 
-別人在 GitHub 刪除分支後，本機的 `origin/old-branch` 可能還看得到。可以執行：
+After someone deletes a branch on GitHub, your computer may still show an old branch such as `origin/old-branch`. Clean up remote-tracking references with:
 
 ```bash
 git fetch --prune origin
 ```
 
-這只清理本機的遠端追蹤紀錄，不會刪除你的本地分支。
+This removes only outdated remote-tracking references. It does not delete your local branches.
 
-## 尚未完成工作時需要同步
+## Sync When You Have Unfinished Work
 
-最清楚的做法是先完成一個小 commit。若修改還不能 commit，可暫存到 stash：
+The clearest approach is to finish and commit one small unit of work first. If your changes are not ready to commit, temporarily store them in a stash:
 
 ```bash
 git status
@@ -163,19 +163,19 @@ git pull --ff-only
 git stash pop
 ```
 
-- `-u` 會一併保存 untracked files。
-- `stash pop` 重新套用時仍可能衝突，需像一般衝突一樣處理。
-- Stash 適合短期暫放，不應當成長期備份。
+- `-u` includes untracked files in the stash.
+- `stash pop` can still create conflicts when it reapplies your work. Resolve them like other conflicts.
+- Use stash for short-term storage, not as a long-term backup.
 
-查看 stash：
+View your stashes with:
 
 ```bash
 git stash list
 ```
 
-## 一套日常工作流程
+## A Daily Git Workflow
 
-開始工作：
+At the start of your work:
 
 ```bash
 git switch main
@@ -183,7 +183,7 @@ git pull --ff-only
 git switch -c feature/my-task
 ```
 
-開發中：
+During development:
 
 ```bash
 git status
@@ -193,15 +193,15 @@ git diff --staged
 git commit -m "feat: describe the change"
 ```
 
-準備 Push / PR：
+Before pushing and opening a pull request:
 
 ```bash
 git fetch origin
-git rebase origin/main  # 僅限自己使用的功能分支
+git rebase origin/main  # Only for a feature branch that you alone use
 git push -u origin feature/my-task
 ```
 
-PR 合併後：
+After the pull request is merged:
 
 ```bash
 git switch main
@@ -210,44 +210,44 @@ git branch -d feature/my-task
 git fetch --prune origin
 ```
 
-## 常見錯誤
+## Common Problems
 
 ### `Your local changes would be overwritten`
 
-先執行 `git status` 與 `git diff`。選擇 commit、stash，或確定不需要後再還原；不要為了完成 pull 而隨意刪除修改。
+Run `git status` and `git diff` first. Commit the changes, stash them, or restore them only after you are certain they are unnecessary. Do not delete changes just to make pull succeed.
 
-### 本地和遠端各有 Commit
+### Local and Remote Both Have New Commits
 
-這叫 diverged。先用版本圖確認兩邊內容：
+This is called a diverged branch. Inspect both sides with a commit graph:
 
 ```bash
 git log --oneline --graph --decorate --all -20
 ```
 
-共享分支通常用 merge；自己的功能分支可依團隊規則 rebase。
+Teams often merge shared branches. You may rebase your own feature branch if that matches your team's workflow.
 
-### `git fetch` 後檔案沒有變
+### Files Did Not Change After `git fetch`
 
-這是正常行為。Fetch 只更新遠端追蹤資訊；接著需 `git merge origin/main`、`git rebase origin/main`，或使用合適的 pull 策略。
+This is expected. Fetch only updates remote-tracking information. Next, run `git merge origin/main`, `git rebase origin/main`, or use an appropriate pull strategy.
 
-## 指令小抄
+## Command Cheat Sheet
 
-| 指令 | 用途 |
+| Command | Purpose |
 |---|---|
-| `git fetch origin` | 取得遠端最新資訊，不改目前檔案 |
-| `git log HEAD..origin/main` | 查看遠端比本機多的 commit |
-| `git merge --ff-only origin/main` | 僅在可快轉時整合遠端 main |
-| `git pull --ff-only` | 取得並快轉更新目前分支 |
-| `git fetch --prune origin` | 清理已刪除的遠端分支紀錄 |
-| `git stash push -u -m "..."` | 暫存未完成修改 |
+| `git fetch origin` | Retrieve remote information without changing current files |
+| `git log HEAD..origin/main` | Show commits that exist remotely but not locally |
+| `git merge --ff-only origin/main` | Integrate remote `main` only when a fast-forward is possible |
+| `git pull --ff-only` | Retrieve and fast-forward the current branch |
+| `git fetch --prune origin` | Remove records of deleted remote branches |
+| `git stash push -u -m "..."` | Temporarily store unfinished changes |
 
-## 完成這個系列後
+## After You Finish This Series
 
-你已經走過一套完整流程：安裝與設定 → GitHub 與 SSH → clone → add / commit / push → branch / merge → Pull Request → 歷史調整 → 遠端同步。
+You have now completed a full Git workflow: installation and configuration → GitHub and SSH → clone → add / commit / push → branch / merge → pull request → history editing → remote synchronization.
 
-接下來最有效的練習，是把一個小型個人專案完整走過這套流程。遇到問題時，先保留 `git status`、版本圖與錯誤訊息，再判斷是哪個位置、哪條分支出了問題。
+The most effective next exercise is to take a small personal project through the entire workflow. When a problem occurs, keep the output of `git status`, the commit graph, and the complete error message. Use them to identify which repository and branch contain the problem before taking action.
 
-## 官方文件
+## Official Documentation
 
 - [git fetch](https://git-scm.com/docs/git-fetch)
 - [git pull](https://git-scm.com/docs/git-pull)

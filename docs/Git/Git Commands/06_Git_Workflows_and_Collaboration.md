@@ -1,102 +1,102 @@
 ---
 sidebar_position: 6
-title: "Module 6：Git 開發流程與多人協作"
-description: 認識常見分支命名、GitHub Flow 與 Git Flow，並透過 Fork 和 Pull Request 參與專案。
+title: "Module 6: Git Workflows and Collaboration"
+description: Learn common branch names, GitHub Flow and Git Flow, then contribute through forks and Pull Requests.
 ---
 
-# Module 6：Git 開發流程與多人協作
+# Module 6: Git Workflows and Collaboration
 
-Git 提供分支與合併工具，但不會規定團隊一定要怎麼合作。「開發流程」就是團隊共同約定：從哪裡開分支、修改怎麼被審查、何時可以合併與部署。
+Git provides branching and merging tools, but it does not prescribe how a team must collaborate. A **development workflow** is the team's shared agreement about where branches begin, how changes are reviewed, and when work can be merged or deployed.
 
-## 常見分支名稱
+## Common branch names
 
-| 名稱 | 常見用途 | 常見起點與終點 |
+| Name | Common purpose | Typical lifecycle |
 |---|---|---|
-| `main` | 穩定、可發布的主要版本 | 長期存在 |
-| `develop` | 整合尚未發布的功能 | Git Flow 中長期存在 |
-| `feature/...` | 開發單一功能 | 從 `main` 或 `develop` 開出，完成後合併 |
-| `release/...` | 發布前測試與小幅修正 | 從 `develop` 開出，完成後合併 |
-| `hotfix/...` | 緊急修正正式版本 | 通常從 `main` 開出 |
+| `main` | Stable primary version that can be released | Long-lived |
+| `develop` | Integrates features for a future release | Long-lived in Git Flow |
+| `feature/...` | Develops one feature | Starts from `main` or `develop`, then merges back |
+| `release/...` | Final testing and small fixes before a release | Starts from `develop`, then merges when ready |
+| `hotfix/...` | Urgent repair for a production version | Usually starts from `main` |
 
-這些是慣例，不是 Git 的保留字。團隊也可以使用 `fix/...`、`docs/...` 或在名稱中加入任務編號，例如 `feature/123-login-page`。
+These names are conventions, not reserved Git words. A team can also use `fix/...`, `docs/...`, or include a task number such as `feature/123-login-page`.
 
-## 初學者先用簡單的 GitHub Flow
+## Beginners should start with a simple GitHub Flow
 
-小型團隊與持續部署專案常使用接近 GitHub Flow 的做法：
+Small teams and continuously deployed projects often use a workflow similar to GitHub Flow:
 
 ```mermaid
 flowchart LR
-    A["從 main 建立分支"] --> B["小步 commit"]
-    B --> C["push 分支"]
-    C --> D["建立 Pull Request"]
-    D --> E["Review 與自動測試"]
-    E --> F["合併回 main"]
-    F --> G["刪除功能分支"]
+    A["Create a branch from main"] --> B["Make small commits"]
+    B --> C["Push the branch"]
+    C --> D["Open a Pull Request"]
+    D --> E["Review and automated tests"]
+    E --> F["Merge into main"]
+    F --> G["Delete the feature branch"]
 ```
 
-基本指令：
+Basic commands:
 
 ```bash
 git switch main
 git pull --ff-only
 git switch -c feature/short-description
 
-# 修改與測試
+# Edit and test
 git add <files>
 git commit -m "feat: describe the change"
 git push -u origin feature/short-description
 ```
 
-接著到 GitHub 建立 Pull Request（PR），請團隊成員 review。通過測試與審查後再合併。
+Next, open a Pull Request (PR) on GitHub and ask a teammate to review it. Merge only after the review and tests pass.
 
-## Pull Request 是什麼？
+## What is a Pull Request?
 
-Pull Request 不是 Git 指令，而是 GitHub 的協作功能。它把「想合併的來源分支」與「目標分支」放在一起，讓團隊可以：
+A Pull Request is a GitHub collaboration feature, not a Git command. It puts a proposed source branch and target branch together so a team can:
 
-- 查看完整差異。
-- 在特定程式碼行留言。
-- 執行自動測試。
-- 要求修改或核准。
-- 保留討論與決策紀錄。
+- Review the complete diff.
+- Comment on specific lines of code.
+- Run automated tests.
+- Request changes or approve the work.
+- Preserve discussions and decisions.
 
-## 實作 A：你有原 Repository 寫入權限
+## Exercise A: You have write access to the original repository
 
-1. 從最新 `main` 建立功能分支。
-2. 在本機修改、測試、commit。
-3. Push 功能分支到同一個 GitHub repository。
-4. 在 GitHub 選擇 **Compare & pull request**。
-5. 確認 base 是 `main`，compare 是你的功能分支。
-6. 寫清楚 PR 標題、修改原因與測試方式。
-7. 等待 review，通過後合併。
+1. Create a feature branch from the latest `main`.
+2. Edit, test, and commit locally.
+3. Push the feature branch to the same GitHub repository.
+4. Select **Compare & pull request** on GitHub.
+5. Confirm that the base is `main` and compare is your feature branch.
+6. Write a clear PR title, reason for the change, and testing instructions.
+7. Wait for review and merge after approval.
 
-## 實作 B：用 Fork 參與別人的專案
+## Exercise B: Contribute to another project with a fork
 
-沒有原 repository 寫入權限時，先 Fork 一份副本到自己的 GitHub 帳號。
+If you do not have write access to the original repository, first fork a copy into your GitHub account.
 
-### Step 1：Fork 並 Clone 自己的副本
+### Step 1: Fork and clone your copy
 
-1. 在原專案頁面選擇 **Fork**。
-2. 進入自己帳號下的 fork。
-3. 複製 SSH 網址並 clone：
+1. Select **Fork** on the original project page.
+2. Open the fork under your own account.
+3. Copy its SSH URL and clone it:
 
 ```bash
 git clone git@github.com:YOUR_ACCOUNT/PROJECT.git
 cd PROJECT
 ```
 
-此時 `origin` 指向你的 fork。
+`origin` now points to your fork.
 
-### Step 2：加入原專案為 upstream
+### Step 2: Add the original project as upstream
 
 ```bash
 git remote add upstream git@github.com:ORIGINAL_OWNER/PROJECT.git
 git remote -v
 ```
 
-- `origin`：你可以 push 的個人 fork。
-- `upstream`：原作者的 repository，通常只用來取得更新。
+- `origin`: your personal fork, where you can push.
+- `upstream`: the original repository, usually used to retrieve updates.
 
-### Step 3：先同步，再開功能分支
+### Step 3: Synchronize before creating a feature branch
 
 ```bash
 git fetch upstream
@@ -106,51 +106,51 @@ git push origin main
 git switch -c feature/my-change
 ```
 
-### Step 4：修改並 Push
+### Step 4: Edit and push
 
 ```bash
-# 編輯與測試後
+# After editing and testing
 git add <files>
 git commit -m "feat: describe my change"
 git push -u origin feature/my-change
 ```
 
-### Step 5：建立 Pull Request
+### Step 5: Open a Pull Request
 
-在 GitHub 開啟自己的 fork，建立 Pull Request：
+Open your fork on GitHub and create a Pull Request with:
 
-- base repository：原作者的 repository。
-- base branch：通常是 `main`。
-- head repository：你的 fork。
-- compare branch：`feature/my-change`。
+- Base repository: the original owner's repository.
+- Base branch: usually `main`.
+- Head repository: your fork.
+- Compare branch: `feature/my-change`.
 
-提交前先閱讀專案的 `README.md`、`CONTRIBUTING.md` 與 PR template。
+Before submitting, read the project's `README.md`, `CONTRIBUTING.md`, and PR template.
 
-## 收到 Review 後怎麼更新？
+## How do you update a PR after review?
 
-在同一個功能分支修改並再次 push，既有 PR 會自動更新：
+Make changes on the same feature branch and push again. The existing PR updates automatically:
 
 ```bash
 git switch feature/my-change
-# 修改檔案
+# Edit files
 git add <files>
 git commit -m "fix: address review feedback"
 git push
 ```
 
-不需要為每一輪 review 新開 PR。
+You do not need a new PR for each round of review.
 
-## 什麼是 Git Flow？
+## What is Git Flow?
 
-Git Flow 使用較完整的分支角色，適合有明確版本發布與多條維護線的產品：
+Git Flow defines more branch roles and is useful for products with explicit releases and multiple maintenance lines:
 
 ```mermaid
 flowchart TB
-    MAIN["main：正式版本"]
-    DEV["develop：下一版整合"]
-    FEATURE["feature/*：新功能"]
-    RELEASE["release/*：發布準備"]
-    HOTFIX["hotfix/*：緊急修正"]
+    MAIN["main: production releases"]
+    DEV["develop: next release integration"]
+    FEATURE["feature/*: new features"]
+    RELEASE["release/*: release preparation"]
+    HOTFIX["hotfix/*: urgent fixes"]
     DEV --> FEATURE
     FEATURE --> DEV
     DEV --> RELEASE
@@ -161,31 +161,31 @@ flowchart TB
     HOTFIX --> DEV
 ```
 
-典型規則：
+Typical rules include:
 
-- `feature/*` 從 `develop` 開出，完成後合併回 `develop`。
-- `release/*` 用於發布前測試，不再加入大型新功能。
-- `hotfix/*` 從 `main` 開出，修正後同時回到 `main` 與 `develop`。
-- 任務型分支完成後刪除。
+- `feature/*` starts from `develop` and merges back into `develop` when complete.
+- `release/*` is for final testing; large new features are no longer added.
+- `hotfix/*` starts from `main` and merges back into both `main` and `develop`.
+- Task branches are deleted after their work is complete.
 
-:::tip 流程越多不代表越專業
+:::tip More process does not mean more professional
 
-如果團隊只維護一個持續發布的版本，GitHub Flow 通常更容易遵守。只有在 release、hotfix 與多版本維護確實存在時，再採用 Git Flow。
+If a team maintains only one continuously released version, GitHub Flow is often easier to follow. Adopt Git Flow only when releases, hotfixes, and multiple maintained versions genuinely require it.
 
 :::
 
-## 團隊共同約定範例
+## Example team agreements
 
-- 不直接 push 到 `main`。
-- 一個分支只處理一個主題。
-- commit 保持小而清楚。
-- PR 說明「為什麼改、改了什麼、怎麼測」。
-- 合併前至少一人 review，且自動測試通過。
-- 不對其他人正在使用的共享分支任意 force push。
-- 機密資訊永遠不進 Git 歷史。
+- Do not push directly to `main`.
+- Keep each branch focused on one topic.
+- Keep commits small and clear.
+- Explain why the PR exists, what changed, and how it was tested.
+- Require at least one review and passing automated tests before merge.
+- Do not force-push a shared branch that other people use.
+- Never put secrets in Git history.
 
-## 延伸閱讀
+## Further reading
 
-- [GitHub：建立 Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
-- [GitHub：Fork 一個 Repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+- [GitHub: Creating a Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+- [GitHub: Fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
 - [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
