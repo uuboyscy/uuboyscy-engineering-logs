@@ -22,9 +22,9 @@ function HomepageHeader() {
           <img src="https://komarev.com/ghpvc/?username=uuboyscy&style=for-the-badge" alt="Profile Views" />
         </p>
         <div style={{ marginTop: '20px', textAlign: 'center' }}>
-          <input 
-            placeholder="Search here" 
-            id="searchWidgetTrigger" 
+          <input
+            placeholder="Search here"
+            id="searchWidgetTrigger"
             style={{
               padding: '12px 20px',
               fontSize: '16px',
@@ -245,7 +245,7 @@ export default function Home() {
         <script src="https://cloud.google.com/ai/gen-app-builder/client?hl=en_US"></script>
       </Head>
       <gen-search-widget
-        configId="9fa4a2b6-93ec-417a-9429-cc383943f15c"
+        configId="99af756c-88aa-429e-ad53-ff640db4ff21"
         triggerId="searchWidgetTrigger">
       </gen-search-widget>
       <HomepageHeader />
