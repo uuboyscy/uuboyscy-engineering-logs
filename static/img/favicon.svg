@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">UUBOYSCY favicon</title>
+  <desc id="desc">A compact U-shaped code-bracket mark.</desc>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="900" y2="950" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#172235"/>
+      <stop offset="1" stop-color="#0d3037"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="250" y1="210" x2="790" y2="850" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#55e59b"/>
+      <stop offset="0.52" stop-color="#32d1a1"/>
+      <stop offset="1" stop-color="#21afb1"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="18" width="988" height="988" rx="220" fill="url(#bg)"/>
+  <rect x="18" y="18" width="988" height="988" rx="220" fill="none" stroke="#84f5ca" stroke-opacity="0.10" stroke-width="4"/>
+  <!-- The two large curly brackets are the U. -->
+  <g fill="none" stroke="url(#mark)" stroke-width="92" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M326 250 H286 C246 250 224 279 224 326 V430 C224 477 204 502 164 502 C204 502 224 527 224 574 V650 C224 794 336 864 512 864"/>
+    <path d="M698 250 H738 C778 250 800 279 800 326 V430 C800 477 820 502 860 502 C820 502 800 527 800 574 V650 C800 794 688 864 512 864"/>
+  </g>
+</svg>
