@@ -61,7 +61,7 @@ const config = {
     navbar: {
       title: 'UUBOYSCY ENGINEERING LOGS',
       logo: {
-        alt: 'My Tech Blog Logo',
+        alt: 'UUBOYSCY Engineering Logs logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -141,6 +141,28 @@ const config = {
     ],
   },
   headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'manifest',
+        href: '/site.webmanifest',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'apple-touch-icon',
+        sizes: '192x192',
+        href: '/img/icons/apple-touch-icon.png',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'theme-color',
+        content: '#172235',
+      },
+    },
     // Declare a <link> preconnect tag
     {
       tagName: 'link',
