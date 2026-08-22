@@ -1,0 +1,8 @@
+{
+  "label": "Git 指令",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "以適合初學者的步驟，從安裝 Git 一路學到與他人協作及同步 GitHub。"
+  }
+}
