@@ -168,7 +168,7 @@ Make sure you can answer these questions:
 2. Where does `git commit` save a version?
 3. Does a commit immediately appear on GitHub?
 
-The answers are: the staging area, the local repository, and no—you still need `git push`.
+The answers are: the staging area, the local repository, and no, you still need `git push`.
 
 ## Command reference
 

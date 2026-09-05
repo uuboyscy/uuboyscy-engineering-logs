@@ -28,7 +28,7 @@ Here are some common situations where Git Worktree is helpful:
 git worktree list
 ```
 
-This shows all active worktrees. At the start, you will only see one — your main working folder.
+This shows all active worktrees. At the start, you will only see one: your main working folder.
 
 ---
 
@@ -41,8 +41,8 @@ git worktree add ../my-feature-branch feature/my-feature
 This creates a **new folder** called `my-feature-branch` next to your current project folder. It checks out the branch `feature/my-feature` there.
 
 Now you have:
-- Your original folder — still on the current branch
-- A new folder `../my-feature-branch` — on the `feature/my-feature` branch
+- Your original folder: still on the current branch
+- A new folder `../my-feature-branch`: on the `feature/my-feature` branch
 
 You can open both folders and work on them at the same time.
 
@@ -89,7 +89,7 @@ git worktree remove ../my-feature-branch
 cd my-project
 git checkout feature/new-dashboard
 
-# Your boss asks you to fix a bug on main — right now!
+# Your boss asks you to fix a bug on main, right now!
 # Use worktree to handle the fix without stopping your work
 git worktree add -b hotfix/login-bug ../login-bugfix main
 

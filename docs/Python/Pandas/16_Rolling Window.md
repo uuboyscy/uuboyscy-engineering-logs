@@ -129,7 +129,7 @@ Each group's rolling window is calculated independently.
 
 ## Real-World Use Case
 
-In data pipelines, rolling windows are commonly used to detect anomalies. For example, if today's sales are much higher than the 7-day rolling average, it might be a data quality issue — or just a really good day.
+In data pipelines, rolling windows are commonly used to detect anomalies. For example, if today's sales are much higher than the 7-day rolling average, it might be a data quality issue, or just a really good day.
 
 ```python
 df["rolling_avg_7d"] = df["sales"].rolling(window=7, min_periods=1).mean()
