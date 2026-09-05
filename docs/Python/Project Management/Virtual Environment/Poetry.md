@@ -191,7 +191,7 @@ poetry update requests
 
 ## **Conclusion**
 
-Poetry 2.x is a powerful tool for modern Python development. It simplifies dependency resolution, environment setup, and package publishing—letting you focus on writing great code.
+Poetry 2.x is a powerful tool for modern Python development. It simplifies dependency resolution, environment setup, and package publishing, letting you focus on writing great code.
 
 ---
 

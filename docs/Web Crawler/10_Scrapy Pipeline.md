@@ -19,7 +19,7 @@ ITEM_PIPELINES = {
 }
 ```
 
-The number (`300`) is the **priority** — lower numbers run first. Typical range is `1–1000`.
+The number (`300`) is the **priority**: lower numbers run first. Typical range is `1–1000`.
 
 ---
 
@@ -69,7 +69,7 @@ ITEM_PIPELINES = {
 
 ## Multiple Pipelines
 
-You can register multiple pipelines — each item passes through them **in priority order** (lower number first).
+You can register multiple pipelines: each item passes through them **in priority order** (lower number first).
 
 ```python
 ITEM_PIPELINES = {

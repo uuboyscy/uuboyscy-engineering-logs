@@ -1,6 +1,6 @@
 # Web Crawler with browser_cookie3
 
-# Web Crawler with `browser_cookie3` — PTT Gossiping Example
+# Web Crawler with `browser_cookie3`: PTT Gossiping Example
 
 This guide demonstrates how to use [`browser_cookie3`](https://pypi.org/project/browser-cookie3/) to retrieve cookies from your browser and use them in a web crawler to access the [PTT Gossiping board](https://www.ptt.cc/bbs/Gossiping/index.html), which requires a `over18=1` cookie to bypass the age restriction prompt.
 

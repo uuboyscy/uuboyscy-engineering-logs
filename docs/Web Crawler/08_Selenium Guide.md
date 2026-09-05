@@ -32,9 +32,9 @@ The first run may take longer as it will download the appropriate driver.
 
 | Feature                 | Function & Description                                                |
 | ----------------------- | ------------------------------------------------------------------- |
-| Open a web page         | `driver.get(url)` — open a specific URL                             |
-| Get page title          | `driver.title` — returns the current page title                     |
-| Close browser           | `driver.quit()` — closes the entire browser                         |
+| Open a web page         | `driver.get(url)`: open a specific URL                             |
+| Get page title          | `driver.title`: returns the current page title                     |
+| Close browser           | `driver.quit()`: closes the entire browser                         |
 | Find single element     | `driver.find_element(by=By.X, value="...")`                         |
 | Find multiple elements  | `driver.find_elements(by=By.X, value="...")`                        |
 | Click an element        | `element.click()`                                                   |

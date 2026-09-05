@@ -4,7 +4,7 @@ sidebar_position: 9
 
 # Scrapy Guide
 
-Scrapy is a Python framework for building web crawlers. Unlike `requests` + `BeautifulSoup`, Scrapy handles everything — sending requests, parsing HTML, following links, and saving data — all in one structured project.
+Scrapy is a Python framework for building web crawlers. Unlike `requests` + `BeautifulSoup`, Scrapy handles everything (sending requests, parsing HTML, following links, and saving data) all in one structured project.
 
 Use Scrapy when your crawler needs to:
 - Handle many pages or multiple URLs
@@ -75,7 +75,7 @@ The most important files for beginners are:
 
 ## Create Your First Spider
 
-Create a file inside `spiders/` — for example, `spiders/quotes_spider.py`:
+Create a file inside `spiders/` (for example, `spiders/quotes_spider.py`):
 
 ```python
 import scrapy
@@ -103,7 +103,7 @@ Key parts of a spider:
 
 - **`name`**: Used to run the spider from the terminal
 - **`start_urls`**: The pages Scrapy will crawl first
-- **`parse()`**: Called for each response — extract data and follow links here
+- **`parse()`**: Called for each response; extract data and follow links here
 
 ---
 
@@ -162,7 +162,7 @@ response.css("div.quote span.text::text").getall()
 response.css("small.author::text").getall()
 ```
 
-This saves a lot of time — you can confirm the selector works before putting it in your spider.
+This saves a lot of time: you can confirm the selector works before putting it in your spider.
 
 ---
 

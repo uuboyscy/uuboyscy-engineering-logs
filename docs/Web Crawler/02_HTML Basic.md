@@ -45,7 +45,7 @@ Enter this on browser\
 |--------|-------------|---------|
 | `<html>` | Root element of the HTML document | `<html>...</html>` |
 | `<head>` | Page info (not shown on screen) | `<title>`, `<meta>` |
-| `<body>` | Main content — this is what crawlers focus on | `<h1>`, `<p>`, `<div>` |
+| `<body>` | Main content: this is what crawlers focus on | `<h1>`, `<p>`, `<div>` |
 | `<h1>`~`<h6>` | Headings (h1 is largest) | `<h1>Title</h1>` |
 | `<p>` | Paragraph | `<p>This is text.</p>` |
 | `<a>` | Hyperlink | `<a href="https://example.com">Click me</a>` |
