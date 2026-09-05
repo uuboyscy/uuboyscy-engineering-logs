@@ -4,23 +4,23 @@ sidebar_position: 3
 
 # Run Batch Work with Cloud Run Jobs
 
-Cloud Run Job 適合執行「有開始、有結束」的 container workload，例如 ETL、資料匯入、備份、爬蟲與定期報表。
+A Cloud Run Job is a good fit for container workloads that "start and finish," such as ETL, data imports, backups, crawlers, and scheduled reports.
 
 ## Service vs. Job
 
-| 項目 | Service | Job |
+| Aspect | Service | Job |
 | --- | --- | --- |
-| 觸發方式 | HTTP request、event | 手動、排程或 workflow |
-| Container | 持續等待 request | 完成工作後 exit |
-| Port | 需要監聽 `PORT` | 不需要，也不應啟動 Web server |
-| 成功條件 | 回應 request | exit code `0` |
-| 失敗處理 | request error、revision | task retry、execution failure |
+| Trigger | HTTP request, event | Manual, scheduled, or via a workflow |
+| Container | Waits for requests continuously | Exits once the work is done |
+| Port | Must listen on `PORT` | Not needed, and shouldn't start a web server |
+| Success condition | Responds to requests | Exit code `0` |
+| Failure handling | Request errors, revisions | Task retries, execution failure |
 
-如果你的程式本來是一次性 Python script，不要為了執行它而包成一直等待 request 的 Service；使用 Job 通常比較清楚。
+If your program is essentially a one-off Python script, don't wrap it as a Service that waits for requests just to run it — using a Job is usually clearer.
 
 ## Step 1: Prepare a Job Container
 
-建立 `job.py`：
+Create `job.py`:
 
 ```python
 import os
@@ -30,7 +30,7 @@ import time
 print("starting batch job")
 print(f"batch_id={os.environ.get('BATCH_ID', 'local')}")
 
-# 在這裡執行 ETL、備份或資料處理工作
+# Do your ETL, backup, or data processing work here
 for item in range(3):
     print(f"processing item {item}")
     time.sleep(1)
@@ -38,9 +38,9 @@ for item in range(3):
 print("batch job completed")
 ```
 
-Job container 不需要 Flask、Gunicorn 或 HTTP server。它應該在工作完成後自然結束。
+A Job container doesn't need Flask, Gunicorn, or an HTTP server. It should exit naturally once the work is complete.
 
-Dockerfile 範例：
+Example Dockerfile:
 
 ```dockerfile
 FROM python:3.13-slim
@@ -51,7 +51,7 @@ COPY job.py .
 CMD ["python", "job.py"]
 ```
 
-建立並推送 image 的流程，請參考 [Build and Push a Container Image](./Build_and_Push_Image)。
+For the process of building and pushing the image, see [Build and Push a Container Image](./Build_and_Push_Image).
 
 ## Step 2: Deploy a Job with `gcloud`
 
@@ -64,7 +64,7 @@ gcloud run jobs deploy tkr101-batch-job \
   --task-timeout=10m
 ```
 
-設定 environment variable：
+Set an environment variable:
 
 ```bash
 gcloud run jobs update tkr101-batch-job \
@@ -72,11 +72,11 @@ gcloud run jobs update tkr101-batch-job \
   --update-env-vars=BATCH_ID=demo-001
 ```
 
-Job 的 task timeout 預設為 10 分鐘，可依需求調整；官方目前的最大值與 GPU 限制請以最新文件為準。
+The default task timeout for a Job is 10 minutes, and it can be adjusted as needed; check the latest documentation for the current maximum values and GPU limits.
 
 ## Step 3: Execute the Job
 
-執行並等待完成：
+Run it and wait for completion:
 
 ```bash
 gcloud run jobs execute tkr101-batch-job \
@@ -84,7 +84,7 @@ gcloud run jobs execute tkr101-batch-job \
   --wait
 ```
 
-列出 Job executions：
+List job executions:
 
 ```bash
 gcloud run jobs executions list \
@@ -92,7 +92,7 @@ gcloud run jobs executions list \
   --region=asia-east1
 ```
 
-查看 Job log：
+View job logs:
 
 ```bash
 gcloud run jobs logs read tkr101-batch-job \
@@ -102,20 +102,20 @@ gcloud run jobs logs read tkr101-batch-job \
 
 ## Step 4: Configure in the Console
 
-1. 開啟 **Cloud Run** → **Jobs**。
-2. 點選 **Deploy container**。
-3. 選擇 Artifact Registry image。
-4. 設定 Job name 與 Region。
-5. 在 container 設定 CPU、Memory 與 task timeout。
-6. 設定 Number of tasks。
-7. 設定 Number of retries per failed task。
-8. 依 workload 設定 parallelism。
-9. 點選 **Create**。
-10. 在 Job 詳細頁點選 **Execute**。
+1. Open **Cloud Run** → **Jobs**.
+2. Click **Deploy container**.
+3. Choose the Artifact Registry image.
+4. Set the job name and region.
+5. Configure CPU, memory, and task timeout on the container.
+6. Set the number of tasks.
+7. Set the number of retries per failed task.
+8. Set parallelism based on the workload.
+9. Click **Create**.
+10. On the job detail page, click **Execute**.
 
 ## Tasks, Parallelism, and Retries
 
-一個 Job execution 可以包含多個 tasks：
+A single job execution can contain multiple tasks:
 
 ```text
 Job execution
@@ -125,32 +125,32 @@ Job execution
 └── Task 3
 ```
 
-- **Tasks**：要執行幾個 task。
-- **Parallelism**：同時執行幾個 task。
-- **Max retries**：單一 task 失敗後最多重試次數。
+- **Tasks**: how many tasks to run.
+- **Parallelism**: how many tasks run at the same time.
+- **Max retries**: the maximum number of retries after a single task fails.
 
-如果每個 task 都會處理相同資料，盲目增加 tasks 可能產生重複寫入。程式需要使用 task index、partition key 或 idempotent write 設計。
+If every task processes the same data, blindly increasing the number of tasks can cause duplicate writes. The program needs to use a task index, partition key, or an idempotent write design.
 
 ## Exit Code and Idempotency
 
-成功的 Job container 應回傳 `0`：
+A successful job container should return `0`:
 
 ```bash
 python job.py
 printf 'exit code: %s\n' "$?"
 ```
 
-如果部分工作完成後才失敗，Cloud Run retry 可能再次執行同一批資料。因此 ETL 應考慮：
+If part of the work completes before a failure occurs, a Cloud Run retry may re-run the same batch of data. So your ETL should consider:
 
-- 使用 batch id 或 source file generation 去重。
-- 寫入前先檢查是否已完成。
-- 使用 staging table，再以 transaction 或 merge 發佈。
-- 將外部副作用與資料處理分開。
-- 記錄 execution name、task index 與輸入範圍。
+- Deduplicating by batch id or source file generation.
+- Checking whether work has already completed before writing.
+- Using a staging table, then publishing via a transaction or merge.
+- Separating external side effects from data processing.
+- Logging the execution name, task index, and input range.
 
 ## Schedule a Job
 
-Cloud Run Job 本身負責執行，不等於排程器。可以使用 Cloud Scheduler、Workflows 或其他 orchestration tool 觸發 Job。
+A Cloud Run Job itself only handles execution; it's not a scheduler. Use Cloud Scheduler, Workflows, or another orchestration tool to trigger the job.
 
 ```text
 Cloud Scheduler / Workflows
@@ -162,31 +162,31 @@ Cloud Run Jobs Execute API
 Cloud Run Job execution
 ```
 
-排程觸發器也需要自己的 IAM 權限，不要讓公開 HTTP endpoint 任意啟動高成本 Job。
+A scheduled trigger also needs its own IAM permissions; don't let a public HTTP endpoint trigger an expensive job arbitrarily.
 
 ## Cost and Timeout Notes
 
-- Job 只在 task 執行時使用 CPU／Memory，但仍可能有 image、registry、network 或其他服務費用。
-- Timeout 應足以完成工作，也要能阻止無窮迴圈。
-- Retry 會重新消耗資源，且可能重複寫入或呼叫外部 API。
-- 遇到 timeout 時，先檢查瓶頸與資料切分，不要只把 timeout 無限調大。
+- A Job only uses CPU/memory while a task is running, but there can still be charges for images, the registry, network, or other services.
+- The timeout should be long enough to finish the work, while still preventing infinite loops.
+- Retries consume resources again, and may duplicate writes or external API calls.
+- When you hit a timeout, look at the bottleneck and data partitioning first, rather than just raising the timeout indefinitely.
 
 ## Cleanup
 
-列出 Job：
+List jobs:
 
 ```bash
 gcloud run jobs list --region=asia-east1
 ```
 
-刪除練習用 Job：
+Delete the practice job:
 
 ```bash
 gcloud run jobs delete tkr101-batch-job \
   --region=asia-east1
 ```
 
-確認 image 不再使用後，再清理 Artifact Registry 中的 image 或 repository。
+Once you've confirmed the image is no longer used, clean up the image or repository in Artifact Registry.
 
 ## Further Reading
 

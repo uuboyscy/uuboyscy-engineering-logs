@@ -4,35 +4,35 @@ sidebar_position: 2
 
 # Deploy a Cloud Run Service
 
-Cloud Run Service 適合提供 HTTP API、網站、Webhook 或其他需要等待 request 的應用程式。
+A Cloud Run Service is a good fit for serving an HTTP API, website, webhook, or any other application that needs to wait for requests.
 
 ## Step 1: Deploy with the Console
 
-1. 開啟 **Cloud Run**。
-2. 在 Services 頁面點選 **Deploy container**。
-3. 選擇 **Deploy one revision from an existing container image**。
-4. 輸入 Artifact Registry image，例如：
+1. Open **Cloud Run**.
+2. On the Services page, click **Deploy container**.
+3. Choose **Deploy one revision from an existing container image**.
+4. Enter the Artifact Registry image, for example:
 
    ```text
    asia-east1-docker.pkg.dev/PROJECT_ID/tkr101-repo/cloud-run-demo:v1
    ```
 
-5. Service name 輸入 `cloud-run-demo`。
-6. Region 選擇 `asia-east1`。
-7. 在 **Container(s), Volumes, Networking, Security** 設定：
-   - Container port：`8080`
-   - Memory：依 workload 選擇，例如 `512Mi`
-   - CPU：依 workload 選擇，例如 `1`
-   - Minimum instances：練習可使用 `0`
-   - Maximum instances：設定合理上限，避免流量異常時無限制擴張
-8. Authentication 選擇：
-   - **Require authentication**：需要 IAM 驗證，適合內部 API。
-   - **Allow unauthenticated invocations**：公開 endpoint，只有確認資料與 API 可公開時使用。
-9. 點選 **Create**。
+5. Enter `cloud-run-demo` for the service name.
+6. Choose `asia-east1` for the region.
+7. Under **Container(s), Volumes, Networking, Security**, configure:
+   - Container port: `8080`
+   - Memory: choose based on the workload, e.g. `512Mi`
+   - CPU: choose based on the workload, e.g. `1`
+   - Minimum instances: `0` is fine for practice
+   - Maximum instances: set a reasonable cap to avoid unbounded scaling during traffic spikes
+8. Choose an authentication setting:
+   - **Require authentication**: requires IAM authentication, suitable for internal APIs.
+   - **Allow unauthenticated invocations**: a public endpoint — only use this once you've confirmed the data and API are safe to expose publicly.
+9. Click **Create**.
 
 ## Step 2: Deploy with `gcloud`
 
-先用需要驗證的方式部署：
+Deploy first in a mode that requires authentication:
 
 ```bash
 gcloud run deploy cloud-run-demo \
@@ -46,14 +46,14 @@ gcloud run deploy cloud-run-demo \
   --no-allow-unauthenticated
 ```
 
-部署完成後查看 Service：
+After deployment, check the service:
 
 ```bash
 gcloud run services describe cloud-run-demo \
   --region=asia-east1
 ```
 
-取得 URL：
+Get the URL:
 
 ```bash
 gcloud run services describe cloud-run-demo \
@@ -63,7 +63,7 @@ gcloud run services describe cloud-run-demo \
 
 ## Step 3: Allow Public Invocation Only When Needed
 
-如果這是明確要公開給瀏覽器或 webhook provider 的服務，可以在部署時使用：
+If this service is explicitly meant to be exposed to browsers or a webhook provider, you can deploy with:
 
 ```bash
 gcloud run deploy cloud-run-demo \
@@ -72,16 +72,16 @@ gcloud run deploy cloud-run-demo \
   --allow-unauthenticated
 ```
 
-公開前確認：
+Before making it public, confirm that:
 
-- Endpoint 不會回傳個人資料或敏感資訊。
-- API 有自己的 authentication、rate limit 或 abuse protection。
-- 服務不會因為任意輸入而觸發高成本工作。
-- 已經設定 logging 與監控。
+- The endpoint doesn't return personal or sensitive data.
+- The API has its own authentication, rate limiting, or abuse protection.
+- The service can't be triggered into expensive work by arbitrary input.
+- Logging and monitoring are already configured.
 
 ## Step 4: Test the Service
 
-需要 authentication 時，使用 gcloud 取得 identity token：
+If authentication is required, use `gcloud` to obtain an identity token:
 
 ```bash
 SERVICE_URL=$(gcloud run services describe cloud-run-demo \
@@ -92,7 +92,7 @@ curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
   "$SERVICE_URL/"
 ```
 
-若服務允許 unauthenticated：
+If the service allows unauthenticated access:
 
 ```bash
 curl "$SERVICE_URL/"
@@ -100,7 +100,7 @@ curl "$SERVICE_URL/"
 
 ## Port and `PORT`
 
-Cloud Run Service 會注入 `PORT` environment variable。Application 應使用：
+A Cloud Run Service injects the `PORT` environment variable. The application should use:
 
 ```python
 import os
@@ -108,48 +108,48 @@ import os
 port = int(os.environ.get("PORT", "8080"))
 ```
 
-常見錯誤：
+Common mistakes:
 
-- Application 只監聽 `127.0.0.1`。
-- Dockerfile 寫死和 Cloud Run 設定不同的 port。
-- 把 Service 的 port 設定套用到 Job；Job 不需要監聽 port。
-- Server 啟動太慢，沒有設定適合的 startup probe 或資源。
+- The application only listens on `127.0.0.1`.
+- The Dockerfile hardcodes a port that differs from the Cloud Run configuration.
+- Applying a Service's port settings to a Job; a Job doesn't need to listen on a port.
+- The server starts too slowly, without a suitable startup probe or enough resources.
 
 ## CPU and Memory
 
-CPU 與 Memory 要依 workload 決定：
+CPU and memory should be sized based on the workload:
 
-| Workload | 起始思路 |
+| Workload | Starting point |
 | --- | --- |
-| 簡單 HTTP API | 先從小型 CPU／Memory 開始，再觀察 metrics |
-| Flask API 搭配大型套件 | 增加 Memory，確認 cold start |
-| Selenium 或 browser workload | 通常需要較多 CPU／Memory，並先做壓測 |
-| LLM／模型服務 | 依模型、延遲與 GPU／CPU 支援重新評估 |
+| Simple HTTP API | Start small on CPU/memory, then observe metrics |
+| Flask API with large packages | Increase memory and check cold start behavior |
+| Selenium or browser workloads | Usually needs more CPU/memory, and load testing first |
+| LLM/model serving | Re-evaluate based on the model, latency, and GPU/CPU support |
 
-Notebook 中以 Selenium Grid 為例，建議提高到約 2 CPU 與 2 GB Memory；這是該 workload 的示範設定，不是所有 Service 的預設值。
+The notebook uses Selenium Grid as an example and recommends raising resources to around 2 CPUs and 2 GB of memory; that's a demonstration setting for that specific workload, not a default for every Service.
 
 ## Scale to Zero and Cold Start
 
-Cloud Run Service 可以在沒有 request 時縮減到 zero instance：
+A Cloud Run Service can scale down to zero instances when there is no traffic:
 
 ```text
-有流量：1+ instances
-無流量：0 instances
-新 request：建立 instance，可能出現 cold start
+With traffic: 1+ instances
+Without traffic: 0 instances
+New request: an instance is created, possibly with a cold start
 ```
 
-Cold start 會受到 image 大小、依賴套件、初始化工作與資源設定影響。可以：
+Cold start time is affected by image size, dependencies, initialization work, and resource configuration. You can:
 
-- 減少 image 大小。
-- 避免在 module import 時做不必要的遠端操作。
-- 將初始化工作移到合理的 startup flow。
-- 對低延遲服務設定 minimum instances，但這會有持續執行成本。
+- Reduce image size.
+- Avoid unnecessary remote calls during module import.
+- Move initialization work into a reasonable startup flow.
+- Set minimum instances for latency-sensitive services, though this incurs ongoing cost.
 
-不要用固定 ping 盲目保持 instance 喚醒；先確認 latency 與成本是否值得。
+Don't blindly keep instances warm with a fixed ping; first confirm whether the latency improvement is worth the cost.
 
 ## Revisions and Traffic
 
-查看 revisions：
+View revisions:
 
 ```bash
 gcloud run revisions list \
@@ -157,7 +157,7 @@ gcloud run revisions list \
   --region=asia-east1
 ```
 
-查看 service logs：
+View service logs:
 
 ```bash
 gcloud run services logs read cloud-run-demo \
@@ -165,18 +165,18 @@ gcloud run services logs read cloud-run-demo \
   --limit=50
 ```
 
-新版本上線前，先部署 revision、測試 URL，再逐步調整 traffic。不要把未測試的 image 直接標記為 production 唯一版本。
+Before a new version goes live, deploy the revision, test its URL, and shift traffic gradually. Don't mark an untested image as the sole production version.
 
 ## Service Checklist
 
-- [ ] Container image 已在本地驗證。
-- [ ] Service 使用正確的 image tag。
-- [ ] Application 監聽 `0.0.0.0:$PORT`。
-- [ ] Authentication 設定符合資料敏感度。
-- [ ] CPU、Memory、concurrency、min/max instances 已評估。
-- [ ] 新 revision 已測試並可回滾。
-- [ ] Logs 與 metrics 可以觀察。
-- [ ] Endpoint 不會被任意輸入觸發高成本工作。
+- [ ] The container image has been verified locally.
+- [ ] The service uses the correct image tag.
+- [ ] The application listens on `0.0.0.0:$PORT`.
+- [ ] Authentication settings match the sensitivity of the data.
+- [ ] CPU, memory, concurrency, and min/max instances have been evaluated.
+- [ ] The new revision has been tested and can be rolled back.
+- [ ] Logs and metrics are observable.
+- [ ] The endpoint can't be driven into expensive work by arbitrary input.
 
 ## Further Reading
 

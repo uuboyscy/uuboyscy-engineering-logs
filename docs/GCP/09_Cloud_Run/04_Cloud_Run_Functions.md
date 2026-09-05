@@ -4,22 +4,22 @@ sidebar_position: 4
 
 # Cloud Run Functions
 
-Cloud Run functions（Cloud Functions 第 2 代）適合部署單一事件 handler 或輕量 HTTP function。你提供 source code、runtime 與 entry point，Google 會協助建立 container 並部署成 Cloud Run service。
+Cloud Run functions (2nd gen Cloud Functions) is a good fit for deploying a single event handler or a lightweight HTTP function. You provide the source code, runtime, and entry point, and Google helps build the container and deploy it as a Cloud Run service.
 
 ## When Should You Use a Function?
 
-使用 Cloud Run functions 的情境：
+Consider Cloud Run functions when:
 
-- 只需要維護一個主要函數。
-- 不想自行撰寫 Dockerfile。
-- 需要簡單的 HTTP、Pub/Sub 或其他事件觸發器。
-- 希望快速建立小型 webhook 或資料處理 handler。
+- You only need to maintain one main function.
+- You don't want to write your own Dockerfile.
+- You need a simple HTTP, Pub/Sub, or other event trigger.
+- You want to quickly build a small webhook or data-processing handler.
 
-如果需要完整控制 Docker image、啟動命令、sidecar、volume 或多個 endpoint，直接使用 Cloud Run Service 通常更合適。
+If you need full control over the Docker image, startup command, sidecars, volumes, or multiple endpoints, using a Cloud Run Service directly is usually a better fit.
 
 ## Step 1: Prepare a Python Function
 
-建立 `main.py`：
+Create `main.py`:
 
 ```python
 import functions_framework
@@ -36,27 +36,27 @@ def hello_http(request):
     return {"message": f"Hello, {name or 'World'}"}
 ```
 
-建立 `requirements.txt`：
+Create `requirements.txt`:
 
 ```text
 functions-framework==3.*
 ```
 
-`hello_http` 就是 entry point。函數程式碼不要把 API key、資料庫密碼或 token 寫在 source 中；敏感設定應使用 Secret Manager 或其他受控設定來源。
+`hello_http` is the entry point. Don't put API keys, database passwords, or tokens in the function's source code; sensitive configuration should come from Secret Manager or another managed configuration source.
 
 ## Step 2: Deploy from the Console
 
-1. 開啟 **Cloud Run** 或 **Cloud Functions**。
-2. 點選 **Write a function** 或 **Create function**。
-3. 選擇 Region，例如 `asia-east1`。
-4. Runtime 選擇可用的 Python 版本，例如 `Python 3.13`。
-5. Entry point 輸入 `hello_http`。
-6. 選擇 HTTP trigger 或其他事件 trigger。
-7. 設定 authentication。
-8. 指定 runtime Service Account。
-9. 點選 **Deploy**。
+1. Open **Cloud Run** or **Cloud Functions**.
+2. Click **Write a function** or **Create function**.
+3. Choose a region, for example `asia-east1`.
+4. Choose an available Python runtime version, for example `Python 3.13`.
+5. Enter `hello_http` as the entry point.
+6. Choose an HTTP trigger or another event trigger.
+7. Configure authentication.
+8. Specify the runtime service account.
+9. Click **Deploy**.
 
-Notebook 特別提醒：Entry point 必須和 source code 中的主函數名稱一致，否則部署可能成功但觸發時無法找到 handler。
+A note from the notebook: the entry point must match the name of the main function in the source code exactly, otherwise deployment may succeed but the handler won't be found when triggered.
 
 ## Step 3: Deploy with `gcloud`
 
@@ -71,9 +71,9 @@ gcloud functions deploy tkr101-hello \
   --no-allow-unauthenticated
 ```
 
-Runtime 名稱與可用版本會更新，正式部署前請查看最新 Cloud Run functions runtime 文件。
+Runtime names and available versions change over time, so check the latest Cloud Run functions runtime documentation before deploying to production.
 
-取得 function 資訊：
+Get the function's details:
 
 ```bash
 gcloud functions describe tkr101-hello \
@@ -83,7 +83,7 @@ gcloud functions describe tkr101-hello \
 
 ## Step 4: Invoke the Function
 
-需要 authentication 時，可以使用 identity token：
+If authentication is required, you can use an identity token:
 
 ```bash
 FUNCTION_URL=$(gcloud functions describe tkr101-hello \
@@ -95,7 +95,7 @@ curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
   "$FUNCTION_URL?name=Allen"
 ```
 
-預期回應：
+Expected response:
 
 ```json
 {"message":"Hello, Allen"}
@@ -103,19 +103,19 @@ curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
 
 ## Function vs. Service
 
-| 項目 | Cloud Run functions | Cloud Run Service |
+| Aspect | Cloud Run functions | Cloud Run Service |
 | --- | --- | --- |
-| 建立方式 | Source、runtime、entry point | Container image 或 source |
-| Container 控制 | Google 自動 build | 開發者可完全控制 image |
-| 適合 | 單一 handler、事件驅動 | API、網站、複雜應用程式 |
-| Port | 由平台與 framework 管理 | 應用程式使用 `PORT` |
-| 擴充方式 | 受 function model 約束 | 可設定更完整的 Cloud Run 功能 |
+| Creation | Source, runtime, entry point | Container image or source |
+| Container control | Google builds it automatically | Developer has full control over the image |
+| Good fit | Single handler, event-driven | APIs, websites, complex applications |
+| Port | Managed by the platform and framework | The application uses `PORT` |
+| Extensibility | Constrained by the function model | Full range of Cloud Run features available |
 
-Function 最後仍會以 Cloud Run service 形式執行，因此要理解 revision、scaling、runtime identity 與 logging。
+A function ultimately still runs as a Cloud Run service, so you still need to understand revisions, scaling, runtime identity, and logging.
 
 ## BigQuery Remote Function Integration
 
-Cloud Run functions 可以作為 BigQuery Remote Function 的 HTTP endpoint：
+Cloud Run functions can act as the HTTP endpoint for a BigQuery Remote Function:
 
 ```text
 BigQuery SQL
@@ -130,15 +130,15 @@ Cloud Run function
 Python custom logic
 ```
 
-基本流程：
+The basic flow:
 
-1. 部署需要 authentication 的 HTTP function。
-2. 在 BigQuery 建立 Cloud resource connection。
-3. 把 Connection service account 授予 function Invoker 權限。
-4. 在 BigQuery 建立 Remote Function。
-5. 在 SQL 中呼叫 Remote Function。
+1. Deploy an HTTP function that requires authentication.
+2. Create a Cloud resource connection in BigQuery.
+3. Grant the connection's service account the Invoker role on the function.
+4. Create a Remote Function in BigQuery.
+5. Call the Remote Function from SQL.
 
-SQL 範例：
+Example SQL:
 
 ```sql
 CREATE OR REPLACE FUNCTION `PROJECT_ID.TKR101.remote_add`(
@@ -152,7 +152,7 @@ OPTIONS (
 );
 ```
 
-呼叫：
+Call it:
 
 ```sql
 SELECT
@@ -161,16 +161,16 @@ SELECT
 FROM UNNEST([20, 57, 78]) AS value;
 ```
 
-更新 function 的 Python 邏輯時，BigQuery function definition 通常不需要重建，但要重新測試 endpoint、IAM、request／response format 與錯誤處理。
+When you update the function's Python logic, the BigQuery function definition usually doesn't need to be rebuilt, but you should still retest the endpoint, IAM, request/response format, and error handling.
 
 ## Security Notes
 
-- 不要為了測試方便而長期開啟 unauthenticated access。
-- Runtime identity 與部署者 identity 分開。
-- Remote Function Connection service account 只授予必要的 Invoker 權限。
-- 避免把 request body 中的 secret 寫入 log。
-- 為外部呼叫設定 timeout、retry 與 rate limit。
-- Function 回應應保持穩定的 schema，方便下游處理。
+- Don't leave unauthenticated access enabled long-term just for testing convenience.
+- Keep the runtime identity separate from the deployer's identity.
+- Grant the Remote Function connection's service account only the Invoker role it needs.
+- Avoid logging secrets contained in the request body.
+- Set timeouts, retries, and rate limits for external calls.
+- Keep the function's response schema stable so downstream consumers can rely on it.
 
 ## Cleanup
 
@@ -180,7 +180,7 @@ gcloud functions delete tkr101-hello \
   --region=asia-east1
 ```
 
-刪除前確認 BigQuery Remote Function、Scheduler 或其他服務沒有再呼叫它。
+Before deleting, confirm that no BigQuery Remote Function, Scheduler, or other service still calls it.
 
 ## Further Reading
 

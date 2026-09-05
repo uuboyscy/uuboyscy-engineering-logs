@@ -4,11 +4,11 @@ sidebar_position: 5
 
 # IAM, Scaling, and Cleanup
 
-Cloud Run 的部署成功，不代表設計已經安全。Production 最常見的問題通常來自使用過大的 Service Account、公開 endpoint、無限制擴張、未設定 timeout，或測試資源忘記刪除。
+A successful Cloud Run deployment doesn't mean the design is secure. In production, the most common problems usually come from using an overly broad service account, a public endpoint, unbounded scaling, a missing timeout, or forgetting to delete test resources.
 
 ## Use a User-Managed Service Account
 
-Cloud Run runtime 建議使用專用的 user-managed Service Account：
+It's recommended that the Cloud Run runtime use a dedicated, user-managed service account:
 
 ```bash
 gcloud iam service-accounts create cloud-run-runtime \
@@ -16,13 +16,13 @@ gcloud iam service-accounts create cloud-run-runtime \
   --display-name="Cloud Run runtime identity"
 ```
 
-設定變數：
+Set a variable:
 
 ```bash
 RUNTIME_SA=cloud-run-runtime@PROJECT_ID.iam.gserviceaccount.com
 ```
 
-部署 Service 時指定：
+Specify it when deploying a Service:
 
 ```bash
 gcloud run deploy cloud-run-demo \
@@ -31,13 +31,13 @@ gcloud run deploy cloud-run-demo \
   --service-account="$RUNTIME_SA"
 ```
 
-不要在 Production 長期使用權限過大的 default service account。Notebook 課程中以 BigQuery 為例：
+Don't rely on an overly permissive default service account long-term in production. Using BigQuery as an example, the notebook covers:
 
-- 只讀取資料：評估 `roles/bigquery.dataViewer` 與執行 query 所需權限。
-- 需要寫入資料：才授予對應 Dataset 層級的 data editor 權限。
-- 需要建立或管理 job：另外評估 `roles/bigquery.jobUser`。
+- Read-only access: evaluate `roles/bigquery.dataViewer` and whatever permissions running queries requires.
+- Write access: only grant the corresponding dataset-level data editor role when it's actually needed.
+- Creating or managing jobs: separately evaluate `roles/bigquery.jobUser`.
 
-Cloud Run 自己的 deployment 權限與 runtime Service Account 的資料存取權限是兩件事，不要混在一起。
+Cloud Run's own deployment permissions and the runtime service account's data access permissions are two separate things — don't conflate them.
 
 ## Least Privilege Pattern
 
@@ -52,20 +52,20 @@ Cloud Run runtime SA
   └── Cloud Storage viewer/creator on selected buckets
 ```
 
-應用程式只拿它真正需要的權限。不要用 Project Owner 來解決 runtime permission error。
+The application should only get the permissions it actually needs. Don't reach for Project Owner just to work around a runtime permission error.
 
 ## Configure Scaling
 
-常見 scaling 設定：
+Common scaling settings:
 
-| Setting | 作用 |
+| Setting | Effect |
 | --- | --- |
-| Minimum instances | 保持一定數量的 warm instances，降低 cold start，但會增加成本 |
-| Maximum instances | 限制流量異常時的資源與下游壓力 |
-| Concurrency | 一個 instance 同時處理的 request 數量 |
-| CPU／Memory | 影響處理能力、啟動時間與費用 |
+| Minimum instances | Keeps a number of warm instances to reduce cold starts, at the cost of ongoing spend |
+| Maximum instances | Caps resource usage and downstream pressure during traffic spikes |
+| Concurrency | Number of requests a single instance handles at the same time |
+| CPU/Memory | Affects processing capacity, startup time, and cost |
 
-更新 Service 的 instance 上限：
+Update a Service's instance limits:
 
 ```bash
 gcloud run services update cloud-run-demo \
@@ -74,23 +74,23 @@ gcloud run services update cloud-run-demo \
   --max=10
 ```
 
-實際上限應配合：
+The actual cap should take into account:
 
-- 下游 Cloud SQL connection pool。
-- BigQuery quota。
-- 外部 API rate limit。
-- 單一 request 的 CPU／Memory 使用量。
-- 預期流量與成本上限。
+- The downstream Cloud SQL connection pool.
+- BigQuery quota.
+- External API rate limits.
+- CPU/memory usage per request.
+- Expected traffic and a cost ceiling.
 
 ## Timeout and Retry
 
-Service 與 Job 的 timeout 目的不同：
+Service and Job timeouts serve different purposes:
 
-- Service timeout：避免單一 HTTP request 長時間佔用資源。
-- Job task timeout：避免 batch task 無窮執行。
-- Retry：可能讓同一個 request 或 task 重新執行。
+- Service timeout: prevents a single HTTP request from occupying resources for too long.
+- Job task timeout: prevents a batch task from running forever.
+- Retry: may cause the same request or task to run again.
 
-設定 Job retry：
+Configure job retries:
 
 ```bash
 gcloud run jobs update tkr101-batch-job \
@@ -99,11 +99,11 @@ gcloud run jobs update tkr101-batch-job \
   --task-timeout=10m
 ```
 
-如果工作具有外部副作用，retry 前要確認 idempotency。付款、寄信、寫入外部系統或觸發下一個 Job 都不能只靠「失敗就重試」。
+If a job has external side effects, confirm idempotency before allowing retries. Payments, sending emails, writing to external systems, or triggering the next job can't just rely on "retry on failure."
 
 ## Logs and Monitoring
 
-查看 Service logs：
+View service logs:
 
 ```bash
 gcloud run services logs read cloud-run-demo \
@@ -111,7 +111,7 @@ gcloud run services logs read cloud-run-demo \
   --limit=100
 ```
 
-查看 Job logs：
+View job logs:
 
 ```bash
 gcloud run jobs logs read tkr101-batch-job \
@@ -119,28 +119,28 @@ gcloud run jobs logs read tkr101-batch-job \
   --limit=100
 ```
 
-監控時至少觀察：
+At minimum, monitor:
 
-- Request latency。
-- Error rate。
-- Instance count。
-- CPU／Memory usage。
-- Job success／failure。
-- Retry 次數。
-- 下游服務錯誤。
-- 成本與流量異常。
+- Request latency.
+- Error rate.
+- Instance count.
+- CPU/memory usage.
+- Job success/failure.
+- Retry count.
+- Downstream service errors.
+- Cost and traffic anomalies.
 
-不要在 log 中印出 API key、密碼、access token 或完整個人資料。
+Don't print API keys, passwords, access tokens, or full personal data into logs.
 
 ## Preview and Beta Features
 
-Notebook 課程提醒：看到 Preview 或 Beta 功能時，先閱讀限制、計費與服務條款，再決定是否用在 Production。測試功能可能有 quota、穩定性、API 相容性或支援範圍限制。
+A reminder from the notebook: when you encounter a Preview or Beta feature, read its limitations, billing, and terms of service before deciding whether to use it in production. Preview features may have quota, stability, API compatibility, or support limitations.
 
-不要以為「測試用」就可以無限制執行。仍然要設定 timeout、maximum instances、job retries 與成本監控。
+Don't assume "just for testing" means unlimited execution. You still need to set timeouts, maximum instances, job retries, and cost monitoring.
 
 ## Cleanup Checklist
 
-完成練習後，先列出資源：
+After finishing your practice, first list your resources:
 
 ```bash
 gcloud run services list --region=asia-east1
@@ -149,21 +149,21 @@ gcloud artifacts repositories list --location=asia-east1
 gcloud functions list --gen2 --region=asia-east1
 ```
 
-刪除 Service：
+Delete the Service:
 
 ```bash
 gcloud run services delete cloud-run-demo \
   --region=asia-east1
 ```
 
-刪除 Job：
+Delete the Job:
 
 ```bash
 gcloud run jobs delete tkr101-batch-job \
   --region=asia-east1
 ```
 
-刪除 function：
+Delete the function:
 
 ```bash
 gcloud functions delete tkr101-hello \
@@ -171,28 +171,28 @@ gcloud functions delete tkr101-hello \
   --region=asia-east1
 ```
 
-刪除 Artifact Registry repository 前，確認其中沒有其他 Service 或 Job 使用的 image：
+Before deleting an Artifact Registry repository, confirm no other Service or Job still uses images in it:
 
 ```bash
 gcloud artifacts repositories delete tkr101-repo \
   --location=asia-east1
 ```
 
-上述 delete 指令具有破壞性。Production 操作前先確認依賴、備份、保留政策與審核流程。
+The delete commands above are destructive. Before running them against production, confirm dependencies, backups, retention policy, and your review process.
 
 ## Production Checklist
 
-- [ ] 使用 user-managed runtime Service Account。
-- [ ] 對 GCS、BigQuery、Secret Manager 採最小權限。
-- [ ] Private service 預設要求 authentication。
-- [ ] Public service 有 rate limit、input validation 與 abuse protection。
-- [ ] Service 設定了合理的 min/max instances。
-- [ ] Job 設定 timeout、retry 與 parallelism。
-- [ ] Batch 工作具備 idempotency。
-- [ ] 新 image 使用可追蹤 tag，並透過 revision 漸進發布。
-- [ ] Log 不含 secret 或不必要的敏感資料。
-- [ ] 已設定成本監控與告警。
-- [ ] 已規劃 image、revision、Service 與 Job 的清理策略。
+- [ ] A user-managed runtime service account is in use.
+- [ ] Least privilege is applied to GCS, BigQuery, and Secret Manager.
+- [ ] A private service requires authentication by default.
+- [ ] A public service has rate limiting, input validation, and abuse protection.
+- [ ] The service has reasonable min/max instance settings.
+- [ ] The job has timeout, retry, and parallelism settings.
+- [ ] Batch work is idempotent.
+- [ ] New images use a traceable tag and are rolled out gradually via revisions.
+- [ ] Logs don't contain secrets or unnecessary sensitive data.
+- [ ] Cost monitoring and alerting are configured.
+- [ ] A cleanup strategy for images, revisions, Services, and Jobs is planned.
 
 ## Further Reading
 
