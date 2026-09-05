@@ -4,29 +4,29 @@ sidebar_position: 0
 
 # Introduction to BigQuery
 
-BigQuery 是 Google Cloud 提供的無伺服器（serverless）資料倉儲，適合用 SQL 分析大量資料。你不需要先建立 VM 或管理資料庫主機，只要準備好資料表，就能直接執行查詢。
+BigQuery is a serverless data warehouse provided by Google Cloud, built for analyzing large volumes of data with SQL. You don't need to provision a VM or manage a database server first — as soon as you have a table, you can start running queries.
 
-本章會沿著一個簡單的資料工程流程，從 Cloud Storage 上傳資料，到 BigQuery 查詢、成本控制，再延伸到 Remote Function 與 Gemini 整合。
+This chapter walks through a simple data engineering flow: uploading data from Cloud Storage, querying it in BigQuery, controlling cost, and then extending into Remote Function and Gemini integration.
 
 ## What Is BigQuery?
 
-BigQuery 主要處理分析型工作負載（OLAP），例如：
+BigQuery is designed mainly for analytical (OLAP) workloads, such as:
 
-- 統計每日銷售量與營收。
-- 分析使用者行為與轉換率。
-- 建立給 BI 報表或機器學習使用的資料集。
-- 查詢儲存在 Cloud Storage 的外部資料。
+- Tallying daily sales volume and revenue.
+- Analyzing user behavior and conversion rates.
+- Building datasets for BI reports or machine learning.
+- Querying external data stored in Cloud Storage.
 
-BigQuery 和 Cloud SQL 的用途不同：
+BigQuery and Cloud SQL serve different purposes:
 
-| 服務 | 適合的工作 | 常見查詢方式 |
+| Service | Best suited for | Typical query pattern |
 | --- | --- | --- |
-| Cloud SQL | 應用程式的交易資料庫（OLTP） | 單筆讀寫、交易、索引查詢 |
-| BigQuery | 大量資料分析（OLAP） | 聚合、Join、趨勢分析、批次處理 |
+| Cloud SQL | Transactional application database (OLTP) | Single-row reads/writes, transactions, indexed lookups |
+| BigQuery | Large-scale data analysis (OLAP) | Aggregation, joins, trend analysis, batch processing |
 
 ## BigQuery Resource Hierarchy
 
-BigQuery 常見的資源階層如下：
+BigQuery's typical resource hierarchy looks like this:
 
 ```text
 Google Cloud Project
@@ -38,73 +38,73 @@ Google Cloud Project
 
 ### Project
 
-Project 是 Google Cloud 的資源與帳務邊界。BigQuery job、Dataset 和儲存空間都會與 Project 的權限及計費設定有關。
+A project is Google Cloud's resource and billing boundary. BigQuery jobs, datasets, and storage are all tied to the project's permissions and billing settings.
 
 ### Dataset
 
-Dataset 是資料表、檢視表、模型與 Routine 的容器。建立 Dataset 時要先決定 Location，例如 `asia-east1`。
+A dataset is a container for tables, views, models, and routines. When you create a dataset, you must decide on a location up front, such as `asia-east1`.
 
-同一個查詢所使用的資料通常應放在相容的地理位置。Cloud Storage bucket、BigQuery Dataset、Connection 與相關模型若跨區域，可能無法連線，或產生額外的資料傳輸成本。
+Data used together in the same query should generally live in compatible geographic locations. If the Cloud Storage bucket, BigQuery dataset, connection, and related models span different regions, queries may fail to connect, or you may incur extra data transfer costs.
 
 ### Table
 
-BigQuery 的資料表常見有兩種：
+BigQuery has two common types of tables:
 
-- **Native table**：資料載入 BigQuery 管理的儲存空間，通常適合反覆查詢與正式分析。
-- **External table**：資料保留在 Cloud Storage，BigQuery 在查詢時讀取檔案，適合快速探索或尚未完成匯入的原始資料。
+- **Native table**: Data is loaded into BigQuery-managed storage, generally suited to repeated queries and production analysis.
+- **External table**: Data stays in Cloud Storage, and BigQuery reads the files at query time — suited to quick exploration or raw data that hasn't been fully imported yet.
 
 ## Native Table and External Table
 
-| 比較項目 | Native table | External table |
+| Comparison | Native table | External table |
 | --- | --- | --- |
-| 資料位置 | BigQuery managed storage | Cloud Storage 等外部來源 |
-| 查詢效能 | 通常較穩定 | 取決於外部檔案與來源 |
-| 資料載入 | 需要執行 load job | 不必先搬入 BigQuery |
-| 適合情境 | Silver、Gold、正式報表 | Bronze、探索、暫時性資料 |
+| Data location | BigQuery managed storage | External source such as Cloud Storage |
+| Query performance | Generally more stable | Depends on the external files and source |
+| Loading data | Requires running a load job | No need to move data into BigQuery first |
+| Best suited for | Silver, Gold, production reporting | Bronze, exploration, temporary data |
 
-External table 並不等於把檔案複製進 BigQuery。建立的是一個 Schema 與 URI 的查詢入口，原始檔案仍然留在 Cloud Storage。
+An external table doesn't copy files into BigQuery. It creates a query entry point defined by a schema and a URI, while the original files stay in Cloud Storage.
 
 ## A Simple Data Engineering Flow
 
-本章使用以下流程作為練習：
+This chapter uses the following flow as a hands-on exercise:
 
 ```text
 Local CSV
    │
    ▼
-Cloud Storage bucket（Bronze / Raw）
+Cloud Storage bucket (Bronze / Raw)
    │
-   ├── External table：快速探索
+   ├── External table: quick exploration
    │
    └── Load job
           │
           ▼
-BigQuery native table（Silver）
+BigQuery native table (Silver)
           │
           ▼
-View / aggregated table（Gold）
+View / aggregated table (Gold)
 ```
 
 ## What You Will Learn
 
-1. 建立 BigQuery Dataset 與 Cloud Storage bucket。
-2. 載入 CSV 到 Native table。
-3. 建立 CSV、JSON Lines 與 Hive partitioned External table。
-4. 使用 Standard SQL 查詢並控制掃描量。
-5. 使用 BigQuery Connection 呼叫 Cloud Run functions 的 Remote Function。
-6. 透過 Remote Model 與 `ML.GENERATE_TEXT` 讓 SQL 呼叫 Gemini。
-7. 用 Bronze、Silver、Gold 思考資料管線的責任邊界。
+1. Create a BigQuery dataset and a Cloud Storage bucket.
+2. Load a CSV file into a native table.
+3. Create CSV, JSON Lines, and Hive-partitioned external tables.
+4. Query with Standard SQL and control the amount of data scanned.
+5. Use a BigQuery connection to call a Remote Function backed by Cloud Run functions.
+6. Have SQL call Gemini through a remote model and `ML.GENERATE_TEXT`.
+7. Use Bronze, Silver, and Gold to reason about the boundaries of responsibility in a data pipeline.
 
 ## Prerequisites
 
-開始前請準備：
+Before you start, make sure you have:
 
-- 一個已啟用 billing 的 Google Cloud Project。
-- 已安裝並登入 Google Cloud CLI（`gcloud`）。
-- 對 SQL 的 `SELECT`、`WHERE`、`GROUP BY` 有基本認識。
-- 了解 GCS、Cloud Run functions 與 BQML 的基本用途。
+- A Google Cloud project with billing enabled.
+- The Google Cloud CLI (`gcloud`) installed and authenticated.
+- A basic understanding of SQL's `SELECT`, `WHERE`, and `GROUP BY`.
+- Familiarity with the basic purpose of GCS, Cloud Run functions, and BQML.
 
-> 實際操作雲端服務可能產生費用。請在 Project 中設定 Budget Alert，並在練習結束後刪除不再需要的資源。Budget Alert 是通知機制，不會自動停止服務。
+> Working with real cloud services can incur charges. Set a budget alert on your project and delete any resources you no longer need once you're done practicing. A budget alert is a notification mechanism — it does not automatically stop services.
 
 ## Further Reading
 
