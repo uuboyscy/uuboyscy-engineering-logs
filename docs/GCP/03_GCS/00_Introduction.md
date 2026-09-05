@@ -70,27 +70,11 @@ GCS Bucket (Bronze / Raw)
 
 Keeping the original files has a benefit: when field definitions, KPIs, or transformation logic change, you can re-run the pipeline from the raw data instead of having to re-fetch it from the source system.
 
-## Storage Classes
-
-GCS offers different storage classes based on how often data is accessed:
-
-| Storage class | Suited for | Watch out for |
-| --- | --- | --- |
-| Standard | Frequent access, online services, active data | Higher storage cost, but more flexible retrieval |
-| Nearline | Accessed roughly once a month or less | Has a minimum storage duration and retrieval fees |
-| Coldline | Accessed roughly once a quarter or less | Good for backups and infrequently accessed data |
-| Archive | Accessed roughly once a year or less | Higher retrieval and operation costs; suited to long-term retention |
-
-A storage class is really just a choice of cost and access pattern. Nearline, Coldline, and Archive don't mean the data can't be read immediately, but reading it or deleting it early may incur extra charges.
-
 ## What You Will Learn
 
 1. Create a bucket with the correct location and access control.
 2. Manage objects using the Console and `gcloud storage`.
 3. Understand virtual folders, object metadata, and one-way sync.
-4. Use IAM, uniform bucket-level access, and public access prevention.
-5. Control cost with storage classes, lifecycle management, and deletion policies.
-6. Connect GCS to BigQuery external tables to build a data pipeline.
 
 ## Prerequisites
 

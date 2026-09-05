@@ -70,27 +70,11 @@ GCS Bucket（Bronze / Raw）
 
 保留原始檔案的好處是：當欄位定義、KPI 或轉換邏輯改變時，可以從原始資料重新執行管線，而不用回頭向來源系統重新抓取。
 
-## Storage Class（儲存類別）
-
-GCS 會依照資料的存取頻率提供不同 Storage Class：
-
-| Storage class | 適合情境 | 需要注意 |
-| --- | --- | --- |
-| Standard | 頻繁存取、線上服務、活躍資料 | 儲存成本較高，但取用彈性較好 |
-| Nearline | 大約每月取用一次或更少 | 有最低儲存期間與資料取用費用 |
-| Coldline | 大約每季取用一次或更少 | 適合備份與低頻資料 |
-| Archive | 大約每年取用一次或更少 | 取用與操作成本較高，適合長期保存 |
-
-Storage class 只是一個成本與取用模式的選擇。Nearline、Coldline 與 Archive 並不代表資料不能立即讀取，但讀取與提早刪除可能有額外費用。
-
 ## 你將學到什麼
 
 1. 建立具有正確 Location 與存取控制的 Bucket。
 2. 使用 Console 與 `gcloud storage` 管理 Object。
 3. 理解虛擬資料夾、Object metadata 與單向同步。
-4. 使用 IAM、Uniform bucket-level access 與 Public access prevention。
-5. 使用 Storage Class、Lifecycle Management 與刪除策略控制成本。
-6. 將 GCS 與 BigQuery External Table 串接成資料管線。
 
 ## 事前準備
 
