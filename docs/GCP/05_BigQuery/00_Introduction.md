@@ -6,7 +6,7 @@ sidebar_position: 0
 
 BigQuery is a serverless data warehouse provided by Google Cloud, built for analyzing large volumes of data with SQL. You don't need to provision a VM or manage a database server first; as soon as you have a table, you can start running queries.
 
-This chapter walks through a simple data engineering flow: uploading data from Cloud Storage, querying it in BigQuery, controlling cost, and then extending into Remote Function and Gemini integration.
+This chapter walks through a simple data engineering flow: uploading data from Cloud Storage, querying it in BigQuery, and then extending into Remote Function and Gemini integration.
 
 ## What Is BigQuery?
 
@@ -90,10 +90,9 @@ View / aggregated table (Gold)
 1. Create a BigQuery dataset and a Cloud Storage bucket.
 2. Load a CSV file into a native table.
 3. Create CSV, JSON Lines, and Hive-partitioned external tables.
-4. Query with Standard SQL and control the amount of data scanned.
-5. Use a BigQuery connection to call a Remote Function backed by Cloud Run functions.
-6. Have SQL call Gemini through a remote model and `ML.GENERATE_TEXT`.
-7. Use Bronze, Silver, and Gold to reason about the boundaries of responsibility in a data pipeline.
+4. Use a BigQuery connection to call a Remote Function backed by Cloud Run functions.
+5. Have SQL call Gemini through a remote model and `ML.GENERATE_TEXT`.
+6. Use Bronze, Silver, and Gold to reason about the boundaries of responsibility in a data pipeline.
 
 ## Prerequisites
 

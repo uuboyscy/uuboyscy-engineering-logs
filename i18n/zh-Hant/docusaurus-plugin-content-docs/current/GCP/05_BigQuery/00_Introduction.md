@@ -6,7 +6,7 @@ sidebar_position: 0
 
 BigQuery 是 Google Cloud 提供的無伺服器（serverless）資料倉儲，適合用 SQL 分析大量資料。你不需要先建立 VM 或管理資料庫主機，只要準備好資料表，就能直接執行查詢。
 
-本章會沿著一個簡單的資料工程流程，從 Cloud Storage 上傳資料，到 BigQuery 查詢、成本控制，再延伸到 Remote Function 與 Gemini 整合。
+本章會沿著一個簡單的資料工程流程，從 Cloud Storage 上傳資料，到 BigQuery 查詢，再延伸到 Remote Function 與 Gemini 整合。
 
 ## What Is BigQuery?
 
@@ -90,10 +90,9 @@ View / aggregated table（Gold）
 1. 建立 BigQuery Dataset 與 Cloud Storage bucket。
 2. 載入 CSV 到 Native table。
 3. 建立 CSV、JSON Lines 與 Hive partitioned External table。
-4. 使用 Standard SQL 查詢並控制掃描量。
-5. 使用 BigQuery Connection 呼叫 Cloud Run functions 的 Remote Function。
-6. 透過 Remote Model 與 `ML.GENERATE_TEXT` 讓 SQL 呼叫 Gemini。
-7. 用 Bronze、Silver、Gold 思考資料管線的責任邊界。
+4. 使用 BigQuery Connection 呼叫 Cloud Run functions 的 Remote Function。
+5. 透過 Remote Model 與 `ML.GENERATE_TEXT` 讓 SQL 呼叫 Gemini。
+6. 用 Bronze、Silver、Gold 思考資料管線的責任邊界。
 
 ## Prerequisites
 
