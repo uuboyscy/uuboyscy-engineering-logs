@@ -70,7 +70,7 @@ sidebar_position: 11
     ```
 
     ```
-    # df (read from CSV) — empty cells become NaN
+    # df (read from CSV): empty cells become NaN
     employee_id     object
     name            object
     department      object
@@ -78,7 +78,7 @@ sidebar_position: 11
     email           object
     dtype: object
 
-    # df_none (created in Python) — None in numeric column also becomes NaN
+    # df_none (created in Python): None in numeric column also becomes NaN
     employee_id     object
     name            object
     department      object
@@ -108,8 +108,8 @@ sidebar_position: 11
 ```python
 import numpy as np
 
-print(1 + np.nan)         # nan  — any arithmetic with NaN returns NaN
-print(np.nan == np.nan)   # False — NaN is not equal to itself
+print(1 + np.nan)         # nan: any arithmetic with NaN returns NaN
+print(np.nan == np.nan)   # False: NaN is not equal to itself
 print(np.nan > 0)         # False
 print(np.nan < 0)         # False
 
@@ -144,14 +144,14 @@ df_bad = pd.DataFrame({
     "name": ["Alice Chen", "Bob Smith", "Carol White"],
     "salary": [95000, 0, 68000],   # 0 means "missing", but distorts stats
 })
-print("Mean salary (with 0):", df_bad["salary"].mean())  # 54333.33 — wrong!
+print("Mean salary (with 0):", df_bad["salary"].mean())  # 54333.33 (wrong!)
 
 # Good practice: use NaN for missing salary
 df_good = pd.DataFrame({
     "name": ["Alice Chen", "Bob Smith", "Carol White"],
     "salary": [95000, None, 68000],  # NaN for missing
 })
-print("Mean salary (with NaN):", df_good["salary"].mean())  # 81500.0 — correct
+print("Mean salary (with NaN):", df_good["salary"].mean())  # 81500.0 (correct)
 ```
 
 ```
@@ -321,7 +321,7 @@ print(df)
     ```
 
     ```
-    # dropna(how="all") — keeps rows that have at least one non-NaN value
+    # dropna(how="all"): keeps rows that have at least one non-NaN value
       employee_id         name   department   salary                    email
     0        E001   Alice Chen  Engineering  95000.0   alice.chen@company.com
     1        E002    Bob Smith    Marketing  72000.0                      NaN
@@ -329,7 +329,7 @@ print(df)
     3        E004         None         None  55000.0                     None
     4        E005  Eve Johnson        Sales      NaN  eve.johnson@company.com
 
-    # dropna(subset=["name", "salary"]) — drops rows missing name OR salary
+    # dropna(subset=["name", "salary"]): drops rows missing name OR salary
       employee_id         name   department   salary                    email
     0        E001   Alice Chen  Engineering  95000.0   alice.chen@company.com
     1        E002    Bob Smith    Marketing  72000.0                      NaN
@@ -344,7 +344,7 @@ print(df)
     ```
 
     ```
-    # Row 3 (E004) has 3 non-NaN values (employee_id, name... wait — None counts as NaN)
+    # Row 3 (E004) has 3 non-NaN values (employee_id, name... wait, None counts as NaN)
     # employee_id is always filled; let's count per row:
     #   E001: 5 non-NaN  ✓
     #   E002: 4 non-NaN  ✓  (email is NaN)
