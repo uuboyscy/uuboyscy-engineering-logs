@@ -27,7 +27,7 @@ A Cloud Run Service is a good fit for serving an HTTP API, website, webhook, or 
    - Maximum instances: set a reasonable cap to avoid unbounded scaling during traffic spikes
 8. Choose an authentication setting:
    - **Require authentication**: requires IAM authentication, suitable for internal APIs.
-   - **Allow unauthenticated invocations**: a public endpoint — only use this once you've confirmed the data and API are safe to expose publicly.
+   - **Allow unauthenticated invocations**: a public endpoint; only use this once you've confirmed the data and API are safe to expose publicly.
 9. Click **Create**.
 
 ## Step 2: Deploy with `gcloud`

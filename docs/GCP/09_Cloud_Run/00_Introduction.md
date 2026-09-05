@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Introduction to Cloud Run
 
-Cloud Run is a fully managed container platform from Google Cloud that can run web services, APIs, batch jobs, and event-driven programs. You only need to provide a container image or source code — there is no need to manage VMs, operating systems, or a Kubernetes cluster yourself.
+Cloud Run is a fully managed container platform from Google Cloud that can run web services, APIs, batch jobs, and event-driven programs. You only need to provide a container image or source code; there is no need to manage VMs, operating systems, or a Kubernetes cluster yourself.
 
 This chapter follows a path that is common in data engineering, moving from Docker images, Artifact Registry, and Cloud Run Services and Jobs, all the way to Cloud Run functions, IAM, and BigQuery Remote Functions.
 

@@ -16,7 +16,7 @@ A Cloud Run Job is a good fit for container workloads that "start and finish," s
 | Success condition | Responds to requests | Exit code `0` |
 | Failure handling | Request errors, revisions | Task retries, execution failure |
 
-If your program is essentially a one-off Python script, don't wrap it as a Service that waits for requests just to run it — using a Job is usually clearer.
+If your program is essentially a one-off Python script, don't wrap it as a Service that waits for requests just to run it; using a Job is usually clearer.
 
 ## Step 1: Prepare a Job Container
 

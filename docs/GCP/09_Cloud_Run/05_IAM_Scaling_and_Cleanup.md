@@ -37,7 +37,7 @@ Don't rely on an overly permissive default service account long-term in producti
 - Write access: only grant the corresponding dataset-level data editor role when it's actually needed.
 - Creating or managing jobs: separately evaluate `roles/bigquery.jobUser`.
 
-Cloud Run's own deployment permissions and the runtime service account's data access permissions are two separate things — don't conflate them.
+Cloud Run's own deployment permissions and the runtime service account's data access permissions are two separate things: don't conflate them.
 
 ## Least Privilege Pattern
 
