@@ -92,7 +92,6 @@ View / aggregated table（Gold）
 3. 建立 CSV、JSON Lines 與 Hive partitioned External table。
 4. 使用 BigQuery Connection 呼叫 Cloud Run functions 的 Remote Function。
 5. 透過 Remote Model 與 `ML.GENERATE_TEXT` 讓 SQL 呼叫 Gemini。
-6. 用 Bronze、Silver、Gold 思考資料管線的責任邊界。
 
 ## Prerequisites
 

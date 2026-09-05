@@ -92,7 +92,6 @@ View / aggregated table (Gold)
 3. Create CSV, JSON Lines, and Hive-partitioned external tables.
 4. Use a BigQuery connection to call a Remote Function backed by Cloud Run functions.
 5. Have SQL call Gemini through a remote model and `ML.GENERATE_TEXT`.
-6. Use Bronze, Silver, and Gold to reason about the boundaries of responsibility in a data pipeline.
 
 ## Prerequisites
 
