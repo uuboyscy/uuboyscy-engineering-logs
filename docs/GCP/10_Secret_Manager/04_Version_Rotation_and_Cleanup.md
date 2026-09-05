@@ -39,7 +39,7 @@ New secret version ──▶ DATABASE_PASSWORD:3
 New deployment      ──▶ DATABASE_PASSWORD:3
 ```
 
-Don't destroy version 2 before starting to deploy version 3 — otherwise you have no immediate rollback option if something goes wrong.
+Don't destroy version 2 before starting to deploy version 3; otherwise you have no immediate rollback option if something goes wrong.
 
 ## Step 1: Add a New Version
 
@@ -102,7 +102,7 @@ gcloud secrets versions destroy 2 \
   --secret=DATABASE_PASSWORD
 ```
 
-Destroying makes the secret material unrecoverable. In production, this should be protected by a two-person review, ticket, or approval process — never run it without confirming consumers first.
+Destroying makes the secret material unrecoverable. In production, this should be protected by a two-person review, ticket, or approval process. Never run it without confirming consumers first.
 
 ## `latest` vs. Numeric Version
 
@@ -138,7 +138,7 @@ Before automating rotation, define:
 - How long before the old version is disabled and destroyed.
 - What minimal permissions the rotation worker itself needs.
 
-Adding a new version in Secret Manager doesn't mean the external service's API key has actually been rotated — both sides need to be updated.
+Adding a new version in Secret Manager doesn't mean the external service's API key has actually been rotated; both sides need to be updated.
 
 ## Temporary Secret Cleanup
 

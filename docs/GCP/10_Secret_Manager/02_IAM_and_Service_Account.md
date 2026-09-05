@@ -13,7 +13,7 @@ Secret Manager's security boundary is primarily enforced by IAM. Design your set
 | `roles/secretmanager.secretAccessor` | Read Secret versions |
 | `roles/secretmanager.secretVersionAdder` | Add Secret versions |
 | `roles/secretmanager.secretVersionManager` | Manage Secret versions, e.g. enable, disable, destroy |
-| `roles/secretmanager.viewer` | View metadata — does not grant access to the secret value |
+| `roles/secretmanager.viewer` | View metadata; does not grant access to the secret value |
 | `roles/secretmanager.admin` | Manage Secrets and versions; should be limited to administrators |
 
 Don't grant `roles/owner` or `roles/secretmanager.admin` to an application in production just to "get it working."
@@ -95,7 +95,7 @@ VM access scope ───────▶ limits which API scopes the VM can requ
 Service Account IAM ───▶ determines the actual permissions on the Secret resource
 ```
 
-`Allow full access to all Cloud APIs` only removes the scope-level API restriction — it doesn't automatically grant IAM permission to read a Secret. Production should use a dedicated Service Account with the minimal role.
+`Allow full access to all Cloud APIs` only removes the scope-level API restriction; it doesn't automatically grant IAM permission to read a Secret. Production should use a dedicated Service Account with the minimal role.
 
 ## Audit Logs
 
@@ -112,7 +112,7 @@ In Logs Explorer, you can use a filter like:
 protoPayload.methodName="google.cloud.secretmanager.v1.SecretManagerService.AccessSecretVersion"
 ```
 
-Audit logs only help with tracing and investigation — they don't replace IAM, network boundaries, or secret rotation.
+Audit logs only help with tracing and investigation; they don't replace IAM, network boundaries, or secret rotation.
 
 ## Least Privilege Checklist
 

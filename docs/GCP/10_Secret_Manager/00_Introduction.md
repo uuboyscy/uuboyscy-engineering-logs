@@ -52,7 +52,7 @@ A version can be:
 - **Access**: read its content.
 - **Disable**: suspend use, but it can be restored.
 - **Enable**: re-enable it.
-- **Destroy**: permanently destroy the secret material — this cannot be undone.
+- **Destroy**: permanently destroy the secret material; this cannot be undone.
 
 ### `latest` and Numeric Versions
 
@@ -101,7 +101,7 @@ Secret Manager provides:
 - Automatic or user-managed replication.
 - Integration with Cloud Run, Cloud Run functions, GKE, Compute Engine, and other services.
 
-Secret Manager is not a complete application configuration system. Non-sensitive configuration can still use regular config files, environment variables, or a Runtime Config-style tool — it doesn't all need to live in Secret Manager.
+Secret Manager is not a complete application configuration system. Non-sensitive configuration can still use regular config files, environment variables, or a Runtime Config-style tool; it doesn't all need to live in Secret Manager.
 
 ## Recommended Architecture
 

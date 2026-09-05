@@ -135,7 +135,7 @@ gcloud secrets versions access latest \
   --secret=SECRET_ID
 ```
 
-These commands print plaintext to the terminal. This is only suitable for verifying the workflow with placeholder values — in production, never write this output to shell history, CI logs, or application logs.
+These commands print plaintext to the terminal. This is only suitable for verifying the workflow with placeholder values; in production, never write this output to shell history, CI logs, or application logs.
 
 ## Step 8: Read a Secret in Python
 
@@ -167,7 +167,7 @@ api_key = access_secret(
     version="1",
 )
 
-# Pass api_key to whatever client needs it — don't print(api_key)
+# Pass api_key to whatever client needs it; don't print(api_key)
 ```
 
 ## Console Access Flow
