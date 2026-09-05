@@ -13,7 +13,7 @@ GCS is commonly used as the landing zone for raw data in a pipeline, while BigQu
 | External table | Files stay in GCS | Quick exploration, Bronze, files that keep growing |
 | Load to native table | Data moves into BigQuery storage | Repeated queries, Silver/Gold, stable analysis |
 
-An external table creates a query entry point — it doesn't copy the files into BigQuery. The original files remain subject to GCS IAM, lifecycle rules, and object management.
+An external table creates a query entry point; it doesn't copy the files into BigQuery. The original files remain subject to GCS IAM, lifecycle rules, and object management.
 
 ## Recommended Folder Prefixes
 
@@ -224,11 +224,11 @@ Check:
 
 ### CSV columns are shifted
 
-Check the CSV's delimiter, quoting, header, and newline settings. Don't rely on auto-detect alone for production data — specify the schema explicitly when creating the external table or load job.
+Check the CSV's delimiter, quoting, header, and newline settings. Don't rely on auto-detect alone for production data: specify the schema explicitly when creating the external table or load job.
 
 ### New files are not included
 
-Confirm that the new object name matches the external table's URI or wildcard. An external table only reads data covered by its URI — it doesn't automatically search the entire bucket.
+Confirm that the new object name matches the external table's URI or wildcard. An external table only reads data covered by its URI; it doesn't automatically search the entire bucket.
 
 ### Query is slow or expensive
 

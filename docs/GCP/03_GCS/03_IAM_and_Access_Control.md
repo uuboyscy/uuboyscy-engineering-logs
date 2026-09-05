@@ -89,7 +89,7 @@ VM access scope     ──▶  Limits which scopes the VM can request from Googl
 Service Account IAM ──▶  Determines which resource permissions that identity is actually granted
 ```
 
-`Allow full access to all Cloud APIs` only means the scope doesn't restrict which API categories can be requested — it doesn't mean the service account automatically has permission on every bucket. Modern GCP design should prioritize using a specific service account with the minimum necessary IAM role, and then set the scope according to the service's needs.
+`Allow full access to all Cloud APIs` only means the scope doesn't restrict which API categories can be requested; it doesn't mean the service account automatically has permission on every bucket. Modern GCP design should prioritize using a specific service account with the minimum necessary IAM role, and then set the scope according to the service's needs.
 
 ## Public Access Prevention
 
@@ -104,7 +104,7 @@ For buckets containing raw data, user data, transaction data, or backups, keep t
 
 ## When Is Public Access Appropriate?
 
-Product images, public documents, or static website assets may need public read access, but you should use a dedicated bucket or CDN setup — don't make a bucket that also contains raw data public.
+Product images, public documents, or static website assets may need public read access, but you should use a dedicated bucket or CDN setup: don't make a bucket that also contains raw data public.
 
 If you really need to create a publicly readable bucket, first confirm:
 

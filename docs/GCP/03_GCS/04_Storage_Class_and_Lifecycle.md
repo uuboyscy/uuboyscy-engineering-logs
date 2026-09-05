@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Storage Class and Lifecycle Management
 
-GCS cost doesn't just depend on file size — it's also affected by storage class, data retrieval, number of operations, network transfer, and retention period. Storage class addresses "which access pattern the data normally lives under," while lifecycle management addresses "under what conditions data gets transitioned or deleted."
+GCS cost doesn't just depend on file size; it's also affected by storage class, data retrieval, number of operations, network transfer, and retention period. Storage class addresses "which access pattern the data normally lives under," while lifecycle management addresses "under what conditions data gets transitioned or deleted."
 
 ## Choose a Storage Class
 
@@ -15,7 +15,7 @@ GCS cost doesn't just depend on file size — it's also affected by storage clas
 | Coldline | Backups or disaster-recovery data accessed roughly once a quarter | Even higher retrieval cost, usually a 90-day minimum storage duration |
 | Archive | Compliance or historical data accessed less than once a year | High retrieval and operation costs, usually a 365-day minimum storage duration |
 
-Actual pricing, minimum storage duration, and location support can change over time — check the latest pricing page before making a production decision.
+Actual pricing, minimum storage duration, and location support can change over time, so check the latest pricing page before making a production decision.
 
 ## Set a Default Storage Class
 
@@ -112,7 +112,7 @@ Before deleting, answer:
 - Is object versioning enabled, meaning older versions are still retained?
 - Does it need to be backed up first or handed off to an archive policy?
 
-Recent versions of Cloud Storage may also use soft delete. A successful delete command doesn't necessarily mean the data is instantly and completely unrecoverable or that costs drop to zero right away — check the latest deletion and pricing documentation.
+Recent versions of Cloud Storage may also use soft delete. A successful delete command doesn't necessarily mean the data is instantly and completely unrecoverable or that costs drop to zero right away, so check the latest deletion and pricing documentation.
 
 ## Delete Objects and the Bucket
 
@@ -134,7 +134,7 @@ A bucket must be empty before it can be deleted. Once you've confirmed there's n
 gcloud storage rm --recursive gs://BUCKET_NAME
 ```
 
-> `--recursive` is destructive. Don't copy this command directly against a production bucket — use a dry run first, scope it to a specific prefix, and have the owner confirm the scope.
+> `--recursive` is destructive. Don't copy this command directly against a production bucket: use a dry run first, scope it to a specific prefix, and have the owner confirm the scope.
 
 ## Cost Control Checklist
 

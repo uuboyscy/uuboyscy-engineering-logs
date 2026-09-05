@@ -38,7 +38,7 @@ An object is the actual stored file, made up of the data itself, a name, and met
 landing/2026/06/sell.csv
 ```
 
-But in a typical bucket, the `/` is just part of the object name — it doesn't represent a real folder the way a traditional file system does.
+But in a typical bucket, the `/` is just part of the object name: it doesn't represent a real folder the way a traditional file system does.
 
 ## GCS and Google Drive Are Different
 
@@ -50,7 +50,7 @@ But in a typical bucket, the `/` is just part of the object name — it doesn't 
 | Data handling | Mostly manual | Suited to automation and large volumes of data |
 | Cost model | Based on Workspace plan | Based on storage, operations, network, and data retrieval |
 
-GCS is designed for programs and cloud services to read and write data — you shouldn't design every workflow around it as if it were a regular user hard drive.
+GCS is designed for programs and cloud services to read and write data; you shouldn't design every workflow around it as if it were a regular user hard drive.
 
 ## GCS in a Data Pipeline
 
@@ -81,7 +81,7 @@ GCS offers different storage classes based on how often data is accessed:
 | Coldline | Accessed roughly once a quarter or less | Good for backups and infrequently accessed data |
 | Archive | Accessed roughly once a year or less | Higher retrieval and operation costs; suited to long-term retention |
 
-A storage class is really just a choice of cost and access pattern. Nearline, Coldline, and Archive don't mean the data can't be read immediately — but reading it or deleting it early may incur extra charges.
+A storage class is really just a choice of cost and access pattern. Nearline, Coldline, and Archive don't mean the data can't be read immediately, but reading it or deleting it early may incur extra charges.
 
 ## What You Will Learn
 
