@@ -25,7 +25,7 @@ External table query performance can be lower than native tables. Don't build ev
 
 ## Step 1: Create a CSV External Table in the Console
 
-1. Open BigQuery and find the `TKR101` dataset.
+1. Open BigQuery and find the `tkr101` dataset.
 2. Click **More** → **Create table** next to the dataset.
 3. For the source, select **Google Cloud Storage**.
 4. Select `gs://BUCKET_NAME/landing/sell.csv`.
@@ -44,7 +44,7 @@ Once created, Explorer will mark it as an external table. You can use Preview to
 ## Step 2: Create a CSV External Table with SQL
 
 ```sql
-CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.TKR101.sales_external`
+CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.tkr101.sales_external`
 (
   product_id STRING,
   product_name STRING,
@@ -65,7 +65,7 @@ SELECT
   category,
   COUNT(*) AS product_count,
   SUM(price) AS total_price
-FROM `PROJECT_ID.TKR101.sales_external`
+FROM `PROJECT_ID.tkr101.sales_external`
 GROUP BY category
 ORDER BY total_price DESC;
 ```
@@ -91,7 +91,7 @@ Don't save the whole file as a single JSON array and upload it as if it were JSO
 Create a JSON Lines external table:
 
 ```sql
-CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.TKR101.sales_json_external`
+CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.tkr101.sales_json_external`
 (
   product_id STRING,
   product_name STRING,
@@ -119,7 +119,7 @@ gs://BUCKET_NAME/daily/dt=2026-06-29/sell.csv
 ## Step 5: Create a Hive-Partitioned External Table
 
 ```sql
-CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.TKR101.daily_sales_external`
+CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.tkr101.daily_sales_external`
 (
   product_id STRING,
   product_name STRING,
@@ -145,7 +145,7 @@ SELECT
   category,
   COUNT(*) AS product_count,
   SUM(price) AS total_price
-FROM `PROJECT_ID.TKR101.daily_sales_external`
+FROM `PROJECT_ID.tkr101.daily_sales_external`
 WHERE dt BETWEEN DATE '2026-06-27' AND DATE '2026-06-29'
 GROUP BY dt, category
 ORDER BY dt, total_price DESC;
@@ -171,13 +171,13 @@ Before creating an external table, check each of the following:
 Once the data is confirmed to be stable, you can write the query results into a native table:
 
 ```sql
-CREATE OR REPLACE TABLE `PROJECT_ID.TKR101.sales_cleaned` AS
+CREATE OR REPLACE TABLE `PROJECT_ID.tkr101.sales_cleaned` AS
 SELECT
   CAST(product_id AS STRING) AS product_id,
   product_name,
   category,
   SAFE_CAST(price AS INT64) AS price
-FROM `PROJECT_ID.TKR101.sales_external`
+FROM `PROJECT_ID.tkr101.sales_external`
 WHERE product_id IS NOT NULL;
 ```
 

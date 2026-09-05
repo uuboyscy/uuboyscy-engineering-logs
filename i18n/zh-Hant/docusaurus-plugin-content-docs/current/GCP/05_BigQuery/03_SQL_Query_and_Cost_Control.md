@@ -13,7 +13,7 @@ SELECT
   product_id,
   product_name,
   price
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 WHERE category = 'Computer'
 ORDER BY price DESC;
 ```
@@ -33,21 +33,21 @@ project_id.dataset_id.table_id
 ```sql
 -- 不建議：會讀取不需要的欄位
 SELECT *
-FROM `PROJECT_ID.TKR101.sales`;
+FROM `PROJECT_ID.tkr101.sales`;
 
 -- 建議：只讀取需要的欄位
 SELECT
   product_id,
   category,
   price
-FROM `PROJECT_ID.TKR101.sales`;
+FROM `PROJECT_ID.tkr101.sales`;
 ```
 
 `SELECT * EXCEPT` 適合欄位很多，但只想排除少數欄位的情況：
 
 ```sql
 SELECT * EXCEPT(product_name)
-FROM `PROJECT_ID.TKR101.sales`;
+FROM `PROJECT_ID.tkr101.sales`;
 ```
 
 ## Aggregation
@@ -58,7 +58,7 @@ SELECT
   COUNT(*) AS product_count,
   SUM(price) AS total_price,
   AVG(price) AS average_price
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 GROUP BY category
 HAVING COUNT(*) >= 1
 ORDER BY total_price DESC;
@@ -72,7 +72,7 @@ ORDER BY total_price DESC;
 SELECT
   product_id,
   SAFE_CAST(price AS NUMERIC) AS price_numeric
-FROM `PROJECT_ID.TKR101.sales_external`
+FROM `PROJECT_ID.tkr101.sales_external`
 WHERE product_id IS NOT NULL;
 ```
 
@@ -90,7 +90,7 @@ SELECT
     PARTITION BY category
     ORDER BY price DESC
   ) AS category_rank
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 QUALIFY category_rank = 1;
 ```
 
@@ -130,7 +130,7 @@ bq query \
   --use_legacy_sql=false \
   --dry_run \
   'SELECT category, COUNT(*) AS product_count
-   FROM `PROJECT_ID.TKR101.sales`
+   FROM `PROJECT_ID.tkr101.sales`
    GROUP BY category'
 ```
 
@@ -145,7 +145,7 @@ bq query \
   --use_legacy_sql=false \
   --maximum_bytes_billed=100000000 \
   'SELECT COUNT(*)
-   FROM `PROJECT_ID.TKR101.sales`'
+   FROM `PROJECT_ID.tkr101.sales`'
 ```
 
 上例的上限是 100,000,000 bytes。請依自己的工作負載與成本策略設定，不要把它當成查詢正確性的保證。

@@ -113,7 +113,7 @@ A "folder" in GCS is really just a prefix on the object name. `landing/` looks l
 1. Open **BigQuery**.
 2. In Explorer, find your current project and click **More** next to it.
 3. Select **Create dataset**.
-4. Enter `TKR101` as the dataset ID.
+4. Enter `tkr101` as the dataset ID.
 5. Set the data location to `asia-east1`.
 6. Click **Create dataset**.
 
@@ -122,16 +122,16 @@ A "folder" in GCS is really just a prefix on the object name. `landing/` looks l
 ```bash
 bq --location=asia-east1 mk \
   --dataset \
-  PROJECT_ID:TKR101
+  PROJECT_ID:tkr101
 ```
 
 ## Step 7: Load a Native Table in the Console
 
-1. Next to the `TKR101` dataset, click **More** → **Create table**.
+1. Next to the `tkr101` dataset, click **More** → **Create table**.
 2. For the source, select **Google Cloud Storage**.
 3. Select `gs://BUCKET_NAME/landing/sell.csv`.
 4. For the file format, select **CSV**.
-5. For the destination, choose the `TKR101` dataset and enter `sales` as the table name.
+5. For the destination, choose the `tkr101` dataset and enter `sales` as the table name.
 6. Use **Native table** as the table type.
 7. Don't rely solely on auto-detect for the schema; confirm the column types yourself:
    - `product_id`: `STRING`
@@ -149,7 +149,7 @@ You can also run the load job from the CLI:
 bq --location=asia-east1 load \
   --source_format=CSV \
   --skip_leading_rows=1 \
-  PROJECT_ID:TKR101.sales \
+  PROJECT_ID:tkr101.sales \
   gs://BUCKET_NAME/landing/sell.csv \
   product_id:STRING,product_name:STRING,category:STRING,price:INT64
 ```
@@ -157,13 +157,13 @@ bq --location=asia-east1 load \
 List the tables in the dataset:
 
 ```bash
-bq ls PROJECT_ID:TKR101
+bq ls PROJECT_ID:tkr101
 ```
 
 Check the schema:
 
 ```bash
-bq show PROJECT_ID:TKR101.sales
+bq show PROJECT_ID:tkr101.sales
 ```
 
 ## Step 9: Verify the Data
@@ -176,7 +176,7 @@ SELECT
   product_name,
   category,
   price
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 ORDER BY price DESC;
 ```
 
@@ -188,7 +188,7 @@ SELECT
   COUNT(*) AS product_count,
   AVG(price) AS average_price,
   MAX(price) AS highest_price
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 GROUP BY category
 ORDER BY product_count DESC;
 ```
@@ -216,7 +216,7 @@ Confirm the account you're signed in with has the necessary BigQuery and Cloud S
 Once you're done practicing, check for and delete any datasets, tables, buckets, and other cloud resources you no longer need:
 
 ```bash
-bq rm -r -f PROJECT_ID:TKR101
+bq rm -r -f PROJECT_ID:tkr101
 # After confirming the bucket has nothing worth keeping, run:
 gcloud storage rm --recursive gs://BUCKET_NAME
 ```

@@ -46,14 +46,14 @@ The Silver layer is standardized data that other data tasks can rely on consiste
 Example: cleaning an external CSV into a native table:
 
 ```sql
-CREATE OR REPLACE TABLE `PROJECT_ID.TKR101.sales_silver` AS
+CREATE OR REPLACE TABLE `PROJECT_ID.tkr101.sales_silver` AS
 SELECT
   TRIM(product_id) AS product_id,
   TRIM(product_name) AS product_name,
   NULLIF(TRIM(category), '') AS category,
   SAFE_CAST(price AS NUMERIC) AS price,
   CURRENT_TIMESTAMP() AS transformed_at
-FROM `PROJECT_ID.TKR101.sales_external`
+FROM `PROJECT_ID.tkr101.sales_external`
 WHERE NULLIF(TRIM(product_id), '') IS NOT NULL;
 ```
 
@@ -62,14 +62,14 @@ WHERE NULLIF(TRIM(product_id), '') IS NOT NULL;
 The Gold layer should directly answer business questions, such as daily revenue by category:
 
 ```sql
-CREATE OR REPLACE TABLE `PROJECT_ID.TKR101.category_daily_sales` AS
+CREATE OR REPLACE TABLE `PROJECT_ID.tkr101.category_daily_sales` AS
 SELECT
   CURRENT_DATE() AS snapshot_date,
   category,
   COUNT(*) AS product_count,
   SUM(price) AS total_price,
   AVG(price) AS average_price
-FROM `PROJECT_ID.TKR101.sales_silver`
+FROM `PROJECT_ID.tkr101.sales_silver`
 WHERE category IS NOT NULL
 GROUP BY category;
 ```
@@ -106,19 +106,19 @@ After producing Silver or Gold data, check at least the following:
 ```sql
 -- 1. Required field
 SELECT COUNT(*) AS missing_product_id
-FROM `PROJECT_ID.TKR101.sales_silver`
+FROM `PROJECT_ID.tkr101.sales_silver`
 WHERE product_id IS NULL;
 
 -- 2. Must not be negative
 SELECT COUNT(*) AS invalid_price
-FROM `PROJECT_ID.TKR101.sales_silver`
+FROM `PROJECT_ID.tkr101.sales_silver`
 WHERE price < 0;
 
 -- 3. Duplicate business key
 SELECT
   product_id,
   COUNT(*) AS row_count
-FROM `PROJECT_ID.TKR101.sales_silver`
+FROM `PROJECT_ID.tkr101.sales_silver`
 GROUP BY product_id
 HAVING COUNT(*) > 1;
 ```

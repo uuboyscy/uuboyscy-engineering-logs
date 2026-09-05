@@ -113,7 +113,7 @@ BigQuery Connection service account
 ## Step 4: Create the BigQuery Remote Function
 
 ```sql
-CREATE OR REPLACE FUNCTION `PROJECT_ID.TKR101.remote_add`(
+CREATE OR REPLACE FUNCTION `PROJECT_ID.tkr101.remote_add`(
   x INT64,
   y INT64
 )
@@ -129,7 +129,7 @@ OPTIONS (
 ```sql
 SELECT
   value,
-  `PROJECT_ID.TKR101.remote_add`(value, 2) AS value_plus_two
+  `PROJECT_ID.tkr101.remote_add`(value, 2) AS value_plus_two
 FROM UNNEST([20, 57, 78]) AS value;
 ```
 
@@ -146,7 +146,7 @@ FROM UNNEST([20, 57, 78]) AS value;
 BigQuery 也能建立 Remote Model，讓 SQL 呼叫 Google Cloud 上的生成式模型。模型名稱與可用區域會隨服務版本與地區支援狀態變動；以下使用目前官方文件常見的 `gemini-2.5-flash` 範例。
 
 ```sql
-CREATE OR REPLACE MODEL `PROJECT_ID.TKR101.gemini_flash`
+CREATE OR REPLACE MODEL `PROJECT_ID.tkr101.gemini_flash`
 REMOTE WITH CONNECTION `PROJECT_ID.asia-east1.model_connection`
 OPTIONS (
   endpoint = 'gemini-2.5-flash'
@@ -165,7 +165,7 @@ OPTIONS (
 假設有一張客戶回饋表：
 
 ```text
-PROJECT_ID.TKR101.feedback
+PROJECT_ID.tkr101.feedback
 ├── feedback_id STRING
 └── feedback_text STRING
 ```
@@ -178,7 +178,7 @@ SELECT
   ml_generate_text_result,
   ml_generate_text_status
 FROM ML.GENERATE_TEXT(
-  MODEL `PROJECT_ID.TKR101.gemini_flash`,
+  MODEL `PROJECT_ID.tkr101.gemini_flash`,
   (
     SELECT
       feedback_id,
@@ -186,7 +186,7 @@ FROM ML.GENERATE_TEXT(
         '請將以下客戶回饋整理成一句繁體中文摘要：',
         feedback_text
       ) AS prompt
-    FROM `PROJECT_ID.TKR101.feedback`
+    FROM `PROJECT_ID.tkr101.feedback`
     WHERE feedback_text IS NOT NULL
     LIMIT 10
   ),
@@ -209,7 +209,7 @@ SELECT
   ml_generate_text_result,
   ml_generate_text_status
 FROM ML.GENERATE_TEXT(
-  MODEL `PROJECT_ID.TKR101.gemini_flash`,
+  MODEL `PROJECT_ID.tkr101.gemini_flash`,
   (
     SELECT
       feedback_id,
@@ -219,7 +219,7 @@ FROM ML.GENERATE_TEXT(
         '\n回饋：',
         feedback_text
       ) AS prompt
-    FROM `PROJECT_ID.TKR101.feedback`
+    FROM `PROJECT_ID.tkr101.feedback`
     WHERE feedback_text IS NOT NULL
     LIMIT 10
   ),

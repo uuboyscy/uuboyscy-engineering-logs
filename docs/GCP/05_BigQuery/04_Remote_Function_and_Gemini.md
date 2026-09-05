@@ -113,7 +113,7 @@ Don't make the function publicly accessible just to sidestep IAM. A production e
 ## Step 4: Create the BigQuery Remote Function
 
 ```sql
-CREATE OR REPLACE FUNCTION `PROJECT_ID.TKR101.remote_add`(
+CREATE OR REPLACE FUNCTION `PROJECT_ID.tkr101.remote_add`(
   x INT64,
   y INT64
 )
@@ -129,7 +129,7 @@ Replace `endpoint` with the actual deployed HTTPS URL. Then test it:
 ```sql
 SELECT
   value,
-  `PROJECT_ID.TKR101.remote_add`(value, 2) AS value_plus_two
+  `PROJECT_ID.tkr101.remote_add`(value, 2) AS value_plus_two
 FROM UNNEST([20, 57, 78]) AS value;
 ```
 
@@ -146,7 +146,7 @@ If the query fails, check these first:
 BigQuery can also create a remote model, letting SQL call a generative model on Google Cloud. Model names and available regions change with service versions and regional support; the example below uses `gemini-2.5-flash`, which is common in the current official documentation.
 
 ```sql
-CREATE OR REPLACE MODEL `PROJECT_ID.TKR101.gemini_flash`
+CREATE OR REPLACE MODEL `PROJECT_ID.tkr101.gemini_flash`
 REMOTE WITH CONNECTION `PROJECT_ID.asia-east1.model_connection`
 OPTIONS (
   endpoint = 'gemini-2.5-flash'
@@ -165,7 +165,7 @@ Before creating it, confirm:
 Suppose you have a customer feedback table:
 
 ```text
-PROJECT_ID.TKR101.feedback
+PROJECT_ID.tkr101.feedback
 ├── feedback_id STRING
 └── feedback_text STRING
 ```
@@ -178,7 +178,7 @@ SELECT
   ml_generate_text_result,
   ml_generate_text_status
 FROM ML.GENERATE_TEXT(
-  MODEL `PROJECT_ID.TKR101.gemini_flash`,
+  MODEL `PROJECT_ID.tkr101.gemini_flash`,
   (
     SELECT
       feedback_id,
@@ -186,7 +186,7 @@ FROM ML.GENERATE_TEXT(
         '請將以下客戶回饋整理成一句繁體中文摘要：',
         feedback_text
       ) AS prompt
-    FROM `PROJECT_ID.TKR101.feedback`
+    FROM `PROJECT_ID.tkr101.feedback`
     WHERE feedback_text IS NOT NULL
     LIMIT 10
   ),
@@ -209,7 +209,7 @@ SELECT
   ml_generate_text_result,
   ml_generate_text_status
 FROM ML.GENERATE_TEXT(
-  MODEL `PROJECT_ID.TKR101.gemini_flash`,
+  MODEL `PROJECT_ID.tkr101.gemini_flash`,
   (
     SELECT
       feedback_id,
@@ -219,7 +219,7 @@ FROM ML.GENERATE_TEXT(
         '\n回饋：',
         feedback_text
       ) AS prompt
-    FROM `PROJECT_ID.TKR101.feedback`
+    FROM `PROJECT_ID.tkr101.feedback`
     WHERE feedback_text IS NOT NULL
     LIMIT 10
   ),

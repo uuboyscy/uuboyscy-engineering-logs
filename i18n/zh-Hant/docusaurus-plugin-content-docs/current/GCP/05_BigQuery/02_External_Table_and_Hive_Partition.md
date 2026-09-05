@@ -25,7 +25,7 @@ External table 的查詢效能可能低於 Native table。不要只因為少了�
 
 ## Step 1: Create a CSV External Table in the Console
 
-1. 開啟 BigQuery，找到 Dataset `TKR101`。
+1. 開啟 BigQuery，找到 Dataset `tkr101`。
 2. 點選 Dataset 旁的 **More** → **Create table**。
 3. Source 選擇 **Google Cloud Storage**。
 4. 選取 `gs://BUCKET_NAME/landing/sell.csv`。
@@ -44,7 +44,7 @@ External table 的查詢效能可能低於 Native table。不要只因為少了�
 ## Step 2: Create a CSV External Table with SQL
 
 ```sql
-CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.TKR101.sales_external`
+CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.tkr101.sales_external`
 (
   product_id STRING,
   product_name STRING,
@@ -65,7 +65,7 @@ SELECT
   category,
   COUNT(*) AS product_count,
   SUM(price) AS total_price
-FROM `PROJECT_ID.TKR101.sales_external`
+FROM `PROJECT_ID.tkr101.sales_external`
 GROUP BY category
 ORDER BY total_price DESC;
 ```
@@ -91,7 +91,7 @@ BigQuery 查詢 JSON 檔案時，常見的格式是 newline-delimited JSON（JSO
 建立 JSON Lines external table：
 
 ```sql
-CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.TKR101.sales_json_external`
+CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.tkr101.sales_json_external`
 (
   product_id STRING,
   product_name STRING,
@@ -119,7 +119,7 @@ gs://BUCKET_NAME/daily/dt=2026-06-29/sell.csv
 ## Step 5: Create a Hive-Partitioned External Table
 
 ```sql
-CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.TKR101.daily_sales_external`
+CREATE OR REPLACE EXTERNAL TABLE `PROJECT_ID.tkr101.daily_sales_external`
 (
   product_id STRING,
   product_name STRING,
@@ -145,7 +145,7 @@ SELECT
   category,
   COUNT(*) AS product_count,
   SUM(price) AS total_price
-FROM `PROJECT_ID.TKR101.daily_sales_external`
+FROM `PROJECT_ID.tkr101.daily_sales_external`
 WHERE dt BETWEEN DATE '2026-06-27' AND DATE '2026-06-29'
 GROUP BY dt, category
 ORDER BY dt, total_price DESC;
@@ -171,13 +171,13 @@ ORDER BY dt, total_price DESC;
 當資料確認穩定後，可以把查詢結果寫入 Native table：
 
 ```sql
-CREATE OR REPLACE TABLE `PROJECT_ID.TKR101.sales_cleaned` AS
+CREATE OR REPLACE TABLE `PROJECT_ID.tkr101.sales_cleaned` AS
 SELECT
   CAST(product_id AS STRING) AS product_id,
   product_name,
   category,
   SAFE_CAST(price AS INT64) AS price
-FROM `PROJECT_ID.TKR101.sales_external`
+FROM `PROJECT_ID.tkr101.sales_external`
 WHERE product_id IS NOT NULL;
 ```
 

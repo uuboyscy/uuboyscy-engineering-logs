@@ -13,7 +13,7 @@ SELECT
   product_id,
   product_name,
   price
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 WHERE category = 'Computer'
 ORDER BY price DESC;
 ```
@@ -33,21 +33,21 @@ Avoid using `SELECT *` aimlessly in production queries:
 ```sql
 -- Not recommended: reads columns you don't need
 SELECT *
-FROM `PROJECT_ID.TKR101.sales`;
+FROM `PROJECT_ID.tkr101.sales`;
 
 -- Recommended: only read the columns you need
 SELECT
   product_id,
   category,
   price
-FROM `PROJECT_ID.TKR101.sales`;
+FROM `PROJECT_ID.tkr101.sales`;
 ```
 
 `SELECT * EXCEPT` is useful when there are many columns but you only want to exclude a few:
 
 ```sql
 SELECT * EXCEPT(product_name)
-FROM `PROJECT_ID.TKR101.sales`;
+FROM `PROJECT_ID.tkr101.sales`;
 ```
 
 ## Aggregation
@@ -58,7 +58,7 @@ SELECT
   COUNT(*) AS product_count,
   SUM(price) AS total_price,
   AVG(price) AS average_price
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 GROUP BY category
 HAVING COUNT(*) >= 1
 ORDER BY total_price DESC;
@@ -72,7 +72,7 @@ Real-world data often contains empty strings, malformed values, or nulls. `SAFE_
 SELECT
   product_id,
   SAFE_CAST(price AS NUMERIC) AS price_numeric
-FROM `PROJECT_ID.TKR101.sales_external`
+FROM `PROJECT_ID.tkr101.sales_external`
 WHERE product_id IS NOT NULL;
 ```
 
@@ -90,7 +90,7 @@ SELECT
     PARTITION BY category
     ORDER BY price DESC
   ) AS category_rank
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 QUALIFY category_rank = 1;
 ```
 
@@ -130,7 +130,7 @@ bq query \
   --use_legacy_sql=false \
   --dry_run \
   'SELECT category, COUNT(*) AS product_count
-   FROM `PROJECT_ID.TKR101.sales`
+   FROM `PROJECT_ID.tkr101.sales`
    GROUP BY category'
 ```
 
@@ -145,7 +145,7 @@ bq query \
   --use_legacy_sql=false \
   --maximum_bytes_billed=100000000 \
   'SELECT COUNT(*)
-   FROM `PROJECT_ID.TKR101.sales`'
+   FROM `PROJECT_ID.tkr101.sales`'
 ```
 
 The limit in the example above is 100,000,000 bytes. Set it based on your own workload and cost strategy; don't treat it as a guarantee of query correctness.

@@ -113,7 +113,7 @@ GCS 的資料夾只是 object name 的前綴。`landing/` 看起來像資料夾�
 1. 開啟 **BigQuery**。
 2. 在 Explorer 找到目前的 Project，點選旁邊的 **More**。
 3. 選擇 **Create dataset**。
-4. Dataset ID 輸入 `TKR101`。
+4. Dataset ID 輸入 `tkr101`。
 5. Data location 選擇 `asia-east1`。
 6. 點選 **Create dataset**。
 
@@ -122,16 +122,16 @@ GCS 的資料夾只是 object name 的前綴。`landing/` 看起來像資料夾�
 ```bash
 bq --location=asia-east1 mk \
   --dataset \
-  PROJECT_ID:TKR101
+  PROJECT_ID:tkr101
 ```
 
 ## Step 7: Load a Native Table in the Console
 
-1. 在 Dataset `TKR101` 旁點選 **More** → **Create table**。
+1. 在 Dataset `tkr101` 旁點選 **More** → **Create table**。
 2. Source 選擇 **Google Cloud Storage**。
 3. 選取 `gs://BUCKET_NAME/landing/sell.csv`。
 4. File format 選擇 **CSV**。
-5. Destination 選擇 Dataset `TKR101`，Table 輸入 `sales`。
+5. Destination 選擇 Dataset `tkr101`，Table 輸入 `sales`。
 6. Table type 使用 **Native table**。
 7. Schema 不要只依賴 Auto-detect，請確認欄位型別：
    - `product_id`: `STRING`
@@ -149,7 +149,7 @@ bq --location=asia-east1 mk \
 bq --location=asia-east1 load \
   --source_format=CSV \
   --skip_leading_rows=1 \
-  PROJECT_ID:TKR101.sales \
+  PROJECT_ID:tkr101.sales \
   gs://BUCKET_NAME/landing/sell.csv \
   product_id:STRING,product_name:STRING,category:STRING,price:INT64
 ```
@@ -157,13 +157,13 @@ bq --location=asia-east1 load \
 查看 Dataset 中的資料表：
 
 ```bash
-bq ls PROJECT_ID:TKR101
+bq ls PROJECT_ID:tkr101
 ```
 
 查看 Schema：
 
 ```bash
-bq show PROJECT_ID:TKR101.sales
+bq show PROJECT_ID:tkr101.sales
 ```
 
 ## Step 9: Verify the Data
@@ -176,7 +176,7 @@ SELECT
   product_name,
   category,
   price
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 ORDER BY price DESC;
 ```
 
@@ -188,7 +188,7 @@ SELECT
   COUNT(*) AS product_count,
   AVG(price) AS average_price,
   MAX(price) AS highest_price
-FROM `PROJECT_ID.TKR101.sales`
+FROM `PROJECT_ID.tkr101.sales`
 GROUP BY category
 ORDER BY product_count DESC;
 ```
@@ -216,7 +216,7 @@ ORDER BY product_count DESC;
 完成練習後，依序檢查並刪除不需要的 Dataset、Table、bucket 與其他雲端資源：
 
 ```bash
-bq rm -r -f PROJECT_ID:TKR101
+bq rm -r -f PROJECT_ID:tkr101
 # 確認 bucket 內沒有需要保留的資料後，再執行：
 gcloud storage rm --recursive gs://BUCKET_NAME
 ```
