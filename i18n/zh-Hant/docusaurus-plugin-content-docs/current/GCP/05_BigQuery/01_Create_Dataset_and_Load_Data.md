@@ -13,7 +13,7 @@ sidebar_position: 1
 ```text
 PROJECT_ID  = your-project-id
 REGION      = asia-east1
-DATASET_ID  = TKR101
+dataset_id  = tkr101
 BUCKET_NAME = your-globally-unique-bucket-name
 ```
 

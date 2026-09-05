@@ -13,7 +13,7 @@ The following names are just examples; replace them with your own project and bu
 ```text
 PROJECT_ID  = your-project-id
 REGION      = asia-east1
-DATASET_ID  = TKR101
+dataset_id  = tkr101
 BUCKET_NAME = your-globally-unique-bucket-name
 ```
 
