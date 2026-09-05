@@ -4,79 +4,79 @@ sidebar_position: 2
 
 # Object Operations and `gcloud storage`
 
-GCS 的資料操作可以在 Cloud Console 完成，也可以使用 Google Cloud CLI。課程中使用的主要工具是 `gcloud storage`；舊有的 `gsutil` 仍可能出現在既有教材或環境中，但新操作優先使用 `gcloud storage` 指令家族。
+GCS data operations can be done in the Cloud Console or with the Google Cloud CLI. The primary tool used in this course is `gcloud storage`; the legacy `gsutil` may still show up in older material or environments, but new work should prefer the `gcloud storage` command family.
 
 ## Bucket and Object Paths
 
-GCS URI 的格式如下：
+A GCS URI has the following format:
 
 ```text
 gs://BUCKET_NAME/OBJECT_NAME
 ```
 
-例如：
+For example:
 
 ```text
 gs://tkr101-demo/landing/2026/06/sell.csv
 ```
 
-- `tkr101-demo` 是 Bucket。
-- `landing/2026/06/sell.csv` 是 Object name。
-- `landing/` 和 `2026/06/` 是名稱前綴，不是傳統檔案系統的實體資料夾。
+- `tkr101-demo` is the bucket.
+- `landing/2026/06/sell.csv` is the object name.
+- `landing/` and `2026/06/` are name prefixes, not actual folders like in a traditional file system.
 
 ## Step 1: Create a Virtual Folder in the Console
 
-1. 開啟 Cloud Storage → **Buckets**。
-2. 點選 Bucket name。
-3. 點選 **Create folder**。
-4. 輸入 `test_folder`。
-5. 在資料夾內點選 **Upload files**。
+1. Open Cloud Storage → **Buckets**.
+2. Click the bucket name.
+3. Click **Create folder**.
+4. Enter `test_folder`.
+5. Inside the folder, click **Upload files**.
 
-這個操作方便人閱讀與瀏覽，但底層仍然是建立帶有 prefix 的 Object。
+This is convenient for humans to browse, but under the hood it still just creates an object with a prefix.
 
 ## Step 2: Upload a File
 
-先在本地建立一個測試檔案：
+First create a test file locally:
 
 ```bash
 printf 'hello gcs\n' > test.txt
 ```
 
-上傳到 Bucket 根目錄：
+Upload it to the bucket's root:
 
 ```bash
 gcloud storage cp test.txt gs://BUCKET_NAME/
 ```
 
-上傳到虛擬資料夾：
+Upload it to a virtual folder:
 
 ```bash
 gcloud storage cp test.txt gs://BUCKET_NAME/test_folder/
 ```
 
-即使 `test_folder` 原本不存在，指令仍可成功，因為它只是 Object name 的 prefix。
+The command succeeds even if `test_folder` didn't exist before, because it's just a prefix in the object name.
 
 ## Step 3: List Buckets and Objects
 
-列出所有 Bucket：
+List all buckets:
 
 ```bash
 gcloud storage ls
 ```
 
-列出某個 Bucket 的 Object：
+List the objects in a bucket:
 
 ```bash
 gcloud storage ls gs://BUCKET_NAME
 ```
 
-列出特定 prefix：
+List a specific prefix:
 
 ```bash
 gcloud storage ls gs://BUCKET_NAME/test_folder/
 ```
 
-遞迴列出所有內容：
+List everything recursively:
 
 ```bash
 gcloud storage ls --recursive gs://BUCKET_NAME
@@ -84,7 +84,7 @@ gcloud storage ls --recursive gs://BUCKET_NAME
 
 ## Step 4: Download and Copy Objects
 
-下載並重新命名：
+Download and rename:
 
 ```bash
 gcloud storage cp \
@@ -92,7 +92,7 @@ gcloud storage cp \
   test2.txt
 ```
 
-在兩個 GCS URI 之間複製：
+Copy between two GCS URIs:
 
 ```bash
 gcloud storage cp \
@@ -100,7 +100,7 @@ gcloud storage cp \
   gs://DESTINATION_BUCKET/archive/source.txt
 ```
 
-遞迴複製整個本地資料夾：
+Recursively copy an entire local folder:
 
 ```bash
 gcloud storage cp --recursive \
@@ -116,7 +116,7 @@ gcloud storage mv \
   gs://BUCKET_NAME/archive/test.txt
 ```
 
-在一般 Bucket 中，Object rename 實際上可能是 copy 加 delete。大量 Object 移動前，先評估操作費用、權限、版本控制與中斷恢復策略。
+In a regular bucket, renaming an object is really a copy plus a delete under the hood. Before moving a large number of objects, evaluate operation costs, permissions, versioning, and how to recover from an interruption.
 
 ## Step 6: Inspect Object Metadata
 
@@ -125,20 +125,20 @@ gcloud storage objects describe \
   gs://BUCKET_NAME/test_folder/test.txt
 ```
 
-可以從 metadata 確認：
+You can use metadata to confirm:
 
-- Object size。
-- Content type。
-- Creation time。
-- Generation。
-- Storage class。
-- Hash 或 checksum。
+- Object size.
+- Content type.
+- Creation time.
+- Generation.
+- Storage class.
+- Hash or checksum.
 
-資料管線排錯時，metadata 常比只看檔名更有用。
+When debugging a data pipeline, metadata is often more useful than just looking at the file name.
 
 ## Step 7: Synchronize with `rsync`
 
-將本地資料夾同步到 GCS：
+Sync a local folder to GCS:
 
 ```bash
 gcloud storage rsync --recursive \
@@ -146,7 +146,7 @@ gcloud storage rsync --recursive \
   gs://BUCKET_NAME/data/
 ```
 
-建議先使用 dry run 檢查會有哪些變更：
+It's a good idea to use a dry run first to see what would change:
 
 ```bash
 gcloud storage rsync --recursive --dry-run \
@@ -156,25 +156,25 @@ gcloud storage rsync --recursive --dry-run \
 
 ### `rsync` Is Directional
 
-`gcloud storage rsync SOURCE DESTINATION` 是由 Source 方向同步到 Destination。它不是一般意義的雙向同步工具：
+`gcloud storage rsync SOURCE DESTINATION` syncs from the source toward the destination. It is not a general-purpose two-way sync tool:
 
 ```text
 Local directory  ───────────▶  GCS prefix
 ```
 
-如果有人先在 GCS 手動新增檔案，再從本地執行 local → GCS 的 `rsync`，不應期待檔案自動下載回本地。
+If someone manually adds a file in GCS first, and you then run a local → GCS `rsync`, don't expect that file to automatically download back to your local machine.
 
-這種單向行為反而符合大多數 ETL：
+This one-directional behavior actually matches how most ETL works:
 
 ```text
 Crawler / API → Local staging → GCS Bronze → BigQuery
 ```
 
-如果真的需要把 GCS 掛載成類似本地檔案系統的介面，可以另外研究 Cloud Storage FUSE；但它有自己的快取、語意與效能限制，不應直接當成一般 POSIX 磁碟。
+If you really need to mount GCS as something resembling a local file system, look into Cloud Storage FUSE separately; but it has its own caching behavior, semantics, and performance limits, so it shouldn't be treated as a regular POSIX disk.
 
 ## Useful Commands
 
-查看指令說明：
+View command help:
 
 ```bash
 gcloud storage --help
@@ -182,19 +182,19 @@ gcloud storage cp --help
 gcloud storage rsync --help
 ```
 
-查看 Bucket 使用量：
+Check a bucket's usage:
 
 ```bash
 gcloud storage du --summarize gs://BUCKET_NAME
 ```
 
-刪除單一 Object：
+Delete a single object:
 
 ```bash
 gcloud storage rm gs://BUCKET_NAME/test_folder/test.txt
 ```
 
-遞迴刪除 prefix：
+Recursively delete a prefix:
 
 ```bash
 gcloud storage rm --recursive gs://BUCKET_NAME/test_folder/
@@ -204,7 +204,7 @@ gcloud storage rm --recursive gs://BUCKET_NAME/test_folder/
 
 ### Local file not found
 
-確認目前工作目錄與檔案路徑：
+Check the current working directory and file path:
 
 ```bash
 pwd
@@ -213,11 +213,11 @@ ls -l test.txt
 
 ### Permission denied
 
-檢查目前登入帳號、Project 與 Bucket IAM。不要直接把 Bucket 設成公開來繞過權限問題。
+Check the currently logged-in account, project, and bucket IAM. Don't work around permission issues by simply making the bucket public.
 
 ### Accidentally overwrote an Object
 
-同名 Object 上傳可能建立新 generation 或覆蓋目前版本，行為取決於 Bucket 的 Object Versioning 與相關保護設定。重要資料上傳前，先確認 Object name、版本策略與 retention policy。
+Uploading an object with the same name may create a new generation or overwrite the current version, depending on the bucket's object versioning and related protection settings. Before uploading important data, confirm the object name, versioning strategy, and retention policy.
 
 ## Further Reading
 

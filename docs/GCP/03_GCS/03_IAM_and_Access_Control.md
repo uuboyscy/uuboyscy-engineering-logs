@@ -4,49 +4,49 @@ sidebar_position: 3
 
 # IAM and Access Control
 
-GCS 權限決定「誰可以對哪個 Bucket 或 Object 做什麼」。預設應該保持私有，使用 IAM 授予必要的最小權限；只有在有明確需求時才提供公開讀取。
+GCS permissions determine "who can do what to which bucket or object." Buckets should stay private by default, granting only the minimum necessary permissions through IAM; only expose public read access when there's a clear need for it.
 
 ## Uniform Bucket-Level Access
 
-Uniform bucket-level access 會停用 Bucket 內 Object ACL 的使用，改由 IAM 統一管理權限。它能降低同一個 Bucket 同時維護 IAM 與 ACL 所造成的設定混亂。
+Uniform bucket-level access disables the use of object ACLs within a bucket, so permissions are managed entirely through IAM instead. This reduces the confusion that comes from maintaining both IAM and ACLs on the same bucket.
 
-建議新 Bucket 使用 Uniform bucket-level access：
+New buckets should use uniform bucket-level access:
 
 ```bash
 gcloud storage buckets update gs://BUCKET_NAME \
   --uniform-bucket-level-access
 ```
 
-確認設定：
+Confirm the setting:
 
 ```bash
 gcloud storage buckets describe gs://BUCKET_NAME
 ```
 
-在 Console 中：
+In the Console:
 
-1. 開啟 Cloud Storage → Bucket。
-2. 進入 **Permissions**。
-3. 找到 **Access control**。
-4. 確認使用 **Uniform**。
+1. Open Cloud Storage → your bucket.
+2. Go to **Permissions**.
+3. Find **Access control**.
+4. Confirm it's set to **Uniform**.
 
-Uniform bucket-level access 不能隨時無條件切換回 ACL 模式；正式環境啟用前先確認既有應用程式沒有依賴 Object ACL。
+Uniform bucket-level access can't always be freely switched back to ACL mode; before enabling it in production, confirm that existing applications don't depend on object ACLs.
 
 ## Common IAM Roles
 
-| Role | 適合用途 |
+| Role | Suited for |
 | --- | --- |
-| `roles/storage.objectViewer` | 讀取 Object |
-| `roles/storage.objectCreator` | 建立新 Object，不負責修改或刪除既有 Object |
-| `roles/storage.objectUser` | 讀取、建立、更新與刪除 Object 的常見使用情境 |
-| `roles/storage.objectAdmin` | 管理 Object，權限較大 |
-| `roles/storage.admin` | 管理 Bucket 與 Object，應限制給管理者 |
+| `roles/storage.objectViewer` | Reading objects |
+| `roles/storage.objectCreator` | Creating new objects, without the ability to modify or delete existing ones |
+| `roles/storage.objectUser` | The common case of reading, creating, updating, and deleting objects |
+| `roles/storage.objectAdmin` | Managing objects, with broader permissions |
+| `roles/storage.admin` | Managing buckets and objects; should be restricted to administrators |
 
-實際可用權限還會受到 Project、Bucket、Managed Folder 與 IAM Conditions 影響。Production 不要習慣性授予 `roles/storage.admin`。
+The actual permissions available are also affected by the project, bucket, managed folder, and IAM conditions. Don't get into the habit of granting `roles/storage.admin` in production.
 
 ## Grant a User Read Access
 
-授予特定使用者讀取 Bucket 內 Object 的權限：
+Grant a specific user read access to objects in a bucket:
 
 ```bash
 gcloud storage buckets add-iam-policy-binding gs://BUCKET_NAME \
@@ -54,7 +54,7 @@ gcloud storage buckets add-iam-policy-binding gs://BUCKET_NAME \
   --role=roles/storage.objectViewer
 ```
 
-查看 Bucket IAM policy：
+View the bucket's IAM policy:
 
 ```bash
 gcloud storage buckets get-iam-policy gs://BUCKET_NAME
@@ -62,7 +62,7 @@ gcloud storage buckets get-iam-policy gs://BUCKET_NAME
 
 ## Grant a Service Account Access
 
-如果 Cloud Run、VM、Cloud Functions 或其他程式需要讀取 GCS，應授予指定 Service Account，而不是把資料公開：
+If Cloud Run, a VM, Cloud Functions, or another program needs to read from GCS, grant access to a specific service account instead of making the data public:
 
 ```bash
 gcloud storage buckets add-iam-policy-binding gs://BUCKET_NAME \
@@ -70,7 +70,7 @@ gcloud storage buckets add-iam-policy-binding gs://BUCKET_NAME \
   --role=roles/storage.objectViewer
 ```
 
-如果程式只需要新增檔案，可以考慮：
+If the program only needs to add files, consider:
 
 ```bash
 gcloud storage buckets add-iam-policy-binding gs://BUCKET_NAME \
@@ -78,62 +78,62 @@ gcloud storage buckets add-iam-policy-binding gs://BUCKET_NAME \
   --role=roles/storage.objectCreator
 ```
 
-使用 `objectCreator` 可以避免程式任意修改或刪除既有檔案，但要確認你的 pipeline 是否需要 overwrite 或 retry。
+Using `objectCreator` prevents the program from arbitrarily modifying or deleting existing files, but check whether your pipeline needs overwrite or retry behavior.
 
 ## VM Access Scopes and IAM Are Different
 
-課程中提到，VM 建立時的 Access scopes 會影響 VM 內的 API 操作。需要分清楚兩個層次：
+As mentioned in the course, the access scopes set when creating a VM affect what API operations the VM can perform. It's important to distinguish two separate layers:
 
 ```text
-VM access scope  ──▶  限制 VM 可以向 Google APIs 要求的範圍
-Service Account IAM ──▶  決定該身分實際被授予哪些資源權限
+VM access scope     ──▶  Limits which scopes the VM can request from Google APIs
+Service Account IAM ──▶  Determines which resource permissions that identity is actually granted
 ```
 
-`Allow full access to all Cloud APIs` 只表示 scope 不限制 API 類別，不代表 Service Account 自動擁有所有 Bucket 權限。現代 GCP 設計應優先使用具體 Service Account 與最小 IAM role，再依服務需求設定 scope。
+`Allow full access to all Cloud APIs` only means the scope doesn't restrict which API categories can be requested — it doesn't mean the service account automatically has permission on every bucket. Modern GCP design should prioritize using a specific service account with the minimum necessary IAM role, and then set the scope according to the service's needs.
 
 ## Public Access Prevention
 
-Public access prevention 可以阻止 `allUsers` 與 `allAuthenticatedUsers` 透過 IAM 或 ACL 取得資料：
+Public access prevention blocks `allUsers` and `allAuthenticatedUsers` from getting access to data through IAM or ACLs:
 
 ```bash
 gcloud storage buckets update gs://BUCKET_NAME \
   --public-access-prevention
 ```
 
-對包含原始資料、使用者資料、交易資料或備份的 Bucket，建議保持啟用。
+For buckets containing raw data, user data, transaction data, or backups, keep this enabled.
 
 ## When Is Public Access Appropriate?
 
-商品圖片、公開文件或網站靜態資產可能需要公開讀取，但應使用專用 Bucket 或 CDN 架構，不要把含有 raw data 的 Bucket 一起公開。
+Product images, public documents, or static website assets may need public read access, but you should use a dedicated bucket or CDN setup — don't make a bucket that also contains raw data public.
 
-若你真的要建立公開讀取 Bucket，必須先確認：
+If you really need to create a publicly readable bucket, first confirm:
 
-- 沒有個人資料、密鑰、內部 log 或未發布內容。
-- 已取得資料 owner 與 security review 同意。
-- 已知道怎麼撤銷公開權限。
-- 有監控、稽核與內容清理流程。
+- It contains no personal data, secrets, internal logs, or unpublished content.
+- You have approval from the data owner and a security review.
+- You know how to revoke public access.
+- There are monitoring, auditing, and content cleanup processes in place.
 
-公開讀取範例只適合在明確的測試情境使用：
+The public read example below is only suited for a clearly scoped test scenario:
 
 ```bash
-# 僅在確認資料可公開時使用
+# Only use this once you've confirmed the data can be public
 gcloud storage buckets add-iam-policy-binding gs://PUBLIC_BUCKET \
   --member=allUsers \
   --role=roles/storage.objectViewer
 ```
 
-如果 Public access prevention 正在 enforced，這個操作會被拒絕。不要為了讓指令成功而關閉安全控制。
+If public access prevention is enforced, this operation will be rejected. Don't disable a security control just to make a command succeed.
 
 ## Access Control Checklist
 
-- [ ] Bucket 預設不是公開的。
-- [ ] 使用 Uniform bucket-level access。
-- [ ] 使用 Service Account，而不是共用個人帳號金鑰。
-- [ ] 依工作需求選擇 viewer、creator 或 user role。
-- [ ] 不使用 `allUsers` 解決一般 permission error。
-- [ ] 原始資料與公開資產放在不同 Bucket。
-- [ ] 對敏感資料使用 IAM Conditions、稽核與資料分類。
-- [ ] 定期檢查 IAM policy 與不再使用的成員。
+- [ ] Bucket is not public by default.
+- [ ] Uniform bucket-level access is used.
+- [ ] A service account is used, rather than a shared personal account key.
+- [ ] Viewer, creator, or user roles are chosen based on the actual work needed.
+- [ ] `allUsers` is not used to work around a routine permission error.
+- [ ] Raw data and public assets live in separate buckets.
+- [ ] IAM conditions, auditing, and data classification are used for sensitive data.
+- [ ] IAM policies and stale members are reviewed regularly.
 
 ## Further Reading
 

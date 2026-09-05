@@ -4,13 +4,13 @@ sidebar_position: 0
 
 # Introduction to Google Cloud Storage
 
-Google Cloud Storage（GCS）是 Google Cloud 的物件儲存服務。你可以把它想成雲端上的大型檔案儲存空間，用來保存圖片、影片、CSV、JSON、備份檔與資料管線的原始資料。
+Google Cloud Storage (GCS) is Google Cloud's object storage service. Think of it as a large file storage space in the cloud, used to hold images, videos, CSV/JSON files, backups, and raw data for data pipelines.
 
-在資料工程中，GCS 很常被用作 **Bronze／Raw layer**：先把來源資料原封不動落地，再交給 BigQuery、Dataflow 或其他資料處理工具轉換。
+In data engineering, GCS is commonly used as the **Bronze / Raw layer**: source data lands here unchanged, then gets handed off to BigQuery, Dataflow, or other processing tools for transformation.
 
 ## What Is Cloud Storage?
 
-GCS 的核心資源有兩個：
+GCS has two core resources:
 
 ```text
 Google Cloud Project
@@ -20,37 +20,37 @@ Google Cloud Project
 
 ### Bucket
 
-Bucket 是儲存物件的容器。Bucket 名稱使用全球共用的 namespace，因此名稱必須全世界唯一，不只是自己的 Project 內唯一。
+A bucket is a container for storing objects. Bucket names share a single global namespace, so a name must be unique across the entire world, not just within your own project.
 
-建立 Bucket 時需要決定：
+When you create a bucket, you need to decide on:
 
-- Bucket name。
-- Location。
-- Default storage class。
-- Access control。
-- Protection 與 lifecycle policy。
+- Bucket name.
+- Location.
+- Default storage class.
+- Access control.
+- Protection and lifecycle policy.
 
 ### Object
 
-Object 是實際儲存的檔案，包含資料本體、名稱與 metadata。Object name 可以包含 `/`，因此看起來像路徑：
+An object is the actual stored file, made up of the data itself, a name, and metadata. Object names can contain `/`, so they can look like paths:
 
 ```text
 landing/2026/06/sell.csv
 ```
 
-但一般 Bucket 中的 `/` 只是 object name 的一部分，不代表傳統檔案系統的真正資料夾。
+But in a typical bucket, the `/` is just part of the object name — it doesn't represent a real folder the way a traditional file system does.
 
 ## GCS and Google Drive Are Different
 
-| 項目 | Google Drive | Cloud Storage |
+| Item | Google Drive | Cloud Storage |
 | --- | --- | --- |
-| 主要用途 | 個人與團隊文件協作 | 應用程式與資料管線的物件儲存 |
-| 存取方式 | 使用者介面、Drive API | IAM、SDK、CLI、REST API |
-| 資料組織 | 檔案與資料夾 | Bucket 與 Object |
-| 資料處理 | 人工操作較多 | 適合自動化與大量資料 |
-| 成本模型 | 依 Workspace 方案 | 依儲存、操作、網路與資料取用計費 |
+| Primary use | Personal and team document collaboration | Object storage for applications and data pipelines |
+| Access method | UI, Drive API | IAM, SDK, CLI, REST API |
+| Data organization | Files and folders | Buckets and objects |
+| Data handling | Mostly manual | Suited to automation and large volumes of data |
+| Cost model | Based on Workspace plan | Based on storage, operations, network, and data retrieval |
 
-GCS 適合讓程式與雲端服務讀寫資料，不應把它當成一般使用者硬碟來設計所有工作流程。
+GCS is designed for programs and cloud services to read and write data — you shouldn't design every workflow around it as if it were a regular user hard drive.
 
 ## GCS in a Data Pipeline
 
@@ -58,7 +58,7 @@ GCS 適合讓程式與雲端服務讀寫資料，不應把它當成一般使用�
 API / Crawler / Application
             │
             ▼
-GCS Bucket（Bronze / Raw）
+GCS Bucket (Bronze / Raw)
             │
             ├── BigQuery External Table
             │
@@ -68,40 +68,40 @@ GCS Bucket（Bronze / Raw）
                  BigQuery Native Table
 ```
 
-保留原始檔案的好處是：當欄位定義、KPI 或轉換邏輯改變時，可以從原始資料重新執行管線，而不用回頭向來源系統重新抓取。
+Keeping the original files has a benefit: when field definitions, KPIs, or transformation logic change, you can re-run the pipeline from the raw data instead of having to re-fetch it from the source system.
 
 ## Storage Classes
 
-GCS 會依照資料的存取頻率提供不同 Storage Class：
+GCS offers different storage classes based on how often data is accessed:
 
-| Storage class | 適合情境 | 需要注意 |
+| Storage class | Suited for | Watch out for |
 | --- | --- | --- |
-| Standard | 頻繁存取、線上服務、活躍資料 | 儲存成本較高，但取用彈性較好 |
-| Nearline | 大約每月取用一次或更少 | 有最低儲存期間與資料取用費用 |
-| Coldline | 大約每季取用一次或更少 | 適合備份與低頻資料 |
-| Archive | 大約每年取用一次或更少 | 取用與操作成本較高，適合長期保存 |
+| Standard | Frequent access, online services, active data | Higher storage cost, but more flexible retrieval |
+| Nearline | Accessed roughly once a month or less | Has a minimum storage duration and retrieval fees |
+| Coldline | Accessed roughly once a quarter or less | Good for backups and infrequently accessed data |
+| Archive | Accessed roughly once a year or less | Higher retrieval and operation costs; suited to long-term retention |
 
-Storage class 只是一個成本與取用模式的選擇。Nearline、Coldline 與 Archive 並不代表資料不能立即讀取，但讀取與提早刪除可能有額外費用。
+A storage class is really just a choice of cost and access pattern. Nearline, Coldline, and Archive don't mean the data can't be read immediately — but reading it or deleting it early may incur extra charges.
 
 ## What You Will Learn
 
-1. 建立具有正確 Location 與存取控制的 Bucket。
-2. 使用 Console 與 `gcloud storage` 管理 Object。
-3. 理解虛擬資料夾、Object metadata 與單向同步。
-4. 使用 IAM、Uniform bucket-level access 與 Public access prevention。
-5. 使用 Storage Class、Lifecycle Management 與刪除策略控制成本。
-6. 將 GCS 與 BigQuery External Table 串接成資料管線。
+1. Create a bucket with the correct location and access control.
+2. Manage objects using the Console and `gcloud storage`.
+3. Understand virtual folders, object metadata, and one-way sync.
+4. Use IAM, uniform bucket-level access, and public access prevention.
+5. Control cost with storage classes, lifecycle management, and deletion policies.
+6. Connect GCS to BigQuery external tables to build a data pipeline.
 
 ## Prerequisites
 
-開始前請準備：
+Before you start, make sure you have:
 
-- 一個已啟用 billing 的 Google Cloud Project。
-- 已安裝 Google Cloud CLI。
-- 已執行 `gcloud auth login`。
-- 對 Project、IAM 與基本 shell 指令有初步認識。
+- A Google Cloud project with billing enabled.
+- The Google Cloud CLI installed.
+- Run `gcloud auth login`.
+- Basic familiarity with projects, IAM, and shell commands.
 
-> GCS 的儲存、操作、網路傳輸與資料取用可能產生費用。練習時使用小檔案，完成後檢查並清理 Bucket。
+> Storage, operations, network transfer, and data retrieval in GCS can all incur charges. Use small files while practicing, and check and clean up your buckets when you're done.
 
 ## Further Reading
 
