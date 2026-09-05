@@ -8,7 +8,7 @@ This tutorial creates a practice dataset, uploads a CSV file to Cloud Storage, a
 
 ## Configuration Used in This Tutorial
 
-The following names are just examples — replace them with your own project and bucket names:
+The following names are just examples; replace them with your own project and bucket names:
 
 ```text
 PROJECT_ID  = your-project-id
@@ -17,7 +17,7 @@ DATASET_ID  = TKR101
 BUCKET_NAME = your-globally-unique-bucket-name
 ```
 
-It's recommended to use the same region for the BigQuery dataset and the Cloud Storage bucket. Once a dataset is created, its location can't be changed directly — if you pick the wrong one, you'll usually need to recreate the dataset.
+It's recommended to use the same region for the BigQuery dataset and the Cloud Storage bucket. Once a dataset is created, its location can't be changed directly; if you pick the wrong one, you'll usually need to recreate the dataset.
 
 ## Step 1: Select a Project
 
@@ -133,7 +133,7 @@ bq --location=asia-east1 mk \
 4. For the file format, select **CSV**.
 5. For the destination, choose the `TKR101` dataset and enter `sales` as the table name.
 6. Use **Native table** as the table type.
-7. Don't rely solely on auto-detect for the schema — confirm the column types yourself:
+7. Don't rely solely on auto-detect for the schema; confirm the column types yourself:
    - `product_id`: `STRING`
    - `product_name`: `STRING`
    - `category`: `STRING`

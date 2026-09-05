@@ -24,7 +24,7 @@ A BigQuery table reference typically uses a three-part name:
 project_id.dataset_id.table_id
 ```
 
-If the query editor's default project is set correctly, you can sometimes omit the project, but for tutorials and production SQL it's best to keep the full name — it reduces the chance of querying the wrong table.
+If the query editor's default project is set correctly, you can sometimes omit the project, but for tutorials and production SQL it's best to keep the full name; doing so reduces the chance of querying the wrong table.
 
 ## Select Only the Columns You Need
 
@@ -136,7 +136,7 @@ bq query \
 
 ## Set a Maximum Bytes Billed Limit
 
-Set **Maximum bytes billed** in the console's query settings. If BigQuery estimates the query will exceed this limit, it fails before running — useful for protecting practice or development projects.
+Set **Maximum bytes billed** in the console's query settings. If BigQuery estimates the query will exceed this limit, it fails before running, which is useful for protecting practice or development projects.
 
 CLI example:
 
@@ -148,14 +148,14 @@ bq query \
    FROM `PROJECT_ID.TKR101.sales`'
 ```
 
-The limit in the example above is 100,000,000 bytes. Set it based on your own workload and cost strategy — don't treat it as a guarantee of query correctness.
+The limit in the example above is 100,000,000 bytes. Set it based on your own workload and cost strategy; don't treat it as a guarantee of query correctness.
 
 ## Query Cost Rules to Remember
 
 - On-demand pricing bills based on the amount of data a query processes; check the latest pricing page for actual rates.
 - Every table you query has a minimum billed data amount; a very small table doesn't mean every query against it is completely free.
 - `LIMIT` doesn't necessarily reduce the amount scanned; if the data has no suitable partitioning or column pruning, BigQuery may still need to read a large amount of data.
-- Select only the columns you need — avoid `SELECT *`.
+- Select only the columns you need; avoid `SELECT *`.
 - Use a partition filter on partitioned tables, e.g. `WHERE event_date >= ...`.
 - Use explicit URIs, date paths, and only the necessary columns for external tables.
 - Do a dry run before running large queries.

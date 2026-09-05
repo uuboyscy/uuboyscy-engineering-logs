@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # BigQuery Remote Function and Gemini
 
-BigQuery isn't limited to running SQL — it can also call external services through a connection:
+BigQuery isn't limited to running SQL; it can also call external services through a connection:
 
 - **Remote Function**: Runs custom logic on Cloud Run functions or Cloud Run, called from SQL.
 - **Remote Model**: Registers a Google Cloud model inside BigQuery, then processes data with functions like `ML.GENERATE_TEXT`.
@@ -238,12 +238,12 @@ Model output may still not match the expected format. A production pipeline shou
 ## Cost and Safety Notes
 
 - Remote Function calls can incur charges from Cloud Run functions, Cloud Run, or external APIs.
-- `ML.GENERATE_TEXT` consumes the model service's quota and billing — don't run it directly against an entire large table.
+- `ML.GENERATE_TEXT` consumes the model service's quota and billing; don't run it directly against an entire large table.
 - Test first with `LIMIT`, a small dataset, and a low output token count.
 - Don't send sensitive data directly to an external model; confirm data governance, masking, retention, and access permissions first.
 - The locations of the model, connection, dataset, and endpoint must all be confirmed compatible beforehand.
 - Preview or beta features shouldn't be used in production without cost and failure handling in place.
-- The older course examples in the notebook use Gemini 1.5 Flash; for real implementations, choose an endpoint based on the latest official documentation and model availability — don't just copy an outdated model name.
+- The older course examples in the notebook use Gemini 1.5 Flash; for real implementations, choose an endpoint based on the latest official documentation and model availability; don't just copy an outdated model name.
 
 ## Further Reading
 

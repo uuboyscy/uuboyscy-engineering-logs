@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Introduction to BigQuery
 
-BigQuery is a serverless data warehouse provided by Google Cloud, built for analyzing large volumes of data with SQL. You don't need to provision a VM or manage a database server first — as soon as you have a table, you can start running queries.
+BigQuery is a serverless data warehouse provided by Google Cloud, built for analyzing large volumes of data with SQL. You don't need to provision a VM or manage a database server first; as soon as you have a table, you can start running queries.
 
 This chapter walks through a simple data engineering flow: uploading data from Cloud Storage, querying it in BigQuery, controlling cost, and then extending into Remote Function and Gemini integration.
 
@@ -51,7 +51,7 @@ Data used together in the same query should generally live in compatible geograp
 BigQuery has two common types of tables:
 
 - **Native table**: Data is loaded into BigQuery-managed storage, generally suited to repeated queries and production analysis.
-- **External table**: Data stays in Cloud Storage, and BigQuery reads the files at query time — suited to quick exploration or raw data that hasn't been fully imported yet.
+- **External table**: Data stays in Cloud Storage, and BigQuery reads the files at query time; suited to quick exploration or raw data that hasn't been fully imported yet.
 
 ## Native Table and External Table
 
@@ -104,7 +104,7 @@ Before you start, make sure you have:
 - A basic understanding of SQL's `SELECT`, `WHERE`, and `GROUP BY`.
 - Familiarity with the basic purpose of GCS, Cloud Run functions, and BQML.
 
-> Working with real cloud services can incur charges. Set a budget alert on your project and delete any resources you no longer need once you're done practicing. A budget alert is a notification mechanism — it does not automatically stop services.
+> Working with real cloud services can incur charges. Set a budget alert on your project and delete any resources you no longer need once you're done practicing. A budget alert is a notification mechanism: it does not automatically stop services.
 
 ## Further Reading
 
