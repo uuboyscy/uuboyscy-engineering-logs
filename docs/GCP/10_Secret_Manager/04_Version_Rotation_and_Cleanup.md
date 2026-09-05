@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Secret Versions, Rotation, and Cleanup
 
-Secret rotation 不是單純把舊文字改掉。安全的輪替流程要同時處理：新增版本、部署新設定、驗證、停用舊版本、回滾與最後銷毀。
+Secret rotation isn't as simple as just changing the old text. A safe rotation workflow has to handle: adding a version, deploying the new configuration, verifying it, disabling the old version, rolling back, and finally destroying it.
 
 ## Secret Version Lifecycle
 
@@ -14,11 +14,11 @@ ENABLED → DISABLED → DESTROYED
    └──────────┘
 ```
 
-- **Enabled**：可以被授權的 workload 讀取。
-- **Disabled**：暫停讀取，之後可以重新啟用。
-- **Destroyed**：secret material 永久銷毀，不可復原。
+- **Enabled**: can be read by authorized workloads.
+- **Disabled**: reads are suspended, but it can be re-enabled later.
+- **Destroyed**: the secret material is permanently destroyed and cannot be recovered.
 
-先 disable、觀察與驗證，再 destroy，比直接永久銷毀安全。
+Disabling, observing, and verifying before destroying is safer than destroying permanently right away.
 
 ## A Safe Rotation Workflow
 
@@ -31,7 +31,7 @@ ENABLED → DISABLED → DESTROYED
 6. Destroy the old version if appropriate
 ```
 
-範例：目前 Production 使用 version 2，要輪替到 version 3。
+Example: production is currently on version 2, and you want to rotate to version 3.
 
 ```text
 Current deployment ──▶ DATABASE_PASSWORD:2
@@ -39,11 +39,11 @@ New secret version ──▶ DATABASE_PASSWORD:3
 New deployment      ──▶ DATABASE_PASSWORD:3
 ```
 
-不要先 destroy version 2 再開始部署 version 3，否則出錯時沒有立即的回滾選項。
+Don't destroy version 2 before starting to deploy version 3 — otherwise you have no immediate rollback option if something goes wrong.
 
 ## Step 1: Add a New Version
 
-使用標準輸入加入新版本：
+Add a new version using standard input:
 
 ```bash
 printf '%s' 'new-demo-value-only' \
@@ -51,17 +51,17 @@ printf '%s' 'new-demo-value-only' \
       --data-file=-
 ```
 
-列出版本並確認狀態：
+List versions and confirm their status:
 
 ```bash
 gcloud secrets versions list DATABASE_PASSWORD
 ```
 
-記錄新版本編號，例如 `3`。不要只依賴 `latest` 來判斷版本是否正確。
+Record the new version number, e.g. `3`. Don't rely solely on `latest` to determine whether the correct version is in use.
 
 ## Step 2: Deploy the New Version
 
-Cloud Run environment variable 範例：
+Cloud Run environment variable example:
 
 ```bash
 gcloud run deploy SERVICE_NAME \
@@ -70,23 +70,23 @@ gcloud run deploy SERVICE_NAME \
   --set-secrets=DB_PASSWORD=DATABASE_PASSWORD:3
 ```
 
-執行 smoke test，確認：
+Run a smoke test and confirm:
 
-- 應用程式能連線到依賴的服務。
-- 新密碼或 token 確實可用。
-- 舊版本仍可在必要時回滾。
-- 沒有 secret value 出現在 log。
+- The application can connect to its dependent services.
+- The new password or token actually works.
+- The old version can still be rolled back to if necessary.
+- No secret value appears in logs.
 
 ## Step 3: Disable the Old Version
 
-確認所有 consumer 都已更新後，先停用舊版本：
+Once you've confirmed all consumers have been updated, disable the old version:
 
 ```bash
 gcloud secrets versions disable 2 \
   --secret=DATABASE_PASSWORD
 ```
 
-停用是可逆的。若發現仍有舊服務需要 version 2，可以重新啟用：
+Disabling is reversible. If you discover an old service still needs version 2, you can re-enable it:
 
 ```bash
 gcloud secrets versions enable 2 \
@@ -95,27 +95,27 @@ gcloud secrets versions enable 2 \
 
 ## Step 4: Destroy Only After Verification
 
-確認沒有 rollback、batch job、舊 revision 或其他 Project 仍使用 version 2 後，才考慮永久銷毀：
+Only consider permanently destroying version 2 once you've confirmed no rollback, batch job, old revision, or other Project is still using it:
 
 ```bash
 gcloud secrets versions destroy 2 \
   --secret=DATABASE_PASSWORD
 ```
 
-Destroy 會讓 secret material 不可復原。Production 建議由兩人 review、ticket 或核准流程保護，不要在未確認 consumer 的情況下執行。
+Destroying makes the secret material unrecoverable. In production, this should be protected by a two-person review, ticket, or approval process — never run it without confirming consumers first.
 
 ## `latest` vs. Numeric Version
 
-| 使用方式 | 優點 | 風險 |
+| Approach | Advantages | Risks |
 | --- | --- | --- |
-| `latest` | 設定簡單、容易取得最新版本 | 新版本可能未測試就被 workload 使用 |
-| Numeric version | 可追蹤、可回滾、適合 release | 輪替時需要更新 deployment |
+| `latest` | Simple to configure, easy to get the newest version | A new version could be picked up by workloads before it's tested |
+| Numeric version | Traceable, can be rolled back, suits releases | Deployment must be updated whenever you rotate |
 
-教學或本地探索可以使用 `latest`；Production 建議使用 numeric version，並把版本更新納入既有 release process。
+`latest` is fine for tutorials or local exploration; production should use a numeric version and fold version updates into your existing release process.
 
 ## Automated Rotation
 
-可以使用排程或事件驅動流程自動輪替，例如：
+You can automate rotation with a scheduled or event-driven process, for example:
 
 ```text
 Cloud Scheduler / rotation trigger
@@ -129,51 +129,51 @@ Rotation worker
   └── Disable old version
 ```
 
-自動輪替前要先定義：
+Before automating rotation, define:
 
-- 外部服務如何建立與撤銷 credential。
-- 新版本如何驗證可用。
-- 哪些 workload 必須先完成更新。
-- 失敗時如何 rollback。
-- 舊版本多久後 disable 與 destroy。
-- rotation worker 自己需要哪些最小權限。
+- How the external service creates and revokes credentials.
+- How the new version is verified to be usable.
+- Which workloads must finish updating first.
+- How to roll back on failure.
+- How long before the old version is disabled and destroyed.
+- What minimal permissions the rotation worker itself needs.
 
-Secret Manager 新增版本不代表外部服務的 API key 已經輪替；兩邊都要完成更新。
+Adding a new version in Secret Manager doesn't mean the external service's API key has actually been rotated — both sides need to be updated.
 
 ## Temporary Secret Cleanup
 
-Temporary environment 可以使用 labels 或 expiration policy 協助清理，但 Production Secret 不要設定不確定的 expiration，避免被自動永久刪除。
+In temporary environments, labels or an expiration policy can help with cleanup, but production Secrets shouldn't have an uncertain expiration set, to avoid being automatically and permanently deleted.
 
-查看 Secret：
+View the Secret:
 
 ```bash
 gcloud secrets describe SECRET_ID
 ```
 
-刪除整個教學用 Secret：
+Delete an entire tutorial Secret:
 
 ```bash
 gcloud secrets delete SECRET_ID
 ```
 
-刪除前確認：
+Before deleting, confirm:
 
-- 沒有 Cloud Run revision 使用它。
-- 沒有 Cloud Run function、GKE workload 或 VM 依賴它。
-- 沒有排程、batch job 或 CI pipeline 仍會讀取。
-- Secret 不在 retention、audit 或合規要求中。
+- No Cloud Run revision uses it.
+- No Cloud Run function, GKE workload, or VM depends on it.
+- No scheduled job, batch job, or CI pipeline still reads it.
+- The Secret isn't subject to a retention, audit, or compliance requirement.
 
 ## Rotation Checklist
 
-- [ ] 新版本先建立，再修改 consumer。
-- [ ] 部署設定使用明確 numeric version。
-- [ ] 新版本已完成 smoke test。
-- [ ] 舊版本先 disable，不要直接 destroy。
-- [ ] 已保留足夠的 rollback window。
-- [ ] Audit logs 能追蹤版本存取。
-- [ ] Rotation worker 使用最小權限。
-- [ ] 舊版本與外部 provider credential 都已妥善撤銷。
-- [ ] 沒有把 secret value 寫入 log、ticket 或 Git。
+- [ ] The new version is created before any consumer is modified.
+- [ ] The deployment configuration uses an explicit numeric version.
+- [ ] The new version has passed a smoke test.
+- [ ] The old version is disabled first, not destroyed directly.
+- [ ] A sufficient rollback window has been kept.
+- [ ] Audit logs can trace version access.
+- [ ] The rotation worker uses least privilege.
+- [ ] Both the old version and the external provider's credential have been properly revoked.
+- [ ] No secret value has been written to a log, ticket, or Git.
 
 ## Further Reading
 

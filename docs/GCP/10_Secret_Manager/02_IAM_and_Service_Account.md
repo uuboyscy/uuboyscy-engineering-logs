@@ -4,23 +4,23 @@ sidebar_position: 2
 
 # IAM and Service Account Access
 
-Secret Manager 的安全邊界主要由 IAM 控制。設計時要把「管理 Secret」與「讀取 Secret」分開，並把權限授予最低層級的資源。
+Secret Manager's security boundary is primarily enforced by IAM. Design your setup so that "managing a Secret" and "reading a Secret" are separate, and grant permissions at the narrowest resource level possible.
 
 ## Secret Manager Roles
 
-| Role | 適合用途 |
+| Role | Suitable Use |
 | --- | --- |
-| `roles/secretmanager.secretAccessor` | 讀取 Secret version |
-| `roles/secretmanager.secretVersionAdder` | 新增 Secret version |
-| `roles/secretmanager.secretVersionManager` | 管理 Secret versions，例如 enable、disable、destroy |
-| `roles/secretmanager.viewer` | 查看 metadata，不代表可以讀取 secret value |
-| `roles/secretmanager.admin` | 管理 Secret 與版本，應限制給管理者 |
+| `roles/secretmanager.secretAccessor` | Read Secret versions |
+| `roles/secretmanager.secretVersionAdder` | Add Secret versions |
+| `roles/secretmanager.secretVersionManager` | Manage Secret versions, e.g. enable, disable, destroy |
+| `roles/secretmanager.viewer` | View metadata — does not grant access to the secret value |
+| `roles/secretmanager.admin` | Manage Secrets and versions; should be limited to administrators |
 
-Production 不要因為「先讓它跑起來」就把 `roles/owner` 或 `roles/secretmanager.admin` 授予應用程式。
+Don't grant `roles/owner` or `roles/secretmanager.admin` to an application in production just to "get it working."
 
 ## Grant Access at the Secret Level
 
-把讀取權限授予特定 Service Account：
+Grant read access to a specific Service Account:
 
 ```bash
 gcloud secrets add-iam-policy-binding SECRET_ID \
@@ -29,9 +29,9 @@ gcloud secrets add-iam-policy-binding SECRET_ID \
   --role=roles/secretmanager.secretAccessor
 ```
 
-這比在整個 Project 授予所有 Secret 的存取權更符合最小權限原則。
+This follows least privilege far better than granting access to every Secret across the whole Project.
 
-查看單一 Secret 的 IAM policy：
+View the IAM policy for a single Secret:
 
 ```bash
 gcloud secrets get-iam-policy SECRET_ID \
@@ -40,90 +40,90 @@ gcloud secrets get-iam-policy SECRET_ID \
 
 ## Separate Deployment and Runtime Identities
 
-推薦的身分分工：
+A recommended division of identities:
 
 ```text
 CI/CD or administrator
-  ├── secretVersionAdder：新增版本
-  └── secretVersionManager：輪替與停用版本
+  ├── secretVersionAdder: add new versions
+  └── secretVersionManager: rotate and disable versions
 
 Runtime Service Account
-  └── secretAccessor：只讀取應用程式需要的 Secret
+  └── secretAccessor: only reads the Secrets the application needs
 ```
 
-部署者可以更新 secret，但應用程式不需要 destroy 或 disable secret version。這樣即使執行環境被入侵，也能縮小可造成的影響。
+Deployers can update a secret, but the application doesn't need to destroy or disable a secret version. This limits the blast radius even if the runtime environment is compromised.
 
 ## Grant Access in the Console
 
-1. 開啟 **Secret Manager**。
-2. 找到要授權的 Secret。
-3. 點選 Secret 旁的 **Actions**。
-4. 選擇 **Manage permissions**。
-5. 點選 **Grant access**。
-6. 在 New principals 輸入 Service Account email。
-7. 只選擇 **Secret Manager Secret Accessor**。
-8. 儲存設定。
+1. Open **Secret Manager**.
+2. Find the Secret you want to grant access to.
+3. Click **Actions** next to the Secret.
+4. Select **Manage permissions**.
+5. Click **Grant access**.
+6. Enter the Service Account email under New principals.
+7. Select only **Secret Manager Secret Accessor**.
+8. Save the settings.
 
-若只需要讀取一個 Secret，優先在該 Secret 層級授權，不要直接在 Project 層級授予所有 Secrets 的 access。
+If you only need to read one Secret, grant access at that Secret's level rather than granting access to all Secrets at the Project level.
 
 ## Check the Current Identity
 
-執行 CLI 操作前，確認目前使用的帳號：
+Before running CLI operations, confirm which account is active:
 
 ```bash
 gcloud auth list
 gcloud config get-value project
 ```
 
-如果使用 Application Default Credentials：
+If you're using Application Default Credentials:
 
 ```bash
 gcloud auth application-default print-access-token
 ```
 
-不要把 access token、服務帳號 JSON key 或 secret value 貼到 issue、聊天或 log。
+Never paste an access token, service account JSON key, or secret value into an issue, chat, or log.
 
 ## Compute Engine and Access Scopes
 
-在 Compute Engine 中，存取 Secret Manager 需要同時考慮：
+On Compute Engine, accessing Secret Manager depends on two things at once:
 
-1. VM 使用的 Service Account 是否具有 Secret Manager IAM role。
-2. VM 的 access scope 是否允許呼叫 Google Cloud APIs。
+1. Whether the VM's Service Account has the Secret Manager IAM role.
+2. Whether the VM's access scope allows calling Google Cloud APIs.
 
 ```text
-VM access scope ───────▶ 限制 VM 可要求的 API 範圍
-Service Account IAM ───▶ 決定對 Secret 資源的實際權限
+VM access scope ───────▶ limits which API scopes the VM can request
+Service Account IAM ───▶ determines the actual permissions on the Secret resource
 ```
 
-`Allow full access to all Cloud APIs` 只解除 scope 層級的 API 限制，不會自動授予讀取 Secret 的 IAM 權限。Production 應使用專用 Service Account 與最小 role。
+`Allow full access to all Cloud APIs` only removes the scope-level API restriction — it doesn't automatically grant IAM permission to read a Secret. Production should use a dedicated Service Account with the minimal role.
 
 ## Audit Logs
 
-Secret Manager 的 `AccessSecretVersion` 屬於 Data Access audit log。建議在組織或 Folder 層級啟用並集中分析，回答以下問題：
+`AccessSecretVersion` in Secret Manager is a Data Access audit log. It's recommended to enable and centrally analyze these at the organization or Folder level to answer questions like:
 
-- 哪個 principal 讀取過 Secret？
-- 什麼時間讀取？
-- 從哪個服務或 Project 發出？
-- 是否出現異常頻率或不應出現的身分？
+- Which principal read a Secret?
+- When was it read?
+- Which service or Project did the request come from?
+- Was there unusual frequency, or an identity that shouldn't be there?
 
-在 Logs Explorer 可以使用類似的 filter：
+In Logs Explorer, you can use a filter like:
 
 ```text
 protoPayload.methodName="google.cloud.secretmanager.v1.SecretManagerService.AccessSecretVersion"
 ```
 
-Audit log 只能協助追蹤與調查，不能取代 IAM、網路邊界與 secret rotation。
+Audit logs only help with tracing and investigation — they don't replace IAM, network boundaries, or secret rotation.
 
 ## Least Privilege Checklist
 
-- [ ] Runtime 使用專用 Service Account。
-- [ ] Runtime 只拿 `roles/secretmanager.secretAccessor`。
-- [ ] 權限盡量授予單一 Secret，而不是整個 Project。
-- [ ] CI/CD、管理者與 runtime 使用不同身分。
-- [ ] 不使用長期服務帳號 JSON key 作為主要認證方式。
-- [ ] 啟用並檢查 Data Access audit logs。
-- [ ] Production、staging、development 使用不同 Project 或至少不同 Secret。
-- [ ] 定期移除離職者、舊服務與臨時測試帳號的權限。
+- [ ] Runtime uses a dedicated Service Account.
+- [ ] Runtime only has `roles/secretmanager.secretAccessor`.
+- [ ] Permissions are granted on individual Secrets rather than the whole Project wherever possible.
+- [ ] CI/CD, administrators, and the runtime use different identities.
+- [ ] Long-lived service account JSON keys are not used as the primary authentication method.
+- [ ] Data Access audit logs are enabled and reviewed.
+- [ ] Production, staging, and development use different Projects or, at minimum, different Secrets.
+- [ ] Access for departed staff, retired services, and temporary test accounts is regularly removed.
 
 ## Further Reading
 

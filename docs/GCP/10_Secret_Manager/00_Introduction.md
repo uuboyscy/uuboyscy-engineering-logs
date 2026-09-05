@@ -4,29 +4,29 @@ sidebar_position: 0
 
 # Introduction to Secret Manager
 
-Secret Manager 是 Google Cloud 用來儲存與管理敏感資訊的服務，例如 API key、資料庫密碼、憑證與 OAuth token。
+Secret Manager is a Google Cloud service for storing and managing sensitive information, such as API keys, database passwords, credentials, and OAuth tokens.
 
-應用程式需要密碼時，不應把密碼直接寫在 source code、`.env`、Docker image 或 Git repository。較安全的做法是把 secret 放在 Secret Manager，再由具有明確權限的 Service Account 在執行時讀取。
+When an application needs a password, it should not be hard-coded into source code, `.env` files, Docker images, or a Git repository. A safer approach is to store the secret in Secret Manager and let a Service Account with clearly scoped permissions read it at runtime.
 
 ## Why Not Put Secrets in Code?
 
-以下做法都容易造成資料外洩：
+The following practices make data leaks much more likely:
 
 ```python
-# 不要這樣做
+# Don't do this
 DATABASE_PASSWORD = "real-password"
 API_KEY = "real-api-key"
 ```
 
-常見風險包括：
+Common risks include:
 
-- Git history 會永久保留曾經提交過的內容。
-- Docker image layer 可能保留 secret。
-- Log、錯誤訊息或 notebook output 可能意外印出 secret。
-- 共用 `.env` 或服務帳號金鑰很難追蹤誰曾經使用。
-- 更換密碼時需要重新修改、測試與部署程式碼。
+- Git history permanently retains anything that was ever committed.
+- Docker image layers may retain a secret.
+- Logs, error messages, or notebook output can accidentally print a secret.
+- Shared `.env` files or service account keys are hard to trace back to who used them.
+- Rotating a password requires modifying, testing, and redeploying code.
 
-Secret Manager 把敏感資料與程式碼分開，並提供 IAM、版本、稽核與輪替能力。
+Secret Manager separates sensitive data from code and provides IAM, versioning, auditing, and rotation capabilities.
 
 ## Resource Model
 
@@ -41,22 +41,22 @@ Google Cloud Project
 
 ### Secret
 
-Secret 是資源本身，包含名稱、labels、replication、IAM policy 與其他 metadata。Secret metadata 不應放入 secret value。
+A Secret is the resource itself, containing a name, labels, replication settings, IAM policy, and other metadata. Secret metadata should never contain the secret value.
 
 ### Secret Version
 
-真正的敏感內容存在 Secret version。每次新增值，都會建立一個新的版本；既有版本不會被原地修改。
+The actual sensitive content lives in a Secret version. Every time you add a value, a new version is created; existing versions are never modified in place.
 
-版本可以：
+A version can be:
 
-- Access：讀取內容。
-- Disable：暫停使用，但可恢復。
-- Enable：重新啟用。
-- Destroy：永久銷毀 secret material，不可復原。
+- **Access**: read its content.
+- **Disable**: suspend use, but it can be restored.
+- **Enable**: re-enable it.
+- **Destroy**: permanently destroy the secret material — this cannot be undone.
 
-### `latest` and Numeric Version
+### `latest` and Numeric Versions
 
-Secret Manager 可以使用：
+Secret Manager lets you reference:
 
 ```text
 latest
@@ -65,11 +65,11 @@ latest
 3
 ```
 
-`latest` 方便測試，但 Production 通常建議在部署設定中 pin 到明確的數字版本，讓每次部署使用的設定可追蹤、可回滾。
+`latest` is convenient for testing, but production deployments should generally pin to an explicit numeric version so that the configuration used by each deployment is traceable and can be rolled back.
 
 ## Secret Manager and Environment Variables
 
-Environment variable 不是 Secret Manager。Environment variable 只是應用程式取得設定的一種方式。
+An environment variable is not Secret Manager. An environment variable is simply one way for an application to obtain configuration.
 
 ```text
 Secret Manager
@@ -79,29 +79,29 @@ Secret Manager
       └── Application client library
 ```
 
-Secret Manager 負責保存、授權與版本；Cloud Run 或應用程式負責在執行時取得值。
+Secret Manager is responsible for storage, authorization, and versioning; Cloud Run or the application is responsible for retrieving the value at runtime.
 
 ## Replication
 
-建立 Secret 時要選擇 replication policy：
+When you create a Secret, you choose a replication policy:
 
-- **Automatic replication**：由 Google 管理資料複寫位置，設定簡單。
-- **User-managed replication**：指定允許的 replication locations，適合有資料駐留、法規或治理要求的環境。
+- **Automatic replication**: Google manages where the data is replicated, which keeps the setup simple.
+- **User-managed replication**: you specify the allowed replication locations, which suits environments with data residency, regulatory, or governance requirements.
 
-Replication policy 和應用程式的部署區域是不同概念。設計時要同時考慮資料治理、可用性、延遲與成本。
+The replication policy is a separate concept from the region where your application is deployed. Consider data governance, availability, latency, and cost together when designing this.
 
 ## Security Capabilities
 
-Secret Manager 提供：
+Secret Manager provides:
 
-- 以 IAM 控制單一 secret 的存取權。
-- Secret version 的新增、停用、啟用與銷毀。
-- Cloud Audit Logs 追蹤誰存取了哪個版本。
-- Labels 與 annotations 管理環境、owner 與用途。
-- Automatic 或 user-managed replication。
-- 與 Cloud Run、Cloud Run functions、GKE、Compute Engine 等服務整合。
+- IAM-based access control for individual secrets.
+- Adding, disabling, enabling, and destroying secret versions.
+- Cloud Audit Logs to track who accessed which version.
+- Labels and annotations to manage environment, owner, and purpose.
+- Automatic or user-managed replication.
+- Integration with Cloud Run, Cloud Run functions, GKE, Compute Engine, and other services.
 
-Secret Manager 不是完整的 application configuration system。非敏感設定仍可使用一般設定檔、環境變數或 Runtime Config 類型的工具，不需要全部放進 Secret Manager。
+Secret Manager is not a complete application configuration system. Non-sensitive configuration can still use regular config files, environment variables, or a Runtime Config-style tool — it doesn't all need to live in Secret Manager.
 
 ## Recommended Architecture
 
@@ -118,27 +118,27 @@ Runtime Service Account
 Cloud Run / Cloud Run functions / GKE / VM
 ```
 
-部署者需要建立版本的權限，執行中的服務只需要讀取權限。這兩種身分應該分開。
+Deployers need permission to create versions; the running service only needs read permission. These two identities should be kept separate.
 
 ## What You Will Learn
 
-1. 建立 Secret 與第一個 Secret version。
-2. 使用 Console、`gcloud` 與 Python client library 讀取 secret。
-3. 使用最小權限授予 User 與 Service Account。
-4. 將 Secret 注入 Cloud Run 或 Cloud Run functions。
-5. 設計版本輪替、回滾、停用與清理流程。
-6. 透過 Audit Logs 與環境隔離降低風險。
+1. Create a Secret and its first Secret version.
+2. Read a secret using the Console, `gcloud`, and the Python client library.
+3. Grant least-privilege access to Users and Service Accounts.
+4. Inject a Secret into Cloud Run or Cloud Run functions.
+5. Design a workflow for version rotation, rollback, disabling, and cleanup.
+6. Reduce risk through Audit Logs and environment isolation.
 
 ## Prerequisites
 
-開始前請準備：
+Before you begin, make sure you have:
 
-- 一個已啟用 billing 的 Google Cloud Project。
-- 已安裝 Google Cloud CLI。
-- 已執行 `gcloud auth login`。
-- 了解 Project、IAM 與 Service Account 的基本概念。
+- A Google Cloud Project with billing enabled.
+- The Google Cloud CLI installed.
+- Run `gcloud auth login`.
+- A basic understanding of Projects, IAM, and Service Accounts.
 
-> 本教學的所有 secret value 都使用示意內容。請不要把真實 API key、密碼或憑證貼到教學文件、聊天紀錄或 Git repository。
+> All secret values in this tutorial are placeholder content. Do not paste real API keys, passwords, or credentials into tutorial documents, chat logs, or a Git repository.
 
 ## Further Reading
 
