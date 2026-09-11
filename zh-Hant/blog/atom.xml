@@ -69,8 +69,8 @@
 <hr>
 <p><em>感謝你的閱讀！如果你覺得這篇文章對你有幫助，歡迎在 <a href="https://www.linkedin.com/in/chengyou-shi/" target="_blank" rel="noopener noreferrer">LinkedIn</a> 上跟我聯繫。</em></p>]]></content>
         <author>
-            <name>uuboyscy</name>
-            <uri>https://uuboyscy.dev</uri>
+            <name>UUBOY (uuboyscy)</name>
+            <uri>https://docs.uuboyscy.dev</uri>
         </author>
         <category label="data-engineering" term="data-engineering"/>
         <category label="ai" term="ai"/>
@@ -162,8 +162,8 @@
 <hr>
 <p><em>Thanks for reading! If you found this article helpful, feel free to connect with me on <a href="https://www.linkedin.com/in/chengyou-shi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</em></p>]]></content>
         <author>
-            <name>uuboyscy</name>
-            <uri>https://uuboyscy.dev</uri>
+            <name>UUBOY (uuboyscy)</name>
+            <uri>https://docs.uuboyscy.dev</uri>
         </author>
         <category label="dbt" term="dbt"/>
         <category label="Prefect" term="Prefect"/>
@@ -273,8 +273,8 @@
 <p>The rise of dbt marks a pivotal moment in data engineering, emphasizing collaboration, transparency, and systematic workflows. By integrating software engineering principles into data practices, dbt enables data teams to deliver high-quality datasets and insights at scale. As the industry continues to evolve, tools like dbt will play an increasingly central role in shaping the future of data engineering.</p>
 <p>For teams embarking on their dbt journey, understanding its history and features is the first step toward unlocking its potential. Whether you're a data engineer, analyst, or stakeholder, dbt empowers you to navigate and contribute to modern data ecosystems with confidence.</p>]]></content>
         <author>
-            <name>uuboyscy</name>
-            <uri>https://uuboyscy.dev</uri>
+            <name>UUBOY (uuboyscy)</name>
+            <uri>https://docs.uuboyscy.dev</uri>
         </author>
         <category label="dbt" term="dbt"/>
         <category label="GCP" term="GCP"/>
@@ -347,8 +347,8 @@
 <p>Prefect’s simplicity, flexibility, and user-friendly design make it ideal for diverse teams and hybrid environments. By transitioning to Prefect, we unified our workflows, empowered analysts, and improved scalability—proving that the right tool can transform the way we work.</p>
 <hr>]]></content>
         <author>
-            <name>uuboyscy</name>
-            <uri>https://uuboyscy.dev</uri>
+            <name>UUBOY (uuboyscy)</name>
+            <uri>https://docs.uuboyscy.dev</uri>
         </author>
         <category label="GCP" term="GCP"/>
         <category label="Airflow" term="Airflow"/>
@@ -428,8 +428,8 @@
 </ul>
 <p>These lessons highlight the importance of choosing the right approach and tools when working with big data.</p>]]></content>
         <author>
-            <name>uuboyscy</name>
-            <uri>https://uuboyscy.dev</uri>
+            <name>UUBOY (uuboyscy)</name>
+            <uri>https://docs.uuboyscy.dev</uri>
         </author>
         <category label="Hadoop" term="Hadoop"/>
         <category label="Spark" term="Spark"/>
@@ -460,8 +460,8 @@
 <p>請持續關注更多文章！如果你想討論任何與科技相關的話題（或者只是想打個招呼），歡迎隨時聯繫我！</p>
 <p>祝大家寫程式愉快！💻</p>]]></content>
         <author>
-            <name>uuboyscy</name>
-            <uri>https://uuboyscy.dev</uri>
+            <name>UUBOY (uuboyscy)</name>
+            <uri>https://docs.uuboyscy.dev</uri>
         </author>
         <category label="Hello" term="Hello"/>
         <category label="Docusaurus" term="Docusaurus"/>
