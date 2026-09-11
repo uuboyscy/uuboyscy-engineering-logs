@@ -9,7 +9,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">嗨，我是 Allen 👋</h1>
+        <h1 className="hero__title" aria-label="嗨，我是 UUBOY (uuboyscy)">嗨，我是 UUBOY 👋</h1>
         <p className="hero__subtitle">數據工程專家 | 雲端數據架構 | 數據治理</p>
         <p align="center">
           <a href="https://www.linkedin.com/in/chengyou-shi/">
@@ -220,8 +220,8 @@ function ExperienceSection() {
 export default function Home() {
   return (
     <Layout
-      title="UUBOYSCY.DEV"
-      description="數據工程專家，專精於雲端原生解決方案、可擴展數據管道與現代化架構。">
+      title="uuboy (uuboyscy) | Data Engineering Logs"
+      description="UUBOY (uuboyscy / 施丞優) 的工程日誌與個人網站。專注於雲端數據架構、Data Pipeline 與數據治理的數據工程專家。">
       <HomepageHeader />
       <main>
         <AboutMeSection />
