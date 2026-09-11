@@ -137,7 +137,8 @@ const config = {
       darkTheme: prismThemes.dracula,
     },
     metadata: [
-      { name: 'keywords', content: ' uuboy, scy, uuboyscy, data engineering, big data, Python, Java, consulting' },
+      { name: 'author', content: 'UUBOY (uuboyscy / 施丞優)' },
+      { name: 'keywords', content: 'data engineering, big data, Python, Java, cloud architecture, consulting' },
     ],
   },
   headTags: [
@@ -179,14 +180,30 @@ const config = {
       },
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org/',
-        '@type': 'Organization',
-        name: 'uuboyscy',
-        url: 'https://docs.uuboyscy.dev',
-        logo: 'https://docs.uuboyscy.dev/zh-Hant/img/logo.svg',
-        sameAs: [
-          'https://github.com/uuboyscy',
+        '@graph': [
+          {
+            '@type': 'Person',
+            '@id': 'https://docs.uuboyscy.dev/#person',
+            name: 'UUBOY',
+            alternateName: ['uuboy', 'uuboyscy', 'Allen Shi', '施丞優'],
+            url: 'https://docs.uuboyscy.dev',
+            jobTitle: 'Data Engineering Expert',
+            sameAs: [
+              'https://github.com/uuboyscy',
+              'https://www.linkedin.com/in/chengyou-shi/',
+              'https://www.tibame.com/teacher/uuboyscy',
+            ],
+            description: 'Data engineer specializing in scalable pipelines, cloud data architecture, and data governance.',
+          },
+          {
+            '@type': 'WebSite',
+            '@id': 'https://docs.uuboyscy.dev/#website',
+            url: 'https://docs.uuboyscy.dev',
+            name: 'UUBOY Engineering Logs',
+            alternateName: ['uuboy', 'uuboyscy', 'UUBOYSCY ENGINEERING LOGS'],
+            publisher: { '@id': 'https://docs.uuboyscy.dev/#person' },
+          },
         ],
-        description: 'uuboyscy is a data engineering consulting company specializing in big data, data pipeline, and analytics solutions.',
       }),
     },
   ],

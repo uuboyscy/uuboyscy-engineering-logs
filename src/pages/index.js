@@ -10,7 +10,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">Hi, I'm Allen 👋</h1>
+        <h1 className="hero__title" aria-label="Hi, I'm UUBOY (uuboyscy)">Hi, I'm UUBOY 👋</h1>
         <p className="hero__subtitle">Expert in Data Engineering | Cloud Data Architecture | Data Governance</p>
         <p align="center">
           <a href="https://www.linkedin.com/in/chengyou-shi/">
@@ -239,8 +239,8 @@ function ExperienceSection() {
 export default function Home() {
   return (
     <Layout
-      title="UUBOYSCY.DEV"
-      description="Expert Data Engineer specializing in cloud-native solutions, scalable data pipelines, and modern architectures.">
+      title="uuboy (uuboyscy) | Data Engineering Logs"
+      description="Personal tech logs and portfolio of UUBOY (uuboyscy / Allen Shi). Expert Data Engineer specializing in cloud-native data architecture, scalable pipelines, and data governance.">
       <Head>
         <script src="https://cloud.google.com/ai/gen-app-builder/client?hl=en_US"></script>
       </Head>
