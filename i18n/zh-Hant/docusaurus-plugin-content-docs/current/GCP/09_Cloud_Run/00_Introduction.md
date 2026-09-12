@@ -6,7 +6,7 @@ sidebar_position: 0
 
 Cloud Run 是 Google Cloud 提供的全代管容器平台，可以執行 Web service、API、批次任務與事件處理程式。你只需要準備 container image 或 source code，不需要自行管理 VM、作業系統與 Kubernetes cluster。
 
-本章會沿著一個資料工程常見的路徑，從 Docker image、Artifact Registry、Cloud Run Service 與 Job，一路延伸到 Cloud Run functions、IAM 與 BigQuery Remote Function。
+本章會沿著一個資料工程常見的路徑，從 Docker image、Artifact Registry、Cloud Run Service 與 Job，一路延伸到 Cloud Run functions 與 BigQuery Remote Function。
 
 ## What Is Cloud Run?
 
@@ -97,9 +97,8 @@ Client / Frontend ───▶ Cloud Run Service
 3. 使用 Cloud Run Job 執行 ETL、備份或爬蟲。
 4. 使用 Cloud Run functions 部署單一函數。
 5. 設定 port、CPU、Memory、timeout、retry 與 autoscaling。
-6. 使用專用 Service Account 實作最小權限。
-7. 連接 Secret Manager、BigQuery Remote Function 與其他 GCP 服務。
-8. 完成測試後安全清理資源。
+6. 連接 Secret Manager、BigQuery Remote Function 與其他 GCP 服務。
+7. 完成測試後安全清理資源。
 
 ## Prerequisites
 

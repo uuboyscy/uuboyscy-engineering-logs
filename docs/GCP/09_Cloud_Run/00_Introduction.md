@@ -6,7 +6,7 @@ sidebar_position: 0
 
 Cloud Run is a fully managed container platform from Google Cloud that can run web services, APIs, batch jobs, and event-driven programs. You only need to provide a container image or source code; there is no need to manage VMs, operating systems, or a Kubernetes cluster yourself.
 
-This chapter follows a path that is common in data engineering, moving from Docker images, Artifact Registry, and Cloud Run Services and Jobs, all the way to Cloud Run functions, IAM, and BigQuery Remote Functions.
+This chapter follows a path that is common in data engineering, moving from Docker images, Artifact Registry, and Cloud Run Services and Jobs, all the way to Cloud Run functions and BigQuery Remote Functions.
 
 ## What Is Cloud Run?
 
@@ -97,9 +97,8 @@ Client / Frontend ───▶ Cloud Run Service
 3. Use a Cloud Run Job to run ETL, backup, or crawler workloads.
 4. Deploy a single function with Cloud Run functions.
 5. Configure port, CPU, memory, timeout, retries, and autoscaling.
-6. Practice least privilege with a dedicated service account.
-7. Connect to Secret Manager, BigQuery Remote Functions, and other GCP services.
-8. Safely clean up resources once you are done testing.
+6. Connect to Secret Manager, BigQuery Remote Functions, and other GCP services.
+7. Safely clean up resources once you are done testing.
 
 ## Prerequisites
 

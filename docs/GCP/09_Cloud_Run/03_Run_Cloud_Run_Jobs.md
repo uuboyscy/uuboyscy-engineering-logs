@@ -113,24 +113,6 @@ gcloud run jobs logs read tkr101-batch-job \
 9. Click **Create**.
 10. On the job detail page, click **Execute**.
 
-## Tasks, Parallelism, and Retries
-
-A single job execution can contain multiple tasks:
-
-```text
-Job execution
-├── Task 0
-├── Task 1
-├── Task 2
-└── Task 3
-```
-
-- **Tasks**: how many tasks to run.
-- **Parallelism**: how many tasks run at the same time.
-- **Max retries**: the maximum number of retries after a single task fails.
-
-If every task processes the same data, blindly increasing the number of tasks can cause duplicate writes. The program needs to use a task index, partition key, or an idempotent write design.
-
 ## Exit Code and Idempotency
 
 A successful job container should return `0`:

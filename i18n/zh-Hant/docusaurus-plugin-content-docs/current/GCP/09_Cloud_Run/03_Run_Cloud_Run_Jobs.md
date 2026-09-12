@@ -113,24 +113,6 @@ gcloud run jobs logs read tkr101-batch-job \
 9. 點選 **Create**。
 10. 在 Job 詳細頁點選 **Execute**。
 
-## Tasks, Parallelism, and Retries
-
-一個 Job execution 可以包含多個 tasks：
-
-```text
-Job execution
-├── Task 0
-├── Task 1
-├── Task 2
-└── Task 3
-```
-
-- **Tasks**：要執行幾個 task。
-- **Parallelism**：同時執行幾個 task。
-- **Max retries**：單一 task 失敗後最多重試次數。
-
-如果每個 task 都會處理相同資料，盲目增加 tasks 可能產生重複寫入。程式需要使用 task index、partition key 或 idempotent write 設計。
-
 ## Exit Code and Idempotency
 
 成功的 Job container 應回傳 `0`：
