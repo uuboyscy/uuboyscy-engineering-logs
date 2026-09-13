@@ -124,9 +124,8 @@ Cloud Run / Cloud Run functions / GKE / VM
 
 1. 建立 Secret 與第一個 Secret version。
 2. 使用 Console、`gcloud` 與 Python client library 讀取 secret。
-3. 使用最小權限授予 User 與 Service Account。
-4. 設計版本輪替、回滾、停用與清理流程。
-5. 透過 Audit Logs 與環境隔離降低風險。
+3. 設計版本輪替、回滾、停用與清理流程。
+4. 透過 Audit Logs 與環境隔離降低風險。
 
 ## Prerequisites
 

@@ -124,9 +124,8 @@ Deployers need permission to create versions; the running service only needs rea
 
 1. Create a Secret and its first Secret version.
 2. Read a secret using the Console, `gcloud`, and the Python client library.
-3. Grant least-privilege access to Users and Service Accounts.
-4. Design a workflow for version rotation, rollback, disabling, and cleanup.
-5. Reduce risk through Audit Logs and environment isolation.
+3. Design a workflow for version rotation, rollback, disabling, and cleanup.
+4. Reduce risk through Audit Logs and environment isolation.
 
 ## Prerequisites
 
