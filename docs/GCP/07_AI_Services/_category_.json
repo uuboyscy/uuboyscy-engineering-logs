@@ -1,4 +1,8 @@
 {
   "label": "AI Services",
-  "position": 7
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Google Cloud AI services covering Vertex AI, foundation models, and generative AI integrations."
+  }
 }

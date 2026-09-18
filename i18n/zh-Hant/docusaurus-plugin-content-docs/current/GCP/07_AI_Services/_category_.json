@@ -1,0 +1,8 @@
+{
+  "label": "AI 服務",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Google Cloud AI 服務，涵蓋 Vertex AI、基礎模型與生成式 AI 整合應用。"
+  }
+}
