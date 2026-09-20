@@ -52,7 +52,7 @@ const config = {
   ],
 
   themeConfig: {
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/icons/icon-512.png',
     colorMode: {
       defaultMode: 'dark', // Set the default mode to dark
       disableSwitch: false, // Allow users to switch between light and dark mode
