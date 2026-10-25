@@ -2,17 +2,13 @@
 
 ## What to Do
 
-For this example, we'll create a web crawler to scrape articles from PTT's Gossiping board. Here are the key steps:
+For this example, we'll create a web crawler to scrape articles from PTT's photo board. Here are the key steps:
 
 1. **Prepare Headers and Cookies**
    - ![headers_user_agent](python_web_crawler_sources/headers_user_agent.png)
-   - ![cookies](python_web_crawler_sources/cookies.png)
     ```python
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
-    }
-    cookies = {
-        'over18': '1'
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36"
     }
     ```
 
@@ -35,16 +31,6 @@ To install the required libraries, follow these steps:
    ```bash
    pip install requests bs4
    ```
-   - Or you can use other package management tools:
-     - Using Poetry
-        ```bash
-        poetry add requests bs4
-        ```
-
-     - Using Pipenv 
-        ```bash
-        pipenv install requests bs4
-        ```
 3. Verify the installation:
    ```bash
    python -c "import requests; print(requests.__version__)"
@@ -88,8 +74,8 @@ The main libraries used are:
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://www.ptt.cc/bbs/Gossiping/index.html"
-res = requests.get(url, headers=headers, cookies=cookies)
+url = "https://www.ptt.cc/bbs/photo/index.html"
+res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, "html.parser")
 
 articles = soup.select("div.r-ent")
@@ -98,7 +84,7 @@ for article in articles:
     title_tag = article.select_one("div.title a")
     author = article.select_one("div.meta div.author")
     date = article.select_one("div.meta div.date")
-    
+
     if title_tag:
         print("Title:", title_tag.text)
         print("Link:", "https://www.ptt.cc" + title_tag["href"])
@@ -112,3 +98,38 @@ for article in articles:
   ![previous_page_1](python_web_crawler_sources/previous_page_1.png)
 - Find URL pattern
   ![previous_page_2](python_web_crawler_sources/previous_page_2.png)
+
+## Cookies
+
+Cookies let a website remember information between requests. For example, PTT's **Gossiping** board uses an age-confirmation page before showing its articles.
+
+After you confirm that you are over 18, PTT uses a cookie named `over18` with the value `1` to remember your choice. This is an age-confirmation cookie, not a login credential.
+
+### Find the Cookie in Chrome
+
+1. Open [PTT Gossiping](https://www.ptt.cc/bbs/Gossiping/index.html) in Chrome and complete the age confirmation if you are eligible.
+2. Open DevTools → **Network**, then refresh the page.
+3. Select the request for the board page and check **Headers** → **Request Headers** → **Cookie**. Look for `over18=1`.
+
+![cookies](python_web_crawler_sources/cookies.png)
+
+### Send the Cookie with requests
+
+Pass a dictionary to the `cookies` parameter. Use the `headers` dictionary introduced above.
+
+```python
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://www.ptt.cc/bbs/Gossiping/index.html"
+cookies = {"over18": "1"}
+
+response = requests.get(url, headers=headers, cookies=cookies, timeout=10)
+response.raise_for_status()
+soup = BeautifulSoup(response.content, "html.parser")
+
+for link in soup.select("div.title a"):
+    print(link.get_text(strip=True))
+```
+
+Without the cookie, you may receive the age-confirmation page instead of the article list. Sending `over18=1` tells PTT that age confirmation has been completed. Include it in later requests when crawling other Gossiping pages as well.
