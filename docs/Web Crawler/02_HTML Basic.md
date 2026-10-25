@@ -1,7 +1,7 @@
 # HTML Basic
 
 ## Quick View
-    
+
 [https://www.ptt.cc/bbs/Gossiping/index.html](https://www.ptt.cc/bbs/Gossiping/index.html)
 
 Enter this on browser\
@@ -12,9 +12,9 @@ Enter this on browser\
 - HTML (HyperText Markup Language)
 - A markup language
 - Used to define structure and content of a web page.
-    
+
 ## Tag and Attribute
-    
+
 ```html
 <tag attribute="something"> content </tag>
 ```
@@ -32,13 +32,13 @@ Enter this on browser\
 </body>
 </html>
 ```
-    
+
 ### Simple Example
-    
+
 ![Untitled](python_web_crawler_sources/ptt_title.png)
 
 ![Untitled](python_web_crawler_sources/ptt_title_html.png)
-        
+
 ### Common HTML Elements (tags)
 
 | Element | Description | Example |
@@ -55,8 +55,17 @@ Enter this on browser\
 
 ## HTML Practice
 
-### Sample Code   
+### Sample Code
 [https://github.com/uuboyscy/course-html/tree/master](https://github.com/uuboyscy/course-html/tree/master)
 
-### Replit
-[https://replit.com/](https://replit.com/)
+### Practice with VS Code and a Browser
+
+Use [VSCode](https://code.visualstudio.com/) to write HTML and a browser to view the result.
+
+1. Create a folder for your practice files and open it in VSCode.
+2. Create a file named `index.html`.
+3. Copy the HTML example above into the file and save it.
+4. Open `index.html` in your browser (for example, drag the file into a browser tab).
+5. Change anything in VSCode, save the file, and refresh the browser to see the changes.
+
+For this exercise, you only need an editor and a browser. No server or extensions are required.
