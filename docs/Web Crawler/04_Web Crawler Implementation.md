@@ -1,92 +1,40 @@
-# Web Crawler Implementation
+# Before Writing a Web Crawler
 
-## Common Libraries
+A typical workflow is:
 
-Python >= 3.10
+**Send a request → Receive HTML or JSON → Extract data → Save the result**
 
-- requests
-- bs4 (BeautifulSoup)
-- selenium
-- pandas
-- jupyter
+Before writing code, open the target website in **Google Chrome** and find out where the data comes from.
 
-# Static Web Page
+## Common Libraries and Tools
 
-## Libraries
+**Python 3.14** is recommended.
 
-- Requests
-- BeautifulSoup
-- Selenium
-- Pandas
+| Library | What it does | Simple example |
+|---|---|---|
+| `requests` | Sends HTTP requests and receives responses | Download a page's HTML or request JSON data |
+| `bs4` (BeautifulSoup) | Finds and extracts data from HTML | Get all article titles inside `<h2>` tags |
+| `pandas` | Organizes data into tables | Save collected titles and prices to a CSV file |
+| `selenium` | Controls a real browser | Click a button and wait for content to appear |
 
-## Implement
+## Static Web Pages
 
-- PTT
-    
-    [https://github.com/uuboyscy/course-PyETL/blob/master/part02_pttArticleWithCookie/04_pttMovieEveryPageArticle.py](https://github.com/uuboyscy/course-PyETL/blob/master/part02_pttArticleWithCookie/04_pttMovieEveryPageArticle.py)
-    
-- Pandas read_html
-    
-    [https://github.com/uuboyscy/course-PyETL/blob/master/part06_usefulPackages/02_pandas_read_html.ipynb](https://github.com/uuboyscy/course-PyETL/blob/master/part06_usefulPackages/02_pandas_read_html.ipynb)
-    
-- POST
-    
-    Sample URL:
-    
-    [https://5468-118-163-131-11.ngrok-free.app/hello_post](https://5468-118-163-131-11.ngrok-free.app/hello_post)
-    
+Start by checking whether the data is already in the server's HTML response. If it is, use `requests` to download it and `bs4` to extract the data.
 
-# Dynamic Web Page
+**Example:** Extract a title from `<h2>Python Basics</h2>`.
 
-## Libraries
+## Dynamic Web Pages
 
-- Requests
-- JSON
+Some pages use **JavaScript** to load data after the initial HTML arrives. `requests` does not run JavaScript, so that data may be missing from its response.
 
-## Implement
+**Example:** More products appear after clicking **Load more** or **scrolling down**.
 
-- Nownews (GET)
-    
-    [https://github.com/uuboyscy/course-PyETL/blob/master/part05_dynamicWebPage/06_nownews.py](https://github.com/uuboyscy/course-PyETL/blob/master/part05_dynamicWebPage/06_nownews.py)
-    
-- Newmobilelife (POST)
-    
-    [https://github.com/uuboyscy/course-PyETL/blob/master/part05_dynamicWebPage/05_newmobilelife.py](https://github.com/uuboyscy/course-PyETL/blob/master/part05_dynamicWebPage/05_newmobilelife.py)
-    
+Open Chrome DevTools → **Network**, then click or scroll to load more content. Find the request that returns the new data. If you can access it directly, use `requests`; otherwise, browser automation may help.
 
-# Selenium
+## Web Automation
 
-## Libraries
+Use **Selenium with Google Chrome** to control a browser: click buttons, enter text, scroll, and run JavaScript.
 
-- Selenium
+**Example:** Click **Load more**, wait for new products to appear, then collect their names.
 
-## Driver environment
-
-- Chrome driver
-    
-    [https://googlechromelabs.github.io/chrome-for-testing/](https://googlechromelabs.github.io/chrome-for-testing/)
-    
-- Steps:
-    - Initiate driver
-        
-        ```python
-        service = Service("./chromedriver")
-        driver = Chrome(service=service)
-        ```
-        
-    - driver.get(`url`)
-    - driver.find_element(`by`, `value`)
-    - driver.execute_script(`javascript`)
-    - driver.close()
-
-## Implement
-
-- PTT
-    
-    [https://github.com/uuboyscy/course-PyETL/blob/master/part07_selenium/00_seleniumUsage.py](https://github.com/uuboyscy/course-PyETL/blob/master/part07_selenium/00_seleniumUsage.py)
-    
-- Dcard
-    
-    [https://github.com/uuboyscy/course-PyETL/blob/master/part07_selenium/04_dcard.py](https://github.com/uuboyscy/course-PyETL/blob/master/part07_selenium/04_dcard.py)
-    
-- Options and remote driver
+Use `requests` when it can retrieve the data directly. Use Selenium when browser interaction is needed. it is usually slower and uses more resources.
