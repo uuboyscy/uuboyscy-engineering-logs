@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkuuboyscy_engineering_logs=globalThis.webpackChunkuuboyscy_engineering_logs||[]).push([[6236],{66236:(e,n,s)=>{s.d(n,{createCynefinServices:()=>i.t});var i=s(49760);s(80184)}}]);

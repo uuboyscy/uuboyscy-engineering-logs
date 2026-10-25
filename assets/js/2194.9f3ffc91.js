@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkuuboyscy_engineering_logs=globalThis.webpackChunkuuboyscy_engineering_logs||[]).push([[2194],{22194:(e,s,g)=>{g.d(s,{createTreemapServices:()=>i.d});var i=g(81048);g(80184)}}]);

@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkuuboyscy_engineering_logs=globalThis.webpackChunkuuboyscy_engineering_logs||[]).push([[2580],{2580:(e,s,g)=>{g.d(s,{createWardleyServices:()=>i.J});var i=g(40120);g(80184)}}]);

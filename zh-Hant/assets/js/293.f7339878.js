@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkuuboyscy_engineering_logs=globalThis.webpackChunkuuboyscy_engineering_logs||[]).push([[293],{60293:(e,g,n)=>{n.d(g,{createEventModelingServices:()=>s.g});var s=n(46988);n(80184)}}]);

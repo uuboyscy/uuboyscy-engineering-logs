@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkuuboyscy_engineering_logs=globalThis.webpackChunkuuboyscy_engineering_logs||[]).push([[1903],{1912:s=>{s.exports=JSON.parse('{"blogBasePath":"/zh-Hant/blog","blogTitle":"Blog","authorsListPath":"/zh-Hant/blog/authors"}')}}]);
