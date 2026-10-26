@@ -2,7 +2,7 @@
 
 ## What to Do
 
-For this example, we'll create a web crawler to scrape articles from PTT's photo board. Here are the key steps:
+For this example, we'll create a web crawler to scrape articles from PTT's Movie board. Here are the key steps:
 
 1. **Prepare Headers and Cookies**
    - ![headers_user_agent](python_web_crawler_sources/headers_user_agent.png)
@@ -74,7 +74,7 @@ The main libraries used are:
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://www.ptt.cc/bbs/photo/index.html"
+url = "https://www.ptt.cc/bbs/movie/index.html"
 res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, "html.parser")
 
