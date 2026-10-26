@@ -34,5 +34,3 @@ soup = BeautifulSoup(response.content, "html.parser")
 for link in soup.select("div.title a"):
     print(link.get_text(strip=True))
 ```
-
-Without the cookie, you may receive the age-confirmation page instead of the article list. Sending `over18=1` tells PTT that age confirmation has been completed. Include it in later requests when crawling other Gossiping pages as well.
