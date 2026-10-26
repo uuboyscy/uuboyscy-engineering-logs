@@ -2,17 +2,15 @@
 
 ## What to Do
 
-For this example, we'll create a web crawler to scrape articles from PTT's Gossiping board. Here are the key steps:
+Quick-start demo: [Your first crawler](https://github.com/uuboyscy/web-crawler/blob/main/01-basics/01-first-crawler.py).
+
+For this example, we'll create a web crawler to scrape articles from PTT's Movie board. Here are the key steps:
 
 1. **Prepare Headers and Cookies**
    - ![headers_user_agent](python_web_crawler_sources/headers_user_agent.png)
-   - ![cookies](python_web_crawler_sources/cookies.png)
     ```python
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
-    }
-    cookies = {
-        'over18': '1'
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36"
     }
     ```
 
@@ -35,16 +33,6 @@ To install the required libraries, follow these steps:
    ```bash
    pip install requests bs4
    ```
-   - Or you can use other package management tools:
-     - Using Poetry
-        ```bash
-        poetry add requests bs4
-        ```
-
-     - Using Pipenv 
-        ```bash
-        pipenv install requests bs4
-        ```
 3. Verify the installation:
    ```bash
    python -c "import requests; print(requests.__version__)"
@@ -72,6 +60,7 @@ The main libraries used are:
     - Sends a GET request to the specified URL
   - `requests.post(url, data=None, json=None)`
     - Sends a POST request with form data or JSON
+  - Sample code: [Requests basics](https://github.com/uuboyscy/web-crawler/blob/main/01-basics/02-requests-basics.py)
 - BeautifulSoup functions
   - `BeautifulSoup(html, "html.parser")`
     - Creates a BeautifulSoup object to parse HTML
@@ -82,14 +71,15 @@ The main libraries used are:
   - `soup.find_all(tag, attrs={})`
     - Finds all elements matching the tag and attributes
     - → Returns a list of tag (even if it has one result)
+  - Sample code: [BeautifulSoup basics](https://github.com/uuboyscy/web-crawler/blob/main/01-basics/03-beautifulsoup-basics.py)
 
 ### Crawl Article titles and Other Information
 ```python
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://www.ptt.cc/bbs/Gossiping/index.html"
-res = requests.get(url, headers=headers, cookies=cookies)
+url = "https://www.ptt.cc/bbs/movie/index.html"
+res = requests.get(url, headers=headers)
 soup = BeautifulSoup(res.text, "html.parser")
 
 articles = soup.select("div.r-ent")
@@ -98,7 +88,7 @@ for article in articles:
     title_tag = article.select_one("div.title a")
     author = article.select_one("div.meta div.author")
     date = article.select_one("div.meta div.date")
-    
+
     if title_tag:
         print("Title:", title_tag.text)
         print("Link:", "https://www.ptt.cc" + title_tag["href"])
@@ -112,3 +102,4 @@ for article in articles:
   ![previous_page_1](python_web_crawler_sources/previous_page_1.png)
 - Find URL pattern
   ![previous_page_2](python_web_crawler_sources/previous_page_2.png)
+- Sample code: [Crawl article titles and links of multiple pages](https://github.com/uuboyscy/web-crawler/blob/main/02-static-web-pages/01-crawl-article-titles-and-links.py).

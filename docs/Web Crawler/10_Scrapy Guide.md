@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 10
 ---
 
 # Scrapy Guide
@@ -178,7 +178,7 @@ DOWNLOAD_DELAY = 1  # seconds between requests
 USER_AGENT = "Mozilla/5.0 (compatible; MyBot/1.0)"
 ```
 
-For pipeline configuration, see [Scrapy Pipeline](10_Scrapy%20Pipeline.md).
+For pipeline configuration, see [Scrapy Pipeline](11_Scrapy%20Pipeline.md).
 
 ---
 
