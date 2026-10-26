@@ -2,6 +2,8 @@
 
 ## What to Do
 
+Quick-start demo: [Your first crawler](https://github.com/uuboyscy/web-crawler/blob/main/01-basics/01-first-crawler.py).
+
 For this example, we'll create a web crawler to scrape articles from PTT's Movie board. Here are the key steps:
 
 1. **Prepare Headers and Cookies**
@@ -58,6 +60,7 @@ The main libraries used are:
     - Sends a GET request to the specified URL
   - `requests.post(url, data=None, json=None)`
     - Sends a POST request with form data or JSON
+  - Sample code: [Requests basics](https://github.com/uuboyscy/web-crawler/blob/main/01-basics/02-requests-basics.py)
 - BeautifulSoup functions
   - `BeautifulSoup(html, "html.parser")`
     - Creates a BeautifulSoup object to parse HTML
@@ -68,6 +71,7 @@ The main libraries used are:
   - `soup.find_all(tag, attrs={})`
     - Finds all elements matching the tag and attributes
     - → Returns a list of tag (even if it has one result)
+  - Sample code: [BeautifulSoup basics](https://github.com/uuboyscy/web-crawler/blob/main/01-basics/03-beautifulsoup-basics.py)
 
 ### Crawl Article titles and Other Information
 ```python
