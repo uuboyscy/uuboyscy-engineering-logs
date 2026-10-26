@@ -102,3 +102,4 @@ for article in articles:
   ![previous_page_1](python_web_crawler_sources/previous_page_1.png)
 - Find URL pattern
   ![previous_page_2](python_web_crawler_sources/previous_page_2.png)
+- Sample code: [Crawl article titles and links of multiple pages](https://github.com/uuboyscy/web-crawler/blob/main/02-static-web-pages/01-crawl-article-titles-and-links.py).
