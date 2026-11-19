@@ -1,5 +1,5 @@
 // @ts-check
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 const config = {
   title: 'UUBOYSCY ENGINEERING LOGS', // Update the title
@@ -34,6 +34,7 @@ const config = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          exclude: ['**/10_Scrapy Guide.md', '**/11_Scrapy Pipeline.md'],
         },
         blog: {
           showReadingTime: true,
@@ -71,7 +72,7 @@ const config = {
           position: 'left',
           label: 'Docs',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
           type: 'localeDropdown', // Enables the language switcher
           position: 'right', // Position in the navbar
