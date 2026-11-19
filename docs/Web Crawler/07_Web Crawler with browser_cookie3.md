@@ -25,24 +25,29 @@ pip install requests beautifulsoup4 browser-cookie3
 ## 📁 Sample Crawler Code
 
 ```python
-import requests
+"""Crawl PTT's Gossiping board using cookies saved in Chrome."""
+
 import browser_cookie3
+import requests
 from bs4 import BeautifulSoup
 
+
 def _fetch_cookies_from_browser() -> dict[str, str]:
-    """Fetches PTT cookies (like over18=1) from your Chrome browser."""
+    """Return the ``over18`` cookie from Chrome for ``ptt.cc``."""
+    # May prompt for macOS Keychain access to decrypt Chrome cookies.
     cookie_jar = browser_cookie3.chrome(domain_name="ptt.cc")
     local_cookie_dict = requests.utils.dict_from_cookiejar(cookie_jar)
 
-    # Confirming if the essential cookie exists
     cookies = {
-        "over18": local_cookie_dict.get("over18", "1")
+        "over18": local_cookie_dict.get("over18")
     }
 
     print("[Fetched Cookies]", cookies)
     return cookies
 
-def crawl_ptt_gossiping():
+
+def crawl_ptt_gossiping() -> None:
+    """Fetch and print article titles from PTT's Gossiping board."""
     url = "https://www.ptt.cc/bbs/Gossiping/index.html"
     cookies = _fetch_cookies_from_browser()
     headers = {
@@ -61,8 +66,10 @@ def crawl_ptt_gossiping():
     for article in articles:
         print(f"- {article.text.strip()} ({article['href']})")
 
+
 if __name__ == "__main__":
     crawl_ptt_gossiping()
+
 ```
 
 ---
