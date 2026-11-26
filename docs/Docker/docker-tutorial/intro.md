@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Overview and module roadmap for the Docker tutorial, covering containers vs. virtual machines, Linux basics, DockerHub, Docker commands, Dockerfile, Docker Compose, and VSCode devcontainers.
 ---
 
 # Docker Tutorial Intro
