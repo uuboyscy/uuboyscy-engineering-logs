@@ -1,3 +1,7 @@
+---
+description: Welcome to UUBOYSCY Engineering Logs documentation. Explore step-by-step tutorials, best practices, and practical code examples for data engineering, cloud architecture, and software development.
+---
+
 # Welcome to UUBOYSCY Engineering Logs
 
 Welcome to the UUBOYSCY Engineering Logs documentation! This site is dedicated to providing comprehensive guides and tutorials on data engineering and other related topics. Whether you are a beginner or an experienced professional, you will find valuable resources to enhance your knowledge and skills.
